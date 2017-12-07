@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/denis/CLionProjects/mySSHserver/Parser.cpp
+Parser.h
+/home/denis/CLionProjects/mySSHserver/Parser.h
+queue
+-
+stack
+-
+algorithm
+-
+stdexcept
+-
+iostream
+-
+
+/home/denis/CLionProjects/mySSHserver/Parser.h
+string
+-
+map
+-
+iterator
+-
+queue
+-
+
+/home/denis/CLionProjects/mySSHserver/main.cpp
+iostream
+-
+Parser.h
+/home/denis/CLionProjects/mySSHserver/Parser.h
+
