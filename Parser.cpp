@@ -13,110 +13,57 @@ Parser::Parser() { init(); }
 
 void Parser::init()
 {
-    percedence["&&"] = 3;
-    percedence["||"] = 3;
-    percedence[";"] = 3;
-    percedence[">"] = 2;
-    percedence["<"] = 2;
-    percedence["2>>"] = 2;
+    percedence["&&"] = 0;
+    percedence["||"] = 0;
+    percedence[";"] = 0;
+    percedence[">"] = 1;
+    percedence["<"] = 1;
+    percedence["2>>"] = 1;
 
 }
 
-bool Parser::isOperator(std::string::iterator it, std::string &str) {
-    if (it != str.end() && std::next(it) != str.end() && std::next(std::next(it)) != str.end())
-    {
-        if (std::string(it, it+3) == "2>>")
-        {
-            return true;
-        }
-    }
-    if (it != str.end() && std::next(it) != str.end())
-    {
-        if (std::string(it, it+2) == "&&" || std::string(it, it+2) == "||")
-        {
-            return true;
-        }
-    }
+const static std::vector<std::pair<std::string, OperationType>> operators =
+{
+        {"2>>", ERROR_REDIRECT  },
+        {"&&",  LOGICAL_AND     },
+        {"||",  LOGICAL_OR      },
+        {"<",   INPUT_REDIRECT  },
+        {">",   OUTPUT_REDIRECT },
+        {"|",   PIPE            },
+        {";",   FOLLOWUP        }
+};
 
-    if (it != str.end())
+bool Parser::isOperator(std::string& original, unsigned long position, Token* foundOp) {
+    for (auto op : operators)
     {
-        if ((*it) == '>' || (*it) == '<' || (*it) == ';')
+        unsigned long sz = op.first.length();
+        if (position + sz <= original.length())
         {
-            return true;
+            std::string possible = original.substr(position, sz);
+            if (op.first == possible)
+            {
+                if (foundOp != nullptr)
+                {
+                    foundOp->content = op.first;
+                    foundOp->position = position;
+                    foundOp->type = op.second;
+                }
+                return true;
+            }
         }
     }
     return false;
 }
 
-bool Parser::isBracket(std::string::iterator it, std::string &str)
+bool Parser::isOperator(OperationType type)
 {
-    return ((*it) == '(' || (*it) == ')');
-}
-
-bool Parser::getOperator(std::string::iterator it, std::string &str, Token* tk)
-{
-    if (tk == nullptr)
-    {
-        throw std::invalid_argument("Token is a null pointer!");
-    }
-    if (it == str.end())
-    {
-        throw std::out_of_range("Iterator out of range");
-    }
-
-    if (it != str.end() && std::next(it) != str.end() && std::next(std::next(it)) != str.end())
-    {
-        if (std::string(it, it+3) == "2>>")
-        {
-            tk->content = "2>>";
-            tk->type = ERROR_REDIRECT;
-            tk->position = std::distance(str.begin(), it);
-            return true;
-        }
-    }
-    if (it != str.end() && std::next(it) != str.end())
-    {
-        if (std::string(it, it+2) == "&&")
-        {
-            tk->content = "&&";
-            tk->type = LOGICAL_AND;
-            tk->position = std::distance(str.begin(), it);
-            return true;
-        }
-        if (std::string(it, it+2) == "||")
-        {
-            tk->content = "||";
-            tk->type = LOGICAL_OR;
-            tk->position = std::distance(str.begin(), it);
-            return true;
-        }
-    }
-
-    if (it != str.end())
-    {
-        if ((*it) == '>')
-        {
-            tk->content = ">";
-            tk->type = OUTPUT_REDIRECT;
-            tk->position = std::distance(str.begin(), it);
-            return true;
-        }
-        if ((*it) == '<')
-        {
-            tk->content = "<";
-            tk->type = INPUT_REDIRECT;
-            tk->position = std::distance(str.begin(), it);
-            return true;
-        }
-        if ((*it) == ';')
-        {
-            tk->content = ";";
-            tk->type = FOLLOWUP;
-            tk->position = std::distance(str.begin(), it);
-            return true;
-        }
-    }
-    return false;
+    return  (    type == LOGICAL_AND
+              || type == LOGICAL_OR
+              || type == INPUT_REDIRECT
+              || type == OUTPUT_REDIRECT
+              || type == ERROR_REDIRECT
+              || type == FOLLOWUP
+              || type == PIPE);
 }
 
 
@@ -136,6 +83,7 @@ void Parser::trim(std::string &command)
         command.erase(command.length()-1, 1);
     }
 }
+
 
 SyntaxTree* Parser::GetTree(std::queue<Token> &tokens)
 {
@@ -179,20 +127,20 @@ SyntaxTree* Parser::GetTree(std::queue<Token> &tokens)
     return nullptr;
 }
 
-SyntaxTree* Parser::parse(std::string command)
+
+RET_CODE Parser::tokenize(std::string command, std::vector<Token> &tokens)
 {
-    std::queue <Token> tokens;
-    std::stack <Token> operators;
+    tokens.clear();
     this->trim(command);
-    auto iter = command.begin();
     std::string currentToken = "";
     bool inCommand = true;
     bool inString = false;
     char stringStart;
 
-    while (iter != command.end())
+    unsigned long currentPosition = 0;
+    while (currentPosition < command.length())
     {
-        char c = *iter;
+        char c = command[currentPosition];
         Token t;
         if (inString) {
             if (c == stringStart) {
@@ -200,7 +148,7 @@ SyntaxTree* Parser::parse(std::string command)
                 stringStart = 0;
             }
             currentToken += c;
-            iter++;
+            currentPosition++;
         }
         else // Not in string
         {
@@ -208,69 +156,50 @@ SyntaxTree* Parser::parse(std::string command)
                 inString = true;
                 stringStart = c;
                 currentToken += c;
-                iter++;
+                currentPosition++;
                 continue;
             }
-            if (isOperator(iter, command) || isBracket(iter, command))
+            /* Found a operator next, save the current token */
+            if (isOperator(command, currentPosition, nullptr) || c == ')' || c == '(')
             {
                 trim(currentToken);
                 if (!currentToken.empty())
                 {
-
                     Token comm;
                     comm.content = currentToken;
                     comm.type = EXECUTE;
-                    comm.position = std::distance(command.begin(), iter) - currentToken.length();
+                    comm.position = currentPosition - currentToken.length();
                     currentToken.clear();
-                    tokens.push(comm);
+                    tokens.push_back(comm);
                 }
             }
-            if (getOperator(iter, command, &t)) {
-                while (!operators.empty()) {
-                    if (percedence.find(t.content) == percedence.end()) {
-                        throw std::invalid_argument("Operator content not found");
-                    }
-                    if (percedence[operators.top().content] > percedence[t.content]) {
-                        Token p = operators.top();
-                        tokens.push(p);
-                        operators.pop();
-                    } else if (percedence[operators.top().content] == percedence[t.content]
-                               && operators.top().content != "(") {
-                        Token p = operators.top();
-                        tokens.push(p);
-                        operators.pop();
-                    } else break;
-                }
-                operators.push(t);
-            } else if (c == '(') {
-                t.position = std::distance(command.begin(), iter);
-                t.type = BRACKET;
-                t.content = "(";
-                operators.push(t);
+
+            /* Process other tokens */
+            if (isOperator(command, currentPosition, &t))
+            {
+                currentPosition += t.content.length();
+                tokens.push_back(t);
             }
-                //Right bracket
-            else if (c == ')') {
-                t.position = std::distance(command.begin(), iter);
-                t.type = BRACKET;
+            else if (c == ')')
+            {
                 t.content = ")";
-
-                while (!operators.empty() && operators.top().content != "(") {
-                    Token t = operators.top();
-                    tokens.push(t);
-                    operators.pop();
-                }
-                if (operators.empty()) {
-                    this->errorCode = ERROR_BRACKETS_NOT_MATCHING;
-                    return nullptr;
-                }
-                operators.pop();
-            } else {
-                currentToken += c;
-                iter++;
-                continue;
+                t.position = currentPosition;
+                t.type = RIGHT_BRACKET;
+                currentPosition++;
+                tokens.push_back(t);
             }
-            iter += t.content.length();
-
+            else if (c == '(')
+            {
+                t.content = "(";
+                t.position = currentPosition;
+                t.type = LEFT_BRACKET;
+                currentPosition++;
+                tokens.push_back(t);
+            }
+            else {
+                currentToken += c;
+                currentPosition++;
+            }
         }
     }
     if (!currentToken.empty())
@@ -278,31 +207,107 @@ SyntaxTree* Parser::parse(std::string command)
         Token comm;
         comm.content = currentToken;
         comm.type = EXECUTE;
-        comm.position = std::distance(command.begin(), iter) - currentToken.length();
+        comm.position = currentPosition - currentToken.length();
         currentToken.clear();
-        tokens.push(comm);
+        tokens.push_back(comm);
     }
-    while (!operators.empty())
+
+    if (tokens.size() == 0)
     {
-        if (operators.top().type == OperationType::BRACKET)
+        return CODE_ERROR_EMTPY_TOKEN_LIST;
+    }
+    return CODE_OK;
+}
+
+RET_CODE Parser::verify(std::vector<Token> &tokens, std::string& error)
+{
+    for (unsigned long i = 0; i < tokens.size() - 1; i++)
+    {
+        if (isOperator(tokens[i].type) && isOperator(tokens[i+1].type))
         {
-            this->errorCode = ERROR_BRACKETS_NOT_MATCHING;
+            error = "Two tokens one after another at " + std::to_string(i);
+            return CODE_ERROR_UNEXPECTED_TOKEN;
+        }
+    }
+}
+
+SyntaxTree* Parser::parse(std::string command)
+{
+    std::vector<Token> tokens;
+    RET_CODE code = tokenize(command, tokens);
+
+    std::queue <Token> shTokens;
+    std::stack <Token> shOperators;
+
+    for (Token t : tokens)
+    {
+        if (isOperator(t.type))
+        {
+            while (!shOperators.empty()) {
+                if (percedence.find(t.content) == percedence.end()) {
+                    throw std::invalid_argument("Operator content not found");
+                }
+                if (percedence[shOperators.top().content] > percedence[t.content]) {
+                    Token p = shOperators.top();
+                    shTokens.push(p);
+                    shOperators.pop();
+                } else if (percedence[shOperators.top().content] == percedence[t.content]
+                           && shOperators.top().content != "(") {
+                    Token p = shOperators.top();
+                    shTokens.push(p);
+                    shOperators.pop();
+                } else break;
+            }
+            shOperators.push(t);
+        }
+        else if (t.type == LEFT_BRACKET) {
+            shOperators.push(t);
+        }
+        else if (t.type == RIGHT_BRACKET) {
+            while (!shOperators.empty() && shOperators.top().content != "(") {
+                Token t = shOperators.top();
+                shTokens.push(t);
+                shOperators.pop();
+            }
+            if (shOperators.empty()) {
+                this->errorCode = CODE_ERROR_BRACKETS_NOT_MATCHING;
+                return nullptr;
+            }
+            else
+            {
+                shOperators.pop();
+            }
+
+        }
+        else if (t.type == EXECUTE)
+        {
+            shTokens.push(t);
+        }
+
+    }
+
+    while (!shOperators.empty())
+    {
+        if (shOperators.top().type == OperationType::LEFT_BRACKET ||
+            shOperators.top().type == OperationType::RIGHT_BRACKET)
+        {
+            this->errorCode = CODE_ERROR_BRACKETS_NOT_MATCHING;
             return nullptr;
         }
         else
         {
-            Token t = operators.top();
-            tokens.push(t);
-            operators.pop();
+            Token t = shOperators.top();
+            shTokens.push(t);
+            shOperators.pop();
         }
     }
 
-    while (!tokens.empty())
+    while (!shTokens.empty())
     {
-        Token t = tokens.front();
+        Token t = shTokens.front();
         std::cout << t.type << " " << t.content << std::endl;
-        tokens.pop();
+        shTokens.pop();
     }
 
-    return GetTree(tokens);
+    return nullptr;
 }
