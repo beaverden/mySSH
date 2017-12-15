@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/home/denis/CLionProjects/mySSHserver/Exceptions.cpp
+Exceptions.h
+/home/denis/CLionProjects/mySSHserver/Exceptions.h
+
+/home/denis/CLionProjects/mySSHserver/Exceptions.h
+stdexcept
+-
+
 /home/denis/CLionProjects/mySSHserver/Parser.cpp
 Parser.h
 /home/denis/CLionProjects/mySSHserver/Parser.h
@@ -15,7 +23,7 @@ stack
 -
 algorithm
 -
-stdexcept
+memory
 -
 iostream
 -
@@ -29,10 +37,22 @@ iterator
 -
 queue
 -
+memory
+-
+stack
+-
+unordered_map
+-
+Exceptions.h
+/home/denis/CLionProjects/mySSHserver/Exceptions.h
 
 /home/denis/CLionProjects/mySSHserver/main.cpp
 iostream
 -
+iomanip
+-
 Parser.h
 /home/denis/CLionProjects/mySSHserver/Parser.h
+math.h
+-
 

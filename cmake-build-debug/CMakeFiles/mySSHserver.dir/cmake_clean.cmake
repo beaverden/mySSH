@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/mySSHserver.dir/main.cpp.o"
   "CMakeFiles/mySSHserver.dir/Parser.cpp.o"
+  "CMakeFiles/mySSHserver.dir/Exceptions.cpp.o"
   "mySSHserver.pdb"
   "mySSHserver"
 )

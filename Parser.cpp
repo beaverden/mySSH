@@ -6,64 +6,56 @@
 #include <queue>
 #include <stack>
 #include <algorithm>
-#include <stdexcept>
+#include <memory>
 #include <iostream>
+
+template <class T>
+void freeStack(std::stack<T*> &st)
+{
+    while (!st.empty())
+    {
+        T* ptr = st.top();
+        delete ptr;
+    }
+}
+
 
 Parser::Parser() { init(); }
 
 void Parser::init()
 {
-    percedence["&&"] = 0;
-    percedence["||"] = 0;
-    percedence[";"] = 0;
-    percedence[">"] = 1;
-    percedence["<"] = 1;
-    percedence["2>>"] = 1;
+    operators.push_back({OperationType::ERROR_REDIRECT, "2>>", 1});
+    operators.push_back({OperationType::LOGICAL_AND, "&&", 0});
+    operators.push_back({OperationType::LOGICAL_OR, "||", 0});
+    operators.push_back({OperationType::FOLLOWUP, ";", 0});
+    operators.push_back({OperationType::PIPE, "|", 0});
+    operators.push_back({OperationType::INPUT_REDIRECT, "<", 1});
+    operators.push_back({OperationType::OUTPUT_REDIRECT, ">", 1});
 
 }
-
-const static std::vector<std::pair<std::string, OperationType>> operators =
-{
-        {"2>>", ERROR_REDIRECT  },
-        {"&&",  LOGICAL_AND     },
-        {"||",  LOGICAL_OR      },
-        {"<",   INPUT_REDIRECT  },
-        {">",   OUTPUT_REDIRECT },
-        {"|",   PIPE            },
-        {";",   FOLLOWUP        }
-};
 
 bool Parser::isOperator(std::string& original, unsigned long position, Token* foundOp) {
     for (auto op : operators)
     {
-        unsigned long sz = op.first.length();
+        unsigned long sz = op.content.length();
         if (position + sz <= original.length())
         {
             std::string possible = original.substr(position, sz);
-            if (op.first == possible)
+            if (op.content == possible)
             {
                 if (foundOp != nullptr)
                 {
-                    foundOp->content = op.first;
+                    foundOp->content = op.content;
                     foundOp->position = position;
-                    foundOp->type = op.second;
+                    foundOp->type = op.type;
+                    foundOp->precedence = op.precedence;
+                    foundOp->isOperation = true;
                 }
                 return true;
             }
         }
     }
     return false;
-}
-
-bool Parser::isOperator(OperationType type)
-{
-    return  (    type == LOGICAL_AND
-              || type == LOGICAL_OR
-              || type == INPUT_REDIRECT
-              || type == OUTPUT_REDIRECT
-              || type == ERROR_REDIRECT
-              || type == FOLLOWUP
-              || type == PIPE);
 }
 
 
@@ -77,58 +69,10 @@ void Parser::trim(std::string &command)
     {
         command.erase(command.length()-1, 1);
     }
-    while (!command.empty() && command[0] == '(' && command[command.length()-1] == ')')
-    {
-        command.erase(0, 1);
-        command.erase(command.length()-1, 1);
-    }
 }
 
 
-SyntaxTree* Parser::GetTree(std::queue<Token> &tokens)
-{
-    std::queue<SyntaxTree*> nodes;
-    while (!tokens.empty())
-    {
-        Token t = tokens.front();
-        tokens.pop();
-        SyntaxTree* node = new SyntaxTree;
-        node->content = t.content;
-        node->type = t.type;
-        nodes.push(node);
-    }
-    /*
-    std::stack<SyntaxTree*> commStack;
-    while (!nodes.empty())
-    {
-            Token top = tokens.front();
-            tokens.pop();
-            if (top.type == OperationType::EXECUTE)
-            {
-                tkStack.push(top);
-            }
-            else
-            {
-                SyntaxTree* node = new SyntaxTree;
-                node->type = top.type;
-                node->content = top.content;
-
-                Token lnode = tkStack.top();
-                tkStack.pop();
-                Token rnode = tkStack.top();
-                tkStack.pop();
-                node->left = new SyntaxTree;
-                node->left->content = lnode.content;
-                node->left->
-            }
-        }
-    }
-    */
-    return nullptr;
-}
-
-
-RET_CODE Parser::tokenize(std::string command, std::vector<Token> &tokens)
+void Parser::tokenize(std::string command, std::vector<Token> &tokens)
 {
     tokens.clear();
     this->trim(command);
@@ -169,6 +113,8 @@ RET_CODE Parser::tokenize(std::string command, std::vector<Token> &tokens)
                     comm.content = currentToken;
                     comm.type = EXECUTE;
                     comm.position = currentPosition - currentToken.length();
+                    comm.precedence = -1;
+
                     currentToken.clear();
                     tokens.push_back(comm);
                 }
@@ -214,45 +160,43 @@ RET_CODE Parser::tokenize(std::string command, std::vector<Token> &tokens)
 
     if (tokens.size() == 0)
     {
-        return CODE_ERROR_EMTPY_TOKEN_LIST;
+        throw ParserException(0, "No tokens found");
     }
-    return CODE_OK;
 }
 
-RET_CODE Parser::verify(std::vector<Token> &tokens, std::string& error)
+void Parser::verify(std::vector<Token> &tokens)
 {
     for (unsigned long i = 0; i < tokens.size() - 1; i++)
     {
-        if (isOperator(tokens[i].type) && isOperator(tokens[i+1].type))
+        if (tokens[i].isOperation && tokens[i+1].isOperation)
         {
-            error = "Two tokens one after another at " + std::to_string(i);
-            return CODE_ERROR_UNEXPECTED_TOKEN;
+            throw VerificationException(
+                    tokens[i].position,
+                    std::string("Two consecutive operators ")
+                    + "(" + tokens[i].content + ", " + tokens[i+1].content + ")"
+            );
         }
     }
 }
 
-SyntaxTree* Parser::parse(std::string command)
-{
-    std::vector<Token> tokens;
-    RET_CODE code = tokenize(command, tokens);
-
+std::shared_ptr<SyntaxTree> Parser::getSyntaxTree(std::vector<Token> &tokens) {
     std::queue <Token> shTokens;
     std::stack <Token> shOperators;
 
     for (Token t : tokens)
     {
-        if (isOperator(t.type))
+        if (t.type != EXECUTE)
         {
-            while (!shOperators.empty()) {
-                if (percedence.find(t.content) == percedence.end()) {
-                    throw std::invalid_argument("Operator content not found");
-                }
-                if (percedence[shOperators.top().content] > percedence[t.content]) {
+            while (!shOperators.empty())
+            {
+                if (shOperators.top().precedence > t.precedence)
+                {
                     Token p = shOperators.top();
                     shTokens.push(p);
                     shOperators.pop();
-                } else if (percedence[shOperators.top().content] == percedence[t.content]
-                           && shOperators.top().content != "(") {
+                } else if (shOperators.top().precedence == t.precedence
+                           && shOperators.top().content != "(")
+                {
                     Token p = shOperators.top();
                     shTokens.push(p);
                     shOperators.pop();
@@ -260,18 +204,22 @@ SyntaxTree* Parser::parse(std::string command)
             }
             shOperators.push(t);
         }
-        else if (t.type == LEFT_BRACKET) {
+        else if (t.type == LEFT_BRACKET)
+        {
             shOperators.push(t);
         }
-        else if (t.type == RIGHT_BRACKET) {
-            while (!shOperators.empty() && shOperators.top().content != "(") {
+        else if (t.type == RIGHT_BRACKET)
+        {
+            while (!shOperators.empty() && shOperators.top().content != "(")
+            {
                 Token t = shOperators.top();
                 shTokens.push(t);
                 shOperators.pop();
             }
-            if (shOperators.empty()) {
-                this->errorCode = CODE_ERROR_BRACKETS_NOT_MATCHING;
-                return nullptr;
+
+            if (shOperators.empty())
+            {
+                throw ParserException(0, "Brackets not matching");
             }
             else
             {
@@ -291,8 +239,7 @@ SyntaxTree* Parser::parse(std::string command)
         if (shOperators.top().type == OperationType::LEFT_BRACKET ||
             shOperators.top().type == OperationType::RIGHT_BRACKET)
         {
-            this->errorCode = CODE_ERROR_BRACKETS_NOT_MATCHING;
-            return nullptr;
+            throw ParserException(0, "Brackets not matching");
         }
         else
         {
@@ -302,12 +249,79 @@ SyntaxTree* Parser::parse(std::string command)
         }
     }
 
+    std::stack<std::shared_ptr<SyntaxTree>> trees;
+
+
     while (!shTokens.empty())
     {
         Token t = shTokens.front();
+        if (t.type == OperationType::EXECUTE)
+        {
+            std::shared_ptr<SyntaxTree> newTree = std::make_shared<SyntaxTree>();
+            newTree->type = t.type;
+            newTree->content = t.content;
+            trees.push(std::move(newTree));
+        }
+        else
+        {
+            std::shared_ptr<SyntaxTree> opTree = std::make_shared<SyntaxTree>();
+            opTree->type  = t.type;
+            opTree->content = t.content;
+
+            std::shared_ptr<SyntaxTree> t1 = nullptr;
+            std::shared_ptr<SyntaxTree> t2 = nullptr;
+
+            if (trees.empty())
+            {
+                throw ParserException(t.position, "Operator " + t.content + " doesn't have a operand");
+            }
+            t1 = trees.top();
+            trees.pop();
+
+            if (t.type != EXECUTE)
+            {
+                if (trees.empty())
+                {
+                    throw ParserException(t.position, "Operator " + t.content + " takes two operands");
+                }
+                t2 = trees.top();
+                trees.pop();
+            }
+            opTree->left = t2;
+            opTree->right = t1;
+            if (t2 != nullptr)
+            {
+                t2->parent = opTree;
+            }
+            if (t1 != nullptr)
+            {
+                t1->parent = opTree;
+            }
+            trees.push(opTree);
+        }
+
+
         std::cout << t.type << " " << t.content << std::endl;
+
         shTokens.pop();
     }
 
-    return nullptr;
+    if (trees.size() != 1)
+    {
+        throw ParserException(0, "Too many operations");
+    }
+    return std::move(trees.top());
+}
+
+
+std::shared_ptr<SyntaxTree> Parser::parse(std::string command)
+{
+    std::vector<Token> tokens;
+    tokenize(command, tokens);
+
+    verify(tokens);
+
+    std::shared_ptr<SyntaxTree> ptr = getSyntaxTree(tokens);
+
+    return ptr;
 }

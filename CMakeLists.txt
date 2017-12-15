@@ -3,5 +3,5 @@ project(mySSHserver)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(SOURCE_FILES main.cpp Parser.cpp Parser.h)
-add_executable(mySSHserver ${SOURCE_FILES})
+set(SOURCE_FILES main.cpp Parser.cpp Parser.h Exceptions.h Exceptions.cpp)
+add_executable(mySSHserver ${SOURCE_FILES} Exceptions.h)

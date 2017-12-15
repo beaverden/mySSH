@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/denis/CLionProjects/mySSHserver/Exceptions.cpp" "/home/denis/CLionProjects/mySSHserver/cmake-build-debug/CMakeFiles/mySSHserver.dir/Exceptions.cpp.o"
   "/home/denis/CLionProjects/mySSHserver/Parser.cpp" "/home/denis/CLionProjects/mySSHserver/cmake-build-debug/CMakeFiles/mySSHserver.dir/Parser.cpp.o"
   "/home/denis/CLionProjects/mySSHserver/main.cpp" "/home/denis/CLionProjects/mySSHserver/cmake-build-debug/CMakeFiles/mySSHserver.dir/main.cpp.o"
   )
