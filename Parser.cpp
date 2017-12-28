@@ -298,14 +298,6 @@ std::shared_ptr<SyntaxTree> Parser::getSyntaxTree(std::vector<Token> &tokens) {
             }
             opTree->left = t2;
             opTree->right = t1;
-            if (t2 != nullptr)
-            {
-                t2->parent = opTree;
-            }
-            if (t1 != nullptr)
-            {
-                t1->parent = opTree;
-            }
             trees.push(opTree);
         }
 

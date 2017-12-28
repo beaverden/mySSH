@@ -16,6 +16,10 @@ std::stack<int> errorRedir;
 int Execute(std::string command, int _stdin, int _stdout, int _stderr)
 {
     std::vector<std::string> tokens = Parser::Get()->tokenizeExecute(command, " ");
+    if (tokens.size() > MAX_ARGUMENTS)
+    {
+        throw EvaluationException("Too many arguments in command [%30s...]", command.c_str());
+    }
     int pid;
     if ((pid = fork()) != -1)
     {
@@ -38,7 +42,7 @@ int Execute(std::string command, int _stdin, int _stdout, int _stderr)
                 dup(_stderr);
             }
 
-            char* strings[1000] = {0};
+            char* strings[MAX_ARGUMENTS] = {0};
             for (int i = 0; i < tokens.size(); i++)
             {
                 Parser::Get()->trim(tokens[i]);
@@ -46,7 +50,6 @@ int Execute(std::string command, int _stdin, int _stdout, int _stderr)
             }
             execvp(tokens[0].c_str(), strings);
             throw EvaluationException("Unable to run execvp on command [%s]", tokens[0].c_str());
-            exit(1);
         }
         else
         {
@@ -186,11 +189,14 @@ int Evaluate(std::shared_ptr<SyntaxTree> node)
         }
         outputRedir.push(d[1]);
         Evaluate(node->left);
+        close(d[1]);
         outputRedir.pop();
 
         inputRedir.push(d[0]);
-        Evaluate(node->right);
+        int result = Evaluate(node->right);
+        close(d[0]);
         inputRedir.pop();
+        return result;
     }
     else if (node->type == OperationType::FOLLOWUP)
     {

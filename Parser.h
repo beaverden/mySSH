@@ -45,7 +45,6 @@ struct SyntaxTree
     SyntaxTree() {};
     OperationType type;
     std::string content;
-    std::shared_ptr<SyntaxTree> parent = nullptr;
     std::shared_ptr<SyntaxTree> left = nullptr;
     std::shared_ptr<SyntaxTree> right = nullptr;
 };
