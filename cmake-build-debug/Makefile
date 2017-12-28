@@ -123,6 +123,33 @@ mySSHserver/fast:
 	$(MAKE) -f CMakeFiles/mySSHserver.dir/build.make CMakeFiles/mySSHserver.dir/build
 .PHONY : mySSHserver/fast
 
+Evaluate.o: Evaluate.cpp.o
+
+.PHONY : Evaluate.o
+
+# target to build an object file
+Evaluate.cpp.o:
+	$(MAKE) -f CMakeFiles/mySSHserver.dir/build.make CMakeFiles/mySSHserver.dir/Evaluate.cpp.o
+.PHONY : Evaluate.cpp.o
+
+Evaluate.i: Evaluate.cpp.i
+
+.PHONY : Evaluate.i
+
+# target to preprocess a source file
+Evaluate.cpp.i:
+	$(MAKE) -f CMakeFiles/mySSHserver.dir/build.make CMakeFiles/mySSHserver.dir/Evaluate.cpp.i
+.PHONY : Evaluate.cpp.i
+
+Evaluate.s: Evaluate.cpp.s
+
+.PHONY : Evaluate.s
+
+# target to generate assembly for a file
+Evaluate.cpp.s:
+	$(MAKE) -f CMakeFiles/mySSHserver.dir/build.make CMakeFiles/mySSHserver.dir/Evaluate.cpp.s
+.PHONY : Evaluate.cpp.s
+
 Exceptions.o: Exceptions.cpp.o
 
 .PHONY : Exceptions.o
@@ -213,6 +240,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... mySSHserver"
+	@echo "... Evaluate.o"
+	@echo "... Evaluate.i"
+	@echo "... Evaluate.s"
 	@echo "... Exceptions.o"
 	@echo "... Exceptions.i"
 	@echo "... Exceptions.s"

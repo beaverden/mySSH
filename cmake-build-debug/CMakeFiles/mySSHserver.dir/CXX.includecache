@@ -6,6 +6,28 @@
 
 #IncludeRegexTransform: 
 
+/home/denis/CLionProjects/mySSHserver/Evaluate.cpp
+fcntl.h
+-
+unistd.h
+-
+cstring
+-
+wait.h
+-
+Evaluate.h
+/home/denis/CLionProjects/mySSHserver/Evaluate.h
+
+/home/denis/CLionProjects/mySSHserver/Evaluate.h
+string
+-
+Parser.h
+/home/denis/CLionProjects/mySSHserver/Parser.h
+memory
+-
+stack
+-
+
 /home/denis/CLionProjects/mySSHserver/Exceptions.cpp
 Exceptions.h
 /home/denis/CLionProjects/mySSHserver/Exceptions.h
@@ -55,4 +77,6 @@ Parser.h
 /home/denis/CLionProjects/mySSHserver/Parser.h
 math.h
 -
+Evaluate.h
+/home/denis/CLionProjects/mySSHserver/Evaluate.h
 

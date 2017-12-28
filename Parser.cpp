@@ -19,10 +19,8 @@ void freeStack(std::stack<T*> &st)
     }
 }
 
-
-Parser::Parser() { init(); }
-
-void Parser::init()
+Parser* Parser::instance = nullptr;
+Parser::Parser()
 {
     operators.push_back({OperationType::ERROR_REDIRECT, "2>>", 1});
     operators.push_back({OperationType::LOGICAL_AND, "&&", 0});
@@ -31,7 +29,16 @@ void Parser::init()
     operators.push_back({OperationType::PIPE, "|", 0});
     operators.push_back({OperationType::INPUT_REDIRECT, "<", 1});
     operators.push_back({OperationType::OUTPUT_REDIRECT, ">", 1});
+}
 
+
+Parser* Parser::Get()
+{
+    if (instance == nullptr)
+    {
+        instance = new Parser();
+    }
+    return instance;
 }
 
 bool Parser::isOperator(std::string& original, unsigned long position, Token* foundOp) {
@@ -75,7 +82,7 @@ void Parser::trim(std::string &command)
 void Parser::tokenize(std::string command, std::vector<Token> &tokens)
 {
     tokens.clear();
-    this->trim(command);
+    trim(command);
     std::string currentToken = "";
     bool inCommand = true;
     bool inString = false;
@@ -131,6 +138,7 @@ void Parser::tokenize(std::string command, std::vector<Token> &tokens)
                 t.content = ")";
                 t.position = currentPosition;
                 t.type = RIGHT_BRACKET;
+                t.isOperation = false;
                 currentPosition++;
                 tokens.push_back(t);
             }
@@ -139,6 +147,7 @@ void Parser::tokenize(std::string command, std::vector<Token> &tokens)
                 t.content = "(";
                 t.position = currentPosition;
                 t.type = LEFT_BRACKET;
+                t.isOperation = false;
                 currentPosition++;
                 tokens.push_back(t);
             }
@@ -185,7 +194,7 @@ std::shared_ptr<SyntaxTree> Parser::getSyntaxTree(std::vector<Token> &tokens) {
 
     for (Token t : tokens)
     {
-        if (t.type != EXECUTE)
+        if (t.isOperation)
         {
             while (!shOperators.empty())
             {
@@ -194,8 +203,8 @@ std::shared_ptr<SyntaxTree> Parser::getSyntaxTree(std::vector<Token> &tokens) {
                     Token p = shOperators.top();
                     shTokens.push(p);
                     shOperators.pop();
-                } else if (shOperators.top().precedence == t.precedence
-                           && shOperators.top().content != "(")
+                } else if (shOperators.top().type != LEFT_BRACKET
+                           && shOperators.top().precedence == t.precedence)
                 {
                     Token p = shOperators.top();
                     shTokens.push(p);
@@ -210,7 +219,7 @@ std::shared_ptr<SyntaxTree> Parser::getSyntaxTree(std::vector<Token> &tokens) {
         }
         else if (t.type == RIGHT_BRACKET)
         {
-            while (!shOperators.empty() && shOperators.top().content != "(")
+            while (!shOperators.empty() && shOperators.top().type != LEFT_BRACKET)
             {
                 Token t = shOperators.top();
                 shTokens.push(t);
@@ -300,8 +309,7 @@ std::shared_ptr<SyntaxTree> Parser::getSyntaxTree(std::vector<Token> &tokens) {
             trees.push(opTree);
         }
 
-
-        std::cout << t.type << " " << t.content << std::endl;
+        //std::cout << t.type << " " << t.content << std::endl;
 
         shTokens.pop();
     }
@@ -311,6 +319,25 @@ std::shared_ptr<SyntaxTree> Parser::getSyntaxTree(std::vector<Token> &tokens) {
         throw ParserException(0, "Too many operations");
     }
     return std::move(trees.top());
+}
+
+std::vector<std::string> Parser::tokenizeExecute(std::string s, std::string delim)
+{
+    std::vector<std::string> v;
+    trim(s);
+    while (s.length() != 0 && s.find(delim) != std::string::npos)
+    {
+        std::string token = s.substr(0, s.find(delim));
+        v.push_back(token);
+        s.erase(0, s.find(delim) + delim.length());
+        trim(s);
+    }
+    if (s.length() != 0)
+    {
+        trim(s);
+        v.push_back(s);
+    }
+    return v;
 }
 
 

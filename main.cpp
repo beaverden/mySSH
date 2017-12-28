@@ -2,6 +2,7 @@
 #include <iomanip>
 #include "Parser.h"
 #include <math.h>
+#include "Evaluate.h"
 using namespace std;
 
 int maxHeight(std::shared_ptr<SyntaxTree>  node)
@@ -77,14 +78,29 @@ void printPretty(std::shared_ptr<SyntaxTree>  root, int level, int indentSpace, 
 }
 
 
-int main() {
-    Parser p;
-    std::shared_ptr<SyntaxTree> root = p.parse(" (a || b) && (b || c) || d");
+int main(int argc, char* argv[]) {
+    /*
+    std::shared_ptr<SyntaxTree> root = Parser::Get()->parse(" (a || b) && (b || c) || d");
     printPretty(root, 2, 4, std::cout);
-    std::shared_ptr<SyntaxTree> r1 = p.parse("(a && b) < f || (c;d)");
+    std::shared_ptr<SyntaxTree> r1 = Parser::Get()->parse("(a && b) < f || (c;d)");
     printPretty(r1, 2, 4, std::cout);
 
-    std::shared_ptr<SyntaxTree> r2 = p.parse("a;b;c;d;e > file");
+    std::shared_ptr<SyntaxTree> r2 = Parser::Get()->parse("a | b | c | d | e");
     printPretty(r2, 0, 4, std::cout);
+    Evaluate(r2);
+    */
+    std::string comm = argv[1];
+    //std::string comm = "(./ok > output) || ./ok";
+    //std::shared_ptr<SyntaxTree> root = Parser::Get()->parse(comm);
+    //printPretty(root, 0, 4, std::cout);
+    try {
+        Evaluate(comm);
+    }
+    catch (EvaluationException& ex)
+    {
+        std::cout << ex.what() << std::endl;
+    }
+
+
     return 0;
 }

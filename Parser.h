@@ -60,20 +60,20 @@ struct Operator
 
 class Parser {
 public:
-    Parser();
-    void init();
-
     std::shared_ptr<SyntaxTree> parse(std::string command);
-
-private:
-    std::shared_ptr<SyntaxTree> getSyntaxTree(std::vector<Token> &tokens);
-
-    bool isOperator(std::string& original, unsigned long position, Token* foundOp = nullptr);
+    std::vector<std::string> tokenizeExecute(std::string command, std::string delim);
+    static Parser* Get();
     void trim(std::string &command);
+private:
+    Parser();
+    std::shared_ptr<SyntaxTree> getSyntaxTree(std::vector<Token> &tokens);
+    bool isOperator(std::string& original, unsigned long position, Token* foundOp = nullptr);
     void tokenize(std::string command, std::vector<Token>& tokens);
     void verify(std::vector<Token> &tokens);
 
+
     std::vector<Operator> operators;
+    static Parser* instance;
 };
 
 
