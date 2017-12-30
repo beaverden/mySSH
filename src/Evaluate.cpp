@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <cstring>
 #include <wait.h>
-#include "Evaluate.h"
+#include "../include/Evaluate.h"
 
 std::stack<int> inputRedir;
 std::stack<int> outputRedir;
@@ -43,7 +43,7 @@ int Execute(std::string command, int _stdin, int _stdout, int _stderr)
             }
 
             char* strings[MAX_ARGUMENTS] = {0};
-            for (int i = 0; i < tokens.size(); i++)
+            for (size_t i = 0; i < tokens.size(); i++)
             {
                 Parser::Get()->trim(tokens[i]);
                 strings[i] = strdup(tokens[i].c_str());
@@ -60,7 +60,7 @@ int Execute(std::string command, int _stdin, int _stdout, int _stderr)
     }
     else
     {
-        throw EvaluationException("Cannot execute fork!");
+        throw EvaluationException("Cannot execute fork on command [%30s...]!", command.c_str());
     }
 }
 
@@ -74,20 +74,7 @@ int Evaluate(std::string command)
     errorRedir.push(STDERR_FILENO);
 
     std::shared_ptr<SyntaxTree> root;
-    try
-    {
-       root = Parser::Get()->parse(command);
-    }
-    catch (ParserException& p)
-    {
-        printf("%s\n", p.what());
-        return -1;
-    }
-    catch (VerificationException& p)
-    {
-        printf("%s\n", p.what());
-        return -1;
-    }
+    root = Parser::Get()->parse(command);
 
     if (root == nullptr)
     {
@@ -125,7 +112,7 @@ int Evaluate(std::shared_ptr<SyntaxTree> node)
         {
             throw EvaluationException("Invalid redirect of [%s]", node->content.c_str());
         }
-        int reg = open(file->content.c_str(), O_RDONLY, 0600);
+        int reg = open(file->content.c_str(), O_RDONLY);
         if (reg == -1)
         {
             throw EvaluationException("Can't open redirect file [%s]", file->content.c_str());
@@ -206,5 +193,9 @@ int Evaluate(std::shared_ptr<SyntaxTree> node)
     else if (node->type == OperationType::EXECUTE)
     {
         return Execute(node->content, inputRedir.top(), outputRedir.top(), errorRedir.top());
+    }
+    else 
+    {
+        throw EvaluationException("Invalid operation type [%d]", node->type);
     }
 }

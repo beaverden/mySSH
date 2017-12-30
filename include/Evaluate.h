@@ -5,9 +5,9 @@
 #ifndef MYSSHSERVER_EVALUATE_H
 #define MYSSHSERVER_EVALUATE_H
 #include <string>
-#include "Parser.h"
 #include <memory>
 #include <stack>
+#include "Parser.h"
 
 #define MAX_ARGUMENTS 100
 

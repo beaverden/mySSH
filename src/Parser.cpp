@@ -2,7 +2,7 @@
 // Created by denis on 12/6/17.
 //
 
-#include "Parser.h"
+#include "../include/Parser.h"
 #include <queue>
 #include <stack>
 #include <algorithm>
@@ -84,7 +84,6 @@ void Parser::tokenize(std::string command, std::vector<Token> &tokens)
     tokens.clear();
     trim(command);
     std::string currentToken = "";
-    bool inCommand = true;
     bool inString = false;
     char stringStart;
 
@@ -175,13 +174,18 @@ void Parser::tokenize(std::string command, std::vector<Token> &tokens)
 
 void Parser::verify(std::vector<Token> &tokens)
 {
-    for (unsigned long i = 0; i < tokens.size() - 1; i++)
-    {
-        if (tokens[i].isOperation && tokens[i+1].isOperation)
-        {
+    for (unsigned long i = 0; i < tokens.size() - 1; i++) {
+        if (tokens[i].isOperation && tokens[i + 1].isOperation) {
             throw VerificationException(
                     tokens[i].position,
                     std::string("Two consecutive operators ")
+                    + "(" + tokens[i].content + ", " + tokens[i + 1].content + ")"
+            );
+        } else if (tokens[i].type == OperationType::EXECUTE && tokens[i + 1].type == OperationType::EXECUTE)
+        {
+            throw VerificationException(
+                    tokens[i].position,
+                    std::string("Two consecutive execute strings ")
                     + "(" + tokens[i].content + ", " + tokens[i+1].content + ")"
             );
         }
@@ -194,6 +198,7 @@ std::shared_ptr<SyntaxTree> Parser::getSyntaxTree(std::vector<Token> &tokens) {
 
     for (Token t : tokens)
     {
+        trim(t.content);
         if (t.isOperation)
         {
             while (!shOperators.empty())

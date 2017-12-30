@@ -57,17 +57,63 @@ struct Operator
 };
 
 
+
 class Parser {
 public:
+
+    /*
+     * Tokenizes and verifies the command. Returns an AST ready for execution
+     */
     std::shared_ptr<SyntaxTree> parse(std::string command);
+
+
+    /*
+     * Takes a single command with arguments and splits it in a vector
+     */
     std::vector<std::string> tokenizeExecute(std::string command, std::string delim);
+
+    /*
+     * Singleton get instance method
+     */
     static Parser* Get();
+
+    /*
+     * Trims a string of spaces and tabs
+     */
     void trim(std::string &command);
+
 private:
+
+    /*
+     * Private constructor for singleton
+     */
     Parser();
+
+    /* Obtains the AST out of a token queue obtained after
+     * The application of Shunting Yard algorithm
+     * Throws ParserException
+     */
     std::shared_ptr<SyntaxTree> getSyntaxTree(std::vector<Token> &tokens);
+
+    /*
+     * Returns true if the string at the given position is a operator
+     * &&, ||, (, ), |, ;, >, <, 2>>
+     */
     bool isOperator(std::string& original, unsigned long position, Token* foundOp = nullptr);
+
+    /*
+     * Divides the raw string into operable elements of type Token
+     * The main parsing routine that uses the given user input
+     * Throws ParserException
+     */
     void tokenize(std::string command, std::vector<Token>& tokens);
+
+    /*
+     * Verifies the list of tokens for some obvious errors like
+     * 1. Two consecutive operators
+     * 2. Two consecutive execute tokens
+     * Throws VerificationException
+     */
     void verify(std::vector<Token> &tokens);
 
 

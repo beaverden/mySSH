@@ -2,7 +2,7 @@
 // Created by denis on 12/15/17.
 //
 
-#include "Exceptions.h"
+#include "../include/Exceptions.h"
 
 ParserException::ParserException(size_t position, std::string message) :
     message(message), position(position)
