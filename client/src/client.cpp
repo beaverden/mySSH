@@ -1,6 +1,4 @@
 #include <iostream>
-#include "../include/Parser.h"
-#include "../include/Evaluate.h"
 
 #include "openssl/bio.h"
 #include "openssl/ssl.h"
@@ -16,6 +14,22 @@ int main(int argc, char* argv[]) {
     ERR_load_BIO_strings();
     OpenSSL_add_all_algorithms();
 
+    BIO* bio;
+    bio = BIO_new_connect("127.0.0.1:2019");
+    if(bio == NULL)
+    {
+        return -1;
+    }
+    
+    if(BIO_do_connect(bio) <= 0)
+    {
+        return -1;
+        /* Handle failed connection */
+    }
+    char arr[] = "hello";
+    BIO_write(bio, arr, 6);
+    printf("OK\n");
+    BIO_free_all(bio);
     /*
     std::string comm = argv[1];
 
