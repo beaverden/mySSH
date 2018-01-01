@@ -84,10 +84,13 @@ void Server::Listen()
         
         while (true)
         {
-            if (!HandleInput())
+            int status = HandleInput(ssl);
+            if (status == 0)
             {
+                printf("Exiting\n");
                 break;
-            }          
+            } 
+            printf("Finished command\n");      
         }
 
         SSL_free(ssl);
@@ -124,21 +127,36 @@ Server* Server::Get()
     return instance;
 }
 
-void Server::HandleInput()
+int Server::HandleInput(SSL* ssl)
 {
     char input[2048] = {0};
+    printf("Waiting...\n");
     int status = SSL_read(ssl, input, 2048);
+    printf("I read: %s\n", input);
     if (status == 0)
     {
-        int shutdown_status = SSL_get_shutdown();
+        
+        int shutdown_status = SSL_get_shutdown(ssl);
+        if ((shutdown_status & SSL_RECEIVED_SHUTDOWN) != 0)
+        {
+            SSL_shutdown(ssl);
+            return 0;
+        }
+        if ((shutdown_status & SSL_SENT_SHUTDOWN) != 0)
+        {
+            SSL_shutdown(ssl);
+            return 0;
+        }
     }
-    if (err <= 0)
+    else if (status < 0)
     {
-        printf("SSL read error %d\n", err);
+        printf("SSL read error %d\n", status);
         ERR_print_errors_fp(stderr);
-        continue;
+        return -1;
     }
+
     std::string comm = input;
-    std::cout << "The command is: " << comm << std::endl;
+    std::cout << "Got command: " << comm << std::endl;
     Evaluate(comm, ssl);
+    return 1;   
 }

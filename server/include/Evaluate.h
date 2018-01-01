@@ -22,7 +22,9 @@ struct ExecutionContext
     SSL* ssl;  
 };
 
-void redirect(int local_socket, int client_socket, ExecutionContext* context);
+void redirect_output(int local_socket, int client_socket, ExecutionContext* context);
+void redirect_input(int local_socket, int client_socket, ExecutionContext* context);
+
 
 int Execute(
     std::string command, 

@@ -85,9 +85,11 @@ int main(int argc, char* argv[]) {
                 continue;
             }
             char ans[1000] = {0};
+            printf("Sent. Awating response\n");
             SSL_read(ssl, ans, 1000);
+            printf("Got response!\n");
             ans[999] = 0;
-            printf("%s\n", ans);
+            printf("%s", ans);
         }
     }
     SSL_free(ssl);

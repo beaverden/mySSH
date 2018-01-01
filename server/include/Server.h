@@ -29,8 +29,8 @@ enum Packet_Type
 
 struct SSH_Packet
 {
-    unsigned int        packetLength;
     Packet_Type         packetType;
+    unsigned int        packetLength;
     unsigned char       sha256Verification[SHA_256_LENGTH];
     struct SSH_Payload
     {
@@ -59,7 +59,7 @@ class Server
         void InitializeSecurity();
         void Listen();
 
-        void HandleInput();
+        int HandleInput(SSL* ssl);
 
 };
 

@@ -12,13 +12,30 @@
 #include "openssl/err.h"
 #include <sys/socket.h>
 
-void redirect(int local_socket, int client_socket, ExecutionContext* context)
+void redirect_output(int local_socket, int client_socket, ExecutionContext* context)
 {
+    printf("Redirecting output!\n");
     char buffer[1024] = {0};
     int sz = 0;
     while ((sz = read(local_socket, buffer, 1024)) > 0)
     {
+        printf("I read %d bytes\n", sz);
         if (SSL_write(context->ssl, buffer, sz) <= 0)
+        {
+            printf("Didn't write\n");
+            return;
+        }
+        printf("I wrote: %s\n", buffer);
+    }
+}
+
+void redirect_input(int local_socket, int client_socket, ExecutionContext* context)
+{
+    char buffer[1024] = {0};
+    int sz = 0;
+    while ((sz = SSL_read(context->ssl, buffer, 1024)) > 0)
+    {
+        if (write(local_socket, buffer, sz) <= 0)
         {
             printf("Didn't write\n");
             return;
@@ -73,7 +90,7 @@ int Execute(
 
             close(STDOUT_FILENO);
             if (_stdout != client_sock) dup(_stdout);
-            else { dup(out_sock[0]); }
+            else dup(out_sock[0]);
 
             close(STDERR_FILENO);
             if (_stderr != client_sock) dup(_stderr);
@@ -95,21 +112,26 @@ int Execute(
             close(err_sock[0]);
             int sts = 0;
             wait(&sts);
+
+            printf("Program child finished\n");
             if (_stdin == client_sock)
             {
-                redirect(in_sock[1], client_sock, context);
-                
+                // TODO stdin
+                //redirect_output(in_sock[1], client_sock, context);
             }
             if (_stdout == client_sock)
             {
-                redirect(out_sock[1], client_sock, context);
-                
-            }
+                printf("Output to socket\n");
+                redirect_output(out_sock[1], client_sock, context);   
+            } 
+            else printf("Output to other\n");
+
             if (_stderr == client_sock)
             {
-                redirect(err_sock[1], client_sock, context);
-                
-            }
+                printf("Error to socket\n");
+                redirect_output(err_sock[1], client_sock, context);     
+            } else printf("Error to other\n");
+
             close(in_sock[1]);
             close(out_sock[1]);
             close(err_sock[1]);
@@ -269,6 +291,7 @@ int Evaluate(std::shared_ptr<SyntaxTree> node, ExecutionContext* context)
     }
     else if (node->type == OperationType::EXECUTE)
     {
+        printf("Executing: %s\n", node->content.c_str());
         return Execute(
             node->content, 
             context->inputRedir.top(), 
