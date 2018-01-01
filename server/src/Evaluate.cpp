@@ -14,7 +14,7 @@
 
 void redirect(int local_socket, int client_socket, ExecutionContext* context)
 {
-    char buffer[1024];
+    char buffer[1024] = {0};
     int sz = 0;
     while ((sz = read(local_socket, buffer, 1024)) > 0)
     {
@@ -40,22 +40,21 @@ int Execute(
         throw EvaluationException("Too many arguments in command [%30s...]", command.c_str());
     }
     int pid;
-    int in_sock;
-    int out_sock;
-    int err_sock;
+    int in_sock[2];
+    int out_sock[2];
+    int err_sock[2];
     int client_sock = SSL_get_fd(context->ssl);
-
-    if ((in_sock = socket(AF_LOCAL, SOCK_STREAM, 0)) == -1)
+    if ((socketpair(AF_LOCAL, SOCK_STREAM, 0, in_sock)) == -1)
     {
         throw EvaluationException("Error creating input socket");
     }
 
-    if ((out_sock = socket(AF_LOCAL, SOCK_STREAM, 0)) == -1)
+    if ((socketpair(AF_LOCAL, SOCK_STREAM, 0, out_sock)) == -1)
     {
         throw EvaluationException("Error creating output socket");
     }
 
-    if ((err_sock = socket(AF_LOCAL, SOCK_STREAM, 0)) == -1)
+    if ((socketpair(AF_LOCAL, SOCK_STREAM, 0, err_sock)) == -1)
     {
         throw EvaluationException("Error creating error socket");
     }
@@ -64,18 +63,21 @@ int Execute(
     {
         if (pid == 0)
         {
-            close(STDIN_FILENO);
-            close(STDOUT_FILENO);
-            close(STDERR_FILENO);
+            close(in_sock[1]);
+            close(out_sock[1]);
+            close(err_sock[1]);
             // child
+            close(STDIN_FILENO);
             if (_stdin != client_sock) dup(_stdin);
-            else dup(in_sock);
+            else dup(in_sock[0]);
 
+            close(STDOUT_FILENO);
             if (_stdout != client_sock) dup(_stdout);
-            else dup(out_sock);
+            else { dup(out_sock[0]); }
 
+            close(STDERR_FILENO);
             if (_stderr != client_sock) dup(_stderr);
-            else dup(err_sock);
+            else dup(err_sock[0]);
 
             char* strings[MAX_ARGUMENTS] = {0};
             for (size_t i = 0; i < tokens.size(); i++)
@@ -88,24 +90,29 @@ int Execute(
         }
         else
         {
+            close(in_sock[0]);
+            close(out_sock[0]);
+            close(err_sock[0]);
             int sts = 0;
             wait(&sts);
             if (_stdin == client_sock)
             {
-                redirect(in_sock, client_sock, context);
-                close(in_sock);
+                redirect(in_sock[1], client_sock, context);
+                
             }
-
             if (_stdout == client_sock)
             {
-                redirect(out_sock, client_sock, context);
-                close(out_sock);
+                redirect(out_sock[1], client_sock, context);
+                
             }
             if (_stderr == client_sock)
             {
-                redirect(err_sock, client_sock, context);
-                close(err_sock);
+                redirect(err_sock[1], client_sock, context);
+                
             }
+            close(in_sock[1]);
+            close(out_sock[1]);
+            close(err_sock[1]);
             return sts;
         }
     }
@@ -150,6 +157,7 @@ int Evaluate(std::string command, SSL* ssl)
         printf("Evaluation exception: %s\n", ex.what());
         return -1;
     }
+    delete context;
     return result;
 }
 

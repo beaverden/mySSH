@@ -72,6 +72,7 @@ int main(int argc, char* argv[]) {
         std::getline(std::cin, message);
         if (message == "exit")
         {
+            SSL_shutdown(ssl);
             break;
         }
         else
@@ -83,6 +84,10 @@ int main(int argc, char* argv[]) {
                 printf("Failed to write all the data\n");
                 continue;
             }
+            char ans[1000] = {0};
+            SSL_read(ssl, ans, 1000);
+            ans[999] = 0;
+            printf("%s\n", ans);
         }
     }
     SSL_free(ssl);

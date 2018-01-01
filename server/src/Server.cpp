@@ -80,15 +80,16 @@ void Server::Listen()
             continue;
         }
         printf("Got connection!\n");
-        char input[2048] = {0};
-        char message[] = "Hello!";
-        if (SSL_read(ssl, input, 2048) <= 0)
+        
+        
+        while (true)
         {
-            printf("SSL read error\n");
-            ERR_print_errors_fp(stderr);
+            if (!HandleInput())
+            {
+                break;
+            }          
         }
-        std::string comm = input;
-        std::cout << "The command is: " << comm << std::endl;
+
         SSL_free(ssl);
         close(client);
     }    
@@ -121,4 +122,23 @@ Server* Server::Get()
         instance = new Server();
     }
     return instance;
+}
+
+void Server::HandleInput()
+{
+    char input[2048] = {0};
+    int status = SSL_read(ssl, input, 2048);
+    if (status == 0)
+    {
+        int shutdown_status = SSL_get_shutdown();
+    }
+    if (err <= 0)
+    {
+        printf("SSL read error %d\n", err);
+        ERR_print_errors_fp(stderr);
+        continue;
+    }
+    std::string comm = input;
+    std::cout << "The command is: " << comm << std::endl;
+    Evaluate(comm, ssl);
 }
