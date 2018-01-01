@@ -7,13 +7,32 @@
 #include <cstring>
 #include <wait.h>
 #include "../include/Evaluate.h"
+#include "openssl/bio.h"
+#include "openssl/ssl.h"
+#include "openssl/err.h"
+#include <sys/socket.h>
 
-std::stack<int> inputRedir;
-std::stack<int> outputRedir;
-std::stack<int> errorRedir;
+void redirect(int local_socket, int client_socket, ExecutionContext* context)
+{
+    char buffer[1024];
+    int sz = 0;
+    while ((sz = read(local_socket, buffer, 1024)) > 0)
+    {
+        if (SSL_write(context->ssl, buffer, sz) <= 0)
+        {
+            printf("Didn't write\n");
+            return;
+        }
+    }
+}
 
-
-int Execute(std::string command, int _stdin, int _stdout, int _stderr)
+int Execute(
+    std::string command, 
+    int _stdin,
+    int _stdout,
+    int _stderr,
+    ExecutionContext* context
+)
 {
     std::vector<std::string> tokens = Parser::Get()->tokenizeExecute(command, " ");
     if (tokens.size() > MAX_ARGUMENTS)
@@ -21,26 +40,42 @@ int Execute(std::string command, int _stdin, int _stdout, int _stderr)
         throw EvaluationException("Too many arguments in command [%30s...]", command.c_str());
     }
     int pid;
+    int in_sock;
+    int out_sock;
+    int err_sock;
+    int client_sock = SSL_get_fd(context->ssl);
+
+    if ((in_sock = socket(AF_LOCAL, SOCK_STREAM, 0)) == -1)
+    {
+        throw EvaluationException("Error creating input socket");
+    }
+
+    if ((out_sock = socket(AF_LOCAL, SOCK_STREAM, 0)) == -1)
+    {
+        throw EvaluationException("Error creating output socket");
+    }
+
+    if ((err_sock = socket(AF_LOCAL, SOCK_STREAM, 0)) == -1)
+    {
+        throw EvaluationException("Error creating error socket");
+    }
+
     if ((pid = fork()) != -1)
     {
         if (pid == 0)
         {
+            close(STDIN_FILENO);
+            close(STDOUT_FILENO);
+            close(STDERR_FILENO);
             // child
-            if (_stdout != STDOUT_FILENO)
-            {
-                close(STDOUT_FILENO);
-                dup(_stdout);
-            }
-            if (_stdin != STDIN_FILENO)
-            {
-                close(STDIN_FILENO);
-                dup(_stdin);
-            }
-            if (_stderr != STDERR_FILENO)
-            {
-                close(STDERR_FILENO);
-                dup(_stderr);
-            }
+            if (_stdin != client_sock) dup(_stdin);
+            else dup(in_sock);
+
+            if (_stdout != client_sock) dup(_stdout);
+            else dup(out_sock);
+
+            if (_stderr != client_sock) dup(_stderr);
+            else dup(err_sock);
 
             char* strings[MAX_ARGUMENTS] = {0};
             for (size_t i = 0; i < tokens.size(); i++)
@@ -55,6 +90,22 @@ int Execute(std::string command, int _stdin, int _stdout, int _stderr)
         {
             int sts = 0;
             wait(&sts);
+            if (_stdin == client_sock)
+            {
+                redirect(in_sock, client_sock, context);
+                close(in_sock);
+            }
+
+            if (_stdout == client_sock)
+            {
+                redirect(out_sock, client_sock, context);
+                close(out_sock);
+            }
+            if (_stderr == client_sock)
+            {
+                redirect(err_sock, client_sock, context);
+                close(err_sock);
+            }
             return sts;
         }
     }
@@ -64,27 +115,45 @@ int Execute(std::string command, int _stdin, int _stdout, int _stderr)
     }
 }
 
-int Evaluate(std::string command)
+int Evaluate(std::string command, SSL* ssl)
 {
-    while (!inputRedir.empty()) inputRedir.pop();
-    while (!outputRedir.empty()) outputRedir.pop();
-    while (!errorRedir.empty()) errorRedir.pop();
-    inputRedir.push(STDIN_FILENO);
-    outputRedir.push(STDOUT_FILENO);
-    errorRedir.push(STDERR_FILENO);
+    ExecutionContext* context = new ExecutionContext;
+    context->ssl = ssl;
+    int actualFD = SSL_get_fd(ssl);
+    context->inputRedir.push(actualFD);
+    context->outputRedir.push(actualFD);
+    context->errorRedir.push(actualFD);
 
     std::shared_ptr<SyntaxTree> root;
-    root = Parser::Get()->parse(command);
-
-    if (root == nullptr)
+    try
     {
-        return 0;
+        root = Parser::Get()->parse(command);
+    }
+    catch (ParserException& ex)
+    {
+        printf("Parser exception: %s\n", ex.what());
+        return -1;
+    }
+    catch (VerificationException& ex)
+    {
+        printf("Verification exception: %s\n", ex.what());
+        return -1;
     }
 
-    return Evaluate(root);
+    int result = -1;
+    try
+    {
+        result = Evaluate(root, context);
+    }
+    catch (EvaluationException& ex)
+    {
+        printf("Evaluation exception: %s\n", ex.what());
+        return -1;
+    }
+    return result;
 }
 
-int Evaluate(std::shared_ptr<SyntaxTree> node)
+int Evaluate(std::shared_ptr<SyntaxTree> node, ExecutionContext* context)
 {
     if (node == nullptr) return 0;
     if (node->type == OperationType::OUTPUT_REDIRECT)
@@ -99,9 +168,9 @@ int Evaluate(std::shared_ptr<SyntaxTree> node)
         {
             throw EvaluationException("Can't open redirect file [%s]", file->content.c_str());
         }
-        outputRedir.push(reg);
-        int result = Evaluate(node->left);
-        outputRedir.pop();
+        context->outputRedir.push(reg);
+        int result = Evaluate(node->left, context);
+        context->outputRedir.pop();
         close(reg);
         return result;
     }
@@ -117,9 +186,9 @@ int Evaluate(std::shared_ptr<SyntaxTree> node)
         {
             throw EvaluationException("Can't open redirect file [%s]", file->content.c_str());
         }
-        inputRedir.push(reg);
-        int result = Evaluate(node->left);
-        inputRedir.pop();
+        context->inputRedir.push(reg);
+        int result = Evaluate(node->left, context);
+        context->inputRedir.pop();
         close(reg);
         return result;
     }
@@ -135,19 +204,19 @@ int Evaluate(std::shared_ptr<SyntaxTree> node)
         {
             throw EvaluationException("Can't open redirect file [%s]", file->content.c_str());
         }
-        errorRedir.push(reg);
-        int result = Evaluate(node->left);
-        errorRedir.pop();
+        context->errorRedir.push(reg);
+        int result = Evaluate(node->left, context);
+        context->errorRedir.pop();
         close(reg);
         return result;
     }
     else if (node->type == OperationType::LOGICAL_AND)
     {
-        int left_result = Evaluate(node->left);
+        int left_result = Evaluate(node->left, context);
         if (left_result == 0)
         {
             // Evaluation OK, proceed to right
-            return Evaluate(node->right);
+            return Evaluate(node->right, context);
         }
         else
         {
@@ -156,11 +225,11 @@ int Evaluate(std::shared_ptr<SyntaxTree> node)
     }
     else if (node->type == OperationType::LOGICAL_OR)
     {
-        int left_result = Evaluate(node->left);
+        int left_result = Evaluate(node->left, context);
         if (left_result != 0)
         {
             // First failed, execute second
-            return Evaluate(node->right);
+            return Evaluate(node->right, context);
         }
         else
         {
@@ -174,25 +243,31 @@ int Evaluate(std::shared_ptr<SyntaxTree> node)
         {
             throw EvaluationException("Can't create a pipe");
         }
-        outputRedir.push(d[1]);
-        Evaluate(node->left);
+        context->outputRedir.push(d[1]);
+        Evaluate(node->left, context);
         close(d[1]);
-        outputRedir.pop();
+        context->outputRedir.pop();
 
-        inputRedir.push(d[0]);
-        int result = Evaluate(node->right);
+        context->inputRedir.push(d[0]);
+        int result = Evaluate(node->right, context);
         close(d[0]);
-        inputRedir.pop();
+        context->inputRedir.pop();
         return result;
     }
     else if (node->type == OperationType::FOLLOWUP)
     {
-        Evaluate(node->left);
-        return Evaluate(node->right);
+        Evaluate(node->left, context);
+        return Evaluate(node->right, context);
     }
     else if (node->type == OperationType::EXECUTE)
     {
-        return Execute(node->content, inputRedir.top(), outputRedir.top(), errorRedir.top());
+        return Execute(
+            node->content, 
+            context->inputRedir.top(), 
+            context->outputRedir.top(), 
+            context->errorRedir.top(), 
+            context
+        );
     }
     else 
     {

@@ -26,14 +26,17 @@ const char* VerificationException::what()
     return message.c_str();
 }
 
-EvaluationException::EvaluationException(std::string message) :
+
+ArgumentsException::ArgumentsException(std::string message) :
         message(message)
 {
     this->message = "Execution error: " + message;
 }
 
 
-const char* EvaluationException::what()
+const char* ArgumentsException::what()
 {
     return message.c_str();
 }
+
+
