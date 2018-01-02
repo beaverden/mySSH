@@ -99,5 +99,16 @@ public:
     : ArgumentsException(fmt, args...) {};
 };
 
+class PacketIOException : public ArgumentsException
+{
+public:
+    PacketIOException(std::string message) 
+    : ArgumentsException(message) {}
+    template<class ... Args>
+    PacketIOException(const char* fmt, Args ... args) 
+    : ArgumentsException(fmt, args...) {};
+};
+
+
 
 #endif //EXCEPTIONS_H

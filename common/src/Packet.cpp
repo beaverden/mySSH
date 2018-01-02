@@ -2,6 +2,8 @@
 
 void send_packet(SSL* ssl, Packet_Type type, void* data, size_t data_len)
 {
+    if (data_len == 0 || data == nullptr) return;
+    
     unsigned int content_length = data_len;
     std::mt19937 gen(std::random_device{}());
     unsigned int padding_length = gen() % 1024;
@@ -11,7 +13,10 @@ void send_packet(SSL* ssl, Packet_Type type, void* data, size_t data_len)
         padding[i] = (unsigned char)(gen() % 256);
     }
     unsigned char* digest = new unsigned char[SHA256_DIGEST_LENGTH];
-    sha_digest(data, data_len, digest);
+    if (sha_digest(data, data_len, digest) == FAILED)
+    {
+        throw PacketIOException("Unable to compute SHA256 of the packet content");
+    }
 
     unsigned int output_len = 
               sizeof(type)                              // packet_type
@@ -50,7 +55,7 @@ void send_packet(SSL* ssl, Packet_Type type, void* data, size_t data_len)
     {
         if (result != output_len)
         {
-            throw ClientException("Unable to sent the whole packet. Sent only [%d] bytes", result);
+            throw PacketIOException("Unable to sent the whole packet. Sent only [%d] bytes", result);
         }
     }
     else if (result == 0)
@@ -69,7 +74,7 @@ void send_packet(SSL* ssl, Packet_Type type, void* data, size_t data_len)
     else if (result < 0)
     {
         int error = SSL_get_error(ssl, result);
-        throw ClientException("Packet write error %d", error);
+        throw PacketIOException("Packet write error %d", error);
     }
     #ifdef DEBUG_MODE
         printf("Sending a packet:\n\tType:%u\n\tPayload Size:%u\n\tPadding:%u\n\tContent:%u\n\tData:%s\n",
@@ -89,53 +94,53 @@ void recv_packet(SSL* ssl, SSH_Packet* read_to)
     result = SSL_read(ssl, &read_to->packet_type, sizeof(read_to->packet_type));
     if (result != sizeof(read_to->packet_type))
     {
-        throw ClientException("Unable to read full packet type");
+        throw PacketIOException("Unable to read full packet type");
     }
 
     result = SSL_read(ssl, &read_to->payload_length, sizeof(read_to->payload_length));
     if (result != sizeof(read_to->payload_length))
     {
-        throw ClientException("Unable to read full payload length");
+        throw PacketIOException("Unable to read full payload length");
     }
 
     result = SSL_read(ssl, read_to->sha256_verification, sizeof(char) * SHA256_DIGEST_LENGTH);
     if (result != SHA256_DIGEST_LENGTH * sizeof(char))
     {
-        throw ClientException("Unable to read full sha256");
+        throw PacketIOException("Unable to read full sha256");
     }
 
     result = SSL_read(ssl, &read_to->payload.content_length, sizeof(read_to->payload.content_length));
     if (result != sizeof(read_to->payload.content_length))
     {
-        throw ClientException("Unable to read full content length");
+        throw PacketIOException("Unable to read full content length");
     } 
 
     result = SSL_read(ssl, &read_to->payload.padding_length, sizeof(read_to->payload.padding_length));
     if (result != sizeof(read_to->payload.padding_length))
     {
-        throw ClientException("Unable to read full padding length");
+        throw PacketIOException("Unable to read full padding length");
     }   
 
     read_to->payload.content = new unsigned char[read_to->payload.content_length + 1]();
     if (read_to->payload.content == nullptr)
     {
-        throw ClientException("Unable to allocate content space");
+        throw PacketIOException("Unable to allocate content space");
     } 
     result = SSL_read(ssl, read_to->payload.content, read_to->payload.content_length);
     if (result != read_to->payload.content_length)
     {
-        throw ClientException("Unable to read full content");
+        throw PacketIOException("Unable to read full content");
     }
 
     read_to->payload.padding = new unsigned char[read_to->payload.padding_length + 1]();
     if (read_to->payload.padding == nullptr)
     {
-        throw ClientException("Unable to allocate padding space");
+        throw PacketIOException("Unable to allocate padding space");
     } 
     result = SSL_read(ssl, read_to->payload.padding, read_to->payload.padding_length);
     if (result != read_to->payload.padding_length)
     {
-        throw ClientException("Unable to read full padding");
+        throw PacketIOException("Unable to read full padding");
     }  
 
     unsigned char* actual_digest = new unsigned char[SHA256_DIGEST_LENGTH];
@@ -145,14 +150,14 @@ void recv_packet(SSL* ssl, SSH_Packet* read_to)
     {
         if (actual_digest[i] != read_to->sha256_verification[i])
         {
-            throw ClientException("Invalid SHA256 digest");
+            throw PacketIOException("Invalid SHA256 digest");
         }
     }
     #ifdef DEBUG_MODE
         printf("Recieved a packet:\n\tType:%u\n\tPayload Size:%u\n\tPadding:%u\n\tContent:%u\n\tData:%s\n",
                 read_to->packet_type, 
-                read_to->payload_size
-                read_to->payload.padding_size, 
+                read_to->payload_length,
+                read_to->payload.padding_length, 
                 read_to->payload.content_length, 
                 (char*)(read_to->payload.content));
         printf("\tSHA digest: ");

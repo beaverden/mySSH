@@ -80,18 +80,31 @@ void Server::Listen()
             continue;
         }
         printf("Got connection!\n");
-        
-        
+        try
+        {
+            HandleAuth(ssl);
+        }
+        catch (PacketIOException& ex)
+        {
+            printf("Reading error while authenticating: %s\n", ex.what());
+        }
+
         while (true)
         {
-            int status = HandleInput(ssl);
-            if (status == 0)
+            char ready[] = "READY";
+            send_packet(ssl, PACKET_READY, ready, strlen(ready));
+            SSH_Packet packet;
+            recv_packet(ssl, &packet);
+            switch (packet.packet_type)
             {
-                printf("Exiting\n");
-                break;
-            } 
-            printf("Finished command\n");      
+                case PACKET_QUERY:
+                {
+                    HandleInput(ssl, &packet);
+                    break;
+                }
+            }
         }
+
 
         SSL_free(ssl);
         close(client);
@@ -127,58 +140,27 @@ Server* Server::Get()
     return instance;
 }
 
-int Server::HandleInput(SSL* ssl)
+void Server::HandleAuth(SSL* ssl)
 {
-    char input[2048] = {0};
-    printf("Waiting...\n");
-    SSH_Packet pack;
-    try
-    {
-        recv_packet(ssl, &pack);
-    }
-    catch (ClientException &ex)
-    {
-        printf("%s\n", ex.what());
-    }
-    
-    printf("Server recieved: %s\n", pack.payload.content);
-    char msg[] = "Hello, client!";
-    try
-    {
-        send_packet(ssl, PACKET_QUERY, (unsigned char*)(msg), strlen(msg));
-    }
-    catch (ClientException& ex)
-    {
-        printf("%s\n", ex.what());
-    }
-    return 1;
-    /*
-    int status = SSL_read(ssl, input, 2048);
-    printf("I read: %s\n", input);
-    if (status == 0)
-    {
-        int shutdown_status = SSL_get_shutdown(ssl);
-        if ((shutdown_status & SSL_RECEIVED_SHUTDOWN) != 0)
-        {
-            SSL_shutdown(ssl);
-            return 0;
-        }
-        if ((shutdown_status & SSL_SENT_SHUTDOWN) != 0)
-        {
-            SSL_shutdown(ssl);
-            return 0;
-        }
-    }
-    else if (status < 0)
-    {
-        printf("SSL read error %d\n", status);
-        ERR_print_errors_fp(stderr);
-        return -1;
-    }
+    char* message = "Please login in.\n";
+    send_packet(ssl, PACKET_AUTH_REQUEST, message, strlen(message));
 
-    std::string comm = input;
+    SSH_Packet response;
+    recv_packet(ssl, &response);
+    if (response.packet_type != PACKET_AUTH_RESPONSE)
+    {
+        throw PacketIOException("Requested packet is not of type auth");
+    }
+    Login_Payload* payload = (Login_Payload*)(response.payload.content);
+    payload->login[payload->login_length] = 0;
+    payload->password[payload->password_length] = 0;
+    printf("Got credentials: %s:%s\n", payload->login, payload->password);
+}
+
+int Server::HandleInput(SSL* ssl, SSH_Packet* packet)
+{
+    std::string comm = (char*)packet->payload.content;
     std::cout << "Got command: " << comm << std::endl;
     Evaluate(comm, ssl);
     return 1;   
-    */
 }

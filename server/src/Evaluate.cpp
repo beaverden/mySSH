@@ -7,26 +7,23 @@
 #include <cstring>
 #include <wait.h>
 #include "../include/Evaluate.h"
+#include "../../common/include/Packet.h"
 #include "openssl/bio.h"
 #include "openssl/ssl.h"
 #include "openssl/err.h"
 #include <sys/socket.h>
+#include <sys/ioctl.h>
 
 void redirect_output(int local_socket, int client_socket, ExecutionContext* context)
 {
     printf("Redirecting output!\n");
-    char buffer[1024] = {0};
+    int socket_size = 0;
+    ioctl(local_socket, FIONREAD, &socket_size);
+
+    char* buffer = new char[socket_size];
     int sz = 0;
-    while ((sz = read(local_socket, buffer, 1024)) > 0)
-    {
-        printf("I read %d bytes\n", sz);
-        if (SSL_write(context->ssl, buffer, sz) <= 0)
-        {
-            printf("Didn't write\n");
-            return;
-        }
-        printf("I wrote: %s\n", buffer);
-    }
+    sz = read(local_socket, buffer, socket_size);
+    send_packet(context->ssl, PACKET_RESPONSE, buffer, socket_size);
 }
 
 void redirect_input(int local_socket, int client_socket, ExecutionContext* context)

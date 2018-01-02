@@ -15,16 +15,19 @@
 #include "openssl/err.h"
 #include "openssl/sha.h"
 
-
-
 #define FAILED -1
+#define MAX_LOGIN_LENGTH 32
+#define MAX_PASSWORD_LENGTH 100
+#define DEBUG_MODE
 
 enum Packet_Type
 {
     PACKET_QUERY,
     PACKET_RESPONSE,
     PACKET_REQUEST,
-    PACKET_AUTH
+    PACKET_AUTH_REQUEST,
+    PACKET_AUTH_RESPONSE,
+    PACKET_READY
 };
 
 struct SSH_Packet
@@ -39,6 +42,26 @@ struct SSH_Packet
         unsigned char*          content;
         unsigned char*          padding;
     } payload;
+
+    SSH_Packet()
+    {
+        this->payload.content = nullptr;
+        this->payload.padding = nullptr;
+    }
+
+    ~SSH_Packet() 
+    {
+        if (this->payload.content) delete this->payload.content;
+        if (this->payload.padding) delete this->payload.padding;
+    }
+};
+
+struct Login_Payload
+{
+    unsigned int login_length;
+    unsigned int password_length;
+    char login[MAX_LOGIN_LENGTH + 1] = {0};
+    char password[MAX_PASSWORD_LENGTH + 1] = {0};
 };
 
 void send_packet(SSL* ssl, Packet_Type type, void* data, size_t data_len);

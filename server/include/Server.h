@@ -9,6 +9,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/types.h>
+#include <sys/ioctl.h>
 #include <unistd.h>
 #include <iostream>
 #include <string>
@@ -38,7 +39,8 @@ class Server
         void InitializeSecurity();
         void Listen();
 
-        int HandleInput(SSL* ssl);
+        int HandleInput(SSL* ssl, SSH_Packet* packet);
+        void HandleAuth(SSL* ssl);
 
 };
 
