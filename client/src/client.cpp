@@ -1,3 +1,8 @@
+#define DEBUG_MODE
+
+#include "../../common/include/Packet.h"
+#include "../../common/include/Exceptions.h"
+
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/types.h>
@@ -58,6 +63,7 @@ int main(int argc, char* argv[]) {
         return -1;
     }
     
+    std::string message = "hello, server!";
     SSL* ssl = SSL_new(context);
     SSL_set_fd(ssl, sock);
     if (SSL_connect(ssl) == -1)
@@ -65,7 +71,24 @@ int main(int argc, char* argv[]) {
         printf("Failed to connect to server\n");
         return -1;
     }
-
+    unsigned char* chm = (unsigned char*)(message.c_str());
+    int len = strlen((char*)chm);
+    SSH_Packet pack;
+    try
+    {
+        send_packet(ssl, PACKET_QUERY, chm, len);
+        recv_packet(ssl, &pack);
+    }
+    catch (ClientException& ex)
+    {
+        printf("%s\n", ex.what());
+    }
+    catch (ShutdownException& ex)
+    {
+        printf("%s\n", ex.what());
+    }
+    printf("Client recieved: %s\n", pack.payload.content);
+    /*
     while (true)
     {
         std::string message;
@@ -77,21 +100,27 @@ int main(int argc, char* argv[]) {
         }
         else
         {
-            char* chm = (char*)message.c_str();
-            int len = strlen(chm);
-            if (SSL_write(ssl, chm, len) != len)
+            unsigned char* chm = (unsigned char*)message.c_str();
+            int len = strlen((char*)chm);
+            SSH_Packet pack;
+            try
             {
-                printf("Failed to write all the data\n");
-                continue;
+                send_packet(ssl, PACKET_QUERY, chm, len);
+                recv_packet(ssl, &pack);
             }
-            char ans[1000] = {0};
-            printf("Sent. Awating response\n");
-            SSL_read(ssl, ans, 1000);
-            printf("Got response!\n");
-            ans[999] = 0;
-            printf("%s", ans);
+            catch (ClientException& ex)
+            {
+                printf("%s\n", ex.what());
+            }
+            catch (ShutdownException& ex)
+            {
+                printf("%s\n", ex.what());
+            }
+            printf("Client recieved: %s\n", pack.payload.content);
         }
+        
     }
+    */
     SSL_free(ssl);
     close(sock);
     SSL_CTX_free(context);

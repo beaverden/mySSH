@@ -1,8 +1,10 @@
 #ifndef SERVER_H
 #define SERVER_H
 
-#include "Exceptions.h"
+#include "../../common/include/Exceptions.h"
+#include "../../common/include/Packet.h"
 #include "Evaluate.h"
+
 
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -17,29 +19,6 @@
 
 #define FAILED -1
 #define LISTEN_PORT 2018
-#define SHA_256_LENGTH 32
-
-enum Packet_Type
-{
-    PACKET_QUERY,
-    PACKET_RESPONSE,
-    PACKET_REQUEST,
-    PACKET_AUTH
-};
-
-struct SSH_Packet
-{
-    Packet_Type         packetType;
-    unsigned int        packetLength;
-    unsigned char       sha256Verification[SHA_256_LENGTH];
-    struct SSH_Payload
-    {
-        unsigned int            contentLength;
-        unsigned int            paddingLength;
-        char*                   content;
-        char*                   padding;
-    } payload;
-};
 
 class Server
 {

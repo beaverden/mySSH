@@ -1,5 +1,7 @@
+#define DEBUG_MODE
+
 #include "../include/Server.h"
-#include "../include/Exceptions.h"
+#include "../../common/include/Exceptions.h"
 #include <iostream>
 
 using namespace std;

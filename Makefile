@@ -4,16 +4,16 @@ SRCEXT := cpp
 
 # Server
 TARGET_SERVER := ./bin/server
-SERVER_SRC	:= ./server/src
-SERVER_INC  := ./server/include
+SERVER_SRC	:= ./server/src ./common/src
+SERVER_INC  := ./server/include ./common/include
 SERVER_INC_FLAGS := $(addprefix -I,$(SERVER_INC))
 SERVER_SOURCES := $(shell find $(SERVER_SRC) -type f -name *.$(SRCEXT))
 SERVER_OBJECTS := $(patsubst $(SERVER_SRC)/%, $(BUILD_DIR)/%, $(SERVER_SOURCES:.$(SRCEXT)=.o))
 
 # Client 
 TARGET_CLIENT := ./bin/client
-CLIENT_SRC	:= ./client/src
-CLIENT_INC  := ./client/include
+CLIENT_SRC	:= ./client/src ./common/src
+CLIENT_INC  := ./client/include ./common/include
 SERVER_INC_FLAGS := $(addprefix -I,$(CLIENT_INC))
 CLIENT_SOURCES := $(shell find $(CLIENT_SRC) -type f -name *.$(SRCEXT))
 CLIENT_OBJECTS := $(patsubst $(CLIENT_SRC)/%, $(BUILD_DIR)/%, $(CLIENT_SOURCES:.$(SRCEXT)=.o))

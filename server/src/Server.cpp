@@ -131,11 +131,32 @@ int Server::HandleInput(SSL* ssl)
 {
     char input[2048] = {0};
     printf("Waiting...\n");
+    SSH_Packet pack;
+    try
+    {
+        recv_packet(ssl, &pack);
+    }
+    catch (ClientException &ex)
+    {
+        printf("%s\n", ex.what());
+    }
+    
+    printf("Server recieved: %s\n", pack.payload.content);
+    char msg[] = "Hello, client!";
+    try
+    {
+        send_packet(ssl, PACKET_QUERY, (unsigned char*)(msg), strlen(msg));
+    }
+    catch (ClientException& ex)
+    {
+        printf("%s\n", ex.what());
+    }
+    return 1;
+    /*
     int status = SSL_read(ssl, input, 2048);
     printf("I read: %s\n", input);
     if (status == 0)
     {
-        
         int shutdown_status = SSL_get_shutdown(ssl);
         if ((shutdown_status & SSL_RECEIVED_SHUTDOWN) != 0)
         {
@@ -159,4 +180,5 @@ int Server::HandleInput(SSL* ssl)
     std::cout << "Got command: " << comm << std::endl;
     Evaluate(comm, ssl);
     return 1;   
+    */
 }

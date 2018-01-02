@@ -19,7 +19,7 @@ struct ExecutionContext
     std::stack<int> inputRedir;
     std::stack<int> outputRedir;
     std::stack<int> errorRedir;  
-    SSL* ssl;  
+    SSL* ssl;
 };
 
 void redirect_output(int local_socket, int client_socket, ExecutionContext* context);

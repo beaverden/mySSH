@@ -1,11 +1,10 @@
-//
-// Created by denis on 12/15/17.
-//
 
-#ifndef MYSSHSERVER_EXCEPTIONS_H
-#define MYSSHSERVER_EXCEPTIONS_H
+
+#ifndef EXCEPTIONS_H
+#define EXCEPTIONS_H
 #include <stdexcept>
 
+/* ======================== SERVER ONLY EXCEPTIONS =========================== */
 class ParserException : std::exception
 {
 public:
@@ -28,6 +27,10 @@ private:
     size_t position;
 };
 
+
+/* ======================== /SERVER ONLY EXCEPTIONS =========================== */
+
+
 class ArgumentsException : std::exception
 {
 public:
@@ -46,13 +49,13 @@ private:
     std::string message;
 };
 
-class EvaluationException : public ArgumentsException
+class ShutdownException : public ArgumentsException
 {
 public:
-    EvaluationException(std::string message) 
+    ShutdownException(std::string message) 
     : ArgumentsException(message) {}
     template<class ... Args>
-    EvaluationException(const char* fmt, Args ... args) 
+    ShutdownException(const char* fmt, Args ... args) 
     : ArgumentsException(fmt, args...) {};
 };
 
@@ -66,6 +69,16 @@ public:
     : ArgumentsException(fmt, args...) {};
 };
 
+class ClientException : public ArgumentsException
+{
+public:
+    ClientException(std::string message) 
+    : ArgumentsException(message) {}
+    template<class ... Args>
+    ClientException(const char* fmt, Args ... args) 
+    : ArgumentsException(fmt, args...) {};
+};
+
 class ServerException : public ArgumentsException
 {
 public:
@@ -76,6 +89,15 @@ public:
     : ArgumentsException(fmt, args...) {};
 };
 
+class EvaluationException : public ArgumentsException
+{
+public:
+    EvaluationException(std::string message) 
+    : ArgumentsException(message) {}
+    template<class ... Args>
+    EvaluationException(const char* fmt, Args ... args) 
+    : ArgumentsException(fmt, args...) {};
+};
 
 
-#endif //MYSSHSERVER_EXCEPTIONS_H
+#endif //EXCEPTIONS_H
