@@ -1,0 +1,128 @@
+\hypertarget{Packet_8h}{}\section{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/include/\+Packet.h File Reference}
+\label{Packet_8h}\index{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/include/\+Packet.\+h@{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/include/\+Packet.\+h}}
+{\ttfamily \#include \char`\"{}Exceptions.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$sys/socket.\+h$>$}\\*
+{\ttfamily \#include $<$netinet/in.\+h$>$}\\*
+{\ttfamily \#include $<$sys/types.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$random$>$}\\*
+{\ttfamily \#include \char`\"{}openssl/bio.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}openssl/ssl.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}openssl/err.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}openssl/sha.\+h\char`\"{}}\\*
+Include dependency graph for Packet.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet}
+\item 
+struct \hyperlink{structSSH__Packet_1_1SSH__Payload}{S\+S\+H\+\_\+\+Packet\+::\+S\+S\+H\+\_\+\+Payload}
+\item 
+struct \hyperlink{structLogin__Payload}{Login\+\_\+\+Payload}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{Packet_8h_a681680feae4df4182d532564c42fa1fc}{F\+A\+I\+L\+ED}~-\/1
+\item 
+\#define \hyperlink{Packet_8h_ab9445e27830d28f1e288bd223ab95296}{M\+A\+X\+\_\+\+L\+O\+G\+I\+N\+\_\+\+L\+E\+N\+G\+TH}~32
+\item 
+\#define \hyperlink{Packet_8h_a7f264fafe78080f8ea68715854b9bc24}{M\+A\+X\+\_\+\+P\+A\+S\+S\+W\+O\+R\+D\+\_\+\+L\+E\+N\+G\+TH}~100
+\item 
+\#define \hyperlink{Packet_8h_ac80a3592e72fd96b772ee47a7d8e0d0a}{D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890}{Packet\+\_\+\+Type} \{ \\*
+\hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890a2f5665bf2e0ba95ed71bb6297fb02ed2}{P\+A\+C\+K\+E\+T\+\_\+\+Q\+U\+E\+RY}, 
+\hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890a7824f752c333d1560c36cb8b8c643605}{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+S\+P\+O\+N\+SE}, 
+\hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890a07231f7b2bd1a0cd4295eab9a3402d53}{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+Q\+U\+E\+ST}, 
+\hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890add231fb890f78df48adbef9a8f86b3b5}{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+Q\+U\+E\+ST}, 
+\\*
+\hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890a6ee2549e6313635a0e1b570052060b76}{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE}, 
+\hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890a62aa7f5e6ca972dea66fd751f236c447}{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{Packet_8h_a723198aebc9baad8998255313981e357}{send\+\_\+packet} (S\+SL $\ast$ssl, \hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890}{Packet\+\_\+\+Type} type, void $\ast$data, size\+\_\+t data\+\_\+len)
+\item 
+void \hyperlink{Packet_8h_adaa6274c063dfae816caaf9a68774698}{recv\+\_\+packet} (S\+SL $\ast$ssl, \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} $\ast$read\+\_\+to)
+\item 
+int \hyperlink{Packet_8h_a707a865009d80b22ee19d46a59d81e94}{sha\+\_\+digest} (void $\ast$msg, size\+\_\+t msg\+\_\+len, void $\ast$output)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{Packet.\+h@{Packet.\+h}!D\+E\+B\+U\+G\+\_\+\+M\+O\+DE@{D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}}
+\index{D\+E\+B\+U\+G\+\_\+\+M\+O\+DE@{D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}!Packet.\+h@{Packet.\+h}}
+\subsubsection[{\texorpdfstring{D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}{DEBUG_MODE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}\hypertarget{Packet_8h_ac80a3592e72fd96b772ee47a7d8e0d0a}{}\label{Packet_8h_ac80a3592e72fd96b772ee47a7d8e0d0a}
+\index{Packet.\+h@{Packet.\+h}!F\+A\+I\+L\+ED@{F\+A\+I\+L\+ED}}
+\index{F\+A\+I\+L\+ED@{F\+A\+I\+L\+ED}!Packet.\+h@{Packet.\+h}}
+\subsubsection[{\texorpdfstring{F\+A\+I\+L\+ED}{FAILED}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+I\+L\+ED~-\/1}\hypertarget{Packet_8h_a681680feae4df4182d532564c42fa1fc}{}\label{Packet_8h_a681680feae4df4182d532564c42fa1fc}
+\index{Packet.\+h@{Packet.\+h}!M\+A\+X\+\_\+\+L\+O\+G\+I\+N\+\_\+\+L\+E\+N\+G\+TH@{M\+A\+X\+\_\+\+L\+O\+G\+I\+N\+\_\+\+L\+E\+N\+G\+TH}}
+\index{M\+A\+X\+\_\+\+L\+O\+G\+I\+N\+\_\+\+L\+E\+N\+G\+TH@{M\+A\+X\+\_\+\+L\+O\+G\+I\+N\+\_\+\+L\+E\+N\+G\+TH}!Packet.\+h@{Packet.\+h}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+L\+O\+G\+I\+N\+\_\+\+L\+E\+N\+G\+TH}{MAX_LOGIN_LENGTH}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+L\+O\+G\+I\+N\+\_\+\+L\+E\+N\+G\+TH~32}\hypertarget{Packet_8h_ab9445e27830d28f1e288bd223ab95296}{}\label{Packet_8h_ab9445e27830d28f1e288bd223ab95296}
+\index{Packet.\+h@{Packet.\+h}!M\+A\+X\+\_\+\+P\+A\+S\+S\+W\+O\+R\+D\+\_\+\+L\+E\+N\+G\+TH@{M\+A\+X\+\_\+\+P\+A\+S\+S\+W\+O\+R\+D\+\_\+\+L\+E\+N\+G\+TH}}
+\index{M\+A\+X\+\_\+\+P\+A\+S\+S\+W\+O\+R\+D\+\_\+\+L\+E\+N\+G\+TH@{M\+A\+X\+\_\+\+P\+A\+S\+S\+W\+O\+R\+D\+\_\+\+L\+E\+N\+G\+TH}!Packet.\+h@{Packet.\+h}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+P\+A\+S\+S\+W\+O\+R\+D\+\_\+\+L\+E\+N\+G\+TH}{MAX_PASSWORD_LENGTH}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+P\+A\+S\+S\+W\+O\+R\+D\+\_\+\+L\+E\+N\+G\+TH~100}\hypertarget{Packet_8h_a7f264fafe78080f8ea68715854b9bc24}{}\label{Packet_8h_a7f264fafe78080f8ea68715854b9bc24}
+
+
+\subsection{Enumeration Type Documentation}
+\index{Packet.\+h@{Packet.\+h}!Packet\+\_\+\+Type@{Packet\+\_\+\+Type}}
+\index{Packet\+\_\+\+Type@{Packet\+\_\+\+Type}!Packet.\+h@{Packet.\+h}}
+\subsubsection[{\texorpdfstring{Packet\+\_\+\+Type}{Packet_Type}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Packet\+\_\+\+Type}}\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{P\+A\+C\+K\+E\+T\+\_\+\+Q\+U\+E\+RY@{P\+A\+C\+K\+E\+T\+\_\+\+Q\+U\+E\+RY}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+Q\+U\+E\+RY@{P\+A\+C\+K\+E\+T\+\_\+\+Q\+U\+E\+RY}}\item[{\em 
+P\+A\+C\+K\+E\+T\+\_\+\+Q\+U\+E\+RY\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890a2f5665bf2e0ba95ed71bb6297fb02ed2}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890a2f5665bf2e0ba95ed71bb6297fb02ed2}
+}]\index{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+S\+P\+O\+N\+SE@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+S\+P\+O\+N\+SE}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+S\+P\+O\+N\+SE@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+S\+P\+O\+N\+SE}}\item[{\em 
+P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+S\+P\+O\+N\+SE\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890a7824f752c333d1560c36cb8b8c643605}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890a7824f752c333d1560c36cb8b8c643605}
+}]\index{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+Q\+U\+E\+ST@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+Q\+U\+E\+ST}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+Q\+U\+E\+ST@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+Q\+U\+E\+ST}}\item[{\em 
+P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+Q\+U\+E\+ST\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890a07231f7b2bd1a0cd4295eab9a3402d53}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890a07231f7b2bd1a0cd4295eab9a3402d53}
+}]\index{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+Q\+U\+E\+ST@{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+Q\+U\+E\+ST}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+Q\+U\+E\+ST@{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+Q\+U\+E\+ST}}\item[{\em 
+P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+Q\+U\+E\+ST\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890add231fb890f78df48adbef9a8f86b3b5}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890add231fb890f78df48adbef9a8f86b3b5}
+}]\index{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE@{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE@{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE}}\item[{\em 
+P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890a6ee2549e6313635a0e1b570052060b76}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890a6ee2549e6313635a0e1b570052060b76}
+}]\index{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY}}\item[{\em 
+P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890a62aa7f5e6ca972dea66fd751f236c447}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890a62aa7f5e6ca972dea66fd751f236c447}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\index{Packet.\+h@{Packet.\+h}!recv\+\_\+packet@{recv\+\_\+packet}}
+\index{recv\+\_\+packet@{recv\+\_\+packet}!Packet.\+h@{Packet.\+h}}
+\subsubsection[{\texorpdfstring{recv\+\_\+packet(\+S\+S\+L $\ast$ssl, S\+S\+H\+\_\+\+Packet $\ast$read\+\_\+to)}{recv_packet(SSL *ssl, SSH_Packet *read_to)}}]{\setlength{\rightskip}{0pt plus 5cm}void recv\+\_\+packet (
+\begin{DoxyParamCaption}
+\item[{S\+SL $\ast$}]{ssl, }
+\item[{{\bf S\+S\+H\+\_\+\+Packet} $\ast$}]{read\+\_\+to}
+\end{DoxyParamCaption}
+)}\hypertarget{Packet_8h_adaa6274c063dfae816caaf9a68774698}{}\label{Packet_8h_adaa6274c063dfae816caaf9a68774698}
+\index{Packet.\+h@{Packet.\+h}!send\+\_\+packet@{send\+\_\+packet}}
+\index{send\+\_\+packet@{send\+\_\+packet}!Packet.\+h@{Packet.\+h}}
+\subsubsection[{\texorpdfstring{send\+\_\+packet(\+S\+S\+L $\ast$ssl, Packet\+\_\+\+Type type, void $\ast$data, size\+\_\+t data\+\_\+len)}{send_packet(SSL *ssl, Packet_Type type, void *data, size_t data_len)}}]{\setlength{\rightskip}{0pt plus 5cm}void send\+\_\+packet (
+\begin{DoxyParamCaption}
+\item[{S\+SL $\ast$}]{ssl, }
+\item[{{\bf Packet\+\_\+\+Type}}]{type, }
+\item[{void $\ast$}]{data, }
+\item[{size\+\_\+t}]{data\+\_\+len}
+\end{DoxyParamCaption}
+)}\hypertarget{Packet_8h_a723198aebc9baad8998255313981e357}{}\label{Packet_8h_a723198aebc9baad8998255313981e357}
+\index{Packet.\+h@{Packet.\+h}!sha\+\_\+digest@{sha\+\_\+digest}}
+\index{sha\+\_\+digest@{sha\+\_\+digest}!Packet.\+h@{Packet.\+h}}
+\subsubsection[{\texorpdfstring{sha\+\_\+digest(void $\ast$msg, size\+\_\+t msg\+\_\+len, void $\ast$output)}{sha_digest(void *msg, size_t msg_len, void *output)}}]{\setlength{\rightskip}{0pt plus 5cm}int sha\+\_\+digest (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{msg, }
+\item[{size\+\_\+t}]{msg\+\_\+len, }
+\item[{void $\ast$}]{output}
+\end{DoxyParamCaption}
+)}\hypertarget{Packet_8h_a707a865009d80b22ee19d46a59d81e94}{}\label{Packet_8h_a707a865009d80b22ee19d46a59d81e94}

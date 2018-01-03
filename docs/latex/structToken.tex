@@ -1,0 +1,66 @@
+\hypertarget{structToken}{}\section{Token Struct Reference}
+\label{structToken}\index{Token@{Token}}
+
+
+Structure for holding a parsed token for later use in Shunting Yard algorithm.  
+
+
+
+
+{\ttfamily \#include $<$Parser.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047}{Operation\+Type} \hyperlink{structToken_a789b6f0ef869794e8edeaff2d1f67cc5}{type}
+\begin{DoxyCompactList}\small\item\em \hyperlink{structToken}{Token} type, each token must have the correct type. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{structToken_a0e29f6b35c314683c1a4729eb0d08739}{content}
+\begin{DoxyCompactList}\small\item\em The actual string content of the token. \end{DoxyCompactList}\item 
+unsigned long \hyperlink{structToken_ab8ddfabb4f48684b2ff8620948e12fcc}{position}
+\begin{DoxyCompactList}\small\item\em The position in the input string where it was found. \end{DoxyCompactList}\item 
+int \hyperlink{structToken_adafb834c6a6e9e4ce4b0bf709f0b2bac}{precedence} = -\/1
+\begin{DoxyCompactList}\small\item\em \char`\"{}\+Mathematical\char`\"{} precedence for Shunting Yard algorithm \end{DoxyCompactList}\item 
+bool \hyperlink{structToken_a123afb499b20188ef2af42ff6b7d6591}{is\+Operation} = false
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Structure for holding a parsed token for later use in Shunting Yard algorithm. 
+
+\subsection{Field Documentation}
+\index{Token@{Token}!content@{content}}
+\index{content@{content}!Token@{Token}}
+\subsubsection[{\texorpdfstring{content}{content}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Token\+::content}\hypertarget{structToken_a0e29f6b35c314683c1a4729eb0d08739}{}\label{structToken_a0e29f6b35c314683c1a4729eb0d08739}
+
+
+The actual string content of the token. 
+
+\index{Token@{Token}!is\+Operation@{is\+Operation}}
+\index{is\+Operation@{is\+Operation}!Token@{Token}}
+\subsubsection[{\texorpdfstring{is\+Operation}{isOperation}}]{\setlength{\rightskip}{0pt plus 5cm}bool Token\+::is\+Operation = false}\hypertarget{structToken_a123afb499b20188ef2af42ff6b7d6591}{}\label{structToken_a123afb499b20188ef2af42ff6b7d6591}
+\index{Token@{Token}!position@{position}}
+\index{position@{position}!Token@{Token}}
+\subsubsection[{\texorpdfstring{position}{position}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long Token\+::position}\hypertarget{structToken_ab8ddfabb4f48684b2ff8620948e12fcc}{}\label{structToken_ab8ddfabb4f48684b2ff8620948e12fcc}
+
+
+The position in the input string where it was found. 
+
+\index{Token@{Token}!precedence@{precedence}}
+\index{precedence@{precedence}!Token@{Token}}
+\subsubsection[{\texorpdfstring{precedence}{precedence}}]{\setlength{\rightskip}{0pt plus 5cm}int Token\+::precedence = -\/1}\hypertarget{structToken_adafb834c6a6e9e4ce4b0bf709f0b2bac}{}\label{structToken_adafb834c6a6e9e4ce4b0bf709f0b2bac}
+
+
+\char`\"{}\+Mathematical\char`\"{} precedence for Shunting Yard algorithm 
+
+\index{Token@{Token}!type@{type}}
+\index{type@{type}!Token@{Token}}
+\subsubsection[{\texorpdfstring{type}{type}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Operation\+Type} Token\+::type}\hypertarget{structToken_a789b6f0ef869794e8edeaff2d1f67cc5}{}\label{structToken_a789b6f0ef869794e8edeaff2d1f67cc5}
+
+
+\hyperlink{structToken}{Token} type, each token must have the correct type. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/server/include/\hyperlink{Parser_8h}{Parser.\+h}\end{DoxyCompactItemize}

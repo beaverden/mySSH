@@ -1,0 +1,33 @@
+digraph "/home/denis/CLionProjects/mySSH/common/include/Exceptions.h"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="/home/denis/CLionProjects\l/mySSH/common/include/Exceptions.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="/home/denis/CLionProjects\l/mySSH/common/include/Packet.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Packet_8h.html"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="/home/denis/CLionProjects\l/mySSH/client/src/client.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$client_8cpp.html"];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="/home/denis/CLionProjects\l/mySSH/common/src/Packet.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Packet_8cpp.html"];
+  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="/home/denis/CLionProjects\l/mySSH/server/include/Server.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Server_8h.html"];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="/home/denis/CLionProjects\l/mySSH/server/src/main.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html"];
+  Node5 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="/home/denis/CLionProjects\l/mySSH/server/src/Server.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Server_8cpp.html"];
+  Node2 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="/home/denis/CLionProjects\l/mySSH/server/src/Evaluate.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Evaluate_8cpp.html"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="/home/denis/CLionProjects\l/mySSH/common/src/Exceptions.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Exceptions_8cpp.html"];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="/home/denis/CLionProjects\l/mySSH/server/include/Parser.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Parser_8h.html"];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="/home/denis/CLionProjects\l/mySSH/server/include/Evaluate.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Evaluate_8h.html"];
+  Node11 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="/home/denis/CLionProjects\l/mySSH/server/src/Parser.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Parser_8cpp.html"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

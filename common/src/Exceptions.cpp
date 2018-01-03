@@ -30,7 +30,7 @@ const char* VerificationException::what()
 ArgumentsException::ArgumentsException(std::string message) :
         message(message)
 {
-    this->message = "Execution error: " + message;
+    this->message = message;
 }
 
 

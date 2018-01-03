@@ -1,0 +1,44 @@
+\hypertarget{Packet_8cpp}{}\section{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/src/\+Packet.cpp File Reference}
+\label{Packet_8cpp}\index{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/src/\+Packet.\+cpp@{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/src/\+Packet.\+cpp}}
+{\ttfamily \#include \char`\"{}../include/\+Packet.\+h\char`\"{}}\\*
+Include dependency graph for Packet.\+cpp\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{Packet_8cpp_a723198aebc9baad8998255313981e357}{send\+\_\+packet} (S\+SL $\ast$ssl, \hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890}{Packet\+\_\+\+Type} type, void $\ast$data, size\+\_\+t data\+\_\+len)
+\item 
+void \hyperlink{Packet_8cpp_adaa6274c063dfae816caaf9a68774698}{recv\+\_\+packet} (S\+SL $\ast$ssl, \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} $\ast$read\+\_\+to)
+\item 
+int \hyperlink{Packet_8cpp_a707a865009d80b22ee19d46a59d81e94}{sha\+\_\+digest} (void $\ast$msg, size\+\_\+t msg\+\_\+len, void $\ast$output)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{Packet.\+cpp@{Packet.\+cpp}!recv\+\_\+packet@{recv\+\_\+packet}}
+\index{recv\+\_\+packet@{recv\+\_\+packet}!Packet.\+cpp@{Packet.\+cpp}}
+\subsubsection[{\texorpdfstring{recv\+\_\+packet(\+S\+S\+L $\ast$ssl, S\+S\+H\+\_\+\+Packet $\ast$read\+\_\+to)}{recv_packet(SSL *ssl, SSH_Packet *read_to)}}]{\setlength{\rightskip}{0pt plus 5cm}void recv\+\_\+packet (
+\begin{DoxyParamCaption}
+\item[{S\+SL $\ast$}]{ssl, }
+\item[{{\bf S\+S\+H\+\_\+\+Packet} $\ast$}]{read\+\_\+to}
+\end{DoxyParamCaption}
+)}\hypertarget{Packet_8cpp_adaa6274c063dfae816caaf9a68774698}{}\label{Packet_8cpp_adaa6274c063dfae816caaf9a68774698}
+\index{Packet.\+cpp@{Packet.\+cpp}!send\+\_\+packet@{send\+\_\+packet}}
+\index{send\+\_\+packet@{send\+\_\+packet}!Packet.\+cpp@{Packet.\+cpp}}
+\subsubsection[{\texorpdfstring{send\+\_\+packet(\+S\+S\+L $\ast$ssl, Packet\+\_\+\+Type type, void $\ast$data, size\+\_\+t data\+\_\+len)}{send_packet(SSL *ssl, Packet_Type type, void *data, size_t data_len)}}]{\setlength{\rightskip}{0pt plus 5cm}void send\+\_\+packet (
+\begin{DoxyParamCaption}
+\item[{S\+SL $\ast$}]{ssl, }
+\item[{{\bf Packet\+\_\+\+Type}}]{type, }
+\item[{void $\ast$}]{data, }
+\item[{size\+\_\+t}]{data\+\_\+len}
+\end{DoxyParamCaption}
+)}\hypertarget{Packet_8cpp_a723198aebc9baad8998255313981e357}{}\label{Packet_8cpp_a723198aebc9baad8998255313981e357}
+\index{Packet.\+cpp@{Packet.\+cpp}!sha\+\_\+digest@{sha\+\_\+digest}}
+\index{sha\+\_\+digest@{sha\+\_\+digest}!Packet.\+cpp@{Packet.\+cpp}}
+\subsubsection[{\texorpdfstring{sha\+\_\+digest(void $\ast$msg, size\+\_\+t msg\+\_\+len, void $\ast$output)}{sha_digest(void *msg, size_t msg_len, void *output)}}]{\setlength{\rightskip}{0pt plus 5cm}int sha\+\_\+digest (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{msg, }
+\item[{size\+\_\+t}]{msg\+\_\+len, }
+\item[{void $\ast$}]{output}
+\end{DoxyParamCaption}
+)}\hypertarget{Packet_8cpp_a707a865009d80b22ee19d46a59d81e94}{}\label{Packet_8cpp_a707a865009d80b22ee19d46a59d81e94}

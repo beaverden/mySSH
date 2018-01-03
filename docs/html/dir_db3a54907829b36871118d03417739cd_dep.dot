@@ -1,0 +1,12 @@
+digraph "/home/denis/CLionProjects/mySSH/client" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_db3a54907829b36871118d03417739cd {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_db3a54907829b36871118d03417739cd.html"];
+    dir_db3a54907829b36871118d03417739cd [shape=plaintext label="client"];
+    dir_b565d458ba0ce2faccd0ea2cd60c04eb [shape=box label="src" color="black" fillcolor="white" style="filled" URL="dir_b565d458ba0ce2faccd0ea2cd60c04eb.html"];
+  }
+  dir_bdd9a5d540de89e9fe90efdfc6973a4f [shape=box label="common" fillcolor="white" style="filled" color="red" URL="dir_bdd9a5d540de89e9fe90efdfc6973a4f.html"];
+  dir_b565d458ba0ce2faccd0ea2cd60c04eb->dir_bdd9a5d540de89e9fe90efdfc6973a4f [headlabel="2", labeldistance=1.5 headhref="dir_000002_000003.html"];
+}

@@ -1,9 +1,9 @@
-//
-// Created by denis on 12/6/17.
-//
 
-#ifndef MYSSHSERVER_PARSER_H
-#define MYSSHSERVER_PARSER_H
+#ifndef PARSER_H
+#define PARSER_H
+
+#include "../../common/include/Exceptions.h"
+#include "../../common/include/Utility.h"
 
 #include <string>
 #include <map>
@@ -12,109 +12,147 @@
 #include <memory>
 #include <stack>
 #include <unordered_map>
-#include "../../common/include/Exceptions.h"
+#include <algorithm>
+#include <iostream>
 
-
+/**
+ * \brief Type of the operation of a Token or SyntaxTree node
+ * 
+ * Used for both parsing and execution logic
+ */
 enum OperationType
 {
-    LOGICAL_AND         = 0x0,
-    LOGICAL_OR          = 0x1,
-    INPUT_REDIRECT      = 0x2,
-    OUTPUT_REDIRECT     = 0x3,
-    ERROR_REDIRECT      = 0x4,
-    FOLLOWUP            = 0x5,
-    PIPE                = 0x6,
+    LOGICAL_AND         = 0x0,  ///< &&
+    LOGICAL_OR          = 0x1,  ///< ||
+    INPUT_REDIRECT      = 0x2,  ///< <
+    OUTPUT_REDIRECT     = 0x3,  ///< >
+    ERROR_REDIRECT      = 0x4,  ///< 2>>
+    FOLLOWUP            = 0x5,  ///< ;
+    PIPE                = 0x6,  ///< |
 
-    EXECUTE             = 0x7,
-    RIGHT_BRACKET       = 0x8,
-    LEFT_BRACKET        = 0x9
+    EXECUTE             = 0x7,  ///< Executable with arguments
+    RIGHT_BRACKET       = 0x8,  ///< )
+    LEFT_BRACKET        = 0x9   ///< (
 };
 
+/**
+ * \brief Structure for holding a parsed token for later use
+ * in Shunting Yard algorithm
+ */
 struct Token
 {
-    OperationType type;
-    std::string content;
-    unsigned long position;
-
-    int precedence = -1;
-    bool isOperation = false;
+    OperationType   type;               ///< Token type, each token must have the correct type
+    std::string     content;            ///< The actual string content of the token
+    unsigned long   position;           ///< The position in the input string where it was found
+    int             precedence = -1;    ///< "Mathematical" precedence for Shunting Yard algorithm
+    bool            isOperation = false;
 };
 
+/**
+ * \brief Structure for holding a node of the AST
+ */
 struct SyntaxTree
 {
     SyntaxTree() {};
-    OperationType type;
-    std::string content;
+    OperationType   type;
+    std::string     content;
     std::shared_ptr<SyntaxTree> left = nullptr;
     std::shared_ptr<SyntaxTree> right = nullptr;
 };
 
+/**
+ * \brief Genetic operator structure for holding operators like &&, ||, 2>> and others
+ */
 struct Operator
 {
-    OperationType type;
-    std::string content;
-    int precedence;
+    OperationType   type;
+    std::string     content;
+    int             precedence;
 };
 
 
-
+/**
+ * \brief A dedicated class for parsing a complex command and returning an AST of it
+ */
 class Parser {
 public:
 
-    /*
-     * Tokenizes and verifies the command. Returns an AST ready for execution
+    /**
+     * \brief Tokenizes and verifies the command. Returns an AST ready for execution
+     * \param[in] command The complex query given by the user
+     * \return A pointer to the AST root node of the respective command
      */
-    std::shared_ptr<SyntaxTree> parse(std::string command);
+    std::shared_ptr<SyntaxTree> parse(
+        std::string command
+    );
 
 
-    /*
-     * Takes a single command with arguments and splits it in a vector
+    /**
+     * \brief Takes a single command with arguments and splits it in a vector
+     * 
+     * Example: "ls -la" with be tokenized into {"ls", "-la"}
+     * 
+     * \param command A executable with arguments
+     * \param delim Characters that will be used as argument delimiters
      */
-    std::vector<std::string> tokenizeExecute(std::string command, std::string delim);
+    std::vector<std::string> tokenizeExecute(
+        std::string command, 
+        std::string delim
+    );
 
-    /*
-     * Singleton get instance method
+    /**
+     * \brief Singleton get instance method
+     * 
+     * Allocates a instance if it was not yet created and returns a pointer to it
+     * \return A pointer to a singleton instance of the class
      */
     static Parser* Get();
 
-    /*
-     * Trims a string of spaces and tabs
-     */
-    void trim(std::string &command);
-
 private:
 
-    /*
+    /**
      * Private constructor for singleton
      */
     Parser();
 
-    /* Obtains the AST out of a token queue obtained after
+    /** 
+     * Obtains the AST out of a token queue obtained after
      * The application of Shunting Yard algorithm
      * Throws ParserException
      */
-    std::shared_ptr<SyntaxTree> getSyntaxTree(std::vector<Token> &tokens);
+    std::shared_ptr<SyntaxTree> getSyntaxTree(
+        std::vector<Token> &tokens
+    );
 
-    /*
-     * Returns true if the string at the given position is a operator
+    /**
+     * Returns true if the string at the given position is an operator
      * &&, ||, (, ), |, ;, >, <, 2>>
      */
-    bool isOperator(std::string& original, unsigned long position, Token* foundOp = nullptr);
+    bool isOperator(
+        std::string& original, 
+        unsigned long position, 
+        Token* foundOp = nullptr
+    );
 
-    /*
+    /**
      * Divides the raw string into operable elements of type Token
-     * The main parsing routine that uses the given user input
+     * It is the main parsing routine that uses the given user input
      * Throws ParserException
      */
-    void tokenize(std::string command, std::vector<Token>& tokens);
+    void tokenize(
+        std::string command, 
+        std::vector<Token>& tokens
+    );
 
-    /*
+    /**
      * Verifies the list of tokens for some obvious errors like
      * 1. Two consecutive operators
      * 2. Two consecutive execute tokens
      * Throws VerificationException
      */
-    void verify(std::vector<Token> &tokens);
+    void verify(
+        std::vector<Token> &tokens
+    );
 
 
     std::vector<Operator> operators;
@@ -122,4 +160,4 @@ private:
 };
 
 
-#endif //MYSSHSERVER_PARSER_H
+#endif //PARSER_H

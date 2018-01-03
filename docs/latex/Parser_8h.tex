@@ -1,0 +1,81 @@
+\hypertarget{Parser_8h}{}\section{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/server/include/\+Parser.h File Reference}
+\label{Parser_8h}\index{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/server/include/\+Parser.\+h@{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/server/include/\+Parser.\+h}}
+{\ttfamily \#include \char`\"{}../../common/include/\+Exceptions.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../../common/include/\+Utility.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$map$>$}\\*
+{\ttfamily \#include $<$iterator$>$}\\*
+{\ttfamily \#include $<$queue$>$}\\*
+{\ttfamily \#include $<$memory$>$}\\*
+{\ttfamily \#include $<$stack$>$}\\*
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\\*
+{\ttfamily \#include $<$algorithm$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+Include dependency graph for Parser.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structToken}{Token}
+\begin{DoxyCompactList}\small\item\em Structure for holding a parsed token for later use in Shunting Yard algorithm. \end{DoxyCompactList}\item 
+struct \hyperlink{structSyntaxTree}{Syntax\+Tree}
+\begin{DoxyCompactList}\small\item\em Structure for holding a node of the A\+ST. \end{DoxyCompactList}\item 
+struct \hyperlink{structOperator}{Operator}
+\begin{DoxyCompactList}\small\item\em Genetic operator structure for holding operators like \&\&, $\vert$$\vert$, 2$>$$>$ and others. \end{DoxyCompactList}\item 
+class \hyperlink{classParser}{Parser}
+\begin{DoxyCompactList}\small\item\em A dedicated class for parsing a complex command and returning an A\+ST of it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047}{Operation\+Type} \{ \\*
+\hyperlink{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a366842f5b5cbe0000d57b83f2764f30e}{L\+O\+G\+I\+C\+A\+L\+\_\+\+A\+ND} = 0x0, 
+\hyperlink{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a1c0c9f14ba0a9a25e18da9675cb94059}{L\+O\+G\+I\+C\+A\+L\+\_\+\+OR} = 0x1, 
+\hyperlink{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047aadc8da54eee4e6e789c5b780fce8b30f}{I\+N\+P\+U\+T\+\_\+\+R\+E\+D\+I\+R\+E\+CT} = 0x2, 
+\hyperlink{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047aa708ba5184a7a8bba5f86f9b1515293e}{O\+U\+T\+P\+U\+T\+\_\+\+R\+E\+D\+I\+R\+E\+CT} = 0x3, 
+\\*
+\hyperlink{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047ac7eeaab41c4f0621ff2cc8d92a2b0ae6}{E\+R\+R\+O\+R\+\_\+\+R\+E\+D\+I\+R\+E\+CT} = 0x4, 
+\hyperlink{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047acfdc02defa97bf46a4e99ee2c9ead667}{F\+O\+L\+L\+O\+W\+UP} = 0x5, 
+\hyperlink{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a9bc832fa28809fb974f6ce5bb0cc7117}{P\+I\+PE} = 0x6, 
+\hyperlink{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a887d2cbfd9131de5cc3745731421b34b}{E\+X\+E\+C\+U\+TE} = 0x7, 
+\\*
+\hyperlink{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a7d4935ee330d5de13c7acd9049dd8d24}{R\+I\+G\+H\+T\+\_\+\+B\+R\+A\+C\+K\+ET} = 0x8, 
+\hyperlink{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a6ad504eeec34a7d266cf11eed16b6088}{L\+E\+F\+T\+\_\+\+B\+R\+A\+C\+K\+ET} = 0x9
+ \}\begin{DoxyCompactList}\small\item\em Type of the operation of a \hyperlink{structToken}{Token} or \hyperlink{structSyntaxTree}{Syntax\+Tree} node. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\index{Parser.\+h@{Parser.\+h}!Operation\+Type@{Operation\+Type}}
+\index{Operation\+Type@{Operation\+Type}!Parser.\+h@{Parser.\+h}}
+\subsubsection[{\texorpdfstring{Operation\+Type}{OperationType}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Operation\+Type}}\hypertarget{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047}{}\label{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047}
+
+
+Type of the operation of a \hyperlink{structToken}{Token} or \hyperlink{structSyntaxTree}{Syntax\+Tree} node. 
+
+Used for both parsing and execution logic \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{L\+O\+G\+I\+C\+A\+L\+\_\+\+A\+ND@{L\+O\+G\+I\+C\+A\+L\+\_\+\+A\+ND}!Parser.\+h@{Parser.\+h}}\index{Parser.\+h@{Parser.\+h}!L\+O\+G\+I\+C\+A\+L\+\_\+\+A\+ND@{L\+O\+G\+I\+C\+A\+L\+\_\+\+A\+ND}}\item[{\em 
+L\+O\+G\+I\+C\+A\+L\+\_\+\+A\+ND\hypertarget{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a366842f5b5cbe0000d57b83f2764f30e}{}\label{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a366842f5b5cbe0000d57b83f2764f30e}
+}]\&\& \index{L\+O\+G\+I\+C\+A\+L\+\_\+\+OR@{L\+O\+G\+I\+C\+A\+L\+\_\+\+OR}!Parser.\+h@{Parser.\+h}}\index{Parser.\+h@{Parser.\+h}!L\+O\+G\+I\+C\+A\+L\+\_\+\+OR@{L\+O\+G\+I\+C\+A\+L\+\_\+\+OR}}\item[{\em 
+L\+O\+G\+I\+C\+A\+L\+\_\+\+OR\hypertarget{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a1c0c9f14ba0a9a25e18da9675cb94059}{}\label{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a1c0c9f14ba0a9a25e18da9675cb94059}
+}]$\vert$$\vert$ \index{I\+N\+P\+U\+T\+\_\+\+R\+E\+D\+I\+R\+E\+CT@{I\+N\+P\+U\+T\+\_\+\+R\+E\+D\+I\+R\+E\+CT}!Parser.\+h@{Parser.\+h}}\index{Parser.\+h@{Parser.\+h}!I\+N\+P\+U\+T\+\_\+\+R\+E\+D\+I\+R\+E\+CT@{I\+N\+P\+U\+T\+\_\+\+R\+E\+D\+I\+R\+E\+CT}}\item[{\em 
+I\+N\+P\+U\+T\+\_\+\+R\+E\+D\+I\+R\+E\+CT\hypertarget{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047aadc8da54eee4e6e789c5b780fce8b30f}{}\label{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047aadc8da54eee4e6e789c5b780fce8b30f}
+}]$<$ \index{O\+U\+T\+P\+U\+T\+\_\+\+R\+E\+D\+I\+R\+E\+CT@{O\+U\+T\+P\+U\+T\+\_\+\+R\+E\+D\+I\+R\+E\+CT}!Parser.\+h@{Parser.\+h}}\index{Parser.\+h@{Parser.\+h}!O\+U\+T\+P\+U\+T\+\_\+\+R\+E\+D\+I\+R\+E\+CT@{O\+U\+T\+P\+U\+T\+\_\+\+R\+E\+D\+I\+R\+E\+CT}}\item[{\em 
+O\+U\+T\+P\+U\+T\+\_\+\+R\+E\+D\+I\+R\+E\+CT\hypertarget{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047aa708ba5184a7a8bba5f86f9b1515293e}{}\label{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047aa708ba5184a7a8bba5f86f9b1515293e}
+}]$>$ \index{E\+R\+R\+O\+R\+\_\+\+R\+E\+D\+I\+R\+E\+CT@{E\+R\+R\+O\+R\+\_\+\+R\+E\+D\+I\+R\+E\+CT}!Parser.\+h@{Parser.\+h}}\index{Parser.\+h@{Parser.\+h}!E\+R\+R\+O\+R\+\_\+\+R\+E\+D\+I\+R\+E\+CT@{E\+R\+R\+O\+R\+\_\+\+R\+E\+D\+I\+R\+E\+CT}}\item[{\em 
+E\+R\+R\+O\+R\+\_\+\+R\+E\+D\+I\+R\+E\+CT\hypertarget{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047ac7eeaab41c4f0621ff2cc8d92a2b0ae6}{}\label{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047ac7eeaab41c4f0621ff2cc8d92a2b0ae6}
+}]2$>$$>$ \index{F\+O\+L\+L\+O\+W\+UP@{F\+O\+L\+L\+O\+W\+UP}!Parser.\+h@{Parser.\+h}}\index{Parser.\+h@{Parser.\+h}!F\+O\+L\+L\+O\+W\+UP@{F\+O\+L\+L\+O\+W\+UP}}\item[{\em 
+F\+O\+L\+L\+O\+W\+UP\hypertarget{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047acfdc02defa97bf46a4e99ee2c9ead667}{}\label{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047acfdc02defa97bf46a4e99ee2c9ead667}
+}]; \index{P\+I\+PE@{P\+I\+PE}!Parser.\+h@{Parser.\+h}}\index{Parser.\+h@{Parser.\+h}!P\+I\+PE@{P\+I\+PE}}\item[{\em 
+P\+I\+PE\hypertarget{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a9bc832fa28809fb974f6ce5bb0cc7117}{}\label{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a9bc832fa28809fb974f6ce5bb0cc7117}
+}]$\vert$ \index{E\+X\+E\+C\+U\+TE@{E\+X\+E\+C\+U\+TE}!Parser.\+h@{Parser.\+h}}\index{Parser.\+h@{Parser.\+h}!E\+X\+E\+C\+U\+TE@{E\+X\+E\+C\+U\+TE}}\item[{\em 
+E\+X\+E\+C\+U\+TE\hypertarget{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a887d2cbfd9131de5cc3745731421b34b}{}\label{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a887d2cbfd9131de5cc3745731421b34b}
+}]Executable with arguments. \index{R\+I\+G\+H\+T\+\_\+\+B\+R\+A\+C\+K\+ET@{R\+I\+G\+H\+T\+\_\+\+B\+R\+A\+C\+K\+ET}!Parser.\+h@{Parser.\+h}}\index{Parser.\+h@{Parser.\+h}!R\+I\+G\+H\+T\+\_\+\+B\+R\+A\+C\+K\+ET@{R\+I\+G\+H\+T\+\_\+\+B\+R\+A\+C\+K\+ET}}\item[{\em 
+R\+I\+G\+H\+T\+\_\+\+B\+R\+A\+C\+K\+ET\hypertarget{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a7d4935ee330d5de13c7acd9049dd8d24}{}\label{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a7d4935ee330d5de13c7acd9049dd8d24}
+}]) \index{L\+E\+F\+T\+\_\+\+B\+R\+A\+C\+K\+ET@{L\+E\+F\+T\+\_\+\+B\+R\+A\+C\+K\+ET}!Parser.\+h@{Parser.\+h}}\index{Parser.\+h@{Parser.\+h}!L\+E\+F\+T\+\_\+\+B\+R\+A\+C\+K\+ET@{L\+E\+F\+T\+\_\+\+B\+R\+A\+C\+K\+ET}}\item[{\em 
+L\+E\+F\+T\+\_\+\+B\+R\+A\+C\+K\+ET\hypertarget{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a6ad504eeec34a7d266cf11eed16b6088}{}\label{Parser_8h_a9a2c9c31d675b34f6ec35cc1ca89e047a6ad504eeec34a7d266cf11eed16b6088}
+}]( \end{description}
+\end{Desc}

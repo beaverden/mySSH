@@ -1,0 +1,16 @@
+digraph "/home/denis/CLionProjects/mySSH/server" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_41e1742e44e2de38b3bc91f993fed282 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_41e1742e44e2de38b3bc91f993fed282.html"];
+    dir_41e1742e44e2de38b3bc91f993fed282 [shape=plaintext label="server"];
+    dir_2b32f7736d6a65027d17676f6279053c [shape=box label="include" color="black" fillcolor="white" style="filled" URL="dir_2b32f7736d6a65027d17676f6279053c.html"];
+    dir_a063914ab482288b7b0e1b2fca86158c [shape=box label="src" color="black" fillcolor="white" style="filled" URL="dir_a063914ab482288b7b0e1b2fca86158c.html"];
+    dir_0f57b3074a04833ffc267588e58f6c36 [shape=box label="test" color="red" fillcolor="white" style="filled" URL="dir_0f57b3074a04833ffc267588e58f6c36.html"];
+  }
+  dir_bdd9a5d540de89e9fe90efdfc6973a4f [shape=box label="common" fillcolor="white" style="filled" color="red" URL="dir_bdd9a5d540de89e9fe90efdfc6973a4f.html"];
+  dir_a063914ab482288b7b0e1b2fca86158c->dir_2b32f7736d6a65027d17676f6279053c [headlabel="4", labeldistance=1.5 headhref="dir_000008_000007.html"];
+  dir_a063914ab482288b7b0e1b2fca86158c->dir_bdd9a5d540de89e9fe90efdfc6973a4f [headlabel="3", labeldistance=1.5 headhref="dir_000008_000003.html"];
+  dir_2b32f7736d6a65027d17676f6279053c->dir_bdd9a5d540de89e9fe90efdfc6973a4f [headlabel="4", labeldistance=1.5 headhref="dir_000007_000003.html"];
+}

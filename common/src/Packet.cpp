@@ -177,13 +177,6 @@ int sha_digest(void* msg, size_t msg_len, void* output)
     if (SHA256_Init(&sha256) == 0) return -1;
     if (SHA256_Update(&sha256, msg, msg_len) == 0) return -1;
     if (SHA256_Final(hash, &sha256) == 0) return -1;
-    /*
-    int i = 0;
-    for(i = 0; i < SHA256_DIGEST_LENGTH; i++)
-    {
-        sprintf(outputBuffer + (i * 2), "%02x", hash[i]);
-    }
-    */
     memcpy(output, hash, SHA256_DIGEST_LENGTH * sizeof(unsigned char));
     return 0;
 }

@@ -22,8 +22,16 @@ struct ExecutionContext
     SSL* ssl;
 };
 
-void redirect_output(int local_socket, int client_socket, ExecutionContext* context);
-void redirect_input(int local_socket, int client_socket, ExecutionContext* context);
+void redirect_output(
+    int local_socket, 
+    int client_socket, 
+    std::shared_ptr<ExecutionContext> context
+);
+void redirect_input(
+    int local_socket, 
+    int client_socket, 
+    std::shared_ptr<ExecutionContext> context
+);
 
 
 int Execute(
@@ -31,9 +39,15 @@ int Execute(
     int _stdin, 
     int _stdout, 
     int _stderr, 
-    ExecutionContext* context
+    std::shared_ptr<ExecutionContext> context
 );
-int Evaluate(std::string command, SSL* ssl);
-int Evaluate(std::shared_ptr<SyntaxTree> node, ExecutionContext* context);
+
+void Evaluate(
+    std::string command, SSL* ssl
+);
+int Evaluate(
+    std::shared_ptr<SyntaxTree> node, 
+    std::shared_ptr<ExecutionContext> context
+);
 
 #endif //MYSSHSERVER_EVALUATE_H

@@ -1,0 +1,77 @@
+\hypertarget{Evaluate_8cpp}{}\section{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/server/src/\+Evaluate.cpp File Reference}
+\label{Evaluate_8cpp}\index{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/server/src/\+Evaluate.\+cpp@{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/server/src/\+Evaluate.\+cpp}}
+{\ttfamily \#include \char`\"{}../include/\+Evaluate.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../../common/include/\+Packet.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../../common/include/\+Utility.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$fcntl.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$cstring$>$}\\*
+{\ttfamily \#include $<$wait.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}openssl/bio.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}openssl/ssl.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}openssl/err.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$sys/socket.\+h$>$}\\*
+{\ttfamily \#include $<$sys/ioctl.\+h$>$}\\*
+Include dependency graph for Evaluate.\+cpp\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{Evaluate_8cpp_ab97c0730aece1d20e0e278aa5ecf6270}{redirect\+\_\+output} (int local\+\_\+socket, int client\+\_\+socket, std\+::shared\+\_\+ptr$<$ \hyperlink{structExecutionContext}{Execution\+Context} $>$ context)
+\item 
+void \hyperlink{Evaluate_8cpp_adafc21bd08e580a2d5a2887d7878f783}{redirect\+\_\+input} (int local\+\_\+socket, int client\+\_\+socket, std\+::shared\+\_\+ptr$<$ \hyperlink{structExecutionContext}{Execution\+Context} $>$ context)
+\item 
+int \hyperlink{Evaluate_8cpp_a1922a4cf7442102f306940423bea6be9}{Execute} (std\+::string command, int \+\_\+stdin, int \+\_\+stdout, int \+\_\+stderr, std\+::shared\+\_\+ptr$<$ \hyperlink{structExecutionContext}{Execution\+Context} $>$ context)
+\item 
+void \hyperlink{Evaluate_8cpp_acd0787ca6fb966bf8619711119c3ba7f}{Evaluate} (std\+::string command, S\+SL $\ast$ssl)
+\item 
+int \hyperlink{Evaluate_8cpp_afa2e08c8c16a898425991531a7d2353e}{Evaluate} (std\+::shared\+\_\+ptr$<$ \hyperlink{structSyntaxTree}{Syntax\+Tree} $>$ node, std\+::shared\+\_\+ptr$<$ \hyperlink{structExecutionContext}{Execution\+Context} $>$ context)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{Evaluate.\+cpp@{Evaluate.\+cpp}!Evaluate@{Evaluate}}
+\index{Evaluate@{Evaluate}!Evaluate.\+cpp@{Evaluate.\+cpp}}
+\subsubsection[{\texorpdfstring{Evaluate(std\+::string command, S\+S\+L $\ast$ssl)}{Evaluate(std::string command, SSL *ssl)}}]{\setlength{\rightskip}{0pt plus 5cm}void Evaluate (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{command, }
+\item[{S\+SL $\ast$}]{ssl}
+\end{DoxyParamCaption}
+)}\hypertarget{Evaluate_8cpp_acd0787ca6fb966bf8619711119c3ba7f}{}\label{Evaluate_8cpp_acd0787ca6fb966bf8619711119c3ba7f}
+\index{Evaluate.\+cpp@{Evaluate.\+cpp}!Evaluate@{Evaluate}}
+\index{Evaluate@{Evaluate}!Evaluate.\+cpp@{Evaluate.\+cpp}}
+\subsubsection[{\texorpdfstring{Evaluate(std\+::shared\+\_\+ptr$<$ Syntax\+Tree $>$ node, std\+::shared\+\_\+ptr$<$ Execution\+Context $>$ context)}{Evaluate(std::shared_ptr< SyntaxTree > node, std::shared_ptr< ExecutionContext > context)}}]{\setlength{\rightskip}{0pt plus 5cm}int Evaluate (
+\begin{DoxyParamCaption}
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Syntax\+Tree} $>$}]{node, }
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Execution\+Context} $>$}]{context}
+\end{DoxyParamCaption}
+)}\hypertarget{Evaluate_8cpp_afa2e08c8c16a898425991531a7d2353e}{}\label{Evaluate_8cpp_afa2e08c8c16a898425991531a7d2353e}
+\index{Evaluate.\+cpp@{Evaluate.\+cpp}!Execute@{Execute}}
+\index{Execute@{Execute}!Evaluate.\+cpp@{Evaluate.\+cpp}}
+\subsubsection[{\texorpdfstring{Execute(std\+::string command, int \+\_\+stdin, int \+\_\+stdout, int \+\_\+stderr, std\+::shared\+\_\+ptr$<$ Execution\+Context $>$ context)}{Execute(std::string command, int _stdin, int _stdout, int _stderr, std::shared_ptr< ExecutionContext > context)}}]{\setlength{\rightskip}{0pt plus 5cm}int Execute (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{command, }
+\item[{int}]{\+\_\+stdin, }
+\item[{int}]{\+\_\+stdout, }
+\item[{int}]{\+\_\+stderr, }
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Execution\+Context} $>$}]{context}
+\end{DoxyParamCaption}
+)}\hypertarget{Evaluate_8cpp_a1922a4cf7442102f306940423bea6be9}{}\label{Evaluate_8cpp_a1922a4cf7442102f306940423bea6be9}
+\index{Evaluate.\+cpp@{Evaluate.\+cpp}!redirect\+\_\+input@{redirect\+\_\+input}}
+\index{redirect\+\_\+input@{redirect\+\_\+input}!Evaluate.\+cpp@{Evaluate.\+cpp}}
+\subsubsection[{\texorpdfstring{redirect\+\_\+input(int local\+\_\+socket, int client\+\_\+socket, std\+::shared\+\_\+ptr$<$ Execution\+Context $>$ context)}{redirect_input(int local_socket, int client_socket, std::shared_ptr< ExecutionContext > context)}}]{\setlength{\rightskip}{0pt plus 5cm}void redirect\+\_\+input (
+\begin{DoxyParamCaption}
+\item[{int}]{local\+\_\+socket, }
+\item[{int}]{client\+\_\+socket, }
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Execution\+Context} $>$}]{context}
+\end{DoxyParamCaption}
+)}\hypertarget{Evaluate_8cpp_adafc21bd08e580a2d5a2887d7878f783}{}\label{Evaluate_8cpp_adafc21bd08e580a2d5a2887d7878f783}
+\index{Evaluate.\+cpp@{Evaluate.\+cpp}!redirect\+\_\+output@{redirect\+\_\+output}}
+\index{redirect\+\_\+output@{redirect\+\_\+output}!Evaluate.\+cpp@{Evaluate.\+cpp}}
+\subsubsection[{\texorpdfstring{redirect\+\_\+output(int local\+\_\+socket, int client\+\_\+socket, std\+::shared\+\_\+ptr$<$ Execution\+Context $>$ context)}{redirect_output(int local_socket, int client_socket, std::shared_ptr< ExecutionContext > context)}}]{\setlength{\rightskip}{0pt plus 5cm}void redirect\+\_\+output (
+\begin{DoxyParamCaption}
+\item[{int}]{local\+\_\+socket, }
+\item[{int}]{client\+\_\+socket, }
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Execution\+Context} $>$}]{context}
+\end{DoxyParamCaption}
+)}\hypertarget{Evaluate_8cpp_ab97c0730aece1d20e0e278aa5ecf6270}{}\label{Evaluate_8cpp_ab97c0730aece1d20e0e278aa5ecf6270}

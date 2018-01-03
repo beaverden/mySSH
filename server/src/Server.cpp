@@ -161,6 +161,7 @@ int Server::HandleInput(SSL* ssl, SSH_Packet* packet)
 {
     std::string comm = (char*)packet->payload.content;
     std::cout << "Got command: " << comm << std::endl;
+    // TODO take care of exceptions
     Evaluate(comm, ssl);
     return 1;   
 }

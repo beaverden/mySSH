@@ -1,0 +1,93 @@
+\hypertarget{client_8cpp}{}\section{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/client/src/client.cpp File Reference}
+\label{client_8cpp}\index{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/client/src/client.\+cpp@{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/client/src/client.\+cpp}}
+{\ttfamily \#include \char`\"{}../../common/include/\+Packet.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../../common/include/\+Exceptions.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$sys/socket.\+h$>$}\\*
+{\ttfamily \#include $<$netinet/in.\+h$>$}\\*
+{\ttfamily \#include $<$sys/types.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$memory.\+h$>$}\\*
+{\ttfamily \#include $<$netdb.\+h$>$}\\*
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}openssl/bio.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}openssl/ssl.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}openssl/err.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+Include dependency graph for client.\+cpp\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{client_8cpp_ac80a3592e72fd96b772ee47a7d8e0d0a}{D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}
+\item 
+\#define \hyperlink{client_8cpp_a614217d263be1fb1a5f76e2ff7be19a2}{P\+O\+RT}~2018
+\item 
+\#define \hyperlink{client_8cpp_a2cd9732e23a3e0f2970ea462effa783d}{L\+O\+C\+A\+L\+\_\+\+IP}~\char`\"{}127.\+0.\+0.\+1\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{client_8cpp_ab536f93bd2337174415004500c3b0a5d}{create\+\_\+socket} ()
+\item 
+void \hyperlink{client_8cpp_a98f4fc799684d4c4564fa5549b8e9277}{Handle\+Auth} (S\+SL $\ast$ssl)
+\item 
+void \hyperlink{client_8cpp_a238a36a0c27151b4efcf65df7a23f043}{Handle\+Response} (S\+SL $\ast$ssl, \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} $\ast$packet)
+\item 
+void \hyperlink{client_8cpp_a36c31f9205eb9e4e3753617984054fe1}{Handle\+Command} (S\+SL $\ast$ssl)
+\item 
+int \hyperlink{client_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{client.\+cpp@{client.\+cpp}!D\+E\+B\+U\+G\+\_\+\+M\+O\+DE@{D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}}
+\index{D\+E\+B\+U\+G\+\_\+\+M\+O\+DE@{D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}!client.\+cpp@{client.\+cpp}}
+\subsubsection[{\texorpdfstring{D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}{DEBUG_MODE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}\hypertarget{client_8cpp_ac80a3592e72fd96b772ee47a7d8e0d0a}{}\label{client_8cpp_ac80a3592e72fd96b772ee47a7d8e0d0a}
+\index{client.\+cpp@{client.\+cpp}!L\+O\+C\+A\+L\+\_\+\+IP@{L\+O\+C\+A\+L\+\_\+\+IP}}
+\index{L\+O\+C\+A\+L\+\_\+\+IP@{L\+O\+C\+A\+L\+\_\+\+IP}!client.\+cpp@{client.\+cpp}}
+\subsubsection[{\texorpdfstring{L\+O\+C\+A\+L\+\_\+\+IP}{LOCAL_IP}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+O\+C\+A\+L\+\_\+\+IP~\char`\"{}127.\+0.\+0.\+1\char`\"{}}\hypertarget{client_8cpp_a2cd9732e23a3e0f2970ea462effa783d}{}\label{client_8cpp_a2cd9732e23a3e0f2970ea462effa783d}
+\index{client.\+cpp@{client.\+cpp}!P\+O\+RT@{P\+O\+RT}}
+\index{P\+O\+RT@{P\+O\+RT}!client.\+cpp@{client.\+cpp}}
+\subsubsection[{\texorpdfstring{P\+O\+RT}{PORT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+O\+RT~2018}\hypertarget{client_8cpp_a614217d263be1fb1a5f76e2ff7be19a2}{}\label{client_8cpp_a614217d263be1fb1a5f76e2ff7be19a2}
+
+
+\subsection{Function Documentation}
+\index{client.\+cpp@{client.\+cpp}!create\+\_\+socket@{create\+\_\+socket}}
+\index{create\+\_\+socket@{create\+\_\+socket}!client.\+cpp@{client.\+cpp}}
+\subsubsection[{\texorpdfstring{create\+\_\+socket()}{create_socket()}}]{\setlength{\rightskip}{0pt plus 5cm}int create\+\_\+socket (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{client_8cpp_ab536f93bd2337174415004500c3b0a5d}{}\label{client_8cpp_ab536f93bd2337174415004500c3b0a5d}
+\index{client.\+cpp@{client.\+cpp}!Handle\+Auth@{Handle\+Auth}}
+\index{Handle\+Auth@{Handle\+Auth}!client.\+cpp@{client.\+cpp}}
+\subsubsection[{\texorpdfstring{Handle\+Auth(\+S\+S\+L $\ast$ssl)}{HandleAuth(SSL *ssl)}}]{\setlength{\rightskip}{0pt plus 5cm}void Handle\+Auth (
+\begin{DoxyParamCaption}
+\item[{S\+SL $\ast$}]{ssl}
+\end{DoxyParamCaption}
+)}\hypertarget{client_8cpp_a98f4fc799684d4c4564fa5549b8e9277}{}\label{client_8cpp_a98f4fc799684d4c4564fa5549b8e9277}
+\index{client.\+cpp@{client.\+cpp}!Handle\+Command@{Handle\+Command}}
+\index{Handle\+Command@{Handle\+Command}!client.\+cpp@{client.\+cpp}}
+\subsubsection[{\texorpdfstring{Handle\+Command(\+S\+S\+L $\ast$ssl)}{HandleCommand(SSL *ssl)}}]{\setlength{\rightskip}{0pt plus 5cm}void Handle\+Command (
+\begin{DoxyParamCaption}
+\item[{S\+SL $\ast$}]{ssl}
+\end{DoxyParamCaption}
+)}\hypertarget{client_8cpp_a36c31f9205eb9e4e3753617984054fe1}{}\label{client_8cpp_a36c31f9205eb9e4e3753617984054fe1}
+\index{client.\+cpp@{client.\+cpp}!Handle\+Response@{Handle\+Response}}
+\index{Handle\+Response@{Handle\+Response}!client.\+cpp@{client.\+cpp}}
+\subsubsection[{\texorpdfstring{Handle\+Response(\+S\+S\+L $\ast$ssl, S\+S\+H\+\_\+\+Packet $\ast$packet)}{HandleResponse(SSL *ssl, SSH_Packet *packet)}}]{\setlength{\rightskip}{0pt plus 5cm}void Handle\+Response (
+\begin{DoxyParamCaption}
+\item[{S\+SL $\ast$}]{ssl, }
+\item[{{\bf S\+S\+H\+\_\+\+Packet} $\ast$}]{packet}
+\end{DoxyParamCaption}
+)}\hypertarget{client_8cpp_a238a36a0c27151b4efcf65df7a23f043}{}\label{client_8cpp_a238a36a0c27151b4efcf65df7a23f043}
+\index{client.\+cpp@{client.\+cpp}!main@{main}}
+\index{main@{main}!client.\+cpp@{client.\+cpp}}
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$argv[])}{main(int argc, char *argv[])}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{client_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{}\label{client_8cpp_a0ddf1224851353fc92bfbff6f499fa97}

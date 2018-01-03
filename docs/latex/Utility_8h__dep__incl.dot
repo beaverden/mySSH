@@ -1,0 +1,23 @@
+digraph "/home/denis/CLionProjects/mySSH/common/include/Utility.h"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="/home/denis/CLionProjects\l/mySSH/common/include/Utility.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="/home/denis/CLionProjects\l/mySSH/common/src/Utility.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Utility_8cpp.html"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="/home/denis/CLionProjects\l/mySSH/server/include/Parser.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Parser_8h.html"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="/home/denis/CLionProjects\l/mySSH/server/include/Evaluate.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Evaluate_8h.html"];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="/home/denis/CLionProjects\l/mySSH/server/include/Server.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Server_8h.html"];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="/home/denis/CLionProjects\l/mySSH/server/src/main.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html"];
+  Node5 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="/home/denis/CLionProjects\l/mySSH/server/src/Server.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Server_8cpp.html"];
+  Node4 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="/home/denis/CLionProjects\l/mySSH/server/src/Evaluate.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Evaluate_8cpp.html"];
+  Node3 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="/home/denis/CLionProjects\l/mySSH/server/src/Parser.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Parser_8cpp.html"];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

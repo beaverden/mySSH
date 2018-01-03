@@ -3,11 +3,7 @@
 //
 
 #include "../include/Parser.h"
-#include <queue>
-#include <stack>
-#include <algorithm>
-#include <memory>
-#include <iostream>
+#include <assert.h>
 
 template <class T>
 void freeStack(std::stack<T*> &st)
@@ -63,19 +59,6 @@ bool Parser::isOperator(std::string& original, unsigned long position, Token* fo
         }
     }
     return false;
-}
-
-
-void Parser::trim(std::string &command)
-{
-    while (!command.empty() && std::isspace(command[0]))
-    {
-        command.erase(0, 1);
-    }
-    while (!command.empty() &&std::isspace(command[command.length()-1]))
-    {
-        command.erase(command.length()-1, 1);
-    }
 }
 
 
@@ -165,6 +148,7 @@ void Parser::tokenize(std::string command, std::vector<Token> &tokens)
         currentToken.clear();
         tokens.push_back(comm);
     }
+
 
     if (tokens.size() == 0)
     {
@@ -269,6 +253,8 @@ std::shared_ptr<SyntaxTree> Parser::getSyntaxTree(std::vector<Token> &tokens) {
     while (!shTokens.empty())
     {
         Token t = shTokens.front();
+        trim(t.content);
+
         if (t.type == OperationType::EXECUTE)
         {
             std::shared_ptr<SyntaxTree> newTree = std::make_shared<SyntaxTree>();
@@ -303,11 +289,8 @@ std::shared_ptr<SyntaxTree> Parser::getSyntaxTree(std::vector<Token> &tokens) {
             }
             opTree->left = t2;
             opTree->right = t1;
-            trees.push(opTree);
+            trees.push(std::move(opTree));
         }
-
-        //std::cout << t.type << " " << t.content << std::endl;
-
         shTokens.pop();
     }
 
@@ -342,10 +325,7 @@ std::shared_ptr<SyntaxTree> Parser::parse(std::string command)
 {
     std::vector<Token> tokens;
     tokenize(command, tokens);
-
     verify(tokens);
-
     std::shared_ptr<SyntaxTree> ptr = getSyntaxTree(tokens);
-
     return ptr;
 }

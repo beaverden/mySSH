@@ -1,0 +1,22 @@
+\hypertarget{gr_8cpp}{}\section{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/bin/gr.cpp File Reference}
+\label{gr_8cpp}\index{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/bin/gr.\+cpp@{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/bin/gr.\+cpp}}
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+Include dependency graph for gr.\+cpp\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{gr_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{gr.\+cpp@{gr.\+cpp}!main@{main}}
+\index{main@{main}!gr.\+cpp@{gr.\+cpp}}
+\subsubsection[{\texorpdfstring{main()}{main()}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{gr_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{}\label{gr_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}

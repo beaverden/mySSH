@@ -2,21 +2,23 @@
 // Created by denis on 12/27/17.
 //
 
+#include "../include/Evaluate.h"
+#include "../../common/include/Packet.h"
+#include "../../common/include/Utility.h"
+
 #include <fcntl.h>
 #include <unistd.h>
 #include <cstring>
 #include <wait.h>
-#include "../include/Evaluate.h"
-#include "../../common/include/Packet.h"
+
 #include "openssl/bio.h"
 #include "openssl/ssl.h"
 #include "openssl/err.h"
 #include <sys/socket.h>
 #include <sys/ioctl.h>
 
-void redirect_output(int local_socket, int client_socket, ExecutionContext* context)
+void redirect_output(int local_socket, int client_socket, std::shared_ptr<ExecutionContext> context)
 {
-    printf("Redirecting output!\n");
     int socket_size = 0;
     ioctl(local_socket, FIONREAD, &socket_size);
 
@@ -26,7 +28,7 @@ void redirect_output(int local_socket, int client_socket, ExecutionContext* cont
     send_packet(context->ssl, PACKET_RESPONSE, buffer, socket_size);
 }
 
-void redirect_input(int local_socket, int client_socket, ExecutionContext* context)
+void redirect_input(int local_socket, int client_socket, std::shared_ptr<ExecutionContext> context)
 {
     char buffer[1024] = {0};
     int sz = 0;
@@ -45,7 +47,7 @@ int Execute(
     int _stdin,
     int _stdout,
     int _stderr,
-    ExecutionContext* context
+    std::shared_ptr<ExecutionContext> context
 )
 {
     std::vector<std::string> tokens = Parser::Get()->tokenizeExecute(command, " ");
@@ -96,7 +98,7 @@ int Execute(
             char* strings[MAX_ARGUMENTS] = {0};
             for (size_t i = 0; i < tokens.size(); i++)
             {
-                Parser::Get()->trim(tokens[i]);
+                trim(tokens[i]);
                 strings[i] = strdup(tokens[i].c_str());
             }
             execvp(tokens[0].c_str(), strings);
@@ -141,9 +143,9 @@ int Execute(
     }
 }
 
-int Evaluate(std::string command, SSL* ssl)
+void Evaluate(std::string command, SSL* ssl)
 {
-    ExecutionContext* context = new ExecutionContext;
+    std::shared_ptr<ExecutionContext> context = std::make_shared<ExecutionContext>();
     context->ssl = ssl;
     int actualFD = SSL_get_fd(ssl);
     context->inputRedir.push(actualFD);
@@ -151,36 +153,11 @@ int Evaluate(std::string command, SSL* ssl)
     context->errorRedir.push(actualFD);
 
     std::shared_ptr<SyntaxTree> root;
-    try
-    {
-        root = Parser::Get()->parse(command);
-    }
-    catch (ParserException& ex)
-    {
-        printf("Parser exception: %s\n", ex.what());
-        return -1;
-    }
-    catch (VerificationException& ex)
-    {
-        printf("Verification exception: %s\n", ex.what());
-        return -1;
-    }
-
-    int result = -1;
-    try
-    {
-        result = Evaluate(root, context);
-    }
-    catch (EvaluationException& ex)
-    {
-        printf("Evaluation exception: %s\n", ex.what());
-        return -1;
-    }
-    delete context;
-    return result;
+    root = Parser::Get()->parse(command);
+    Evaluate(root, context);
 }
 
-int Evaluate(std::shared_ptr<SyntaxTree> node, ExecutionContext* context)
+int Evaluate(std::shared_ptr<SyntaxTree> node, std::shared_ptr<ExecutionContext> context)
 {
     if (node == nullptr) return 0;
     if (node->type == OperationType::OUTPUT_REDIRECT)
@@ -190,15 +167,19 @@ int Evaluate(std::shared_ptr<SyntaxTree> node, ExecutionContext* context)
         {
             throw EvaluationException("Invalid redirect of [%s]", node->content.c_str());
         }
-        int reg = open(file->content.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0600);
+        if (file->type != OperationType::EXECUTE)
+        {
+            throw EvaluationException("Operations disallowed in redirections. The name of the file is required");
+        }
+        int reg = open(file->content.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0666);
         if (reg == -1)
         {
             throw EvaluationException("Can't open redirect file [%s]", file->content.c_str());
         }
         context->outputRedir.push(reg);
         int result = Evaluate(node->left, context);
-        context->outputRedir.pop();
         close(reg);
+        context->outputRedir.pop();
         return result;
     }
     else if (node->type == OperationType::INPUT_REDIRECT)
@@ -208,6 +189,10 @@ int Evaluate(std::shared_ptr<SyntaxTree> node, ExecutionContext* context)
         {
             throw EvaluationException("Invalid redirect of [%s]", node->content.c_str());
         }
+        if (file->type != OperationType::EXECUTE)
+        {
+            throw EvaluationException("Operations disallowed in redirections. The name of the file is required");
+        }
         int reg = open(file->content.c_str(), O_RDONLY);
         if (reg == -1)
         {
@@ -215,8 +200,8 @@ int Evaluate(std::shared_ptr<SyntaxTree> node, ExecutionContext* context)
         }
         context->inputRedir.push(reg);
         int result = Evaluate(node->left, context);
-        context->inputRedir.pop();
         close(reg);
+        context->inputRedir.pop();
         return result;
     }
     else if (node->type == OperationType::ERROR_REDIRECT)
@@ -226,15 +211,19 @@ int Evaluate(std::shared_ptr<SyntaxTree> node, ExecutionContext* context)
         {
             throw EvaluationException("Invalid redirect of [%s]", node->content.c_str());
         }
-        int reg = open(file->content.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0600);
+        if (file->type != OperationType::EXECUTE)
+        {
+            throw EvaluationException("Operations disallowed in redirections. The name of the file is required");
+        }
+        int reg = open(file->content.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0666);
         if (reg == -1)
         {
             throw EvaluationException("Can't open redirect file [%s]", file->content.c_str());
         }
         context->errorRedir.push(reg);
         int result = Evaluate(node->left, context);
-        context->errorRedir.pop();
         close(reg);
+        context->errorRedir.pop();
         return result;
     }
     else if (node->type == OperationType::LOGICAL_AND)
