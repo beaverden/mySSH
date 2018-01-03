@@ -3,5 +3,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="Login_Payload",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structLogin__Payload.html"];
+  Node1 [label="Login_Payload",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structLogin__Payload.html",tooltip="Structure that goes into payload.content field. Designed to ease the credentials transmission. "];
 }

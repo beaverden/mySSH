@@ -20,11 +20,11 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{DoxyCompactItemize}
 \item 
 struct \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet}
-\item 
+\begin{DoxyCompactList}\small\item\em The application level packet that gets send back and forth between the client and the server. All the fields and mandatory for completion. \end{DoxyCompactList}\item 
 struct \hyperlink{structSSH__Packet_1_1SSH__Payload}{S\+S\+H\+\_\+\+Packet\+::\+S\+S\+H\+\_\+\+Payload}
 \item 
 struct \hyperlink{structLogin__Payload}{Login\+\_\+\+Payload}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Structure that goes into payload.\+content field. Designed to ease the credentials transmission. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -47,13 +47,13 @@ enum \hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890}{Packet\+\_\+\+Type}
 \\*
 \hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890a6ee2549e6313635a0e1b570052060b76}{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE}, 
 \hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890a62aa7f5e6ca972dea66fd751f236c447}{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY}
- \}
+ \}\begin{DoxyCompactList}\small\item\em Type of the sent or recieved packet. All the packets must have a Packet\+\_\+\+Type. The reciever must take proper actions according to the type. \end{DoxyCompactList}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{Packet_8h_a723198aebc9baad8998255313981e357}{send\+\_\+packet} (S\+SL $\ast$ssl, \hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890}{Packet\+\_\+\+Type} type, void $\ast$data, size\+\_\+t data\+\_\+len)
-\item 
+\begin{DoxyCompactList}\small\item\em Sends and \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} to the S\+SL socket given. \end{DoxyCompactList}\item 
 void \hyperlink{Packet_8h_adaa6274c063dfae816caaf9a68774698}{recv\+\_\+packet} (S\+SL $\ast$ssl, \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} $\ast$read\+\_\+to)
 \item 
 int \hyperlink{Packet_8h_a707a865009d80b22ee19d46a59d81e94}{sha\+\_\+digest} (void $\ast$msg, size\+\_\+t msg\+\_\+len, void $\ast$output)
@@ -79,22 +79,26 @@ int \hyperlink{Packet_8h_a707a865009d80b22ee19d46a59d81e94}{sha\+\_\+digest} (vo
 \index{Packet.\+h@{Packet.\+h}!Packet\+\_\+\+Type@{Packet\+\_\+\+Type}}
 \index{Packet\+\_\+\+Type@{Packet\+\_\+\+Type}!Packet.\+h@{Packet.\+h}}
 \subsubsection[{\texorpdfstring{Packet\+\_\+\+Type}{Packet_Type}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Packet\+\_\+\+Type}}\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890}
+
+
+Type of the sent or recieved packet. All the packets must have a Packet\+\_\+\+Type. The reciever must take proper actions according to the type. 
+
 \begin{Desc}
 \item[Enumerator]\par
 \begin{description}
 \index{P\+A\+C\+K\+E\+T\+\_\+\+Q\+U\+E\+RY@{P\+A\+C\+K\+E\+T\+\_\+\+Q\+U\+E\+RY}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+Q\+U\+E\+RY@{P\+A\+C\+K\+E\+T\+\_\+\+Q\+U\+E\+RY}}\item[{\em 
 P\+A\+C\+K\+E\+T\+\_\+\+Q\+U\+E\+RY\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890a2f5665bf2e0ba95ed71bb6297fb02ed2}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890a2f5665bf2e0ba95ed71bb6297fb02ed2}
-}]\index{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+S\+P\+O\+N\+SE@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+S\+P\+O\+N\+SE}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+S\+P\+O\+N\+SE@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+S\+P\+O\+N\+SE}}\item[{\em 
+}]Complex command from the Client. \hyperlink{classServer}{Server} must parse and execute. \index{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+S\+P\+O\+N\+SE@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+S\+P\+O\+N\+SE}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+S\+P\+O\+N\+SE@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+S\+P\+O\+N\+SE}}\item[{\em 
 P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+S\+P\+O\+N\+SE\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890a7824f752c333d1560c36cb8b8c643605}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890a7824f752c333d1560c36cb8b8c643605}
-}]\index{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+Q\+U\+E\+ST@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+Q\+U\+E\+ST}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+Q\+U\+E\+ST@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+Q\+U\+E\+ST}}\item[{\em 
+}]A repsponse either from the Client or from the \hyperlink{classServer}{Server}. \index{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+Q\+U\+E\+ST@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+Q\+U\+E\+ST}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+Q\+U\+E\+ST@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+Q\+U\+E\+ST}}\item[{\em 
 P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+Q\+U\+E\+ST\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890a07231f7b2bd1a0cd4295eab9a3402d53}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890a07231f7b2bd1a0cd4295eab9a3402d53}
-}]\index{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+Q\+U\+E\+ST@{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+Q\+U\+E\+ST}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+Q\+U\+E\+ST@{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+Q\+U\+E\+ST}}\item[{\em 
+}]A request from the Client or from the \hyperlink{classServer}{Server}. \index{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+Q\+U\+E\+ST@{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+Q\+U\+E\+ST}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+Q\+U\+E\+ST@{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+Q\+U\+E\+ST}}\item[{\em 
 P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+Q\+U\+E\+ST\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890add231fb890f78df48adbef9a8f86b3b5}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890add231fb890f78df48adbef9a8f86b3b5}
-}]\index{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE@{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE@{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE}}\item[{\em 
+}]Authentication request from the \hyperlink{classServer}{Server}. Client must provide credentials. \index{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE@{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE@{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE}}\item[{\em 
 P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890a6ee2549e6313635a0e1b570052060b76}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890a6ee2549e6313635a0e1b570052060b76}
-}]\index{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY}}\item[{\em 
+}]Authentication response from the Client. \hyperlink{classServer}{Server} must check credentials. \index{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY}}\item[{\em 
 P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890a62aa7f5e6ca972dea66fd751f236c447}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890a62aa7f5e6ca972dea66fd751f236c447}
-}]\end{description}
+}]Notification from the \hyperlink{classServer}{Server} that it is ready for another complex command. \end{description}
 \end{Desc}
 
 
@@ -117,6 +121,21 @@ P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY\hypertarget{Packet_8h_a307e533851c91d484ac30
 \item[{size\+\_\+t}]{data\+\_\+len}
 \end{DoxyParamCaption}
 )}\hypertarget{Packet_8h_a723198aebc9baad8998255313981e357}{}\label{Packet_8h_a723198aebc9baad8998255313981e357}
+
+
+Sends and \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} to the S\+SL socket given. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssl} & Pointer to initialized and ready for transmission S\+SL structure \\
+\hline
+{\em type} & Type of the packet to be sent \\
+\hline
+{\em data} & A pointer to data buffer \\
+\hline
+{\em data\+\_\+len} & The length of the data buffer \\
+\hline
+\end{DoxyParams}
 \index{Packet.\+h@{Packet.\+h}!sha\+\_\+digest@{sha\+\_\+digest}}
 \index{sha\+\_\+digest@{sha\+\_\+digest}!Packet.\+h@{Packet.\+h}}
 \subsubsection[{\texorpdfstring{sha\+\_\+digest(void $\ast$msg, size\+\_\+t msg\+\_\+len, void $\ast$output)}{sha_digest(void *msg, size_t msg_len, void *output)}}]{\setlength{\rightskip}{0pt plus 5cm}int sha\+\_\+digest (

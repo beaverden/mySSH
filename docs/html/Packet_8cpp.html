@@ -103,6 +103,7 @@ Include dependency graph for Packet.cpp:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a723198aebc9baad8998255313981e357"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Packet_8cpp.html#a723198aebc9baad8998255313981e357">send_packet</a> (SSL *ssl, <a class="el" href="Packet_8h.html#a307e533851c91d484ac30d8471095890">Packet_Type</a> type, void *data, size_t data_len)</td></tr>
+<tr class="memdesc:a723198aebc9baad8998255313981e357"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends and <a class="el" href="structSSH__Packet.html" title="The application level packet that gets send back and forth between the client and the server...">SSH_Packet</a> to the SSL socket given.  <a href="#a723198aebc9baad8998255313981e357">More...</a><br /></td></tr>
 <tr class="separator:a723198aebc9baad8998255313981e357"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adaa6274c063dfae816caaf9a68774698"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Packet_8cpp.html#adaa6274c063dfae816caaf9a68774698">recv_packet</a> (SSL *ssl, <a class="el" href="structSSH__Packet.html">SSH_Packet</a> *read_to)</td></tr>
 <tr class="separator:adaa6274c063dfae816caaf9a68774698"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -171,6 +172,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sends and <a class="el" href="structSSH__Packet.html" title="The application level packet that gets send back and forth between the client and the server...">SSH_Packet</a> to the SSL socket given. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ssl</td><td>Pointer to initialized and ready for transmission SSL structure </td></tr>
+    <tr><td class="paramname">type</td><td>Type of the packet to be sent </td></tr>
+    <tr><td class="paramname">data</td><td>A pointer to data buffer </td></tr>
+    <tr><td class="paramname">data_len</td><td>The length of the data buffer </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

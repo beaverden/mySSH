@@ -125,10 +125,12 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSSH__Packet.html">SSH_Packet</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The application level packet that gets send back and forth between the client and the server. All the fields and mandatory for completion.  <a href="structSSH__Packet.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSSH__Packet_1_1SSH__Payload.html">SSH_Packet::SSH_Payload</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structLogin__Payload.html">Login_Payload</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure that goes into payload.content field. Designed to ease the credentials transmission.  <a href="structLogin__Payload.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -153,12 +155,14 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="Packet_8h.html#a307e533851c91d484ac30d8471095890a6ee2549e6313635a0e1b570052060b76">PACKET_AUTH_RESPONSE</a>, 
 <a class="el" href="Packet_8h.html#a307e533851c91d484ac30d8471095890a62aa7f5e6ca972dea66fd751f236c447">PACKET_READY</a>
 <br />
- }</td></tr>
+ }<tr class="memdesc:a307e533851c91d484ac30d8471095890"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of the sent or recieved packet. All the packets must have a Packet_Type. The reciever must take proper actions according to the type.  <a href="Packet_8h.html#a307e533851c91d484ac30d8471095890">More...</a><br /></td></tr>
+</td></tr>
 <tr class="separator:a307e533851c91d484ac30d8471095890"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a723198aebc9baad8998255313981e357"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Packet_8h.html#a723198aebc9baad8998255313981e357">send_packet</a> (SSL *ssl, <a class="el" href="Packet_8h.html#a307e533851c91d484ac30d8471095890">Packet_Type</a> type, void *data, size_t data_len)</td></tr>
+<tr class="memdesc:a723198aebc9baad8998255313981e357"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends and <a class="el" href="structSSH__Packet.html" title="The application level packet that gets send back and forth between the client and the server...">SSH_Packet</a> to the SSL socket given.  <a href="#a723198aebc9baad8998255313981e357">More...</a><br /></td></tr>
 <tr class="separator:a723198aebc9baad8998255313981e357"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adaa6274c063dfae816caaf9a68774698"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Packet_8h.html#adaa6274c063dfae816caaf9a68774698">recv_packet</a> (SSL *ssl, <a class="el" href="structSSH__Packet.html">SSH_Packet</a> *read_to)</td></tr>
 <tr class="separator:adaa6274c063dfae816caaf9a68774698"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -224,18 +228,26 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Type of the sent or recieved packet. All the packets must have a Packet_Type. The reciever must take proper actions according to the type. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a307e533851c91d484ac30d8471095890a2f5665bf2e0ba95ed71bb6297fb02ed2"></a>PACKET_QUERY&#160;</td><td class="fielddoc">
+<p>Complex command from the Client. <a class="el" href="classServer.html">Server</a> must parse and execute. </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="a307e533851c91d484ac30d8471095890a7824f752c333d1560c36cb8b8c643605"></a>PACKET_RESPONSE&#160;</td><td class="fielddoc">
+<p>A repsponse either from the Client or from the <a class="el" href="classServer.html">Server</a>. </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="a307e533851c91d484ac30d8471095890a07231f7b2bd1a0cd4295eab9a3402d53"></a>PACKET_REQUEST&#160;</td><td class="fielddoc">
+<p>A request from the Client or from the <a class="el" href="classServer.html">Server</a>. </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="a307e533851c91d484ac30d8471095890add231fb890f78df48adbef9a8f86b3b5"></a>PACKET_AUTH_REQUEST&#160;</td><td class="fielddoc">
+<p>Authentication request from the <a class="el" href="classServer.html">Server</a>. Client must provide credentials. </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="a307e533851c91d484ac30d8471095890a6ee2549e6313635a0e1b570052060b76"></a>PACKET_AUTH_RESPONSE&#160;</td><td class="fielddoc">
+<p>Authentication response from the Client. <a class="el" href="classServer.html">Server</a> must check credentials. </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="a307e533851c91d484ac30d8471095890a62aa7f5e6ca972dea66fd751f236c447"></a>PACKET_READY&#160;</td><td class="fielddoc">
+<p>Notification from the <a class="el" href="classServer.html">Server</a> that it is ready for another complex command. </p>
 </td></tr>
 </table>
 
@@ -303,6 +315,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sends and <a class="el" href="structSSH__Packet.html" title="The application level packet that gets send back and forth between the client and the server...">SSH_Packet</a> to the SSL socket given. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ssl</td><td>Pointer to initialized and ready for transmission SSL structure </td></tr>
+    <tr><td class="paramname">type</td><td>Type of the packet to be sent </td></tr>
+    <tr><td class="paramname">data</td><td>A pointer to data buffer </td></tr>
+    <tr><td class="paramname">data_len</td><td>The length of the data buffer </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -2,6 +2,11 @@
 \label{structSSH__Packet}\index{S\+S\+H\+\_\+\+Packet@{S\+S\+H\+\_\+\+Packet}}
 
 
+The application level packet that gets send back and forth between the client and the server. All the fields and mandatory for completion.  
+
+
+
+
 {\ttfamily \#include $<$Packet.\+h$>$}
 
 
@@ -24,14 +29,17 @@ struct \hyperlink{structSSH__Packet_1_1SSH__Payload}{S\+S\+H\+\_\+\+Payload}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890}{Packet\+\_\+\+Type} \hyperlink{structSSH__Packet_a96bc51da8a7f7c0ce64e23b3991e335b}{packet\+\_\+type}
-\item 
+\begin{DoxyCompactList}\small\item\em Type of the packet. \end{DoxyCompactList}\item 
 unsigned int \hyperlink{structSSH__Packet_a53e4ab1ac5efa60989390c1966a7d3fb}{payload\+\_\+length}
-\item 
+\begin{DoxyCompactList}\small\item\em Length of \hyperlink{structSSH__Packet_1_1SSH__Payload}{S\+S\+H\+\_\+\+Payload} member. \end{DoxyCompactList}\item 
 unsigned char \hyperlink{structSSH__Packet_a70c8dd74e6122753c751e92b5b697caf}{sha256\+\_\+verification} \mbox{[}S\+H\+A256\+\_\+\+D\+I\+G\+E\+S\+T\+\_\+\+L\+E\+N\+G\+TH\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em Computed S\+H\+A256 on the payload.\+content buffer. \end{DoxyCompactList}\item 
 struct \hyperlink{structSSH__Packet_1_1SSH__Payload}{S\+S\+H\+\_\+\+Packet\+::\+S\+S\+H\+\_\+\+Payload} \hyperlink{structSSH__Packet_a9a14fdf456e41d1e7b8ac7e98e2de83b}{payload}
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+The application level packet that gets send back and forth between the client and the server. All the fields and mandatory for completion. 
 
 \subsection{Constructor \& Destructor Documentation}
 \index{S\+S\+H\+\_\+\+Packet@{S\+S\+H\+\_\+\+Packet}!S\+S\+H\+\_\+\+Packet@{S\+S\+H\+\_\+\+Packet}}
@@ -54,15 +62,27 @@ struct \hyperlink{structSSH__Packet_1_1SSH__Payload}{S\+S\+H\+\_\+\+Packet\+::\+
 \index{S\+S\+H\+\_\+\+Packet@{S\+S\+H\+\_\+\+Packet}!packet\+\_\+type@{packet\+\_\+type}}
 \index{packet\+\_\+type@{packet\+\_\+type}!S\+S\+H\+\_\+\+Packet@{S\+S\+H\+\_\+\+Packet}}
 \subsubsection[{\texorpdfstring{packet\+\_\+type}{packet_type}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Packet\+\_\+\+Type} S\+S\+H\+\_\+\+Packet\+::packet\+\_\+type}\hypertarget{structSSH__Packet_a96bc51da8a7f7c0ce64e23b3991e335b}{}\label{structSSH__Packet_a96bc51da8a7f7c0ce64e23b3991e335b}
+
+
+Type of the packet. 
+
 \index{S\+S\+H\+\_\+\+Packet@{S\+S\+H\+\_\+\+Packet}!payload@{payload}}
 \index{payload@{payload}!S\+S\+H\+\_\+\+Packet@{S\+S\+H\+\_\+\+Packet}}
 \subsubsection[{\texorpdfstring{payload}{payload}}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf S\+S\+H\+\_\+\+Packet\+::\+S\+S\+H\+\_\+\+Payload}  S\+S\+H\+\_\+\+Packet\+::payload}\hypertarget{structSSH__Packet_a9a14fdf456e41d1e7b8ac7e98e2de83b}{}\label{structSSH__Packet_a9a14fdf456e41d1e7b8ac7e98e2de83b}
 \index{S\+S\+H\+\_\+\+Packet@{S\+S\+H\+\_\+\+Packet}!payload\+\_\+length@{payload\+\_\+length}}
 \index{payload\+\_\+length@{payload\+\_\+length}!S\+S\+H\+\_\+\+Packet@{S\+S\+H\+\_\+\+Packet}}
 \subsubsection[{\texorpdfstring{payload\+\_\+length}{payload_length}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int S\+S\+H\+\_\+\+Packet\+::payload\+\_\+length}\hypertarget{structSSH__Packet_a53e4ab1ac5efa60989390c1966a7d3fb}{}\label{structSSH__Packet_a53e4ab1ac5efa60989390c1966a7d3fb}
+
+
+Length of \hyperlink{structSSH__Packet_1_1SSH__Payload}{S\+S\+H\+\_\+\+Payload} member. 
+
 \index{S\+S\+H\+\_\+\+Packet@{S\+S\+H\+\_\+\+Packet}!sha256\+\_\+verification@{sha256\+\_\+verification}}
 \index{sha256\+\_\+verification@{sha256\+\_\+verification}!S\+S\+H\+\_\+\+Packet@{S\+S\+H\+\_\+\+Packet}}
 \subsubsection[{\texorpdfstring{sha256\+\_\+verification}{sha256_verification}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char S\+S\+H\+\_\+\+Packet\+::sha256\+\_\+verification\mbox{[}S\+H\+A256\+\_\+\+D\+I\+G\+E\+S\+T\+\_\+\+L\+E\+N\+G\+TH\mbox{]}}\hypertarget{structSSH__Packet_a70c8dd74e6122753c751e92b5b697caf}{}\label{structSSH__Packet_a70c8dd74e6122753c751e92b5b697caf}
+
+
+Computed S\+H\+A256 on the payload.\+content buffer. 
+
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}

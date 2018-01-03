@@ -99,12 +99,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a32949d94e4a2306e1b6bd7f9c8576a39"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="structSyntaxTree.html">SyntaxTree</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a32949d94e4a2306e1b6bd7f9c8576a39">parse</a> (std::string command)</td></tr>
-<tr class="memdesc:a32949d94e4a2306e1b6bd7f9c8576a39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tokenizes and verifies the command. Returns an AST ready for execution.  <a href="#a32949d94e4a2306e1b6bd7f9c8576a39">More...</a><br /></td></tr>
-<tr class="separator:a32949d94e4a2306e1b6bd7f9c8576a39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21451cb3011d796acf866b05d52601f3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a21451cb3011d796acf866b05d52601f3">tokenizeExecute</a> (std::string command, std::string delim)</td></tr>
-<tr class="memdesc:a21451cb3011d796acf866b05d52601f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes a single command with arguments and splits it in a vector.  <a href="#a21451cb3011d796acf866b05d52601f3">More...</a><br /></td></tr>
-<tr class="separator:a21451cb3011d796acf866b05d52601f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac45f30e3cfa787cece390bb80cee7fd0"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="structSyntaxTree.html">SyntaxTree</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#ac45f30e3cfa787cece390bb80cee7fd0">Parse</a> (std::string command)</td></tr>
+<tr class="memdesc:ac45f30e3cfa787cece390bb80cee7fd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tokenizes and verifies the command. Returns an AST ready for execution.  <a href="#ac45f30e3cfa787cece390bb80cee7fd0">More...</a><br /></td></tr>
+<tr class="separator:ac45f30e3cfa787cece390bb80cee7fd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acabb9fe9da6646d4d411c50e7fa50c08"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#acabb9fe9da6646d4d411c50e7fa50c08">TokenizeExecute</a> (std::string command, std::string delim)</td></tr>
+<tr class="memdesc:acabb9fe9da6646d4d411c50e7fa50c08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes a single command with arguments and splits it in a vector.  <a href="#acabb9fe9da6646d4d411c50e7fa50c08">More...</a><br /></td></tr>
+<tr class="separator:acabb9fe9da6646d4d411c50e7fa50c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -141,12 +141,12 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a32949d94e4a2306e1b6bd7f9c8576a39"></a>
+<a class="anchor" id="ac45f30e3cfa787cece390bb80cee7fd0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt; <a class="el" href="structSyntaxTree.html">SyntaxTree</a> &gt; Parser::parse </td>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="structSyntaxTree.html">SyntaxTree</a> &gt; Parser::Parse </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>command</em></td><td>)</td>
@@ -156,6 +156,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Tokenizes and verifies the command. Returns an AST ready for execution. </p>
+<p>The function will tokenize the input, do a minimal verification of tokens and will return a AST in the form of <a class="el" href="structSyntaxTree.html" title="Structure for holding a node of the AST. ">SyntaxTree</a> root Might throw: <a class="el" href="classParserException.html">ParserException</a> VerficationException</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">command</td><td>The complex query given by the user </td></tr>
@@ -166,12 +167,12 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a21451cb3011d796acf866b05d52601f3"></a>
+<a class="anchor" id="acabb9fe9da6646d4d411c50e7fa50c08"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; std::string &gt; Parser::tokenizeExecute </td>
+          <td class="memname">std::vector&lt; std::string &gt; Parser::TokenizeExecute </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>command</em>, </td>

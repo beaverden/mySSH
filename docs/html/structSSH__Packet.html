@@ -93,6 +93,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>The application level packet that gets send back and forth between the client and the server. All the fields and mandatory for completion.  
+ <a href="structSSH__Packet.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="Packet_8h_source.html">Packet.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for SSH_Packet:</div>
@@ -116,15 +119,20 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:a96bc51da8a7f7c0ce64e23b3991e335b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Packet_8h.html#a307e533851c91d484ac30d8471095890">Packet_Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSSH__Packet.html#a96bc51da8a7f7c0ce64e23b3991e335b">packet_type</a></td></tr>
+<tr class="memdesc:a96bc51da8a7f7c0ce64e23b3991e335b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of the packet.  <a href="#a96bc51da8a7f7c0ce64e23b3991e335b">More...</a><br /></td></tr>
 <tr class="separator:a96bc51da8a7f7c0ce64e23b3991e335b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53e4ab1ac5efa60989390c1966a7d3fb"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSSH__Packet.html#a53e4ab1ac5efa60989390c1966a7d3fb">payload_length</a></td></tr>
+<tr class="memdesc:a53e4ab1ac5efa60989390c1966a7d3fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Length of <a class="el" href="structSSH__Packet_1_1SSH__Payload.html">SSH_Payload</a> member.  <a href="#a53e4ab1ac5efa60989390c1966a7d3fb">More...</a><br /></td></tr>
 <tr class="separator:a53e4ab1ac5efa60989390c1966a7d3fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70c8dd74e6122753c751e92b5b697caf"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSSH__Packet.html#a70c8dd74e6122753c751e92b5b697caf">sha256_verification</a> [SHA256_DIGEST_LENGTH]</td></tr>
+<tr class="memdesc:a70c8dd74e6122753c751e92b5b697caf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computed SHA256 on the payload.content buffer.  <a href="#a70c8dd74e6122753c751e92b5b697caf">More...</a><br /></td></tr>
 <tr class="separator:a70c8dd74e6122753c751e92b5b697caf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a14fdf456e41d1e7b8ac7e98e2de83b"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structSSH__Packet_1_1SSH__Payload.html">SSH_Packet::SSH_Payload</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSSH__Packet.html#a9a14fdf456e41d1e7b8ac7e98e2de83b">payload</a></td></tr>
 <tr class="separator:a9a14fdf456e41d1e7b8ac7e98e2de83b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The application level packet that gets send back and forth between the client and the server. All the fields and mandatory for completion. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a0b717b3f7f3f724c54dddba9578145f3"></a>
 <div class="memitem">
 <div class="memproto">
@@ -182,6 +190,8 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Type of the packet. </p>
+
 </div>
 </div>
 <a class="anchor" id="a9a14fdf456e41d1e7b8ac7e98e2de83b"></a>
@@ -206,6 +216,8 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Length of <a class="el" href="structSSH__Packet_1_1SSH__Payload.html">SSH_Payload</a> member. </p>
+
 </div>
 </div>
 <a class="anchor" id="a70c8dd74e6122753c751e92b5b697caf"></a>
@@ -217,6 +229,8 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Computed SHA256 on the payload.content buffer. </p>
 
 </div>
 </div>
