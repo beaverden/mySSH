@@ -91,6 +91,7 @@ void send_packet(SSL* ssl, Packet_Type type, void* data, size_t data_len)
 void recv_packet(SSL* ssl, SSH_Packet* read_to)
 {
     int result;
+    printf("Pending: %d\n", SSL_pending(ssl));
     result = SSL_read(ssl, &read_to->packet_type, sizeof(read_to->packet_type));
     if (result != sizeof(read_to->packet_type))
     {

@@ -22,7 +22,7 @@ COMMON_INCLUDE := /usr/include/openssl
 COMMON_FLAGS := $(addprefix -I,$(COMMON_INCLUDE))
 
 FLAGS := -std=c++11 -Wno-format-security #-Wall 
-LIB := -L/usr/lib -lssl -lcrypto
+LIB := -L/usr/lib -lssl -lcrypto -pthread -lpthread
 
 
 server:

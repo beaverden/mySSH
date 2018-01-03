@@ -45,7 +45,7 @@ struct Token
     std::string     content;            ///< The actual string content of the token
     unsigned long   position;           ///< The position in the input string where it was found
     int             precedence = -1;    ///< "Mathematical" precedence for Shunting Yard algorithm
-    bool            isOperation = false;
+    bool            is_operation = false;
 };
 
 /**
@@ -79,10 +79,17 @@ public:
 
     /**
      * \brief Tokenizes and verifies the command. Returns an AST ready for execution
+     * 
+     * The function will tokenize the input, do a minimal verification of tokens
+     * and will return a AST in the form of SyntaxTree root
+     * Might throw:
+     *      ParserException
+     *      VerficationException
+     * 
      * \param[in] command The complex query given by the user
      * \return A pointer to the AST root node of the respective command
      */
-    std::shared_ptr<SyntaxTree> parse(
+    std::shared_ptr<SyntaxTree> Parse(
         std::string command
     );
 
@@ -95,7 +102,7 @@ public:
      * \param command A executable with arguments
      * \param delim Characters that will be used as argument delimiters
      */
-    std::vector<std::string> tokenizeExecute(
+    std::vector<std::string> TokenizeExecute(
         std::string command, 
         std::string delim
     );
@@ -118,9 +125,10 @@ private:
     /** 
      * Obtains the AST out of a token queue obtained after
      * The application of Shunting Yard algorithm
-     * Throws ParserException
+     * Might throw:
+     *      ParserException
      */
-    std::shared_ptr<SyntaxTree> getSyntaxTree(
+    std::shared_ptr<SyntaxTree> GetSyntaxTree(
         std::vector<Token> &tokens
     );
 
@@ -128,7 +136,7 @@ private:
      * Returns true if the string at the given position is an operator
      * &&, ||, (, ), |, ;, >, <, 2>>
      */
-    bool isOperator(
+    bool IsOperator(
         std::string& original, 
         unsigned long position, 
         Token* foundOp = nullptr
@@ -137,9 +145,10 @@ private:
     /**
      * Divides the raw string into operable elements of type Token
      * It is the main parsing routine that uses the given user input
-     * Throws ParserException
+     * Might throw:
+     *      ParserException
      */
-    void tokenize(
+    void Tokenize(
         std::string command, 
         std::vector<Token>& tokens
     );
@@ -148,9 +157,10 @@ private:
      * Verifies the list of tokens for some obvious errors like
      * 1. Two consecutive operators
      * 2. Two consecutive execute tokens
-     * Throws VerificationException
+     * Might throw:
+     *      VerificationException
      */
-    void verify(
+    void Verify(
         std::vector<Token> &tokens
     );
 

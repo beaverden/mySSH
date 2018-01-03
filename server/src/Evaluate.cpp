@@ -50,7 +50,7 @@ int Execute(
     std::shared_ptr<ExecutionContext> context
 )
 {
-    std::vector<std::string> tokens = Parser::Get()->tokenizeExecute(command, " ");
+    std::vector<std::string> tokens = Parser::Get()->TokenizeExecute(command, " ");
     if (tokens.size() > MAX_ARGUMENTS)
     {
         throw EvaluationException("Too many arguments in command [%30s...]", command.c_str());
@@ -153,7 +153,7 @@ void Evaluate(std::string command, SSL* ssl)
     context->errorRedir.push(actualFD);
 
     std::shared_ptr<SyntaxTree> root;
-    root = Parser::Get()->parse(command);
+    root = Parser::Get()->Parse(command);
     Evaluate(root, context);
 }
 
