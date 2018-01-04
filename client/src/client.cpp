@@ -2,6 +2,7 @@
 
 #include "../../common/include/Packet.h"
 #include "../../common/include/Exceptions.h"
+#include "../../common/include/Utility.h"
 
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -11,6 +12,8 @@
 #include <memory.h>
 #include <netdb.h>
 #include <arpa/inet.h>
+#include <sys/file.h>
+#include <sys/ioctl.h>
 
 #include "openssl/bio.h"
 #include "openssl/ssl.h"
@@ -19,6 +22,8 @@
 #include <iostream>
 #include <string>
 #include <string.h>
+#include <thread>
+#include <mutex>
 using namespace std;
 
 #define PORT 2018
@@ -72,6 +77,63 @@ void HandleCommand(SSL* ssl)
     send_packet(ssl, PACKET_QUERY, (void*)command.c_str(), command.length());
 }
 
+
+
+
+
+
+void writing_routine(SSL* ssl)
+{
+    int fd = SSL_get_fd(ssl);
+    char buffer[1024] = {0};
+    while (true)
+    {
+        //printf("[Write] waiting for lock\n");
+        Lock::GetInstance().Set();
+        //printf("[Write] got lock\n");
+        int result = 1;
+        while (result > 0)
+        {
+            ioctl(STDIN_FILENO, FIONREAD, &result);
+            if (result <= 0) break;
+            result = read(STDIN_FILENO, buffer, 1024);
+            if (result <= 0) break;
+            result = SSL_write(ssl, buffer, result);
+            if (result <= 0) break;
+            //printf("[Write] wrote %d bytes\n", result);
+        }
+        Lock::GetInstance().Reset();
+        //printf("[Write] lock released\n");
+    }
+}
+
+void reading_routine(SSL* ssl)
+{
+    // TODO max frame size
+    int fd = SSL_get_fd(ssl);
+    char buffer[1024] = {0};
+    while (true)
+    {
+        //printf("[Read] waiting for lock\n");
+        Lock::GetInstance().Set();
+        //printf("[Read] got lock\n");
+        int result = 1;
+        while (result > 0)
+        {
+            ioctl(fd, FIONREAD, &result);
+            if (result == 0) break;
+            result = SSL_read(ssl, buffer, 1024);
+            if (result <= 0) break;
+            result = write(STDOUT_FILENO, buffer, result);
+            if (result <= 0) break;
+            //printf("[Read] read %d bytes\n", result);
+        }
+        Lock::GetInstance().Reset();
+        //printf("[Read] lock released\n");
+    }  
+}
+
+
 int main(int argc, char* argv[]) {
 
     /* INIT OPENSSL */
@@ -99,7 +161,12 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
-   
+    std::thread t1(reading_routine, ssl);
+    std::thread t2(writing_routine, ssl);
+
+    t1.join();
+    t2.join();
+   /*
     SSH_Packet packet;
     try
     {
@@ -142,6 +209,6 @@ int main(int argc, char* argv[]) {
     SSL_free(ssl);
     close(sock);
     SSL_CTX_free(context);  
-
+    */
     return 0;
 }

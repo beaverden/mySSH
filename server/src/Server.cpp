@@ -79,6 +79,13 @@ void Server::Listen()
             close(client);
             continue;
         }
+        sleep(3);
+    
+        while (true) {
+            char buff[100] = {0};
+            read(STDIN_FILENO, buff, 100);
+            SSL_write(ssl, buff, strlen(buff));
+        };
         printf("Got connection!\n");
         try
         {

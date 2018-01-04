@@ -11,3 +11,16 @@ void trim(std::string& str)
         str.erase(str.length()-1, 1);
     }
 }
+
+
+std::unique_ptr<Lock> Lock::m_instance;
+std::once_flag Lock::m_onceFlag;
+ 
+Lock& Lock::GetInstance()
+{
+    std::call_once(m_onceFlag,
+        [] {
+            m_instance.reset(new Lock);
+    });
+    return *m_instance.get();
+}
