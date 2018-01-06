@@ -113,19 +113,15 @@ Include dependency graph for Evaluate.cpp:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab97c0730aece1d20e0e278aa5ecf6270"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8cpp.html#ab97c0730aece1d20e0e278aa5ecf6270">redirect_output</a> (int local_socket, int client_socket, std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; context)</td></tr>
-<tr class="separator:ab97c0730aece1d20e0e278aa5ecf6270"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adafc21bd08e580a2d5a2887d7878f783"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8cpp.html#adafc21bd08e580a2d5a2887d7878f783">redirect_input</a> (int local_socket, int client_socket, std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; context)</td></tr>
-<tr class="separator:adafc21bd08e580a2d5a2887d7878f783"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1922a4cf7442102f306940423bea6be9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8cpp.html#a1922a4cf7442102f306940423bea6be9">Execute</a> (std::string command, int _stdin, int _stdout, int _stderr, std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; context)</td></tr>
-<tr class="separator:a1922a4cf7442102f306940423bea6be9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd0787ca6fb966bf8619711119c3ba7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8cpp.html#acd0787ca6fb966bf8619711119c3ba7f">Evaluate</a> (std::string command, SSL *ssl)</td></tr>
-<tr class="separator:acd0787ca6fb966bf8619711119c3ba7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa2e08c8c16a898425991531a7d2353e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8cpp.html#afa2e08c8c16a898425991531a7d2353e">Evaluate</a> (std::shared_ptr&lt; <a class="el" href="structSyntaxTree.html">SyntaxTree</a> &gt; node, std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; context)</td></tr>
-<tr class="separator:afa2e08c8c16a898425991531a7d2353e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79150b4042ae7db5ea8e8aa1b45b60e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8cpp.html#a79150b4042ae7db5ea8e8aa1b45b60e8">Execute</a> (std::string command, std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; ctx)</td></tr>
+<tr class="separator:a79150b4042ae7db5ea8e8aa1b45b60e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d3c299a17a0f0bfb94634b82449ddba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8cpp.html#a5d3c299a17a0f0bfb94634b82449ddba">Evaluate</a> (std::string command, std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; ctx)</td></tr>
+<tr class="separator:a5d3c299a17a0f0bfb94634b82449ddba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab83877ec794b9c71e963bac1b0dde76"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8cpp.html#aab83877ec794b9c71e963bac1b0dde76">Evaluate_Tree</a> (std::shared_ptr&lt; <a class="el" href="structSyntaxTree.html">SyntaxTree</a> &gt; node, std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; context)</td></tr>
+<tr class="separator:aab83877ec794b9c71e963bac1b0dde76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="acd0787ca6fb966bf8619711119c3ba7f"></a>
+<a class="anchor" id="a5d3c299a17a0f0bfb94634b82449ddba"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -138,8 +134,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">SSL *&#160;</td>
-          <td class="paramname"><em>ssl</em>&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt;&#160;</td>
+          <td class="paramname"><em>ctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -151,12 +147,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="afa2e08c8c16a898425991531a7d2353e"></a>
+<a class="anchor" id="aab83877ec794b9c71e963bac1b0dde76"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Evaluate </td>
+          <td class="memname">int Evaluate_Tree </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structSyntaxTree.html">SyntaxTree</a> &gt;&#160;</td>
           <td class="paramname"><em>node</em>, </td>
@@ -177,7 +173,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1922a4cf7442102f306940423bea6be9"></a>
+<a class="anchor" id="a79150b4042ae7db5ea8e8aa1b45b60e8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -190,90 +186,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>_stdin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>_stdout</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>_stderr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt;&#160;</td>
-          <td class="paramname"><em>context</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="adafc21bd08e580a2d5a2887d7878f783"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void redirect_input </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>local_socket</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>client_socket</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt;&#160;</td>
-          <td class="paramname"><em>context</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ab97c0730aece1d20e0e278aa5ecf6270"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void redirect_output </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>local_socket</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>client_socket</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt;&#160;</td>
-          <td class="paramname"><em>context</em>&#160;</td>
+          <td class="paramname"><em>ctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

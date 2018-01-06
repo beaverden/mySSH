@@ -93,6 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="Utility_8h_source.html">../include/Utility.h</a>&quot;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Utility.cpp:</div>
 <div class="dyncontent">
@@ -103,7 +104,11 @@ Include dependency graph for Utility.cpp:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a83375b89f8b135c348ba5bea0c847da0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8cpp.html#a83375b89f8b135c348ba5bea0c847da0">trim</a> (std::string &amp;str)</td></tr>
+<tr class="memdesc:a83375b89f8b135c348ba5bea0c847da0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trims a string of spaces and tabs.  <a href="#a83375b89f8b135c348ba5bea0c847da0">More...</a><br /></td></tr>
 <tr class="separator:a83375b89f8b135c348ba5bea0c847da0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee76a2f00a367cafd01ac7206fb0a7aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8cpp.html#aee76a2f00a367cafd01ac7206fb0a7aa">trim</a> (std::string &amp;str, std::string to_remove)</td></tr>
+<tr class="memdesc:aee76a2f00a367cafd01ac7206fb0a7aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trims a string of spaces and tabs and the specified characters in to_remove.  <a href="#aee76a2f00a367cafd01ac7206fb0a7aa">More...</a><br /></td></tr>
+<tr class="separator:aee76a2f00a367cafd01ac7206fb0a7aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a83375b89f8b135c348ba5bea0c847da0"></a>
@@ -119,6 +124,49 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Trims a string of spaces and tabs. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">str</td><td>The target string to be trimmed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aee76a2f00a367cafd01ac7206fb0a7aa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void trim </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>to_remove</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Trims a string of spaces and tabs and the specified characters in to_remove. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">str</td><td>The target string to be trimmed </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">to_remove</td><td>Characters to be trimmed from the string ends </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

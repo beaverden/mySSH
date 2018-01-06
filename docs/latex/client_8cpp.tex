@@ -2,6 +2,7 @@
 \label{client_8cpp}\index{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/client/src/client.\+cpp@{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/client/src/client.\+cpp}}
 {\ttfamily \#include \char`\"{}../../common/include/\+Packet.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}../../common/include/\+Exceptions.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../../common/include/\+Utility.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$sys/socket.\+h$>$}\\*
 {\ttfamily \#include $<$netinet/in.\+h$>$}\\*
 {\ttfamily \#include $<$sys/types.\+h$>$}\\*
@@ -9,14 +10,23 @@
 {\ttfamily \#include $<$memory.\+h$>$}\\*
 {\ttfamily \#include $<$netdb.\+h$>$}\\*
 {\ttfamily \#include $<$arpa/inet.\+h$>$}\\*
+{\ttfamily \#include $<$sys/file.\+h$>$}\\*
+{\ttfamily \#include $<$sys/ioctl.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}openssl/bio.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}openssl/ssl.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}openssl/err.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$iostream$>$}\\*
 {\ttfamily \#include $<$string$>$}\\*
 {\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$thread$>$}\\*
+{\ttfamily \#include $<$mutex$>$}\\*
 Include dependency graph for client.\+cpp\+:
 % FIG 0
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structExecutionContext}{Execution\+Context}
+\end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -36,6 +46,10 @@ void \hyperlink{client_8cpp_a98f4fc799684d4c4564fa5549b8e9277}{Handle\+Auth} (S\
 void \hyperlink{client_8cpp_a238a36a0c27151b4efcf65df7a23f043}{Handle\+Response} (S\+SL $\ast$ssl, \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} $\ast$packet)
 \item 
 void \hyperlink{client_8cpp_a36c31f9205eb9e4e3753617984054fe1}{Handle\+Command} (S\+SL $\ast$ssl)
+\item 
+void \hyperlink{client_8cpp_a86a3b788c2958975e270bf69fb8fe7e2}{writing\+\_\+routine} (std\+::shared\+\_\+ptr$<$ \hyperlink{structExecutionContext}{Execution\+Context} $>$ ctx)
+\item 
+void \hyperlink{client_8cpp_a66bc3e5b829ba4d3e4a294c1bcd267b9}{reading\+\_\+routine} (std\+::shared\+\_\+ptr$<$ \hyperlink{structExecutionContext}{Execution\+Context} $>$ ctx)
 \item 
 int \hyperlink{client_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
 \end{DoxyCompactItemize}
@@ -91,3 +105,17 @@ int \hyperlink{client_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, c
 \item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
 \end{DoxyParamCaption}
 )}\hypertarget{client_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{}\label{client_8cpp_a0ddf1224851353fc92bfbff6f499fa97}
+\index{client.\+cpp@{client.\+cpp}!reading\+\_\+routine@{reading\+\_\+routine}}
+\index{reading\+\_\+routine@{reading\+\_\+routine}!client.\+cpp@{client.\+cpp}}
+\subsubsection[{\texorpdfstring{reading\+\_\+routine(std\+::shared\+\_\+ptr$<$ Execution\+Context $>$ ctx)}{reading_routine(std::shared_ptr< ExecutionContext > ctx)}}]{\setlength{\rightskip}{0pt plus 5cm}void reading\+\_\+routine (
+\begin{DoxyParamCaption}
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Execution\+Context} $>$}]{ctx}
+\end{DoxyParamCaption}
+)}\hypertarget{client_8cpp_a66bc3e5b829ba4d3e4a294c1bcd267b9}{}\label{client_8cpp_a66bc3e5b829ba4d3e4a294c1bcd267b9}
+\index{client.\+cpp@{client.\+cpp}!writing\+\_\+routine@{writing\+\_\+routine}}
+\index{writing\+\_\+routine@{writing\+\_\+routine}!client.\+cpp@{client.\+cpp}}
+\subsubsection[{\texorpdfstring{writing\+\_\+routine(std\+::shared\+\_\+ptr$<$ Execution\+Context $>$ ctx)}{writing_routine(std::shared_ptr< ExecutionContext > ctx)}}]{\setlength{\rightskip}{0pt plus 5cm}void writing\+\_\+routine (
+\begin{DoxyParamCaption}
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Execution\+Context} $>$}]{ctx}
+\end{DoxyParamCaption}
+)}\hypertarget{client_8cpp_a86a3b788c2958975e270bf69fb8fe7e2}{}\label{client_8cpp_a86a3b788c2958975e270bf69fb8fe7e2}

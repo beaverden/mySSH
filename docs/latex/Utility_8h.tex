@@ -1,15 +1,97 @@
 \hypertarget{Utility_8h}{}\section{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/include/\+Utility.h File Reference}
 \label{Utility_8h}\index{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/include/\+Utility.\+h@{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/include/\+Utility.\+h}}
 {\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$memory$>$}\\*
+{\ttfamily \#include $<$fstream$>$}\\*
+{\ttfamily \#include $<$ctime$>$}\\*
+{\ttfamily \#include $<$mutex$>$}\\*
 Include dependency graph for Utility.\+h\+:
 % FIG 0
 This graph shows which files directly or indirectly include this file\+:
 % FIG 1
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classLogger}{Logger}
+\begin{DoxyCompactList}\small\item\em Class to log formatted information into a log file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{Utility_8h_a63728bc2bb2c4352090dc48ee65273b1}{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+TS}~(1 $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em Log basic data about packets, but not the content. \end{DoxyCompactList}\item 
+\#define \hyperlink{Utility_8h_a2a2249f3d5db2bba1c25534dd60c2860}{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+D\+A\+TA}~(1 $<$$<$ 1)
+\begin{DoxyCompactList}\small\item\em Log packet content. \end{DoxyCompactList}\item 
+\#define \hyperlink{Utility_8h_aaacf836166a9bb870debfbe2b78eb830}{L\+O\+G\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS}~(1 $<$$<$ 2)
+\begin{DoxyCompactList}\small\item\em Log when a client has connected. \end{DoxyCompactList}\item 
+\#define \hyperlink{Utility_8h_a327a92ff349ce0beadfb946b5714a4b9}{L\+O\+G\+\_\+\+E\+R\+R\+O\+RS}~(1 $<$$<$ 3)
+\begin{DoxyCompactList}\small\item\em Log exceptions and errors. \end{DoxyCompactList}\item 
+\#define \hyperlink{Utility_8h_a1632479322efa3952798f98177b54471}{L\+O\+G\+\_\+\+N\+O\+NE}~(1 $<$$<$ 4)
+\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t log. \end{DoxyCompactList}\item 
+\#define \hyperlink{Utility_8h_ade2a951f0b4ac908683c37e1066d243c}{L\+O\+G\+\_\+\+E\+V\+E\+N\+TS}~(1 $<$$<$ 5)
+\begin{DoxyCompactList}\small\item\em Log important events during the protocol. \end{DoxyCompactList}\item 
+\#define \hyperlink{Utility_8h_abb3f80ef30220b04f769a74e0d8db9fc}{C\+H\+E\+CK}(opts,  flg)~(((opts) \& (flg)) != 0)
+\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{Utility_8h_a83375b89f8b135c348ba5bea0c847da0}{trim} (std\+::string \&str)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Trims a string of spaces and tabs. \end{DoxyCompactList}\item 
+void \hyperlink{Utility_8h_aee76a2f00a367cafd01ac7206fb0a7aa}{trim} (std\+::string \&str, std\+::string to\+\_\+remove)
+\begin{DoxyCompactList}\small\item\em Trims a string of spaces and tabs and the specified characters in to\+\_\+remove. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{Utility.\+h@{Utility.\+h}!C\+H\+E\+CK@{C\+H\+E\+CK}}
+\index{C\+H\+E\+CK@{C\+H\+E\+CK}!Utility.\+h@{Utility.\+h}}
+\subsubsection[{\texorpdfstring{C\+H\+E\+CK}{CHECK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+H\+E\+CK(
+\begin{DoxyParamCaption}
+\item[{}]{opts, }
+\item[{}]{flg}
+\end{DoxyParamCaption}
+)~(((opts) \& (flg)) != 0)}\hypertarget{Utility_8h_abb3f80ef30220b04f769a74e0d8db9fc}{}\label{Utility_8h_abb3f80ef30220b04f769a74e0d8db9fc}
+\index{Utility.\+h@{Utility.\+h}!L\+O\+G\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS@{L\+O\+G\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS}}
+\index{L\+O\+G\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS@{L\+O\+G\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS}!Utility.\+h@{Utility.\+h}}
+\subsubsection[{\texorpdfstring{L\+O\+G\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS}{LOG_CONNECTIONS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+O\+G\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS~(1 $<$$<$ 2)}\hypertarget{Utility_8h_aaacf836166a9bb870debfbe2b78eb830}{}\label{Utility_8h_aaacf836166a9bb870debfbe2b78eb830}
+
+
+Log when a client has connected. 
+
+\index{Utility.\+h@{Utility.\+h}!L\+O\+G\+\_\+\+E\+R\+R\+O\+RS@{L\+O\+G\+\_\+\+E\+R\+R\+O\+RS}}
+\index{L\+O\+G\+\_\+\+E\+R\+R\+O\+RS@{L\+O\+G\+\_\+\+E\+R\+R\+O\+RS}!Utility.\+h@{Utility.\+h}}
+\subsubsection[{\texorpdfstring{L\+O\+G\+\_\+\+E\+R\+R\+O\+RS}{LOG_ERRORS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+O\+G\+\_\+\+E\+R\+R\+O\+RS~(1 $<$$<$ 3)}\hypertarget{Utility_8h_a327a92ff349ce0beadfb946b5714a4b9}{}\label{Utility_8h_a327a92ff349ce0beadfb946b5714a4b9}
+
+
+Log exceptions and errors. 
+
+\index{Utility.\+h@{Utility.\+h}!L\+O\+G\+\_\+\+E\+V\+E\+N\+TS@{L\+O\+G\+\_\+\+E\+V\+E\+N\+TS}}
+\index{L\+O\+G\+\_\+\+E\+V\+E\+N\+TS@{L\+O\+G\+\_\+\+E\+V\+E\+N\+TS}!Utility.\+h@{Utility.\+h}}
+\subsubsection[{\texorpdfstring{L\+O\+G\+\_\+\+E\+V\+E\+N\+TS}{LOG_EVENTS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+O\+G\+\_\+\+E\+V\+E\+N\+TS~(1 $<$$<$ 5)}\hypertarget{Utility_8h_ade2a951f0b4ac908683c37e1066d243c}{}\label{Utility_8h_ade2a951f0b4ac908683c37e1066d243c}
+
+
+Log important events during the protocol. 
+
+\index{Utility.\+h@{Utility.\+h}!L\+O\+G\+\_\+\+N\+O\+NE@{L\+O\+G\+\_\+\+N\+O\+NE}}
+\index{L\+O\+G\+\_\+\+N\+O\+NE@{L\+O\+G\+\_\+\+N\+O\+NE}!Utility.\+h@{Utility.\+h}}
+\subsubsection[{\texorpdfstring{L\+O\+G\+\_\+\+N\+O\+NE}{LOG_NONE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+O\+G\+\_\+\+N\+O\+NE~(1 $<$$<$ 4)}\hypertarget{Utility_8h_a1632479322efa3952798f98177b54471}{}\label{Utility_8h_a1632479322efa3952798f98177b54471}
+
+
+Don\textquotesingle{}t log. 
+
+\index{Utility.\+h@{Utility.\+h}!L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+D\+A\+TA@{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+D\+A\+TA}}
+\index{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+D\+A\+TA@{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+D\+A\+TA}!Utility.\+h@{Utility.\+h}}
+\subsubsection[{\texorpdfstring{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+D\+A\+TA}{LOG_PACKET_DATA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+D\+A\+TA~(1 $<$$<$ 1)}\hypertarget{Utility_8h_a2a2249f3d5db2bba1c25534dd60c2860}{}\label{Utility_8h_a2a2249f3d5db2bba1c25534dd60c2860}
+
+
+Log packet content. 
+
+\index{Utility.\+h@{Utility.\+h}!L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+TS@{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+TS}}
+\index{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+TS@{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+TS}!Utility.\+h@{Utility.\+h}}
+\subsubsection[{\texorpdfstring{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+TS}{LOG_PACKETS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+TS~(1 $<$$<$ 0)}\hypertarget{Utility_8h_a63728bc2bb2c4352090dc48ee65273b1}{}\label{Utility_8h_a63728bc2bb2c4352090dc48ee65273b1}
+
+
+Log basic data about packets, but not the content. 
+
 
 
 \subsection{Function Documentation}
@@ -20,3 +102,31 @@ void \hyperlink{Utility_8h_a83375b89f8b135c348ba5bea0c847da0}{trim} (std\+::stri
 \item[{std\+::string \&}]{str}
 \end{DoxyParamCaption}
 )}\hypertarget{Utility_8h_a83375b89f8b135c348ba5bea0c847da0}{}\label{Utility_8h_a83375b89f8b135c348ba5bea0c847da0}
+
+
+Trims a string of spaces and tabs. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em str} & The target string to be trimmed \\
+\hline
+\end{DoxyParams}
+\index{Utility.\+h@{Utility.\+h}!trim@{trim}}
+\index{trim@{trim}!Utility.\+h@{Utility.\+h}}
+\subsubsection[{\texorpdfstring{trim(std\+::string \&str, std\+::string to\+\_\+remove)}{trim(std::string &str, std::string to_remove)}}]{\setlength{\rightskip}{0pt plus 5cm}void trim (
+\begin{DoxyParamCaption}
+\item[{std\+::string \&}]{str, }
+\item[{std\+::string}]{to\+\_\+remove}
+\end{DoxyParamCaption}
+)}\hypertarget{Utility_8h_aee76a2f00a367cafd01ac7206fb0a7aa}{}\label{Utility_8h_aee76a2f00a367cafd01ac7206fb0a7aa}
+
+
+Trims a string of spaces and tabs and the specified characters in to\+\_\+remove. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em str} & The target string to be trimmed \\
+\hline
+\mbox{\tt in}  & {\em to\+\_\+remove} & Characters to be trimmed from the string ends \\
+\hline
+\end{DoxyParams}

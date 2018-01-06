@@ -7,31 +7,47 @@
 \subsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-std\+::stack$<$ int $>$ \hyperlink{structExecutionContext_a33562118feda5571fe0ba87186670679}{input\+Redir}
+S\+SL $\ast$ \hyperlink{structExecutionContext_a4e07d3987bc1e56f59a36e6363520406}{ssl}
 \item 
-std\+::stack$<$ int $>$ \hyperlink{structExecutionContext_a15af12d7e8146ae1a5f091b7d9919c8c}{output\+Redir}
+std\+::mutex \hyperlink{structExecutionContext_a241cad372197f9880a9af9e93ecd7633}{ssl\+\_\+mutex}
 \item 
-std\+::stack$<$ int $>$ \hyperlink{structExecutionContext_aa5d29389a31755f8a0c1099f7c7768bf}{error\+Redir}
+std\+::stack$<$ int $>$ \hyperlink{structExecutionContext_acd35d0f46c9747f2a429b455bc5ed60d}{input\+\_\+redir}
 \item 
-S\+SL $\ast$ \hyperlink{structExecutionContext_afce3bfa5f05214b9b0d57ac1edb0a0f4}{ssl}
+std\+::stack$<$ int $>$ \hyperlink{structExecutionContext_a3954dde282360db1e3016c3663d78ff5}{output\+\_\+redir}
+\item 
+std\+::stack$<$ int $>$ \hyperlink{structExecutionContext_afde89ad28dc8efe79737ccc45cba7ab4}{error\+\_\+redir}
+\item 
+int \hyperlink{structExecutionContext_aac8fa1ea0b889137efab488cb650cca1}{sv\+\_\+serv} = -\/1
+\item 
+int \hyperlink{structExecutionContext_a14419dd2173223d2e30444ec9d484d92}{sv\+\_\+prog} = -\/1
 \end{DoxyCompactItemize}
 
 
 \subsection{Field Documentation}
-\index{Execution\+Context@{Execution\+Context}!error\+Redir@{error\+Redir}}
-\index{error\+Redir@{error\+Redir}!Execution\+Context@{Execution\+Context}}
-\subsubsection[{\texorpdfstring{error\+Redir}{errorRedir}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::stack$<$int$>$ Execution\+Context\+::error\+Redir}\hypertarget{structExecutionContext_aa5d29389a31755f8a0c1099f7c7768bf}{}\label{structExecutionContext_aa5d29389a31755f8a0c1099f7c7768bf}
-\index{Execution\+Context@{Execution\+Context}!input\+Redir@{input\+Redir}}
-\index{input\+Redir@{input\+Redir}!Execution\+Context@{Execution\+Context}}
-\subsubsection[{\texorpdfstring{input\+Redir}{inputRedir}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::stack$<$int$>$ Execution\+Context\+::input\+Redir}\hypertarget{structExecutionContext_a33562118feda5571fe0ba87186670679}{}\label{structExecutionContext_a33562118feda5571fe0ba87186670679}
-\index{Execution\+Context@{Execution\+Context}!output\+Redir@{output\+Redir}}
-\index{output\+Redir@{output\+Redir}!Execution\+Context@{Execution\+Context}}
-\subsubsection[{\texorpdfstring{output\+Redir}{outputRedir}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::stack$<$int$>$ Execution\+Context\+::output\+Redir}\hypertarget{structExecutionContext_a15af12d7e8146ae1a5f091b7d9919c8c}{}\label{structExecutionContext_a15af12d7e8146ae1a5f091b7d9919c8c}
+\index{Execution\+Context@{Execution\+Context}!error\+\_\+redir@{error\+\_\+redir}}
+\index{error\+\_\+redir@{error\+\_\+redir}!Execution\+Context@{Execution\+Context}}
+\subsubsection[{\texorpdfstring{error\+\_\+redir}{error_redir}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::stack$<$int$>$ Execution\+Context\+::error\+\_\+redir}\hypertarget{structExecutionContext_afde89ad28dc8efe79737ccc45cba7ab4}{}\label{structExecutionContext_afde89ad28dc8efe79737ccc45cba7ab4}
+\index{Execution\+Context@{Execution\+Context}!input\+\_\+redir@{input\+\_\+redir}}
+\index{input\+\_\+redir@{input\+\_\+redir}!Execution\+Context@{Execution\+Context}}
+\subsubsection[{\texorpdfstring{input\+\_\+redir}{input_redir}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::stack$<$int$>$ Execution\+Context\+::input\+\_\+redir}\hypertarget{structExecutionContext_acd35d0f46c9747f2a429b455bc5ed60d}{}\label{structExecutionContext_acd35d0f46c9747f2a429b455bc5ed60d}
+\index{Execution\+Context@{Execution\+Context}!output\+\_\+redir@{output\+\_\+redir}}
+\index{output\+\_\+redir@{output\+\_\+redir}!Execution\+Context@{Execution\+Context}}
+\subsubsection[{\texorpdfstring{output\+\_\+redir}{output_redir}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::stack$<$int$>$ Execution\+Context\+::output\+\_\+redir}\hypertarget{structExecutionContext_a3954dde282360db1e3016c3663d78ff5}{}\label{structExecutionContext_a3954dde282360db1e3016c3663d78ff5}
 \index{Execution\+Context@{Execution\+Context}!ssl@{ssl}}
 \index{ssl@{ssl}!Execution\+Context@{Execution\+Context}}
-\subsubsection[{\texorpdfstring{ssl}{ssl}}]{\setlength{\rightskip}{0pt plus 5cm}S\+SL$\ast$ Execution\+Context\+::ssl}\hypertarget{structExecutionContext_afce3bfa5f05214b9b0d57ac1edb0a0f4}{}\label{structExecutionContext_afce3bfa5f05214b9b0d57ac1edb0a0f4}
+\subsubsection[{\texorpdfstring{ssl}{ssl}}]{\setlength{\rightskip}{0pt plus 5cm}S\+SL $\ast$ Execution\+Context\+::ssl}\hypertarget{structExecutionContext_a4e07d3987bc1e56f59a36e6363520406}{}\label{structExecutionContext_a4e07d3987bc1e56f59a36e6363520406}
+\index{Execution\+Context@{Execution\+Context}!ssl\+\_\+mutex@{ssl\+\_\+mutex}}
+\index{ssl\+\_\+mutex@{ssl\+\_\+mutex}!Execution\+Context@{Execution\+Context}}
+\subsubsection[{\texorpdfstring{ssl\+\_\+mutex}{ssl_mutex}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::mutex Execution\+Context\+::ssl\+\_\+mutex}\hypertarget{structExecutionContext_a241cad372197f9880a9af9e93ecd7633}{}\label{structExecutionContext_a241cad372197f9880a9af9e93ecd7633}
+\index{Execution\+Context@{Execution\+Context}!sv\+\_\+prog@{sv\+\_\+prog}}
+\index{sv\+\_\+prog@{sv\+\_\+prog}!Execution\+Context@{Execution\+Context}}
+\subsubsection[{\texorpdfstring{sv\+\_\+prog}{sv_prog}}]{\setlength{\rightskip}{0pt plus 5cm}int Execution\+Context\+::sv\+\_\+prog = -\/1}\hypertarget{structExecutionContext_a14419dd2173223d2e30444ec9d484d92}{}\label{structExecutionContext_a14419dd2173223d2e30444ec9d484d92}
+\index{Execution\+Context@{Execution\+Context}!sv\+\_\+serv@{sv\+\_\+serv}}
+\index{sv\+\_\+serv@{sv\+\_\+serv}!Execution\+Context@{Execution\+Context}}
+\subsubsection[{\texorpdfstring{sv\+\_\+serv}{sv_serv}}]{\setlength{\rightskip}{0pt plus 5cm}int Execution\+Context\+::sv\+\_\+serv = -\/1}\hypertarget{structExecutionContext_aac8fa1ea0b889137efab488cb650cca1}{}\label{structExecutionContext_aac8fa1ea0b889137efab488cb650cca1}
 
 
-The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
+/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/client/src/\hyperlink{client_8cpp}{client.\+cpp}\item 
 /home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/server/include/\hyperlink{Evaluate_8h}{Evaluate.\+h}\end{DoxyCompactItemize}

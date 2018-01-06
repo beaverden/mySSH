@@ -33,8 +33,6 @@ struct \hyperlink{structLogin__Payload}{Login\+\_\+\+Payload}
 \#define \hyperlink{Packet_8h_ab9445e27830d28f1e288bd223ab95296}{M\+A\+X\+\_\+\+L\+O\+G\+I\+N\+\_\+\+L\+E\+N\+G\+TH}~32
 \item 
 \#define \hyperlink{Packet_8h_a7f264fafe78080f8ea68715854b9bc24}{M\+A\+X\+\_\+\+P\+A\+S\+S\+W\+O\+R\+D\+\_\+\+L\+E\+N\+G\+TH}~100
-\item 
-\#define \hyperlink{Packet_8h_ac80a3592e72fd96b772ee47a7d8e0d0a}{D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}
 \end{DoxyCompactItemize}
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
@@ -53,17 +51,14 @@ enum \hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890}{Packet\+\_\+\+Type}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{Packet_8h_a723198aebc9baad8998255313981e357}{send\+\_\+packet} (S\+SL $\ast$ssl, \hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890}{Packet\+\_\+\+Type} type, void $\ast$data, size\+\_\+t data\+\_\+len)
-\begin{DoxyCompactList}\small\item\em Sends and \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} to the S\+SL socket given. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Sends data in form of a \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} to the S\+SL socket given. \end{DoxyCompactList}\item 
 void \hyperlink{Packet_8h_adaa6274c063dfae816caaf9a68774698}{recv\+\_\+packet} (S\+SL $\ast$ssl, \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} $\ast$read\+\_\+to)
-\item 
+\begin{DoxyCompactList}\small\item\em Recieves a \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} from an S\+SL socket. Reads each part and assembles it into the structure. \end{DoxyCompactList}\item 
 int \hyperlink{Packet_8h_a707a865009d80b22ee19d46a59d81e94}{sha\+\_\+digest} (void $\ast$msg, size\+\_\+t msg\+\_\+len, void $\ast$output)
 \end{DoxyCompactItemize}
 
 
 \subsection{Macro Definition Documentation}
-\index{Packet.\+h@{Packet.\+h}!D\+E\+B\+U\+G\+\_\+\+M\+O\+DE@{D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}}
-\index{D\+E\+B\+U\+G\+\_\+\+M\+O\+DE@{D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}!Packet.\+h@{Packet.\+h}}
-\subsubsection[{\texorpdfstring{D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}{DEBUG_MODE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}\hypertarget{Packet_8h_ac80a3592e72fd96b772ee47a7d8e0d0a}{}\label{Packet_8h_ac80a3592e72fd96b772ee47a7d8e0d0a}
 \index{Packet.\+h@{Packet.\+h}!F\+A\+I\+L\+ED@{F\+A\+I\+L\+ED}}
 \index{F\+A\+I\+L\+ED@{F\+A\+I\+L\+ED}!Packet.\+h@{Packet.\+h}}
 \subsubsection[{\texorpdfstring{F\+A\+I\+L\+ED}{FAILED}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+I\+L\+ED~-\/1}\hypertarget{Packet_8h_a681680feae4df4182d532564c42fa1fc}{}\label{Packet_8h_a681680feae4df4182d532564c42fa1fc}
@@ -111,6 +106,17 @@ P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY\hypertarget{Packet_8h_a307e533851c91d484ac30
 \item[{{\bf S\+S\+H\+\_\+\+Packet} $\ast$}]{read\+\_\+to}
 \end{DoxyParamCaption}
 )}\hypertarget{Packet_8h_adaa6274c063dfae816caaf9a68774698}{}\label{Packet_8h_adaa6274c063dfae816caaf9a68774698}
+
+
+Recieves a \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} from an S\+SL socket. Reads each part and assembles it into the structure. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ssl} & Pointer to initialized and ready for recieving S\+SL structure \\
+\hline
+\mbox{\tt out}  & {\em read\+\_\+to} & Pointer to a \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} where the data will be stored \\
+\hline
+\end{DoxyParams}
 \index{Packet.\+h@{Packet.\+h}!send\+\_\+packet@{send\+\_\+packet}}
 \index{send\+\_\+packet@{send\+\_\+packet}!Packet.\+h@{Packet.\+h}}
 \subsubsection[{\texorpdfstring{send\+\_\+packet(\+S\+S\+L $\ast$ssl, Packet\+\_\+\+Type type, void $\ast$data, size\+\_\+t data\+\_\+len)}{send_packet(SSL *ssl, Packet_Type type, void *data, size_t data_len)}}]{\setlength{\rightskip}{0pt plus 5cm}void send\+\_\+packet (
@@ -123,17 +129,17 @@ P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY\hypertarget{Packet_8h_a307e533851c91d484ac30
 )}\hypertarget{Packet_8h_a723198aebc9baad8998255313981e357}{}\label{Packet_8h_a723198aebc9baad8998255313981e357}
 
 
-Sends and \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} to the S\+SL socket given. 
+Sends data in form of a \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} to the S\+SL socket given. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em ssl} & Pointer to initialized and ready for transmission S\+SL structure \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ssl} & Pointer to initialized and ready for transmission S\+SL structure \\
 \hline
-{\em type} & Type of the packet to be sent \\
+\mbox{\tt in}  & {\em type} & Type of the packet to be sent \\
 \hline
-{\em data} & A pointer to data buffer \\
+\mbox{\tt in}  & {\em data} & A pointer to data buffer \\
 \hline
-{\em data\+\_\+len} & The length of the data buffer \\
+\mbox{\tt in}  & {\em data\+\_\+len} & The length of the data buffer \\
 \hline
 \end{DoxyParams}
 \index{Packet.\+h@{Packet.\+h}!sha\+\_\+digest@{sha\+\_\+digest}}

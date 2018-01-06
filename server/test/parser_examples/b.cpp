@@ -1,6 +1,7 @@
 #include <stdio.h>
 int main()
 {
+	printf("HELLO\n");
 	int i = 0;
 	scanf("%d\n", &i);
 	if (i == 120) { printf("OK\n"); return 0; }

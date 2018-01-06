@@ -12,14 +12,20 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <iostream>
+#include <memory>
 #include <string>
+#include <thread>
+#include <new>
 
 #include "openssl/bio.h"
 #include "openssl/ssl.h"
 #include "openssl/err.h"
+#include <stdexcept>
 
 #define FAILED -1
 #define LISTEN_PORT 2018
+
+struct ExecutionContext;
 
 class Server
 {
@@ -35,14 +41,14 @@ class Server
         static void Delete();
         void Destroy();
 
-        void InitializeListeningSocket();
+        void InitializeSockets();
         void InitializeSecurity();
         void Listen();
 
-        int HandleInput(SSL* ssl, SSH_Packet* packet);
         void HandleAuth(SSL* ssl);
-
 };
+
+
 
 
 #endif // SERVER_H

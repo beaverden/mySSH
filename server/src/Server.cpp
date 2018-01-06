@@ -1,5 +1,6 @@
 #include "../include/Server.h"
 
+
 Server* Server::instance = nullptr;
 
 Server::Server()
@@ -42,7 +43,7 @@ void Server::InitializeSecurity()
     }
 }
 
-void Server::InitializeListeningSocket()
+void Server::InitializeSockets()
 {
     int fd = socket(AF_INET, SOCK_STREAM, 0);
     int reuse = true;
@@ -65,6 +66,102 @@ void Server::InitializeListeningSocket()
     this->listening_socket = fd;
 }
 
+void writing_routine(std::shared_ptr<ExecutionContext> ctx)
+{
+    while (true)
+    {      
+        int has_read = 0;
+        int result = 0;
+        ioctl(ctx->sv_serv, FIONREAD, &has_read);
+        if (has_read > 0)
+        {
+            ctx->ssl_mutex.lock();
+            char* buff = new char[has_read];
+            result = read(ctx->sv_serv, buff, has_read);
+            // TODO shutdown exceptions
+            send_packet(ctx->ssl, PACKET_RESPONSE, buff, result);
+            ctx->ssl_mutex.unlock();
+            delete buff;
+        }
+    }
+}
+
+void reading_routine(std::shared_ptr<ExecutionContext> ctx)
+{
+    // TODO max frame size
+    int fd = SSL_get_fd(ctx->ssl);
+    SSH_Packet packet;
+    while (true)
+    {
+        int has_read = 0;
+        int result = 0;
+        ioctl(fd, FIONREAD, &has_read);
+        if (has_read > 0)
+        {
+            ctx->ssl_mutex.lock();
+            recv_packet(ctx->ssl, &packet);
+            result = write(ctx->sv_serv, packet.payload.content, packet.payload.content_length);
+            ctx->ssl_mutex.unlock();
+        }
+    }  
+}
+
+void shell_routine(std::shared_ptr<ExecutionContext> ctx)
+{
+    while (true)
+    {
+        int has_read;
+        ioctl(ctx->sv_prog, FIONREAD, &has_read);
+        if (has_read > 0)
+        {
+            char* buff = new char[has_read + 1]();
+            has_read = read(ctx->sv_prog, buff, has_read);
+            std::string comm = buff;
+            delete buff;
+            Evaluate(comm, ctx);
+            
+        }
+    }           
+}
+
+void server_routine(SSL* ssl)
+{
+    try
+    {
+        auto execContext = std::make_shared<ExecutionContext>();
+        if (execContext == nullptr)
+        {
+            throw std::bad_alloc();
+        }
+
+        int sockets[2];
+        if (socketpair(AF_LOCAL, SOCK_STREAM, 0, sockets) == FAILED)
+        {
+            throw ServerException("Unable initialize parent-child sockets");
+        }
+        execContext->ssl = ssl;
+        execContext->sv_prog = sockets[0];
+        execContext->sv_serv = sockets[1];
+        execContext->input_redir.push(execContext->sv_prog);
+        execContext->output_redir.push(execContext->sv_prog);
+        execContext->error_redir.push(execContext->sv_prog);
+
+        
+        std::thread t1(reading_routine, execContext);
+        std::thread t2(writing_routine, execContext);
+        std::thread shell(shell_routine, execContext);
+        t1.join();
+        t2.join();  
+        shell.join();
+    }
+    catch (...)
+    {
+
+    }
+}
+
+
+
 void Server::Listen()
 {
     int client = 0;
@@ -79,42 +176,13 @@ void Server::Listen()
             close(client);
             continue;
         }
-        sleep(3);
-    
-        while (true) {
-            char buff[100] = {0};
-            read(STDIN_FILENO, buff, 100);
-            SSL_write(ssl, buff, strlen(buff));
-        };
-        printf("Got connection!\n");
-        try
-        {
-            HandleAuth(ssl);
-        }
-        catch (PacketIOException& ex)
-        {
-            printf("Reading error while authenticating: %s\n", ex.what());
-        }
 
-        while (true)
-        {
-            char ready[] = "READY";
-            send_packet(ssl, PACKET_READY, ready, strlen(ready));
-            SSH_Packet packet;
-            recv_packet(ssl, &packet);
-            switch (packet.packet_type)
-            {
-                case PACKET_QUERY:
-                {
-                    HandleInput(ssl, &packet);
-                    break;
-                }
-            }
-        }
-
-
+        Logger::log(LOG_CONNECTIONS, "Client connected");
+        std::thread srv_thread(server_routine, ssl);
+        srv_thread.join();
         SSL_free(ssl);
         close(client);
+        Logger::log(LOG_EVENTS, "Client disconnected");
     }    
 }
 
@@ -162,13 +230,4 @@ void Server::HandleAuth(SSL* ssl)
     payload->login[payload->login_length] = 0;
     payload->password[payload->password_length] = 0;
     printf("Got credentials: %s:%s\n", payload->login, payload->password);
-}
-
-int Server::HandleInput(SSL* ssl, SSH_Packet* packet)
-{
-    std::string comm = (char*)packet->payload.content;
-    std::cout << "Got command: " << comm << std::endl;
-    // TODO take care of exceptions
-    Evaluate(comm, ssl);
-    return 1;   
 }

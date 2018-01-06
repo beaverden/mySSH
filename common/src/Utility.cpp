@@ -1,4 +1,5 @@
 #include "../include/Utility.h"
+#include <iostream>
 
 void trim(std::string& str)
 {
@@ -12,15 +13,28 @@ void trim(std::string& str)
     }
 }
 
-
-std::unique_ptr<Lock> Lock::m_instance;
-std::once_flag Lock::m_onceFlag;
- 
-Lock& Lock::GetInstance()
+void trim(std::string& str, std::string to_remove)
 {
-    std::call_once(m_onceFlag,
-        [] {
-            m_instance.reset(new Lock);
-    });
-    return *m_instance.get();
+    std::cout << to_remove;
+    while (!str.empty())
+    {
+        if (std::isspace(str[0]) ||  to_remove.find(str[0]) != std::string::npos)
+        {
+            str.erase(0, 1);
+        } 
+        else break;
+    }
+    
+    while (!str.empty())
+    {
+        if (std::isspace(str.back()) || to_remove.find(str.back()) != std::string::npos) 
+        {
+            str.erase(str.length()-1, 1);
+        }
+        else break;
+    }
 }
+
+unsigned int    Logger::log_options = 0;
+std::string     Logger::log_path = "log.txt";
+std::mutex      Logger::log_mutex;

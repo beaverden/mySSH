@@ -18,7 +18,7 @@
 #define FAILED              -1
 #define MAX_LOGIN_LENGTH    32
 #define MAX_PASSWORD_LENGTH 100
-#define DEBUG_MODE
+//#define DEBUG_MODE
 
 /**
  * \brief Type of the sent or recieved packet. All the packets must have a Packet_Type.
@@ -77,14 +77,22 @@ struct Login_Payload
 };
 
 /**
- * \brief Sends and SSH_Packet to the SSL socket given
+ * \brief Sends data in form of a SSH_Packet to the SSL socket given
  * 
- * \param ssl Pointer to initialized and ready for transmission SSL structure
- * \param type Type of the packet to be sent
- * \param data A pointer to data buffer
- * \param data_len The length of the data buffer
+ * \param[in] ssl Pointer to initialized and ready for transmission SSL structure
+ * \param[in] type Type of the packet to be sent
+ * \param[in] data A pointer to data buffer
+ * \param[in] data_len The length of the data buffer
  */
 void send_packet(SSL* ssl, Packet_Type type, void* data, size_t data_len);
+
+/**
+ * \brief Recieves a SSH_Packet from an SSL socket. Reads each part and 
+ * assembles it into the structure
+ * 
+ * \param[in] ssl Pointer to initialized and ready for recieving SSL structure
+ * \param[out] read_to Pointer to a SSH_Packet where the data will be stored
+ */
 void recv_packet(SSL* ssl, SSH_Packet* read_to);
 
 int sha_digest(void* msg, size_t msg_len, void* output);

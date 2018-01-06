@@ -9,13 +9,13 @@
 \item 
 void \hyperlink{classServer_ab11507d2655987863e93968a9c30199a}{Destroy} ()
 \item 
-void \hyperlink{classServer_a4aad4d11836cc44409fcc7f9806fe9d4}{Initialize\+Listening\+Socket} ()
+void \hyperlink{classServer_a3a9c64284bac50fe3aef5f30c70ddac6}{Initialize\+Sockets} ()
 \item 
 void \hyperlink{classServer_acd6ee029b2df707ad9ff7d647b059d00}{Initialize\+Security} ()
 \item 
 void \hyperlink{classServer_afe47ec998069be828fb082e92836c05b}{Listen} ()
 \item 
-int \hyperlink{classServer_a159ae77a2bbc4593e0aea34491be8110}{Handle\+Input} (S\+SL $\ast$ssl, \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} $\ast$packet)
+int \hyperlink{classServer_ab0df50e73f6737bb13869f725e8634c8}{Handle\+Input} (std\+::shared\+\_\+ptr$<$ \hyperlink{structExecutionContext}{Execution\+Context} $>$ ctx, \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} $\ast$packet)
 \item 
 void \hyperlink{classServer_a88e6d1c3cb476d5c7627e9365b05da9a}{Handle\+Auth} (S\+SL $\ast$ssl)
 \end{DoxyCompactItemize}
@@ -59,19 +59,12 @@ static void \hyperlink{classServer_a3ca5015cd70a3f986c0045da3c9dc8ae}{Delete} ()
 )}\hypertarget{classServer_a88e6d1c3cb476d5c7627e9365b05da9a}{}\label{classServer_a88e6d1c3cb476d5c7627e9365b05da9a}
 \index{Server@{Server}!Handle\+Input@{Handle\+Input}}
 \index{Handle\+Input@{Handle\+Input}!Server@{Server}}
-\subsubsection[{\texorpdfstring{Handle\+Input(\+S\+S\+L $\ast$ssl, S\+S\+H\+\_\+\+Packet $\ast$packet)}{HandleInput(SSL *ssl, SSH_Packet *packet)}}]{\setlength{\rightskip}{0pt plus 5cm}int Server\+::\+Handle\+Input (
+\subsubsection[{\texorpdfstring{Handle\+Input(std\+::shared\+\_\+ptr$<$ Execution\+Context $>$ ctx, S\+S\+H\+\_\+\+Packet $\ast$packet)}{HandleInput(std::shared_ptr< ExecutionContext > ctx, SSH_Packet *packet)}}]{\setlength{\rightskip}{0pt plus 5cm}int Server\+::\+Handle\+Input (
 \begin{DoxyParamCaption}
-\item[{S\+SL $\ast$}]{ssl, }
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Execution\+Context} $>$}]{ctx, }
 \item[{{\bf S\+S\+H\+\_\+\+Packet} $\ast$}]{packet}
 \end{DoxyParamCaption}
-)}\hypertarget{classServer_a159ae77a2bbc4593e0aea34491be8110}{}\label{classServer_a159ae77a2bbc4593e0aea34491be8110}
-\index{Server@{Server}!Initialize\+Listening\+Socket@{Initialize\+Listening\+Socket}}
-\index{Initialize\+Listening\+Socket@{Initialize\+Listening\+Socket}!Server@{Server}}
-\subsubsection[{\texorpdfstring{Initialize\+Listening\+Socket()}{InitializeListeningSocket()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::\+Initialize\+Listening\+Socket (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{classServer_a4aad4d11836cc44409fcc7f9806fe9d4}{}\label{classServer_a4aad4d11836cc44409fcc7f9806fe9d4}
+)}\hypertarget{classServer_ab0df50e73f6737bb13869f725e8634c8}{}\label{classServer_ab0df50e73f6737bb13869f725e8634c8}
 \index{Server@{Server}!Initialize\+Security@{Initialize\+Security}}
 \index{Initialize\+Security@{Initialize\+Security}!Server@{Server}}
 \subsubsection[{\texorpdfstring{Initialize\+Security()}{InitializeSecurity()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::\+Initialize\+Security (
@@ -79,6 +72,13 @@ static void \hyperlink{classServer_a3ca5015cd70a3f986c0045da3c9dc8ae}{Delete} ()
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classServer_acd6ee029b2df707ad9ff7d647b059d00}{}\label{classServer_acd6ee029b2df707ad9ff7d647b059d00}
+\index{Server@{Server}!Initialize\+Sockets@{Initialize\+Sockets}}
+\index{Initialize\+Sockets@{Initialize\+Sockets}!Server@{Server}}
+\subsubsection[{\texorpdfstring{Initialize\+Sockets()}{InitializeSockets()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::\+Initialize\+Sockets (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classServer_a3a9c64284bac50fe3aef5f30c70ddac6}{}\label{classServer_a3a9c64284bac50fe3aef5f30c70ddac6}
 \index{Server@{Server}!Listen@{Listen}}
 \index{Listen@{Listen}!Server@{Server}}
 \subsubsection[{\texorpdfstring{Listen()}{Listen()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::\+Listen (

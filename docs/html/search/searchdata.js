@@ -7,7 +7,7 @@ var indexSectionsWithContent =
   4: "ceiloprst",
   5: "op",
   6: "efilopr",
-  7: "dflmp"
+  7: "cdflmp"
 };
 
 var indexSectionNames =

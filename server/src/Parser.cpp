@@ -28,7 +28,7 @@ Parser::Parser()
 }
 
 
-Parser* Parser::Get()
+Parser* Parser::getInstance()
 {
     if (instance == nullptr)
     {
@@ -37,7 +37,7 @@ Parser* Parser::Get()
     return instance;
 }
 
-bool Parser::IsOperator(std::string& original, unsigned long position, Token* foundOp) {
+bool Parser::isOperator(std::string& original, unsigned long position, Token* foundOp) {
     for (auto op : operators)
     {
         unsigned long sz = op.content.length();
@@ -52,7 +52,7 @@ bool Parser::IsOperator(std::string& original, unsigned long position, Token* fo
                     foundOp->position = position;
                     foundOp->type = op.type;
                     foundOp->precedence = op.precedence;
-                    foundOp->is_operation = true;
+                    foundOp->isOperation = true;
                 }
                 return true;
             }
@@ -62,7 +62,7 @@ bool Parser::IsOperator(std::string& original, unsigned long position, Token* fo
 }
 
 
-void Parser::Tokenize(std::string command, std::vector<Token> &tokens)
+void Parser::tokenizeCommand(std::string command, std::vector<Token> &tokens)
 {
     tokens.clear();
     trim(command);
@@ -93,7 +93,7 @@ void Parser::Tokenize(std::string command, std::vector<Token> &tokens)
                 continue;
             }
             /* Found a operator next, save the current token */
-            if (IsOperator(command, currentPosition, nullptr) || c == ')' || c == '(')
+            if (isOperator(command, currentPosition, nullptr) || c == ')' || c == '(')
             {
                 trim(currentToken);
                 if (!currentToken.empty())
@@ -110,7 +110,7 @@ void Parser::Tokenize(std::string command, std::vector<Token> &tokens)
             }
 
             /* Process other tokens */
-            if (IsOperator(command, currentPosition, &t))
+            if (isOperator(command, currentPosition, &t))
             {
                 currentPosition += t.content.length();
                 tokens.push_back(t);
@@ -120,7 +120,7 @@ void Parser::Tokenize(std::string command, std::vector<Token> &tokens)
                 t.content = ")";
                 t.position = currentPosition;
                 t.type = RIGHT_BRACKET;
-                t.is_operation = false;
+                t.isOperation = false;
                 currentPosition++;
                 tokens.push_back(t);
             }
@@ -129,7 +129,7 @@ void Parser::Tokenize(std::string command, std::vector<Token> &tokens)
                 t.content = "(";
                 t.position = currentPosition;
                 t.type = LEFT_BRACKET;
-                t.is_operation = false;
+                t.isOperation = false;
                 currentPosition++;
                 tokens.push_back(t);
             }
@@ -156,10 +156,10 @@ void Parser::Tokenize(std::string command, std::vector<Token> &tokens)
     }
 }
 
-void Parser::Verify(std::vector<Token> &tokens)
+void Parser::verifyTokens(std::vector<Token> &tokens)
 {
     for (unsigned long i = 0; i < tokens.size() - 1; i++) {
-        if (tokens[i].is_operation && tokens[i + 1].is_operation) {
+        if (tokens[i].isOperation && tokens[i + 1].isOperation) {
             throw VerificationException(
                     tokens[i].position,
                     std::string("Two consecutive operators ")
@@ -177,14 +177,14 @@ void Parser::Verify(std::vector<Token> &tokens)
     }
 }
 
-std::shared_ptr<SyntaxTree> Parser::GetSyntaxTree(std::vector<Token> &tokens) {
+std::shared_ptr<SyntaxTree> Parser::getSyntaxTree(std::vector<Token> &tokens) {
     std::queue <Token> shTokens;
     std::stack <Token> shOperators;
     // Shunting Yard implementation + Reverse Polish notation parsing
     for (Token t : tokens)
     {
         trim(t.content);
-        if (t.is_operation)
+        if (t.isOperation)
         {
             while (!shOperators.empty())
             {
@@ -302,7 +302,7 @@ std::shared_ptr<SyntaxTree> Parser::GetSyntaxTree(std::vector<Token> &tokens) {
     return std::move(trees.top());
 }
 
-std::vector<std::string> Parser::TokenizeExecute(std::string s, std::string delim)
+std::vector<std::string> Parser::tokenizeExecute(std::string s, std::string delim)
 {
     std::vector<std::string> v;
     trim(s);
@@ -322,11 +322,11 @@ std::vector<std::string> Parser::TokenizeExecute(std::string s, std::string deli
 }
 
 
-std::shared_ptr<SyntaxTree> Parser::Parse(std::string command)
+std::shared_ptr<SyntaxTree> Parser::parseCommand(std::string command)
 {
     std::vector<Token> tokens;
-    Tokenize(command, tokens);
-    Verify(tokens);
-    std::shared_ptr<SyntaxTree> ptr = GetSyntaxTree(tokens);
+    tokenizeCommand(command, tokens);
+    verifyTokens(tokens);
+    std::shared_ptr<SyntaxTree> ptr = getSyntaxTree(tokens);
     return ptr;
 }

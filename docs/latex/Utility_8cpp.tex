@@ -1,13 +1,16 @@
 \hypertarget{Utility_8cpp}{}\section{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/src/\+Utility.cpp File Reference}
 \label{Utility_8cpp}\index{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/src/\+Utility.\+cpp@{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/src/\+Utility.\+cpp}}
 {\ttfamily \#include \char`\"{}../include/\+Utility.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
 Include dependency graph for Utility.\+cpp\+:
 % FIG 0
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{Utility_8cpp_a83375b89f8b135c348ba5bea0c847da0}{trim} (std\+::string \&str)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Trims a string of spaces and tabs. \end{DoxyCompactList}\item 
+void \hyperlink{Utility_8cpp_aee76a2f00a367cafd01ac7206fb0a7aa}{trim} (std\+::string \&str, std\+::string to\+\_\+remove)
+\begin{DoxyCompactList}\small\item\em Trims a string of spaces and tabs and the specified characters in to\+\_\+remove. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
@@ -18,3 +21,31 @@ void \hyperlink{Utility_8cpp_a83375b89f8b135c348ba5bea0c847da0}{trim} (std\+::st
 \item[{std\+::string \&}]{str}
 \end{DoxyParamCaption}
 )}\hypertarget{Utility_8cpp_a83375b89f8b135c348ba5bea0c847da0}{}\label{Utility_8cpp_a83375b89f8b135c348ba5bea0c847da0}
+
+
+Trims a string of spaces and tabs. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em str} & The target string to be trimmed \\
+\hline
+\end{DoxyParams}
+\index{Utility.\+cpp@{Utility.\+cpp}!trim@{trim}}
+\index{trim@{trim}!Utility.\+cpp@{Utility.\+cpp}}
+\subsubsection[{\texorpdfstring{trim(std\+::string \&str, std\+::string to\+\_\+remove)}{trim(std::string &str, std::string to_remove)}}]{\setlength{\rightskip}{0pt plus 5cm}void trim (
+\begin{DoxyParamCaption}
+\item[{std\+::string \&}]{str, }
+\item[{std\+::string}]{to\+\_\+remove}
+\end{DoxyParamCaption}
+)}\hypertarget{Utility_8cpp_aee76a2f00a367cafd01ac7206fb0a7aa}{}\label{Utility_8cpp_aee76a2f00a367cafd01ac7206fb0a7aa}
+
+
+Trims a string of spaces and tabs and the specified characters in to\+\_\+remove. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em str} & The target string to be trimmed \\
+\hline
+\mbox{\tt in}  & {\em to\+\_\+remove} & Characters to be trimmed from the string ends \\
+\hline
+\end{DoxyParams}

@@ -98,14 +98,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab11507d2655987863e93968a9c30199a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#ab11507d2655987863e93968a9c30199a">Destroy</a> ()</td></tr>
 <tr class="separator:ab11507d2655987863e93968a9c30199a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4aad4d11836cc44409fcc7f9806fe9d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a4aad4d11836cc44409fcc7f9806fe9d4">InitializeListeningSocket</a> ()</td></tr>
-<tr class="separator:a4aad4d11836cc44409fcc7f9806fe9d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a9c64284bac50fe3aef5f30c70ddac6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a3a9c64284bac50fe3aef5f30c70ddac6">InitializeSockets</a> ()</td></tr>
+<tr class="separator:a3a9c64284bac50fe3aef5f30c70ddac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd6ee029b2df707ad9ff7d647b059d00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#acd6ee029b2df707ad9ff7d647b059d00">InitializeSecurity</a> ()</td></tr>
 <tr class="separator:acd6ee029b2df707ad9ff7d647b059d00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe47ec998069be828fb082e92836c05b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#afe47ec998069be828fb082e92836c05b">Listen</a> ()</td></tr>
 <tr class="separator:afe47ec998069be828fb082e92836c05b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a159ae77a2bbc4593e0aea34491be8110"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a159ae77a2bbc4593e0aea34491be8110">HandleInput</a> (SSL *ssl, <a class="el" href="structSSH__Packet.html">SSH_Packet</a> *packet)</td></tr>
-<tr class="separator:a159ae77a2bbc4593e0aea34491be8110"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0df50e73f6737bb13869f725e8634c8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#ab0df50e73f6737bb13869f725e8634c8">HandleInput</a> (std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; ctx, <a class="el" href="structSSH__Packet.html">SSH_Packet</a> *packet)</td></tr>
+<tr class="separator:ab0df50e73f6737bb13869f725e8634c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88e6d1c3cb476d5c7627e9365b05da9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a88e6d1c3cb476d5c7627e9365b05da9a">HandleAuth</a> (SSL *ssl)</td></tr>
 <tr class="separator:a88e6d1c3cb476d5c7627e9365b05da9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -194,15 +194,15 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a159ae77a2bbc4593e0aea34491be8110"></a>
+<a class="anchor" id="ab0df50e73f6737bb13869f725e8634c8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int Server::HandleInput </td>
           <td>(</td>
-          <td class="paramtype">SSL *&#160;</td>
-          <td class="paramname"><em>ssl</em>, </td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt;&#160;</td>
+          <td class="paramname"><em>ctx</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -220,12 +220,12 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4aad4d11836cc44409fcc7f9806fe9d4"></a>
+<a class="anchor" id="acd6ee029b2df707ad9ff7d647b059d00"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Server::InitializeListeningSocket </td>
+          <td class="memname">void Server::InitializeSecurity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -235,12 +235,12 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="acd6ee029b2df707ad9ff7d647b059d00"></a>
+<a class="anchor" id="a3a9c64284bac50fe3aef5f30c70ddac6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Server::InitializeSecurity </td>
+          <td class="memname">void Server::InitializeSockets </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>

@@ -45,7 +45,7 @@ struct Token
     std::string     content;            ///< The actual string content of the token
     unsigned long   position;           ///< The position in the input string where it was found
     int             precedence = -1;    ///< "Mathematical" precedence for Shunting Yard algorithm
-    bool            is_operation = false;
+    bool            isOperation = false;
 };
 
 /**
@@ -54,10 +54,10 @@ struct Token
 struct SyntaxTree
 {
     SyntaxTree() {};
-    OperationType   type;
-    std::string     content;
-    std::shared_ptr<SyntaxTree> left = nullptr;
-    std::shared_ptr<SyntaxTree> right = nullptr;
+    OperationType                   type;
+    std::string                     content;
+    std::shared_ptr<SyntaxTree>     left = nullptr;
+    std::shared_ptr<SyntaxTree>     right = nullptr;
 };
 
 /**
@@ -89,7 +89,7 @@ public:
      * \param[in] command The complex query given by the user
      * \return A pointer to the AST root node of the respective command
      */
-    std::shared_ptr<SyntaxTree> Parse(
+    std::shared_ptr<SyntaxTree> parseCommand(
         std::string command
     );
 
@@ -102,7 +102,7 @@ public:
      * \param command A executable with arguments
      * \param delim Characters that will be used as argument delimiters
      */
-    std::vector<std::string> TokenizeExecute(
+    std::vector<std::string> tokenizeExecute(
         std::string command, 
         std::string delim
     );
@@ -113,7 +113,7 @@ public:
      * Allocates a instance if it was not yet created and returns a pointer to it
      * \return A pointer to a singleton instance of the class
      */
-    static Parser* Get();
+    static Parser* getInstance();
 
 private:
 
@@ -128,7 +128,7 @@ private:
      * Might throw:
      *      ParserException
      */
-    std::shared_ptr<SyntaxTree> GetSyntaxTree(
+    std::shared_ptr<SyntaxTree> getSyntaxTree(
         std::vector<Token> &tokens
     );
 
@@ -136,7 +136,7 @@ private:
      * Returns true if the string at the given position is an operator
      * &&, ||, (, ), |, ;, >, <, 2>>
      */
-    bool IsOperator(
+    bool isOperator(
         std::string& original, 
         unsigned long position, 
         Token* foundOp = nullptr
@@ -148,7 +148,7 @@ private:
      * Might throw:
      *      ParserException
      */
-    void Tokenize(
+    void tokenizeCommand(
         std::string command, 
         std::vector<Token>& tokens
     );
@@ -160,7 +160,7 @@ private:
      * Might throw:
      *      VerificationException
      */
-    void Verify(
+    void verifyTokens(
         std::vector<Token> &tokens
     );
 

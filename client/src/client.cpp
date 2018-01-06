@@ -29,6 +29,13 @@ using namespace std;
 #define PORT 2018
 #define LOCAL_IP "127.0.0.1"
 
+
+struct ExecutionContext
+{
+    SSL* ssl;
+    std::mutex ssl_mutex;
+};
+
 int create_socket()
 {
     int fd = socket(AF_INET, SOCK_STREAM, 0);
@@ -79,57 +86,43 @@ void HandleCommand(SSL* ssl)
 
 
 
-
-
-
-void writing_routine(SSL* ssl)
+void writing_routine(std::shared_ptr<ExecutionContext> ctx)
 {
-    int fd = SSL_get_fd(ssl);
-    char buffer[1024] = {0};
     while (true)
-    {
-        //printf("[Write] waiting for lock\n");
-        Lock::GetInstance().Set();
-        //printf("[Write] got lock\n");
-        int result = 1;
-        while (result > 0)
+    {      
+        int has_read = 0;
+        int result = 0;
+        ioctl(STDIN_FILENO, FIONREAD, &has_read);
+        if (has_read > 0)
         {
-            ioctl(STDIN_FILENO, FIONREAD, &result);
-            if (result <= 0) break;
-            result = read(STDIN_FILENO, buffer, 1024);
-            if (result <= 0) break;
-            result = SSL_write(ssl, buffer, result);
-            if (result <= 0) break;
-            //printf("[Write] wrote %d bytes\n", result);
+            ctx->ssl_mutex.lock();
+            char* buff = new char[has_read];
+            result = read(STDIN_FILENO, buff, has_read);
+            send_packet(ctx->ssl, PACKET_RESPONSE, buff, result);
+            ctx->ssl_mutex.unlock();
+            delete buff;
         }
-        Lock::GetInstance().Reset();
-        //printf("[Write] lock released\n");
     }
 }
 
-void reading_routine(SSL* ssl)
+void reading_routine(std::shared_ptr<ExecutionContext> ctx)
 {
     // TODO max frame size
-    int fd = SSL_get_fd(ssl);
-    char buffer[1024] = {0};
+    int fd = SSL_get_fd(ctx->ssl);
+    SSH_Packet packet;
     while (true)
     {
-        //printf("[Read] waiting for lock\n");
-        Lock::GetInstance().Set();
-        //printf("[Read] got lock\n");
-        int result = 1;
-        while (result > 0)
+        
+        int has_read = 0;
+        int result = 0;
+        ioctl(fd, FIONREAD, &has_read);
+        if (has_read > 0)
         {
-            ioctl(fd, FIONREAD, &result);
-            if (result == 0) break;
-            result = SSL_read(ssl, buffer, 1024);
-            if (result <= 0) break;
-            result = write(STDOUT_FILENO, buffer, result);
-            if (result <= 0) break;
-            //printf("[Read] read %d bytes\n", result);
+            ctx->ssl_mutex.lock();
+            recv_packet(ctx->ssl, &packet);
+            result = write(STDOUT_FILENO, &packet, result);
+            ctx->ssl_mutex.unlock();
         }
-        Lock::GetInstance().Reset();
-        //printf("[Read] lock released\n");
     }  
 }
 
@@ -160,9 +153,11 @@ int main(int argc, char* argv[]) {
         printf("Failed to connect to server\n");
         return -1;
     }
-
-    std::thread t1(reading_routine, ssl);
-    std::thread t2(writing_routine, ssl);
+    std::shared_ptr<ExecutionContext> ctx = make_shared<ExecutionContext>();
+    ctx->ssl = ssl;
+    //HandleAuth(ssl);
+    std::thread t1(reading_routine, ctx);
+    std::thread t2(writing_routine, ctx);
 
     t1.join();
     t2.join();
