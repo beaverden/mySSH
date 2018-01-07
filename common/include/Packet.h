@@ -32,7 +32,9 @@ enum Packet_Type
     PACKET_REQUEST,         ///< A request from the Client or from the Server
     PACKET_AUTH_REQUEST,    ///< Authentication request from the Server. Client must provide credentials
     PACKET_AUTH_RESPONSE,   ///< Authentication response from the Client. Server must check credentials
-    PACKET_READY            ///< Notification from the Server that it is ready for another complex command
+    PACKET_READY,           ///< Notification from the Server that it is ready for another complex command
+    PACKET_ERROR,           ///< Notification about an error from the server
+    PACKET_TERMINATE        ///< Signal from server that it wants to terminate the connection
 };
 
 /**

@@ -24,13 +24,14 @@
 #include <string.h>
 #include <thread>
 #include <mutex>
-using namespace std;
 
 
 struct ExecutionContext
 {
     SSL* ssl;
     std::mutex ssl_mutex;
+
+    bool shouldTerminate = false;
 };
 
 int create_socket(char* _ip, char* _port)
@@ -39,7 +40,7 @@ int create_socket(char* _ip, char* _port)
     int port = atoi(_port);
     if (port == 0)
     {
-        perror("Invalid port conversion");
+        printf("Invalid port conversion");
         return -1;
     } 
 
@@ -53,7 +54,7 @@ int create_socket(char* _ip, char* _port)
     int resultfd = connect(fd, (struct sockaddr*)&addr_in, sizeof(addr_in));
     if (resultfd < 0)
     {
-        perror("Failed to connect\n");
+        printf("Failed to connect\n");
         return -1;
     }
     printf("Connected!\n");
@@ -94,6 +95,7 @@ void writing_routine(std::shared_ptr<ExecutionContext> ctx)
 {
     while (true)
     {      
+        if (ctx->shouldTerminate) return;
         int has_read = 0;
         int result = 0;
         ioctl(STDIN_FILENO, FIONREAD, &has_read);
@@ -116,6 +118,7 @@ void reading_routine(std::shared_ptr<ExecutionContext> ctx)
     SSH_Packet packet;
     while (true)
     {
+        if (ctx->shouldTerminate) return;
         int has_read = 0;
         int result = 0;
         ioctl(fd, FIONREAD, &has_read);
@@ -123,6 +126,11 @@ void reading_routine(std::shared_ptr<ExecutionContext> ctx)
         {
             ctx->ssl_mutex.lock();
             recv_packet(ctx->ssl, &packet);
+            if (packet.packet_type == PACKET_TERMINATE)
+            {
+                ctx->shouldTerminate = true;
+                return;
+            }
             result = write(STDOUT_FILENO, packet.payload.content, packet.payload.content_length);
             ctx->ssl_mutex.unlock();
         }
@@ -157,7 +165,7 @@ int main(int argc, char* argv[]) {
         printf("Failed to connect to server\n");
         return -1;
     }
-    std::shared_ptr<ExecutionContext> ctx = make_shared<ExecutionContext>();
+    std::shared_ptr<ExecutionContext> ctx = std::make_shared<ExecutionContext>();
     ctx->ssl = ssl;
     //HandleAuth(ssl);
     std::thread t1(reading_routine, ctx);
@@ -165,49 +173,9 @@ int main(int argc, char* argv[]) {
 
     t1.join();
     t2.join();
-   /*
-    SSH_Packet packet;
-    try
-    {
-        recv_packet(ssl, &packet);
-        HandleAuth(ssl);
-    }
-    catch (PacketIOException& ex)
-    {
-        printf("Packer reading error: %s\nRetrying...\n", ex.what());
-        return -1;
-    }
-    catch (ShutdownException& ex)
-    {
-        printf("Shutdown exception: %s\n", ex.what());
-    }
-
-    while (true)
-    {
-        recv_packet(ssl, &packet);
-        switch (packet.packet_type)
-        {
-            case PACKET_AUTH_REQUEST:
-            {
-                HandleAuth(ssl);
-                break;
-            }
-            case PACKET_RESPONSE:
-            {
-                HandleResponse(ssl, &packet);
-                break;
-            }
-            case PACKET_READY:
-            {
-                HandleCommand(ssl);
-                break;
-            }
-        }
-    }
 
     SSL_free(ssl);
     close(sock);
     SSL_CTX_free(context);  
-    */
     return 0;
 }

@@ -26,7 +26,11 @@ int Execute(
     std::vector<std::string> tokens = Parser::getInstance()->tokenizeExecute(command, " ");
     if (tokens.size() > MAX_ARGUMENTS)
     {
-        throw EvaluationException("Too many arguments in command [%30s...]", command.c_str());
+        throw EvaluationException("Too many arguments in command [%.30s...]", command.c_str());
+    }
+    if (tokens[0] == "exit")
+    {
+        throw ExitException("Exit called.");
     }
     int pid;
     if ((pid = fork()) != -1)
@@ -50,7 +54,7 @@ int Execute(
                 strings[i] = strdup(tokens[i].c_str());
             }
             execvp(tokens[0].c_str(), strings);
-            throw EvaluationException("Unable to run execvp on command [%s]", tokens[0].c_str());
+            throw EvaluationException("Unable to run command [%.30s]", tokens[0].c_str());
         }
         else
         {
@@ -61,12 +65,14 @@ int Execute(
     }
     else
     {
-        throw EvaluationException("Cannot execute fork on command [%30s...]!", command.c_str());
+        throw EvaluationException("Cannot execute fork on command [%.30s]!", command.c_str());
     }
 }
 
 void Evaluate(std::string command, std::shared_ptr<ExecutionContext> ctx)
 {
+    trim(command, "\t\n\r ");
+    if (command.length() == 0) return;
     Logger::log(LOG_EVAL, "Parsing: %s", command.c_str());
     std::shared_ptr<SyntaxTree> root;
     root = Parser::getInstance()->parseCommand(command);

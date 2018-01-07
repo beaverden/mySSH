@@ -1,141 +1,52 @@
-[7-1-2018 3:4:36] Initialized security
-[7-1-2018 3:4:36] Listening socket is 3
-[7-1-2018 3:4:44] Client connected
-[7-1-2018 3:4:44] Sending a packet:
+[7-1-2018 8:59:23] Initialized security
+[7-1-2018 8:59:23] Listening socket is 3
+[7-1-2018 8:59:33] Client connected
+[7-1-2018 8:59:33] Sending a packet:
 	Type:1
-	Payload Size:160
-	Padding:138
+	Payload Size:486
+	Padding:464
 	Content:14
 
-[7-1-2018 3:4:46] Recieved a packet:
+[7-1-2018 8:59:34] Recieved a packet:
 	Type:1
-	Payload Size:36
-	Padding:25
+	Payload Size:879
+	Padding:868
 	Content:3
 
-[7-1-2018 3:4:46] Sending a packet:
+[7-1-2018 8:59:34] Sending a packet:
 	Type:1
-	Payload Size:846
-	Padding:775
-	Content:63
-
-[7-1-2018 3:5:6] Recieved a packet:
-	Type:1
-	Payload Size:555
-	Padding:535
-	Content:12
-
-[7-1-2018 3:5:6] Sending a packet:
-	Type:1
-	Payload Size:711
-	Padding:654
-	Content:49
-
-[7-1-2018 3:5:30] Recieved a packet:
-	Type:1
-	Payload Size:921
-	Padding:902
-	Content:11
-
-[7-1-2018 3:5:30] Sending a packet:
-	Type:1
-	Payload Size:955
-	Padding:933
-	Content:14
-
-[7-1-2018 3:5:31] Recieved a packet:
-	Type:1
-	Payload Size:241
-	Padding:230
-	Content:3
-
-[7-1-2018 3:5:31] Sending a packet:
-	Type:1
-	Payload Size:937
-	Padding:874
+	Payload Size:1022
+	Padding:959
 	Content:55
 
-[7-1-2018 3:5:35] Recieved a packet:
+[7-1-2018 8:59:35] Recieved a packet:
 	Type:1
-	Payload Size:472
-	Padding:449
-	Content:15
-
-[7-1-2018 3:5:37] Recieved a packet:
-	Type:1
-	Payload Size:195
-	Padding:182
-	Content:5
-
-[7-1-2018 3:5:37] Sending a packet:
-	Type:1
-	Payload Size:717
-	Padding:695
-	Content:14
-
-[7-1-2018 3:5:38] Recieved a packet:
-	Type:1
-	Payload Size:112
-	Padding:101
+	Payload Size:973
+	Padding:962
 	Content:3
 
-[7-1-2018 3:5:38] Sending a packet:
+[7-1-2018 8:59:35] Sending a packet:
 	Type:1
-	Payload Size:615
-	Padding:544
-	Content:63
-
-[7-1-2018 3:5:40] Recieved a packet:
-	Type:1
-	Payload Size:292
-	Padding:272
-	Content:12
-
-[7-1-2018 3:5:40] Sending a packet:
-	Type:1
-	Payload Size:425
-	Padding:371
-	Content:46
-
-[7-1-2018 3:5:45] Recieved a packet:
-	Type:1
-	Payload Size:362
-	Padding:343
-	Content:11
-
-[7-1-2018 3:5:45] Sending a packet:
-	Type:1
-	Payload Size:765
-	Padding:743
-	Content:14
-
-[7-1-2018 3:5:46] Recieved a packet:
-	Type:1
-	Payload Size:571
-	Padding:560
-	Content:3
-
-[7-1-2018 3:5:46] Sending a packet:
-	Type:1
-	Payload Size:902
-	Padding:839
+	Payload Size:910
+	Padding:847
 	Content:55
 
-[7-1-2018 3:5:50] Recieved a packet:
+[7-1-2018 8:59:36] Recieved a packet:
 	Type:1
-	Payload Size:239
-	Padding:226
-	Content:5
+	Payload Size:445
+	Padding:435
+	Content:2
 
-[7-1-2018 3:5:50] Sending a packet:
-	Type:1
-	Payload Size:992
-	Padding:915
-	Content:69
+[7-1-2018 8:59:36] Unable to run command [a]
+[7-1-2018 8:59:36] Sending a packet:
+	Type:6
+	Payload Size:801
+	Padding:767
+	Content:26
 
-[7-1-2018 3:5:50] Sending a packet:
+[7-1-2018 8:59:36] Sending a packet:
 	Type:1
-	Payload Size:220
-	Padding:198
+	Payload Size:1023
+	Padding:1001
 	Content:14
 

@@ -6,7 +6,7 @@ Server* Server::instance = nullptr;
 Server::Server()
 {
     this->context = nullptr;
-    this->listening_socket = -1;
+    this->listeningSocket = -1;
 }
 
 void Server::initializeSecurity()
@@ -44,15 +44,20 @@ void Server::initializeSecurity()
     Logger::log(LOG_EVENTS, "Initialized security");
 }
 
-void Server::initializeSockets()
+void Server::initializeSockets(char* _port)
 {
+    int port = atoi(_port);
+    if (port == 0) 
+    {
+        throw ServerException("Invalid port");
+    }
     int fd = socket(AF_INET, SOCK_STREAM, 0);
     int reuse = true;
     setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof(reuse));
     struct sockaddr_in s_addr;
     memset(&s_addr, 0, sizeof(s_addr));
     s_addr.sin_family = AF_INET;
-    s_addr.sin_port = htons(LISTEN_PORT);
+    s_addr.sin_port = htons(port);
     s_addr.sin_addr.s_addr = INADDR_ANY;
 
     if (bind(fd, (struct sockaddr*)(&s_addr), sizeof(s_addr)) < 0)
@@ -64,7 +69,7 @@ void Server::initializeSockets()
     {
         throw ServerException("Listening socket listen failed");
     }
-    this->listening_socket = fd;
+    this->listeningSocket = fd;
     Logger::log(LOG_EVENTS, "Listening socket is %d", fd);
 }
 
@@ -72,6 +77,7 @@ void writing_routine(std::shared_ptr<ExecutionContext> ctx)
 {
     while (true)
     {      
+        if (ctx->shouldTerminate) return;
         int has_read = 0;
         int result = 0;
         ioctl(ctx->sv_serv, FIONREAD, &has_read);
@@ -95,6 +101,7 @@ void reading_routine(std::shared_ptr<ExecutionContext> ctx)
     SSH_Packet packet;
     while (true)
     {
+        if (ctx->shouldTerminate) return;
         int has_read = 0;
         int result = 0;
         ioctl(fd, FIONREAD, &has_read);
@@ -108,29 +115,23 @@ void reading_routine(std::shared_ptr<ExecutionContext> ctx)
     }  
 }
 
+void send_error(std::shared_ptr<ExecutionContext> ctx, const char* str)
+{
+    Logger::log(LOG_ERRORS, str);
+    ctx->sslMutex.lock();
+    std::string err = str;
+    err += "\n";
+    try
+    {
+        send_packet(ctx->ssl, PACKET_ERROR, const_cast<char*>(err.c_str()), err.length());
+    } catch (...) {}
+    
+    ctx->sslMutex.unlock();
+}
+
 void shell_routine(std::shared_ptr<ExecutionContext> ctx)
 {
-    bool newMessage = true;
-    
-    while (true)
-    {
-        if (newMessage)
-        {
-            write(ctx->sv_prog, "denis@ubuntu$ ", strlen("denis@ubuntu$ "));
-            newMessage = false;
-        }
-        int has_read;
-        ioctl(ctx->sv_prog, FIONREAD, &has_read);
-        if (has_read > 0)
-        {
-            char* buff = new char[has_read + 1]();
-            has_read = read(ctx->sv_prog, buff, has_read);
-            std::string comm = buff;
-            delete buff;
-            Evaluate(comm, ctx);
-            newMessage = true;
-        }
-    }           
+
 }
 
 int server_routine(SSL* ssl)
@@ -161,10 +162,16 @@ int server_routine(SSL* ssl)
         t1.join();
         t2.join();  
         shell.join();
+        char msg[] = "Terminate";
+        send_packet(ssl, PACKET_TERMINATE, msg, strlen(msg));
+    }
+    catch (ServerException& ex)
+    {
+        Logger::log(LOG_ERRORS, ex.what());
     }
     catch (...)
     {
-
+        Logger::log(LOG_ERRORS, "Unknown exception in server routine");
     }
 }
 
@@ -173,42 +180,47 @@ int server_routine(SSL* ssl)
 void Server::connectionListen()
 {
     int client = 0;
-    while (client = accept(this->listening_socket, NULL, 0))
+    while (client = accept(this->listeningSocket, NULL, 0))
     {
         SSL* ssl = SSL_new(context);
-        SSL_set_fd(ssl, client);
-        if (SSL_accept(ssl) == FAILED)
+        int servletPid;
+        int exitCode = 0;
+        try
+        {     
+            ssl = SSL_new(context);
+            if (ssl == nullptr) throw ServerException("Failed to create SSL object");
+            if (SSL_set_fd(ssl, client) == 0) throw ServerException("Failed to set client socket in SSL object");
+            if (SSL_accept(ssl) == FAILED) throw ServerException("SSL failed to accept client");
+            if ((servletPid=fork()) == FAILED) throw ServerException("Unable to fork, aborting connection: [%d]", errno);
+            else if (servletPid == 0)
+            {
+                Logger::log(LOG_CONNECTIONS, "Client connected");
+                try
+                {
+                   exitCode = server_routine(ssl);
+                }
+                catch (ServerException& ex)
+                {
+                    exitCode = -1;
+                }
+                exit(exitCode);          
+            }
+        }
+        catch (ServerException& ex)
         {
-            ERR_print_errors_fp(stderr);
-            SSL_free(ssl);
+            Logger::log(LOG_ERRORS, ex.what());
+            if (ssl != nullptr)
+            {
+                SSL_shutdown(ssl);
+                SSL_free(ssl);
+            }
             close(client);
             continue;
-        }
-
-        Logger::log(LOG_CONNECTIONS, "Client connected");
-        // Have to use fork
-        int servlet_pid;
-        if ((servlet_pid=fork()) == FAILED) 
-        {
-            perror("Fork error!");
-        }
-        else 
-        {
-            if (servlet_pid == 0)
-            {
-                int code = server_routine(ssl);
-            }
-            else 
-            {
-                int status;
-                wait(&status);
-                Logger::log(LOG_EVENTS, "Servlet finished");
-            }
-        }
-        SSL_free(ssl);
-        close(client);
-        Logger::log(LOG_EVENTS, "Client disconnected");
-    }    
+        }   
+    }
+    int status;
+    int wpid;
+    while ((wpid = wait(&status)) > 0);  
 }
 
 void Server::deleteInstance()
@@ -225,9 +237,9 @@ void Server::destroy()
     {
         SSL_CTX_free(this->context);
     }
-    if (this->listening_socket != -1)
+    if (this->listeningSocket != -1)
     {
-        close(this->listening_socket);
+        close(this->listeningSocket);
     }
 }
 

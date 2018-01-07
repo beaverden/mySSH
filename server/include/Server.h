@@ -36,15 +36,36 @@ class Server
     
         static Server* instance;
         SSL_CTX* context;
-        int listening_socket;
+        int listeningSocket;
 
     public:
         static Server* getInstance();
         static void deleteInstance();
         void destroy();
 
-        void initializeSockets();
+        /**
+         * \brief Prepare a server socket for listening on the given port.
+         * Sets Server::listeningSocket on success
+         * 
+         * Might throw:
+         *      ServerException
+         * 
+         * \param[in] _port The port on which the server will listen to connections
+         */ 
+        void initializeSockets(char* port);
+
+        /**
+         * \brief Prepare private key, certificates and create SSL context
+         * Might throw:
+         *      SecurityException
+         */
         void initializeSecurity();
+
+
+        /**
+         * \brief Listens to connections, fork()'s a child running a shell, 
+         * reading and writing sessions for each connection
+         */
         void connectionListen();
 
         void handleAuth(SSL* ssl);

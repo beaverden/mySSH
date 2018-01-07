@@ -109,6 +109,16 @@ public:
     : ArgumentsException(fmt, args...) {};
 };
 
+class ExitException : public ArgumentsException
+{
+public:
+    ExitException(std::string message) 
+    : ArgumentsException(message) {}
+    template<class ... Args>
+    ExitException(const char* fmt, Args ... args) 
+    : ArgumentsException(fmt, args...) {};
+};
+
 
 
 #endif //EXCEPTIONS_H

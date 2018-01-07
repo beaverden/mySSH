@@ -31,6 +31,8 @@ struct ExecutionContext
 
     std::string username;
     std::string currentDir;
+
+    bool shouldTerminate = false;
     // TODO closing sockets properly?
 };
 
