@@ -1,0 +1,12 @@
+digraph "/home/denis/CLionProjects/mySSH/shell" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_71eb729dfe620fdc00a342f30f6592a7 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_71eb729dfe620fdc00a342f30f6592a7.html"];
+    dir_71eb729dfe620fdc00a342f30f6592a7 [shape=plaintext label="shell"];
+    dir_273d9cd472139c31821298da1999aba1 [shape=box label="include" color="black" fillcolor="white" style="filled" URL="dir_273d9cd472139c31821298da1999aba1.html"];
+    dir_4fe41635bac63a7df7e3ff41ce3252f0 [shape=box label="src" color="black" fillcolor="white" style="filled" URL="dir_4fe41635bac63a7df7e3ff41ce3252f0.html"];
+  }
+  dir_4fe41635bac63a7df7e3ff41ce3252f0->dir_273d9cd472139c31821298da1999aba1 [headlabel="7", labeldistance=1.5 headhref="dir_000010_000011.html"];
+}

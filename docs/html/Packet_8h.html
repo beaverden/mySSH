@@ -96,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="Exceptions_8h_source.html">Exceptions.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="Utility_8h_source.html">Utility.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Logger_8h_source.html">Logger.h</a>&quot;</code><br />
 <code>#include &lt;sys/socket.h&gt;</code><br />
 <code>#include &lt;netinet/in.h&gt;</code><br />
 <code>#include &lt;sys/types.h&gt;</code><br />
@@ -152,7 +152,9 @@ Enumerations</h2></td></tr>
 <a class="el" href="Packet_8h.html#a307e533851c91d484ac30d8471095890add231fb890f78df48adbef9a8f86b3b5">PACKET_AUTH_REQUEST</a>, 
 <br />
 &#160;&#160;<a class="el" href="Packet_8h.html#a307e533851c91d484ac30d8471095890a6ee2549e6313635a0e1b570052060b76">PACKET_AUTH_RESPONSE</a>, 
-<a class="el" href="Packet_8h.html#a307e533851c91d484ac30d8471095890a62aa7f5e6ca972dea66fd751f236c447">PACKET_READY</a>
+<a class="el" href="Packet_8h.html#a307e533851c91d484ac30d8471095890a62aa7f5e6ca972dea66fd751f236c447">PACKET_READY</a>, 
+<a class="el" href="Packet_8h.html#a307e533851c91d484ac30d8471095890a9f7b3973b120dc5e465046d84ab437c8">PACKET_ERROR</a>, 
+<a class="el" href="Packet_8h.html#a307e533851c91d484ac30d8471095890a050c26aa9f441a1a26be45ca62941a18">PACKET_TERMINATE</a>
 <br />
  }<tr class="memdesc:a307e533851c91d484ac30d8471095890"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of the sent or recieved packet. All the packets must have a Packet_Type. The reciever must take proper actions according to the type.  <a href="Packet_8h.html#a307e533851c91d484ac30d8471095890">More...</a><br /></td></tr>
 </td></tr>
@@ -236,6 +238,12 @@ Functions</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="a307e533851c91d484ac30d8471095890a62aa7f5e6ca972dea66fd751f236c447"></a>PACKET_READY&#160;</td><td class="fielddoc">
 <p>Notification from the <a class="el" href="classServer.html">Server</a> that it is ready for another complex command. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a307e533851c91d484ac30d8471095890a9f7b3973b120dc5e465046d84ab437c8"></a>PACKET_ERROR&#160;</td><td class="fielddoc">
+<p>Notification about an error from the server. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a307e533851c91d484ac30d8471095890a050c26aa9f441a1a26be45ca62941a18"></a>PACKET_TERMINATE&#160;</td><td class="fielddoc">
+<p>Signal from server that it wants to terminate the connection. </p>
 </td></tr>
 </table>
 

@@ -2,8 +2,8 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#include "../../common/include/Exceptions.h"
-#include "../../common/include/Utility.h"
+#include "Exception.h"
+#include "Utility.h"
 
 #include <string>
 #include <map>

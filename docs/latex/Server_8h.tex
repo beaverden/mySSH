@@ -2,7 +2,6 @@
 \label{Server_8h}\index{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/server/include/\+Server.\+h@{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/server/include/\+Server.\+h}}
 {\ttfamily \#include \char`\"{}../../common/include/\+Exceptions.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}../../common/include/\+Packet.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}Evaluate.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$sys/socket.\+h$>$}\\*
 {\ttfamily \#include $<$netinet/in.\+h$>$}\\*
 {\ttfamily \#include $<$sys/types.\+h$>$}\\*
@@ -14,6 +13,7 @@
 {\ttfamily \#include $<$string$>$}\\*
 {\ttfamily \#include $<$thread$>$}\\*
 {\ttfamily \#include $<$new$>$}\\*
+{\ttfamily \#include $<$mutex$>$}\\*
 {\ttfamily \#include \char`\"{}openssl/bio.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}openssl/ssl.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}openssl/err.\+h\char`\"{}}\\*
@@ -25,14 +25,14 @@ This graph shows which files directly or indirectly include this file\+:
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
+struct \hyperlink{structServerContext}{Server\+Context}
+\item 
 class \hyperlink{classServer}{Server}
 \end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \#define \hyperlink{Server_8h_a681680feae4df4182d532564c42fa1fc}{F\+A\+I\+L\+ED}~-\/1
-\item 
-\#define \hyperlink{Server_8h_a4fba0963c20988d1f1a45afb1c636e44}{L\+I\+S\+T\+E\+N\+\_\+\+P\+O\+RT}~2018
 \end{DoxyCompactItemize}
 
 
@@ -40,6 +40,3 @@ class \hyperlink{classServer}{Server}
 \index{Server.\+h@{Server.\+h}!F\+A\+I\+L\+ED@{F\+A\+I\+L\+ED}}
 \index{F\+A\+I\+L\+ED@{F\+A\+I\+L\+ED}!Server.\+h@{Server.\+h}}
 \subsubsection[{\texorpdfstring{F\+A\+I\+L\+ED}{FAILED}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+I\+L\+ED~-\/1}\hypertarget{Server_8h_a681680feae4df4182d532564c42fa1fc}{}\label{Server_8h_a681680feae4df4182d532564c42fa1fc}
-\index{Server.\+h@{Server.\+h}!L\+I\+S\+T\+E\+N\+\_\+\+P\+O\+RT@{L\+I\+S\+T\+E\+N\+\_\+\+P\+O\+RT}}
-\index{L\+I\+S\+T\+E\+N\+\_\+\+P\+O\+RT@{L\+I\+S\+T\+E\+N\+\_\+\+P\+O\+RT}!Server.\+h@{Server.\+h}}
-\subsubsection[{\texorpdfstring{L\+I\+S\+T\+E\+N\+\_\+\+P\+O\+RT}{LISTEN_PORT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+I\+S\+T\+E\+N\+\_\+\+P\+O\+RT~2018}\hypertarget{Server_8h_a4fba0963c20988d1f1a45afb1c636e44}{}\label{Server_8h_a4fba0963c20988d1f1a45afb1c636e44}

@@ -33,7 +33,3 @@ void trim(std::string& str, std::string toRemove)
         else break;
     }
 }
-
-unsigned int    Logger::logOptions = 0;
-std::string     Logger::logPath = "log.txt";
-std::mutex      Logger::logMutex;

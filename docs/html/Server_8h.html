@@ -95,7 +95,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="Exceptions_8h_source.html">../../common/include/Exceptions.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Packet_8h_source.html">../../common/include/Packet.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="Evaluate_8h_source.html">Evaluate.h</a>&quot;</code><br />
 <code>#include &lt;sys/socket.h&gt;</code><br />
 <code>#include &lt;netinet/in.h&gt;</code><br />
 <code>#include &lt;sys/types.h&gt;</code><br />
@@ -107,6 +106,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;thread&gt;</code><br />
 <code>#include &lt;new&gt;</code><br />
+<code>#include &lt;mutex&gt;</code><br />
 <code>#include &quot;openssl/bio.h&quot;</code><br />
 <code>#include &quot;openssl/ssl.h&quot;</code><br />
 <code>#include &quot;openssl/err.h&quot;</code><br />
@@ -128,6 +128,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structServerContext.html">ServerContext</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html">Server</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -135,8 +137,6 @@ Data Structures</h2></td></tr>
 Macros</h2></td></tr>
 <tr class="memitem:a681680feae4df4182d532564c42fa1fc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Server_8h.html#a681680feae4df4182d532564c42fa1fc">FAILED</a>&#160;&#160;&#160;-1</td></tr>
 <tr class="separator:a681680feae4df4182d532564c42fa1fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fba0963c20988d1f1a45afb1c636e44"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Server_8h.html#a4fba0963c20988d1f1a45afb1c636e44">LISTEN_PORT</a>&#160;&#160;&#160;2018</td></tr>
-<tr class="separator:a4fba0963c20988d1f1a45afb1c636e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="a681680feae4df4182d532564c42fa1fc"></a>
@@ -145,18 +145,6 @@ Macros</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define FAILED&#160;&#160;&#160;-1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a4fba0963c20988d1f1a45afb1c636e44"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LISTEN_PORT&#160;&#160;&#160;2018</td>
         </tr>
       </table>
 </div><div class="memdoc">

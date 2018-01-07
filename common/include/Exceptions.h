@@ -4,32 +4,6 @@
 #define EXCEPTIONS_H
 #include <stdexcept>
 
-/* ======================== SERVER ONLY EXCEPTIONS =========================== */
-class ParserException : std::exception
-{
-public:
-    ParserException(size_t position, std::string message);
-    virtual ~ParserException() {};
-    const char* what();
-private:
-    std::string message;
-    size_t position;
-};
-
-class VerificationException : std::exception
-{
-public:
-    VerificationException(size_t position, std::string message);
-    virtual ~VerificationException() {};
-    const char* what();
-private:
-    std::string message;
-    size_t position;
-};
-
-
-/* ======================== /SERVER ONLY EXCEPTIONS =========================== */
-
 
 class ArgumentsException : std::exception
 {
@@ -89,15 +63,7 @@ public:
     : ArgumentsException(fmt, args...) {};
 };
 
-class EvaluationException : public ArgumentsException
-{
-public:
-    EvaluationException(std::string message) 
-    : ArgumentsException(message) {}
-    template<class ... Args>
-    EvaluationException(const char* fmt, Args ... args) 
-    : ArgumentsException(fmt, args...) {};
-};
+
 
 class PacketIOException : public ArgumentsException
 {
@@ -106,16 +72,6 @@ public:
     : ArgumentsException(message) {}
     template<class ... Args>
     PacketIOException(const char* fmt, Args ... args) 
-    : ArgumentsException(fmt, args...) {};
-};
-
-class ExitException : public ArgumentsException
-{
-public:
-    ExitException(std::string message) 
-    : ArgumentsException(message) {}
-    template<class ... Args>
-    ExitException(const char* fmt, Args ... args) 
     : ArgumentsException(fmt, args...) {};
 };
 

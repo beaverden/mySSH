@@ -1,7 +1,7 @@
 \hypertarget{Packet_8h}{}\section{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/include/\+Packet.h File Reference}
 \label{Packet_8h}\index{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/include/\+Packet.\+h@{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/include/\+Packet.\+h}}
 {\ttfamily \#include \char`\"{}Exceptions.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}Utility.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Logger.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$sys/socket.\+h$>$}\\*
 {\ttfamily \#include $<$netinet/in.\+h$>$}\\*
 {\ttfamily \#include $<$sys/types.\+h$>$}\\*
@@ -45,7 +45,9 @@ enum \hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890}{Packet\+\_\+\+Type}
 \hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890add231fb890f78df48adbef9a8f86b3b5}{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+Q\+U\+E\+ST}, 
 \\*
 \hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890a6ee2549e6313635a0e1b570052060b76}{P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE}, 
-\hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890a62aa7f5e6ca972dea66fd751f236c447}{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY}
+\hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890a62aa7f5e6ca972dea66fd751f236c447}{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY}, 
+\hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890a9f7b3973b120dc5e465046d84ab437c8}{P\+A\+C\+K\+E\+T\+\_\+\+E\+R\+R\+OR}, 
+\hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890a050c26aa9f441a1a26be45ca62941a18}{P\+A\+C\+K\+E\+T\+\_\+\+T\+E\+R\+M\+I\+N\+A\+TE}
  \}\begin{DoxyCompactList}\small\item\em Type of the sent or recieved packet. All the packets must have a Packet\+\_\+\+Type. The reciever must take proper actions according to the type. \end{DoxyCompactList}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
@@ -94,7 +96,11 @@ P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+Q\+U\+E\+ST\hypertarget{Packet_8
 P\+A\+C\+K\+E\+T\+\_\+\+A\+U\+T\+H\+\_\+\+R\+E\+S\+P\+O\+N\+SE\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890a6ee2549e6313635a0e1b570052060b76}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890a6ee2549e6313635a0e1b570052060b76}
 }]Authentication response from the Client. \hyperlink{classServer}{Server} must check credentials. \index{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY@{P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY}}\item[{\em 
 P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+DY\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890a62aa7f5e6ca972dea66fd751f236c447}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890a62aa7f5e6ca972dea66fd751f236c447}
-}]Notification from the \hyperlink{classServer}{Server} that it is ready for another complex command. \end{description}
+}]Notification from the \hyperlink{classServer}{Server} that it is ready for another complex command. \index{P\+A\+C\+K\+E\+T\+\_\+\+E\+R\+R\+OR@{P\+A\+C\+K\+E\+T\+\_\+\+E\+R\+R\+OR}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+E\+R\+R\+OR@{P\+A\+C\+K\+E\+T\+\_\+\+E\+R\+R\+OR}}\item[{\em 
+P\+A\+C\+K\+E\+T\+\_\+\+E\+R\+R\+OR\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890a9f7b3973b120dc5e465046d84ab437c8}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890a9f7b3973b120dc5e465046d84ab437c8}
+}]Notification about an error from the server. \index{P\+A\+C\+K\+E\+T\+\_\+\+T\+E\+R\+M\+I\+N\+A\+TE@{P\+A\+C\+K\+E\+T\+\_\+\+T\+E\+R\+M\+I\+N\+A\+TE}!Packet.\+h@{Packet.\+h}}\index{Packet.\+h@{Packet.\+h}!P\+A\+C\+K\+E\+T\+\_\+\+T\+E\+R\+M\+I\+N\+A\+TE@{P\+A\+C\+K\+E\+T\+\_\+\+T\+E\+R\+M\+I\+N\+A\+TE}}\item[{\em 
+P\+A\+C\+K\+E\+T\+\_\+\+T\+E\+R\+M\+I\+N\+A\+TE\hypertarget{Packet_8h_a307e533851c91d484ac30d8471095890a050c26aa9f441a1a26be45ca62941a18}{}\label{Packet_8h_a307e533851c91d484ac30d8471095890a050c26aa9f441a1a26be45ca62941a18}
+}]Signal from server that it wants to terminate the connection. \end{description}
 \end{Desc}
 
 

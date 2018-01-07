@@ -9,13 +9,21 @@
 \item 
 void \hyperlink{classServer_adce993ab4cce22dc732bddddf310a5f6}{destroy} ()
 \item 
-void \hyperlink{classServer_a9035ba5548594b76a680de2766780df3}{initialize\+Sockets} ()
-\item 
+void \hyperlink{classServer_afee42c59df0ce3e03fa5d6ed2b1cdccc}{initialize\+Sockets} (char $\ast$port)
+\begin{DoxyCompactList}\small\item\em Prepare a server socket for listening on the given port. Sets Server\+::listening\+Socket on success. \end{DoxyCompactList}\item 
 void \hyperlink{classServer_a54da775247c049b9cc78c92946bb058a}{initialize\+Security} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Prepare private key, certificates and create S\+SL context Might throw\+: \hyperlink{classSecurityException}{Security\+Exception}. \end{DoxyCompactList}\item 
 void \hyperlink{classServer_a258c0a0a42d0be99bc4a36b4e6212ed2}{connection\+Listen} ()
-\item 
-void \hyperlink{classServer_a65f1f6c6f3c0c84a5e43494e702818a4}{handle\+Auth} (S\+SL $\ast$ssl)
+\begin{DoxyCompactList}\small\item\em Listens to connections, fork()\textquotesingle{}s a child running a shell, reading and writing sessions for each connection. \end{DoxyCompactList}\item 
+int \hyperlink{classServer_a47b6e405d109cdd27838220684f0e2e5}{server\+Routine} (S\+SL $\ast$ssl)
+\begin{DoxyCompactList}\small\item\em Prepares execution environment. Runs out and input data streams, spawns a shell for the client. \end{DoxyCompactList}\item 
+void \hyperlink{classServer_a0b247f8f2166b36c3575c4678d0755e9}{output\+Data\+Stream} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ ctx)
+\begin{DoxyCompactList}\small\item\em Constantly reads output from the shell and outputs it to the S\+SL socket. \end{DoxyCompactList}\item 
+void \hyperlink{classServer_a8d9328ec355e42c8abf49ae0d4771399}{input\+Data\+Stream} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ ctx)
+\begin{DoxyCompactList}\small\item\em Constantly reads from S\+SL socket and redirects it to the shell. \end{DoxyCompactList}\item 
+void \hyperlink{classServer_abc80f4931ae5b5860a9f70ffac1b89c5}{send\+Error} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ ctx, const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Sends an error to the S\+SL socket. \end{DoxyCompactList}\item 
+void \hyperlink{classServer_ac294087f9009b03cfb1a7476fbac050c}{handle\+Auth} (S\+SL $\ast$S\+SL)
 \end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -34,6 +42,10 @@ static void \hyperlink{classServer_a727200ae46569af9054fac429c7da43e}{delete\+In
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classServer_a258c0a0a42d0be99bc4a36b4e6212ed2}{}\label{classServer_a258c0a0a42d0be99bc4a36b4e6212ed2}
+
+
+Listens to connections, fork()\textquotesingle{}s a child running a shell, reading and writing sessions for each connection. 
+
 \index{Server@{Server}!delete\+Instance@{delete\+Instance}}
 \index{delete\+Instance@{delete\+Instance}!Server@{Server}}
 \subsubsection[{\texorpdfstring{delete\+Instance()}{deleteInstance()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::delete\+Instance (
@@ -57,11 +69,11 @@ static void \hyperlink{classServer_a727200ae46569af9054fac429c7da43e}{delete\+In
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classServer_a22dbfd5db73d391d615a0bfd69077fb6}{}\label{classServer_a22dbfd5db73d391d615a0bfd69077fb6}
 \index{Server@{Server}!handle\+Auth@{handle\+Auth}}
 \index{handle\+Auth@{handle\+Auth}!Server@{Server}}
-\subsubsection[{\texorpdfstring{handle\+Auth(\+S\+S\+L $\ast$ssl)}{handleAuth(SSL *ssl)}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::handle\+Auth (
+\subsubsection[{\texorpdfstring{handle\+Auth(\+S\+S\+L $\ast$\+S\+S\+L)}{handleAuth(SSL *SSL)}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::handle\+Auth (
 \begin{DoxyParamCaption}
-\item[{S\+SL $\ast$}]{ssl}
+\item[{S\+SL $\ast$}]{S\+SL}
 \end{DoxyParamCaption}
-)}\hypertarget{classServer_a65f1f6c6f3c0c84a5e43494e702818a4}{}\label{classServer_a65f1f6c6f3c0c84a5e43494e702818a4}
+)}\hypertarget{classServer_ac294087f9009b03cfb1a7476fbac050c}{}\label{classServer_ac294087f9009b03cfb1a7476fbac050c}
 \index{Server@{Server}!initialize\+Security@{initialize\+Security}}
 \index{initialize\+Security@{initialize\+Security}!Server@{Server}}
 \subsubsection[{\texorpdfstring{initialize\+Security()}{initializeSecurity()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::initialize\+Security (
@@ -69,13 +81,98 @@ static void \hyperlink{classServer_a727200ae46569af9054fac429c7da43e}{delete\+In
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classServer_a54da775247c049b9cc78c92946bb058a}{}\label{classServer_a54da775247c049b9cc78c92946bb058a}
+
+
+Prepare private key, certificates and create S\+SL context Might throw\+: \hyperlink{classSecurityException}{Security\+Exception}. 
+
 \index{Server@{Server}!initialize\+Sockets@{initialize\+Sockets}}
 \index{initialize\+Sockets@{initialize\+Sockets}!Server@{Server}}
-\subsubsection[{\texorpdfstring{initialize\+Sockets()}{initializeSockets()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::initialize\+Sockets (
+\subsubsection[{\texorpdfstring{initialize\+Sockets(char $\ast$port)}{initializeSockets(char *port)}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::initialize\+Sockets (
 \begin{DoxyParamCaption}
-{}
+\item[{char $\ast$}]{port}
 \end{DoxyParamCaption}
-)}\hypertarget{classServer_a9035ba5548594b76a680de2766780df3}{}\label{classServer_a9035ba5548594b76a680de2766780df3}
+)}\hypertarget{classServer_afee42c59df0ce3e03fa5d6ed2b1cdccc}{}\label{classServer_afee42c59df0ce3e03fa5d6ed2b1cdccc}
+
+
+Prepare a server socket for listening on the given port. Sets Server\+::listening\+Socket on success. 
+
+Might throw\+: \hyperlink{classServerException}{Server\+Exception}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em \+\_\+port} & The port on which the server will listen to connections \\
+\hline
+\end{DoxyParams}
+\index{Server@{Server}!input\+Data\+Stream@{input\+Data\+Stream}}
+\index{input\+Data\+Stream@{input\+Data\+Stream}!Server@{Server}}
+\subsubsection[{\texorpdfstring{input\+Data\+Stream(std\+::shared\+\_\+ptr$<$ Server\+Context $>$ ctx)}{inputDataStream(std::shared_ptr< ServerContext > ctx)}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::input\+Data\+Stream (
+\begin{DoxyParamCaption}
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Server\+Context} $>$}]{ctx}
+\end{DoxyParamCaption}
+)}\hypertarget{classServer_a8d9328ec355e42c8abf49ae0d4771399}{}\label{classServer_a8d9328ec355e42c8abf49ae0d4771399}
+
+
+Constantly reads from S\+SL socket and redirects it to the shell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & A pointer to \hyperlink{structServerContext}{Server\+Context} structure, containing sockets \\
+\hline
+\end{DoxyParams}
+\index{Server@{Server}!output\+Data\+Stream@{output\+Data\+Stream}}
+\index{output\+Data\+Stream@{output\+Data\+Stream}!Server@{Server}}
+\subsubsection[{\texorpdfstring{output\+Data\+Stream(std\+::shared\+\_\+ptr$<$ Server\+Context $>$ ctx)}{outputDataStream(std::shared_ptr< ServerContext > ctx)}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::output\+Data\+Stream (
+\begin{DoxyParamCaption}
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Server\+Context} $>$}]{ctx}
+\end{DoxyParamCaption}
+)}\hypertarget{classServer_a0b247f8f2166b36c3575c4678d0755e9}{}\label{classServer_a0b247f8f2166b36c3575c4678d0755e9}
+
+
+Constantly reads output from the shell and outputs it to the S\+SL socket. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & A pointer to \hyperlink{structServerContext}{Server\+Context} structure, containing sockets \\
+\hline
+\end{DoxyParams}
+\index{Server@{Server}!send\+Error@{send\+Error}}
+\index{send\+Error@{send\+Error}!Server@{Server}}
+\subsubsection[{\texorpdfstring{send\+Error(std\+::shared\+\_\+ptr$<$ Server\+Context $>$ ctx, const char $\ast$str)}{sendError(std::shared_ptr< ServerContext > ctx, const char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::send\+Error (
+\begin{DoxyParamCaption}
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Server\+Context} $>$}]{ctx, }
+\item[{const char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{classServer_abc80f4931ae5b5860a9f70ffac1b89c5}{}\label{classServer_abc80f4931ae5b5860a9f70ffac1b89c5}
+
+
+Sends an error to the S\+SL socket. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & A pointer to \hyperlink{structServerContext}{Server\+Context} structure, containing sockets \\
+\hline
+{\em str} & Pointer to a null terminated C string \\
+\hline
+\end{DoxyParams}
+\index{Server@{Server}!server\+Routine@{server\+Routine}}
+\index{server\+Routine@{server\+Routine}!Server@{Server}}
+\subsubsection[{\texorpdfstring{server\+Routine(\+S\+S\+L $\ast$ssl)}{serverRoutine(SSL *ssl)}}]{\setlength{\rightskip}{0pt plus 5cm}int Server\+::server\+Routine (
+\begin{DoxyParamCaption}
+\item[{S\+SL $\ast$}]{ssl}
+\end{DoxyParamCaption}
+)}\hypertarget{classServer_a47b6e405d109cdd27838220684f0e2e5}{}\label{classServer_a47b6e405d109cdd27838220684f0e2e5}
+
+
+Prepares execution environment. Runs out and input data streams, spawns a shell for the client. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em S\+SL} & Pointer to initialized and ready S\+SL structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Execution result 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

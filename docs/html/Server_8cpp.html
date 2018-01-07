@@ -102,26 +102,24 @@ Include dependency graph for Server.cpp:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a86a3b788c2958975e270bf69fb8fe7e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Server_8cpp.html#a86a3b788c2958975e270bf69fb8fe7e2">writing_routine</a> (std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; ctx)</td></tr>
-<tr class="separator:a86a3b788c2958975e270bf69fb8fe7e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66bc3e5b829ba4d3e4a294c1bcd267b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Server_8cpp.html#a66bc3e5b829ba4d3e4a294c1bcd267b9">reading_routine</a> (std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; ctx)</td></tr>
-<tr class="separator:a66bc3e5b829ba4d3e4a294c1bcd267b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4f6abd6f4838ae0194d1099c72c99ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Server_8cpp.html#af4f6abd6f4838ae0194d1099c72c99ff">shell_routine</a> (std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; ctx)</td></tr>
-<tr class="separator:af4f6abd6f4838ae0194d1099c72c99ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fadfe58fb2cc8c99832f693fb4b228b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Server_8cpp.html#a2fadfe58fb2cc8c99832f693fb4b228b">server_routine</a> (SSL *ssl)</td></tr>
-<tr class="separator:a2fadfe58fb2cc8c99832f693fb4b228b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc5fa99189e579245b2a1b355311c281"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Server_8cpp.html#adc5fa99189e579245b2a1b355311c281">getPathString</a> (std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; ctx)</td></tr>
-<tr class="separator:adc5fa99189e579245b2a1b355311c281"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa082c595e4a9fa38bc97c38d6e9d99cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Server_8cpp.html#aa082c595e4a9fa38bc97c38d6e9d99cc">outputDataStream</a> (std::shared_ptr&lt; <a class="el" href="structServerContext.html">ServerContext</a> &gt; ctx)</td></tr>
+<tr class="separator:aa082c595e4a9fa38bc97c38d6e9d99cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a30b2ee1cbec7ff035300ccb0aea835"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Server_8cpp.html#a4a30b2ee1cbec7ff035300ccb0aea835">inputDataStream</a> (std::shared_ptr&lt; <a class="el" href="structServerContext.html">ServerContext</a> &gt; ctx)</td></tr>
+<tr class="separator:a4a30b2ee1cbec7ff035300ccb0aea835"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93ccc02ad85eb81c75217a9a1c3e535c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Server_8cpp.html#a93ccc02ad85eb81c75217a9a1c3e535c">sendError</a> (std::shared_ptr&lt; <a class="el" href="structServerContext.html">ServerContext</a> &gt; ctx, const char *str)</td></tr>
+<tr class="separator:a93ccc02ad85eb81c75217a9a1c3e535c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5075d97b4854acdd92b66bd7e998a7b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Server_8cpp.html#ac5075d97b4854acdd92b66bd7e998a7b">serverRoutine</a> (SSL *ssl)</td></tr>
+<tr class="separator:ac5075d97b4854acdd92b66bd7e998a7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="adc5fa99189e579245b2a1b355311c281"></a>
+<a class="anchor" id="a4a30b2ee1cbec7ff035300ccb0aea835"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string getPathString </td>
+          <td class="memname">void inputDataStream </td>
           <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt;&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structServerContext.html">ServerContext</a> &gt;&#160;</td>
           <td class="paramname"><em>ctx</em></td><td>)</td>
           <td></td>
         </tr>
@@ -130,14 +128,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a66bc3e5b829ba4d3e4a294c1bcd267b9"></a>
+<a class="anchor" id="aa082c595e4a9fa38bc97c38d6e9d99cc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void reading_routine </td>
+          <td class="memname">void outputDataStream </td>
           <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt;&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structServerContext.html">ServerContext</a> &gt;&#160;</td>
           <td class="paramname"><em>ctx</em></td><td>)</td>
           <td></td>
         </tr>
@@ -146,47 +144,41 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2fadfe58fb2cc8c99832f693fb4b228b"></a>
+<a class="anchor" id="a93ccc02ad85eb81c75217a9a1c3e535c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int server_routine </td>
+          <td class="memname">void sendError </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structServerContext.html">ServerContext</a> &gt;&#160;</td>
+          <td class="paramname"><em>ctx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>str</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac5075d97b4854acdd92b66bd7e998a7b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int serverRoutine </td>
           <td>(</td>
           <td class="paramtype">SSL *&#160;</td>
           <td class="paramname"><em>ssl</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="af4f6abd6f4838ae0194d1099c72c99ff"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void shell_routine </td>
-          <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt;&#160;</td>
-          <td class="paramname"><em>ctx</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a86a3b788c2958975e270bf69fb8fe7e2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void writing_routine </td>
-          <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt;&#160;</td>
-          <td class="paramname"><em>ctx</em></td><td>)</td>
           <td></td>
         </tr>
       </table>

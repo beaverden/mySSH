@@ -1,8 +1,5 @@
-#define DEBUG_MODE
-
 #include "../../common/include/Packet.h"
 #include "../../common/include/Exceptions.h"
-#include "../../common/include/Utility.h"
 
 #include <sys/socket.h>
 #include <netinet/in.h>

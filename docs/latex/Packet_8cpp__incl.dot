@@ -10,7 +10,7 @@ digraph "/home/denis/CLionProjects/mySSH/common/src/Packet.cpp"
   Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
   Node4 [label="stdexcept",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
-  Node5 [label="Utility.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Utility_8h.html"];
+  Node5 [label="Logger.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Logger_8h.html"];
   Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
   Node6 [label="string",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node5 -> Node7 [color="midnightblue",fontsize="10",style="solid"];

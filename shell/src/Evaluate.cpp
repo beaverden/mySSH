@@ -1,22 +1,17 @@
-//
-// Created by denis on 12/27/17.
-//
-
 #include "../include/Evaluate.h"
-#include "../../common/include/Packet.h"
-#include "../../common/include/Utility.h"
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <cstring>
-#include <wait.h>
-
-#include "openssl/bio.h"
-#include "openssl/ssl.h"
-#include "openssl/err.h"
-#include <sys/socket.h>
-#include <sys/ioctl.h>
-
+std::string get_cwd()
+{
+    char cwd[1024] = {};
+    if (getcwd(cwd, sizeof(cwd)) != NULL)
+    {
+        return std::string(cwd);
+    } 
+    else
+    {
+        return ".";
+    }
+}
 
 int Execute(
     std::string command, 
@@ -32,20 +27,35 @@ int Execute(
     {
         throw ExitException("Exit called.");
     }
+    else if (tokens[0] == "cd")
+    {
+        int result = chdir(tokens[1].c_str());
+        ctx->currentDir = get_cwd();
+        return result;
+    }
     int pid;
     if ((pid = fork()) != -1)
     {
         if (pid == 0)
         {
             // child
-            close(STDIN_FILENO);
-            dup(ctx->inputRedir.top());
+            if (ctx->inputRedir.top() != STDIN_FILENO)
+            {
+                close(STDIN_FILENO);
+                dup(ctx->inputRedir.top());
+            }
+            
+            if (ctx->outputRedir.top() != STDOUT_FILENO)
+            {
+                close(STDOUT_FILENO);
+                dup(ctx->outputRedir.top());
+            }
 
-            close(STDOUT_FILENO);
-            dup(ctx->outputRedir.top());
-
-            close(STDERR_FILENO);
-            dup(ctx->errorRedir.top());
+            if (ctx->errorRedir.top() != STDERR_FILENO)
+            {
+                close(STDERR_FILENO);
+                dup(ctx->errorRedir.top());
+            }
 
             char* strings[MAX_ARGUMENTS] = {0};
             for (size_t i = 0; i < tokens.size(); i++)
@@ -73,7 +83,6 @@ void Evaluate(std::string command, std::shared_ptr<ExecutionContext> ctx)
 {
     trim(command, "\t\n\r ");
     if (command.length() == 0) return;
-    Logger::log(LOG_EVAL, "Parsing: %s", command.c_str());
     std::shared_ptr<SyntaxTree> root;
     root = Parser::getInstance()->parseCommand(command);
     Evaluate_Tree(root, ctx);
@@ -82,7 +91,6 @@ void Evaluate(std::string command, std::shared_ptr<ExecutionContext> ctx)
 int Evaluate_Tree(std::shared_ptr<SyntaxTree> node, std::shared_ptr<ExecutionContext> context)
 {
     if (node == nullptr) return 0;
-    Logger::log(LOG_EVAL_VERBOSE, "Node: [Type: %d, Content: %s]", node->type, node->content.c_str());
     if (node->type == OperationType::OUTPUT_REDIRECT)
     {
         std::shared_ptr<SyntaxTree> file = node->right;
@@ -200,7 +208,6 @@ int Evaluate_Tree(std::shared_ptr<SyntaxTree> node, std::shared_ptr<ExecutionCon
     }
     else if (node->type == OperationType::EXECUTE)
     {
-        Logger::log(LOG_EVAL, "Executing: %s\n", node->content.c_str());
         return Execute(node->content, context);
     }
     else 

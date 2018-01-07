@@ -73,19 +73,19 @@ void Server::initializeSockets(char* _port)
     Logger::log(LOG_EVENTS, "Listening socket is %d", fd);
 }
 
-void writing_routine(std::shared_ptr<ExecutionContext> ctx)
+void outputDataStream(std::shared_ptr<ServerContext> ctx)
 {
     while (true)
     {      
         if (ctx->shouldTerminate) return;
         int has_read = 0;
         int result = 0;
-        ioctl(ctx->sv_serv, FIONREAD, &has_read);
+        ioctl(ctx->svServ, FIONREAD, &has_read);
         if (has_read > 0)
         {
             ctx->sslMutex.lock();
             char* buff = new char[has_read];
-            result = read(ctx->sv_serv, buff, has_read);
+            result = read(ctx->svServ, buff, has_read);
             // TODO shutdown exceptions
             send_packet(ctx->ssl, PACKET_RESPONSE, buff, result);
             ctx->sslMutex.unlock();
@@ -94,9 +94,8 @@ void writing_routine(std::shared_ptr<ExecutionContext> ctx)
     }
 }
 
-void reading_routine(std::shared_ptr<ExecutionContext> ctx)
+void inputDataStream(std::shared_ptr<ServerContext> ctx)
 {
-    // TODO max frame size
     int fd = SSL_get_fd(ctx->ssl);
     SSH_Packet packet;
     while (true)
@@ -109,13 +108,13 @@ void reading_routine(std::shared_ptr<ExecutionContext> ctx)
         {
             ctx->sslMutex.lock();
             recv_packet(ctx->ssl, &packet);
-            result = write(ctx->sv_serv, packet.payload.content, packet.payload.content_length);
+            result = write(ctx->svServ, packet.payload.content, packet.payload.content_length);
             ctx->sslMutex.unlock();
         }
     }  
 }
 
-void send_error(std::shared_ptr<ExecutionContext> ctx, const char* str)
+void sendError(std::shared_ptr<ServerContext> ctx, const char* str)
 {
     Logger::log(LOG_ERRORS, str);
     ctx->sslMutex.lock();
@@ -129,16 +128,11 @@ void send_error(std::shared_ptr<ExecutionContext> ctx, const char* str)
     ctx->sslMutex.unlock();
 }
 
-void shell_routine(std::shared_ptr<ExecutionContext> ctx)
-{
-
-}
-
-int server_routine(SSL* ssl)
+int serverRoutine(SSL* ssl)
 {
     try
     {
-        auto ctx = std::make_shared<ExecutionContext>();
+        auto ctx = std::make_shared<ServerContext>();
         if (ctx == nullptr)
         {
             throw std::bad_alloc();
@@ -150,18 +144,15 @@ int server_routine(SSL* ssl)
             throw ServerException("Unable initialize parent-child sockets");
         }
         ctx->ssl = ssl;
-        ctx->sv_prog = sockets[0];
-        ctx->sv_serv = sockets[1];
-        ctx->inputRedir.push(ctx->sv_prog);
-        ctx->outputRedir.push(ctx->sv_prog);
-        ctx->errorRedir.push(ctx->sv_prog);
+        ctx->svShell = sockets[0];
+        ctx->svServ = sockets[1];
 
-        std::thread t1(reading_routine, ctx);
-        std::thread t2(writing_routine, ctx);
-        std::thread shell(shell_routine, ctx);
+        std::thread t1(inputDataStream, ctx);
+        std::thread t2(outputDataStream, ctx);
+        // TODO spawn shell
         t1.join();
         t2.join();  
-        shell.join();
+        //shell.join();
         char msg[] = "Terminate";
         send_packet(ssl, PACKET_TERMINATE, msg, strlen(msg));
     }
@@ -174,7 +165,6 @@ int server_routine(SSL* ssl)
         Logger::log(LOG_ERRORS, "Unknown exception in server routine");
     }
 }
-
 
 
 void Server::connectionListen()
@@ -197,7 +187,7 @@ void Server::connectionListen()
                 Logger::log(LOG_CONNECTIONS, "Client connected");
                 try
                 {
-                   exitCode = server_routine(ssl);
+                   exitCode = serverRoutine(ssl);
                 }
                 catch (ServerException& ex)
                 {
@@ -252,10 +242,6 @@ Server* Server::getInstance()
     return instance;
 }
 
-std::string getPathString(std::shared_ptr<ExecutionContext> ctx)
-{
-    return ctx->username + ":" + ctx->currentDir + "$ ";
-}
 
 void Server::handleAuth(SSL* ssl)
 {

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['reading_5froutine',['reading_routine',['../client_8cpp.html#a66bc3e5b829ba4d3e4a294c1bcd267b9',1,'reading_routine(std::shared_ptr&lt; ExecutionContext &gt; ctx):&#160;client.cpp'],['../Server_8cpp.html#a66bc3e5b829ba4d3e4a294c1bcd267b9',1,'reading_routine(std::shared_ptr&lt; ExecutionContext &gt; ctx):&#160;Server.cpp']]],
-  ['recv_5fpacket',['recv_packet',['../Packet_8h.html#adaa6274c063dfae816caaf9a68774698',1,'recv_packet(SSL *ssl, SSH_Packet *read_to):&#160;Packet.cpp'],['../Packet_8cpp.html#adaa6274c063dfae816caaf9a68774698',1,'recv_packet(SSL *ssl, SSH_Packet *read_to):&#160;Packet.cpp']]],
-  ['resetlog',['resetLog',['../classLogger.html#a8b31dfd3a063f40f232f0549e962132d',1,'Logger']]]
+  ['packetioexception',['PacketIOException',['../classPacketIOException.html#aa7af9f36b32dd7b4ec0666709b519f61',1,'PacketIOException::PacketIOException(std::string message)'],['../classPacketIOException.html#aacc4580d773f1b07073d2c53de0508d1',1,'PacketIOException::PacketIOException(const char *fmt, Args...args)']]],
+  ['parsecommand',['parseCommand',['../classParser.html#a621be0eb716de9db8ecb77ec6afab3f0',1,'Parser']]],
+  ['parserexception',['ParserException',['../classParserException.html#a5da3288948e99da0705761bb0616bb00',1,'ParserException']]]
 ];

@@ -10,7 +10,7 @@ digraph "/home/denis/CLionProjects/mySSH/client/src/client.cpp"
   Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
   Node4 [label="stdexcept",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
-  Node5 [label="Utility.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Utility_8h.html"];
+  Node5 [label="Logger.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Logger_8h.html"];
   Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
   Node6 [label="string",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node5 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
@@ -45,7 +45,6 @@ digraph "/home/denis/CLionProjects/mySSH/client/src/client.cpp"
   Node2 -> Node21 [color="midnightblue",fontsize="10",style="solid"];
   Node21 [label="openssl/sha.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
-  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node13 [color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node14 [color="midnightblue",fontsize="10",style="solid"];

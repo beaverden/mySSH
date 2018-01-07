@@ -3,8 +3,6 @@
 
 #include "../../common/include/Exceptions.h"
 #include "../../common/include/Packet.h"
-#include "Evaluate.h"
-
 
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -18,6 +16,7 @@
 #include <string>
 #include <thread>
 #include <new>
+#include <mutex>
 
 #include "openssl/bio.h"
 #include "openssl/ssl.h"
@@ -25,9 +24,17 @@
 #include <stdexcept>
 
 #define FAILED -1
-#define LISTEN_PORT 2018
 
-struct ExecutionContext;
+struct ServerContext
+{
+    int svShell = -1;
+    int svServ = -1;
+
+    SSL* ssl;
+    std::mutex sslMutex;
+
+    bool shouldTerminate = false;
+};
 
 class Server
 {
@@ -68,7 +75,40 @@ class Server
          */
         void connectionListen();
 
-        void handleAuth(SSL* ssl);
+        /**
+         * \brief Prepares execution environment. Runs out and input data streams,
+         * spawns a shell for the client
+         * 
+         * \param[in] SSL Pointer to initialized and ready SSL structure
+         * \return Execution result
+         */
+        int serverRoutine(SSL* ssl);
+
+        /**
+         * \brief Constantly reads output from the shell and outputs it to the 
+         * SSL socket
+         * 
+         * \param ctx A pointer to ServerContext structure, containing sockets
+         */
+        void outputDataStream(std::shared_ptr<ServerContext> ctx);
+
+        /**
+         * \brief Constantly reads from SSL socket and redirects it to the shell
+         * 
+         * \param ctx A pointer to ServerContext structure, containing sockets
+         */        
+        void inputDataStream(std::shared_ptr<ServerContext> ctx);
+
+        /**
+         * \brief Sends an error to the SSL socket
+         * 
+         * \param ctx A pointer to ServerContext structure, containing sockets
+         * \param str Pointer to a null terminated C string 
+         */
+        void sendError(std::shared_ptr<ServerContext> ctx, const char* str);
+       
+
+        void handleAuth(SSL* SSL);
 };
 
 

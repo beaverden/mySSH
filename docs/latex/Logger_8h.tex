@@ -1,0 +1,105 @@
+\hypertarget{Logger_8h}{}\section{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/include/\+Logger.h File Reference}
+\label{Logger_8h}\index{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/include/\+Logger.\+h@{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/common/include/\+Logger.\+h}}
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$memory$>$}\\*
+{\ttfamily \#include $<$fstream$>$}\\*
+{\ttfamily \#include $<$ctime$>$}\\*
+{\ttfamily \#include $<$mutex$>$}\\*
+Include dependency graph for Logger.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classLogger}{Logger}
+\begin{DoxyCompactList}\small\item\em Class to log formatted information into a log file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{Logger_8h_a63728bc2bb2c4352090dc48ee65273b1}{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+TS}~(1 $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em Log basic data about packets, but not the content. \end{DoxyCompactList}\item 
+\#define \hyperlink{Logger_8h_a2a2249f3d5db2bba1c25534dd60c2860}{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+D\+A\+TA}~(1 $<$$<$ 1)
+\begin{DoxyCompactList}\small\item\em Log packet content. \end{DoxyCompactList}\item 
+\#define \hyperlink{Logger_8h_aaacf836166a9bb870debfbe2b78eb830}{L\+O\+G\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS}~(1 $<$$<$ 2)
+\begin{DoxyCompactList}\small\item\em Log when a client has connected. \end{DoxyCompactList}\item 
+\#define \hyperlink{Logger_8h_a327a92ff349ce0beadfb946b5714a4b9}{L\+O\+G\+\_\+\+E\+R\+R\+O\+RS}~(1 $<$$<$ 3)
+\begin{DoxyCompactList}\small\item\em Log exceptions and errors. \end{DoxyCompactList}\item 
+\#define \hyperlink{Logger_8h_a1632479322efa3952798f98177b54471}{L\+O\+G\+\_\+\+N\+O\+NE}~(1 $<$$<$ 4)
+\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t log. \end{DoxyCompactList}\item 
+\#define \hyperlink{Logger_8h_ade2a951f0b4ac908683c37e1066d243c}{L\+O\+G\+\_\+\+E\+V\+E\+N\+TS}~(1 $<$$<$ 5)
+\begin{DoxyCompactList}\small\item\em Log important events during the protocol. \end{DoxyCompactList}\item 
+\#define \hyperlink{Logger_8h_a7ea7b4ad9885aa5fc28fe650b976d511}{L\+O\+G\+\_\+\+E\+V\+AL}~(1 $<$$<$ 6)
+\begin{DoxyCompactList}\small\item\em Log evaluation events. \end{DoxyCompactList}\item 
+\#define \hyperlink{Logger_8h_a91452f0c8b053cb9a52a64e6de9e4505}{L\+O\+G\+\_\+\+E\+V\+A\+L\+\_\+\+V\+E\+R\+B\+O\+SE}~(1 $<$$<$ 7)
+\begin{DoxyCompactList}\small\item\em Log detailed evaluation. \end{DoxyCompactList}\item 
+\#define \hyperlink{Logger_8h_abb3f80ef30220b04f769a74e0d8db9fc}{C\+H\+E\+CK}(opts,  flg)~(((opts) \& (flg)) != 0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{Logger.\+h@{Logger.\+h}!C\+H\+E\+CK@{C\+H\+E\+CK}}
+\index{C\+H\+E\+CK@{C\+H\+E\+CK}!Logger.\+h@{Logger.\+h}}
+\subsubsection[{\texorpdfstring{C\+H\+E\+CK}{CHECK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+H\+E\+CK(
+\begin{DoxyParamCaption}
+\item[{}]{opts, }
+\item[{}]{flg}
+\end{DoxyParamCaption}
+)~(((opts) \& (flg)) != 0)}\hypertarget{Logger_8h_abb3f80ef30220b04f769a74e0d8db9fc}{}\label{Logger_8h_abb3f80ef30220b04f769a74e0d8db9fc}
+\index{Logger.\+h@{Logger.\+h}!L\+O\+G\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS@{L\+O\+G\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS}}
+\index{L\+O\+G\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS@{L\+O\+G\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS}!Logger.\+h@{Logger.\+h}}
+\subsubsection[{\texorpdfstring{L\+O\+G\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS}{LOG_CONNECTIONS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+O\+G\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS~(1 $<$$<$ 2)}\hypertarget{Logger_8h_aaacf836166a9bb870debfbe2b78eb830}{}\label{Logger_8h_aaacf836166a9bb870debfbe2b78eb830}
+
+
+Log when a client has connected. 
+
+\index{Logger.\+h@{Logger.\+h}!L\+O\+G\+\_\+\+E\+R\+R\+O\+RS@{L\+O\+G\+\_\+\+E\+R\+R\+O\+RS}}
+\index{L\+O\+G\+\_\+\+E\+R\+R\+O\+RS@{L\+O\+G\+\_\+\+E\+R\+R\+O\+RS}!Logger.\+h@{Logger.\+h}}
+\subsubsection[{\texorpdfstring{L\+O\+G\+\_\+\+E\+R\+R\+O\+RS}{LOG_ERRORS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+O\+G\+\_\+\+E\+R\+R\+O\+RS~(1 $<$$<$ 3)}\hypertarget{Logger_8h_a327a92ff349ce0beadfb946b5714a4b9}{}\label{Logger_8h_a327a92ff349ce0beadfb946b5714a4b9}
+
+
+Log exceptions and errors. 
+
+\index{Logger.\+h@{Logger.\+h}!L\+O\+G\+\_\+\+E\+V\+AL@{L\+O\+G\+\_\+\+E\+V\+AL}}
+\index{L\+O\+G\+\_\+\+E\+V\+AL@{L\+O\+G\+\_\+\+E\+V\+AL}!Logger.\+h@{Logger.\+h}}
+\subsubsection[{\texorpdfstring{L\+O\+G\+\_\+\+E\+V\+AL}{LOG_EVAL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+O\+G\+\_\+\+E\+V\+AL~(1 $<$$<$ 6)}\hypertarget{Logger_8h_a7ea7b4ad9885aa5fc28fe650b976d511}{}\label{Logger_8h_a7ea7b4ad9885aa5fc28fe650b976d511}
+
+
+Log evaluation events. 
+
+\index{Logger.\+h@{Logger.\+h}!L\+O\+G\+\_\+\+E\+V\+A\+L\+\_\+\+V\+E\+R\+B\+O\+SE@{L\+O\+G\+\_\+\+E\+V\+A\+L\+\_\+\+V\+E\+R\+B\+O\+SE}}
+\index{L\+O\+G\+\_\+\+E\+V\+A\+L\+\_\+\+V\+E\+R\+B\+O\+SE@{L\+O\+G\+\_\+\+E\+V\+A\+L\+\_\+\+V\+E\+R\+B\+O\+SE}!Logger.\+h@{Logger.\+h}}
+\subsubsection[{\texorpdfstring{L\+O\+G\+\_\+\+E\+V\+A\+L\+\_\+\+V\+E\+R\+B\+O\+SE}{LOG_EVAL_VERBOSE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+O\+G\+\_\+\+E\+V\+A\+L\+\_\+\+V\+E\+R\+B\+O\+SE~(1 $<$$<$ 7)}\hypertarget{Logger_8h_a91452f0c8b053cb9a52a64e6de9e4505}{}\label{Logger_8h_a91452f0c8b053cb9a52a64e6de9e4505}
+
+
+Log detailed evaluation. 
+
+\index{Logger.\+h@{Logger.\+h}!L\+O\+G\+\_\+\+E\+V\+E\+N\+TS@{L\+O\+G\+\_\+\+E\+V\+E\+N\+TS}}
+\index{L\+O\+G\+\_\+\+E\+V\+E\+N\+TS@{L\+O\+G\+\_\+\+E\+V\+E\+N\+TS}!Logger.\+h@{Logger.\+h}}
+\subsubsection[{\texorpdfstring{L\+O\+G\+\_\+\+E\+V\+E\+N\+TS}{LOG_EVENTS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+O\+G\+\_\+\+E\+V\+E\+N\+TS~(1 $<$$<$ 5)}\hypertarget{Logger_8h_ade2a951f0b4ac908683c37e1066d243c}{}\label{Logger_8h_ade2a951f0b4ac908683c37e1066d243c}
+
+
+Log important events during the protocol. 
+
+\index{Logger.\+h@{Logger.\+h}!L\+O\+G\+\_\+\+N\+O\+NE@{L\+O\+G\+\_\+\+N\+O\+NE}}
+\index{L\+O\+G\+\_\+\+N\+O\+NE@{L\+O\+G\+\_\+\+N\+O\+NE}!Logger.\+h@{Logger.\+h}}
+\subsubsection[{\texorpdfstring{L\+O\+G\+\_\+\+N\+O\+NE}{LOG_NONE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+O\+G\+\_\+\+N\+O\+NE~(1 $<$$<$ 4)}\hypertarget{Logger_8h_a1632479322efa3952798f98177b54471}{}\label{Logger_8h_a1632479322efa3952798f98177b54471}
+
+
+Don\textquotesingle{}t log. 
+
+\index{Logger.\+h@{Logger.\+h}!L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+D\+A\+TA@{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+D\+A\+TA}}
+\index{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+D\+A\+TA@{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+D\+A\+TA}!Logger.\+h@{Logger.\+h}}
+\subsubsection[{\texorpdfstring{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+D\+A\+TA}{LOG_PACKET_DATA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+D\+A\+TA~(1 $<$$<$ 1)}\hypertarget{Logger_8h_a2a2249f3d5db2bba1c25534dd60c2860}{}\label{Logger_8h_a2a2249f3d5db2bba1c25534dd60c2860}
+
+
+Log packet content. 
+
+\index{Logger.\+h@{Logger.\+h}!L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+TS@{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+TS}}
+\index{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+TS@{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+TS}!Logger.\+h@{Logger.\+h}}
+\subsubsection[{\texorpdfstring{L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+TS}{LOG_PACKETS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+O\+G\+\_\+\+P\+A\+C\+K\+E\+TS~(1 $<$$<$ 0)}\hypertarget{Logger_8h_a63728bc2bb2c4352090dc48ee65273b1}{}\label{Logger_8h_a63728bc2bb2c4352090dc48ee65273b1}
+
+
+Log basic data about packets, but not the content. 
+

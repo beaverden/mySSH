@@ -1,5 +1,5 @@
 #include "../../common/include/Exceptions.h"
-#include "../../common/include/Utility.h"
+#include "../../common/include/Logger.h"
 #include "../include/Server.h"
 
 #include <iostream>
@@ -7,6 +7,7 @@
 #include <stdexcept>
 
 int main(int argc, char* argv[]) {
+    // TODO MAKE AUTH
     if (argc != 2)
     {
         printf("Usage: ./server [port]\n");

@@ -1,7 +1,7 @@
 /** @file */
 
-#ifndef UTILITY_H
-#define UTILITY_H
+#ifndef LOGGER_H
+#define LOGGER_H
 
 /** @brief Log basic data about packets, but not the content */
 #define LOG_PACKETS         (1 << 0)
@@ -28,25 +28,6 @@
 #include <fstream>
 #include <ctime>
 #include <mutex>
-
-/**
- * \brief Trims a string of spaces and tabs
- *
- * \param[in,out] str The target string to be trimmed
-*/
-void trim(std::string& str);
-
-/**
- * \brief Trims a string of spaces and tabs and the specified characters in 
-to_remove
- *
- * \param[in,out] str The target string to be trimmed
- * \param[in] toRemove Characters to be trimmed from the string ends
-*/
-void trim(std::string& str, std::string toRemove);
-
-
-
 
 /**
  * \brief Class to log formatted information into a log file
@@ -123,4 +104,4 @@ public:
 };
 
 
-#endif //UTILITY_H
+#endif //LOGGER_H

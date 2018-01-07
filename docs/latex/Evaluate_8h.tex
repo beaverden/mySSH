@@ -1,14 +1,15 @@
-\hypertarget{Evaluate_8h}{}\section{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/server/include/\+Evaluate.h File Reference}
-\label{Evaluate_8h}\index{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/server/include/\+Evaluate.\+h@{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/server/include/\+Evaluate.\+h}}
+\hypertarget{Evaluate_8h}{}\section{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/shell/include/\+Evaluate.h File Reference}
+\label{Evaluate_8h}\index{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/shell/include/\+Evaluate.\+h@{/home/denis/\+C\+Lion\+Projects/my\+S\+S\+H/shell/include/\+Evaluate.\+h}}
+{\ttfamily \#include \char`\"{}Parser.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Exception.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$string$>$}\\*
 {\ttfamily \#include $<$memory$>$}\\*
 {\ttfamily \#include $<$stack$>$}\\*
 {\ttfamily \#include $<$mutex$>$}\\*
-{\ttfamily \#include \char`\"{}Parser.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}Server.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}openssl/bio.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}openssl/ssl.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}openssl/err.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$fcntl.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$cstring$>$}\\*
+{\ttfamily \#include $<$wait.\+h$>$}\\*
 Include dependency graph for Evaluate.\+h\+:
 % FIG 0
 This graph shows which files directly or indirectly include this file\+:
@@ -31,6 +32,8 @@ int \hyperlink{Evaluate_8h_a428e9841f2157fb723a1f4cb173e597d}{Execute} (std\+::s
 void \hyperlink{Evaluate_8h_a370b78bdb8dcfbadf1b0e9be4452d740}{Evaluate} (std\+::string command, std\+::shared\+\_\+ptr$<$ \hyperlink{structExecutionContext}{Execution\+Context} $>$ context)
 \item 
 int \hyperlink{Evaluate_8h_aab83877ec794b9c71e963bac1b0dde76}{Evaluate\+\_\+\+Tree} (std\+::shared\+\_\+ptr$<$ \hyperlink{structSyntaxTree}{Syntax\+Tree} $>$ node, std\+::shared\+\_\+ptr$<$ \hyperlink{structExecutionContext}{Execution\+Context} $>$ context)
+\item 
+std\+::string \hyperlink{Evaluate_8h_a063842d8b2c77e02edb88c7ab397f649}{get\+\_\+cwd} ()
 \end{DoxyCompactItemize}
 
 
@@ -65,3 +68,10 @@ int \hyperlink{Evaluate_8h_aab83877ec794b9c71e963bac1b0dde76}{Evaluate\+\_\+\+Tr
 \item[{std\+::shared\+\_\+ptr$<$ {\bf Execution\+Context} $>$}]{context}
 \end{DoxyParamCaption}
 )}\hypertarget{Evaluate_8h_a428e9841f2157fb723a1f4cb173e597d}{}\label{Evaluate_8h_a428e9841f2157fb723a1f4cb173e597d}
+\index{Evaluate.\+h@{Evaluate.\+h}!get\+\_\+cwd@{get\+\_\+cwd}}
+\index{get\+\_\+cwd@{get\+\_\+cwd}!Evaluate.\+h@{Evaluate.\+h}}
+\subsubsection[{\texorpdfstring{get\+\_\+cwd()}{get_cwd()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string get\+\_\+cwd (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{Evaluate_8h_a063842d8b2c77e02edb88c7ab397f649}{}\label{Evaluate_8h_a063842d8b2c77e02edb88c7ab397f649}

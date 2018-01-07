@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>mySSH: /home/denis/CLionProjects/mySSH/server/include/Evaluate.h File Reference</title>
+<title>mySSH: /home/denis/CLionProjects/mySSH/shell/include/Evaluate.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,7 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_41e1742e44e2de38b3bc91f993fed282.html">server</a></li><li class="navelem"><a class="el" href="dir_2b32f7736d6a65027d17676f6279053c.html">include</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_71eb729dfe620fdc00a342f30f6592a7.html">shell</a></li><li class="navelem"><a class="el" href="dir_273d9cd472139c31821298da1999aba1.html">include</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -94,25 +94,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Evaluate.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;string&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="Parser_8h_source.html">Parser.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Exception_8h_source.html">Exception.h</a>&quot;</code><br />
+<code>#include &lt;string&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;stack&gt;</code><br />
 <code>#include &lt;mutex&gt;</code><br />
-<code>#include &quot;<a class="el" href="Parser_8h_source.html">Parser.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="Server_8h_source.html">Server.h</a>&quot;</code><br />
-<code>#include &quot;openssl/bio.h&quot;</code><br />
-<code>#include &quot;openssl/ssl.h&quot;</code><br />
-<code>#include &quot;openssl/err.h&quot;</code><br />
+<code>#include &lt;fcntl.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;cstring&gt;</code><br />
+<code>#include &lt;wait.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Evaluate.h:</div>
 <div class="dyncontent">
-<div class="center"><img src="Evaluate_8h__incl.png" border="0" usemap="#_2home_2denis_2CLionProjects_2mySSH_2server_2include_2Evaluate_8h" alt=""/></div>
+<div class="center"><img src="Evaluate_8h__incl.png" border="0" usemap="#_2home_2denis_2CLionProjects_2mySSH_2shell_2include_2Evaluate_8h" alt=""/></div>
 <!-- MAP 0 -->
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="Evaluate_8h__dep__incl.png" border="0" usemap="#_2home_2denis_2CLionProjects_2mySSH_2server_2include_2Evaluate_8hdep" alt=""/></div>
+<div class="center"><img src="Evaluate_8h__dep__incl.png" border="0" usemap="#_2home_2denis_2CLionProjects_2mySSH_2shell_2include_2Evaluate_8hdep" alt=""/></div>
 <!-- MAP 1 -->
 </div>
 </div>
@@ -136,6 +137,8 @@ Functions</h2></td></tr>
 <tr class="separator:a370b78bdb8dcfbadf1b0e9be4452d740"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab83877ec794b9c71e963bac1b0dde76"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8h.html#aab83877ec794b9c71e963bac1b0dde76">Evaluate_Tree</a> (std::shared_ptr&lt; <a class="el" href="structSyntaxTree.html">SyntaxTree</a> &gt; node, std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; context)</td></tr>
 <tr class="separator:aab83877ec794b9c71e963bac1b0dde76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a063842d8b2c77e02edb88c7ab397f649"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8h.html#a063842d8b2c77e02edb88c7ab397f649">get_cwd</a> ()</td></tr>
+<tr class="separator:a063842d8b2c77e02edb88c7ab397f649"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="a0edb60dab8dbc580a40d8d987492631f"></a>
@@ -223,6 +226,21 @@ Functions</h2></td></tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a063842d8b2c77e02edb88c7ab397f649"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string get_cwd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">

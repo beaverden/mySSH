@@ -4,16 +4,19 @@
 
 #ifndef EVALUATE_H
 #define EVALUATE_H
+
+#include "Parser.h"
+#include "Exception.h"
 #include <string>
 #include <memory>
 #include <stack>
 #include <mutex>
 
-#include "Parser.h"
-#include "Server.h"
-#include "openssl/bio.h"
-#include "openssl/ssl.h"
-#include "openssl/err.h"
+#include <fcntl.h>
+#include <unistd.h>
+#include <cstring>
+#include <wait.h>
+
 
 #define MAX_ARGUMENTS 100
 
@@ -23,17 +26,10 @@ struct ExecutionContext
     std::stack<int> outputRedir;
     std::stack<int> errorRedir;  
 
-    std::mutex sslMutex;
-    SSL* ssl;
-
-    int sv_serv = -1;
-    int sv_prog = -1;
-
     std::string username;
     std::string currentDir;
 
     bool shouldTerminate = false;
-    // TODO closing sockets properly?
 };
 
 int Execute(
@@ -50,5 +46,7 @@ int Evaluate_Tree(
     std::shared_ptr<SyntaxTree> node, 
     std::shared_ptr<ExecutionContext> context
 );
+
+std::string get_cwd();
 
 #endif //EVALUATE_H

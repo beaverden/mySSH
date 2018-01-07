@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>mySSH: /home/denis/CLionProjects/mySSH/common/include/Utility.h File Reference</title>
+<title>mySSH: /home/denis/CLionProjects/mySSH/shell/include/Utility.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,13 +82,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_bdd9a5d540de89e9fe90efdfc6973a4f.html">common</a></li><li class="navelem"><a class="el" href="dir_11fbc4217d50ab21044e5ad6614aede5.html">include</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_71eb729dfe620fdc00a342f30f6592a7.html">shell</a></li><li class="navelem"><a class="el" href="dir_273d9cd472139c31821298da1999aba1.html">include</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Utility.h File Reference</div>  </div>
@@ -96,60 +94,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><code>#include &lt;string&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
-<code>#include &lt;memory&gt;</code><br />
-<code>#include &lt;fstream&gt;</code><br />
-<code>#include &lt;ctime&gt;</code><br />
-<code>#include &lt;mutex&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Utility.h:</div>
 <div class="dyncontent">
-<div class="center"><img src="Utility_8h__incl.png" border="0" usemap="#_2home_2denis_2CLionProjects_2mySSH_2common_2include_2Utility_8h" alt=""/></div>
+<div class="center"><img src="Utility_8h__incl.png" border="0" usemap="#_2home_2denis_2CLionProjects_2mySSH_2shell_2include_2Utility_8h" alt=""/></div>
 <!-- MAP 0 -->
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="Utility_8h__dep__incl.png" border="0" usemap="#_2home_2denis_2CLionProjects_2mySSH_2common_2include_2Utility_8hdep" alt=""/></div>
+<div class="center"><img src="Utility_8h__dep__incl.png" border="0" usemap="#_2home_2denis_2CLionProjects_2mySSH_2shell_2include_2Utility_8hdep" alt=""/></div>
 <!-- MAP 1 -->
 </div>
 </div>
 <p><a href="Utility_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html">Logger</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class to log formatted information into a log file.  <a href="classLogger.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a63728bc2bb2c4352090dc48ee65273b1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8h.html#a63728bc2bb2c4352090dc48ee65273b1">LOG_PACKETS</a>&#160;&#160;&#160;(1 &lt;&lt; 0)</td></tr>
-<tr class="memdesc:a63728bc2bb2c4352090dc48ee65273b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log basic data about packets, but not the content.  <a href="#a63728bc2bb2c4352090dc48ee65273b1">More...</a><br /></td></tr>
-<tr class="separator:a63728bc2bb2c4352090dc48ee65273b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a2249f3d5db2bba1c25534dd60c2860"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8h.html#a2a2249f3d5db2bba1c25534dd60c2860">LOG_PACKET_DATA</a>&#160;&#160;&#160;(1 &lt;&lt; 1)</td></tr>
-<tr class="memdesc:a2a2249f3d5db2bba1c25534dd60c2860"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log packet content.  <a href="#a2a2249f3d5db2bba1c25534dd60c2860">More...</a><br /></td></tr>
-<tr class="separator:a2a2249f3d5db2bba1c25534dd60c2860"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaacf836166a9bb870debfbe2b78eb830"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8h.html#aaacf836166a9bb870debfbe2b78eb830">LOG_CONNECTIONS</a>&#160;&#160;&#160;(1 &lt;&lt; 2)</td></tr>
-<tr class="memdesc:aaacf836166a9bb870debfbe2b78eb830"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log when a client has connected.  <a href="#aaacf836166a9bb870debfbe2b78eb830">More...</a><br /></td></tr>
-<tr class="separator:aaacf836166a9bb870debfbe2b78eb830"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a327a92ff349ce0beadfb946b5714a4b9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8h.html#a327a92ff349ce0beadfb946b5714a4b9">LOG_ERRORS</a>&#160;&#160;&#160;(1 &lt;&lt; 3)</td></tr>
-<tr class="memdesc:a327a92ff349ce0beadfb946b5714a4b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log exceptions and errors.  <a href="#a327a92ff349ce0beadfb946b5714a4b9">More...</a><br /></td></tr>
-<tr class="separator:a327a92ff349ce0beadfb946b5714a4b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1632479322efa3952798f98177b54471"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8h.html#a1632479322efa3952798f98177b54471">LOG_NONE</a>&#160;&#160;&#160;(1 &lt;&lt; 4)</td></tr>
-<tr class="memdesc:a1632479322efa3952798f98177b54471"><td class="mdescLeft">&#160;</td><td class="mdescRight">Don't log.  <a href="#a1632479322efa3952798f98177b54471">More...</a><br /></td></tr>
-<tr class="separator:a1632479322efa3952798f98177b54471"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade2a951f0b4ac908683c37e1066d243c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8h.html#ade2a951f0b4ac908683c37e1066d243c">LOG_EVENTS</a>&#160;&#160;&#160;(1 &lt;&lt; 5)</td></tr>
-<tr class="memdesc:ade2a951f0b4ac908683c37e1066d243c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log important events during the protocol.  <a href="#ade2a951f0b4ac908683c37e1066d243c">More...</a><br /></td></tr>
-<tr class="separator:ade2a951f0b4ac908683c37e1066d243c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ea7b4ad9885aa5fc28fe650b976d511"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8h.html#a7ea7b4ad9885aa5fc28fe650b976d511">LOG_EVAL</a>&#160;&#160;&#160;(1 &lt;&lt; 6)</td></tr>
-<tr class="memdesc:a7ea7b4ad9885aa5fc28fe650b976d511"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log evaluation events.  <a href="#a7ea7b4ad9885aa5fc28fe650b976d511">More...</a><br /></td></tr>
-<tr class="separator:a7ea7b4ad9885aa5fc28fe650b976d511"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91452f0c8b053cb9a52a64e6de9e4505"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8h.html#a91452f0c8b053cb9a52a64e6de9e4505">LOG_EVAL_VERBOSE</a>&#160;&#160;&#160;(1 &lt;&lt; 7)</td></tr>
-<tr class="memdesc:a91452f0c8b053cb9a52a64e6de9e4505"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log detailed evaluation.  <a href="#a91452f0c8b053cb9a52a64e6de9e4505">More...</a><br /></td></tr>
-<tr class="separator:a91452f0c8b053cb9a52a64e6de9e4505"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb3f80ef30220b04f769a74e0d8db9fc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8h.html#abb3f80ef30220b04f769a74e0d8db9fc">CHECK</a>(opts,  flg)&#160;&#160;&#160;(((opts) &amp; (flg)) != 0)</td></tr>
-<tr class="separator:abb3f80ef30220b04f769a74e0d8db9fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a83375b89f8b135c348ba5bea0c847da0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8h.html#a83375b89f8b135c348ba5bea0c847da0">trim</a> (std::string &amp;str)</td></tr>
@@ -159,145 +118,6 @@ Functions</h2></td></tr>
 <tr class="memdesc:a13ec08fc7352ad22f4b4ddb02537b486"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trims a string of spaces and tabs and the specified characters in to_remove.  <a href="#a13ec08fc7352ad22f4b4ddb02537b486">More...</a><br /></td></tr>
 <tr class="separator:a13ec08fc7352ad22f4b4ddb02537b486"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="abb3f80ef30220b04f769a74e0d8db9fc"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CHECK</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">opts, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">flg&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td>&#160;&#160;&#160;(((opts) &amp; (flg)) != 0)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="aaacf836166a9bb870debfbe2b78eb830"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_CONNECTIONS&#160;&#160;&#160;(1 &lt;&lt; 2)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Log when a client has connected. </p>
-
-</div>
-</div>
-<a class="anchor" id="a327a92ff349ce0beadfb946b5714a4b9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_ERRORS&#160;&#160;&#160;(1 &lt;&lt; 3)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Log exceptions and errors. </p>
-
-</div>
-</div>
-<a class="anchor" id="a7ea7b4ad9885aa5fc28fe650b976d511"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_EVAL&#160;&#160;&#160;(1 &lt;&lt; 6)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Log evaluation events. </p>
-
-</div>
-</div>
-<a class="anchor" id="a91452f0c8b053cb9a52a64e6de9e4505"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_EVAL_VERBOSE&#160;&#160;&#160;(1 &lt;&lt; 7)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Log detailed evaluation. </p>
-
-</div>
-</div>
-<a class="anchor" id="ade2a951f0b4ac908683c37e1066d243c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_EVENTS&#160;&#160;&#160;(1 &lt;&lt; 5)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Log important events during the protocol. </p>
-
-</div>
-</div>
-<a class="anchor" id="a1632479322efa3952798f98177b54471"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_NONE&#160;&#160;&#160;(1 &lt;&lt; 4)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Don't log. </p>
-
-</div>
-</div>
-<a class="anchor" id="a2a2249f3d5db2bba1c25534dd60c2860"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_PACKET_DATA&#160;&#160;&#160;(1 &lt;&lt; 1)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Log packet content. </p>
-
-</div>
-</div>
-<a class="anchor" id="a63728bc2bb2c4352090dc48ee65273b1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_PACKETS&#160;&#160;&#160;(1 &lt;&lt; 0)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Log basic data about packets, but not the content. </p>
-
-</div>
-</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a83375b89f8b135c348ba5bea0c847da0"></a>
 <div class="memitem">

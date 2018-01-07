@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['handleauth',['handleAuth',['../classServer.html#a65f1f6c6f3c0c84a5e43494e702818a4',1,'Server::handleAuth()'],['../client_8cpp.html#a98f4fc799684d4c4564fa5549b8e9277',1,'HandleAuth():&#160;client.cpp']]],
-  ['handlecommand',['HandleCommand',['../client_8cpp.html#a36c31f9205eb9e4e3753617984054fe1',1,'client.cpp']]],
-  ['handleresponse',['HandleResponse',['../client_8cpp.html#a238a36a0c27151b4efcf65df7a23f043',1,'client.cpp']]]
+  ['get_5fcwd',['get_cwd',['../Evaluate_8h.html#a063842d8b2c77e02edb88c7ab397f649',1,'get_cwd():&#160;Evaluate.cpp'],['../Evaluate_8cpp.html#a063842d8b2c77e02edb88c7ab397f649',1,'get_cwd():&#160;Evaluate.cpp']]],
+  ['getinstance',['getInstance',['../classServer.html#a22dbfd5db73d391d615a0bfd69077fb6',1,'Server::getInstance()'],['../classParser.html#a4f90468d5cc88a39d50dfc3f08b46ae0',1,'Parser::getInstance()']]],
+  ['gr_2ecpp',['gr.cpp',['../gr_8cpp.html',1,'']]]
 ];
