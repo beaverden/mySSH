@@ -12,14 +12,14 @@ A dedicated class for parsing a complex command and returning an A\+ST of it.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-std\+::shared\+\_\+ptr$<$ \hyperlink{structSyntaxTree}{Syntax\+Tree} $>$ \hyperlink{classParser_ac45f30e3cfa787cece390bb80cee7fd0}{Parse} (std\+::string command)
+std\+::shared\+\_\+ptr$<$ \hyperlink{structSyntaxTree}{Syntax\+Tree} $>$ \hyperlink{classParser_a621be0eb716de9db8ecb77ec6afab3f0}{parse\+Command} (std\+::string command)
 \begin{DoxyCompactList}\small\item\em Tokenizes and verifies the command. Returns an A\+ST ready for execution. \end{DoxyCompactList}\item 
-std\+::vector$<$ std\+::string $>$ \hyperlink{classParser_acabb9fe9da6646d4d411c50e7fa50c08}{Tokenize\+Execute} (std\+::string command, std\+::string delim)
+std\+::vector$<$ std\+::string $>$ \hyperlink{classParser_a21451cb3011d796acf866b05d52601f3}{tokenize\+Execute} (std\+::string command, std\+::string delim)
 \begin{DoxyCompactList}\small\item\em Takes a single command with arguments and splits it in a vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{classParser}{Parser} $\ast$ \hyperlink{classParser_a6177e907d92d35de545d44d10a23bc07}{Get} ()
+static \hyperlink{classParser}{Parser} $\ast$ \hyperlink{classParser_a4f90468d5cc88a39d50dfc3f08b46ae0}{get\+Instance} ()
 \begin{DoxyCompactList}\small\item\em Singleton get instance method. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -27,13 +27,13 @@ static \hyperlink{classParser}{Parser} $\ast$ \hyperlink{classParser_a6177e907d9
 A dedicated class for parsing a complex command and returning an A\+ST of it. 
 
 \subsection{Member Function Documentation}
-\index{Parser@{Parser}!Get@{Get}}
-\index{Get@{Get}!Parser@{Parser}}
-\subsubsection[{\texorpdfstring{Get()}{Get()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parser} $\ast$ Parser\+::\+Get (
+\index{Parser@{Parser}!get\+Instance@{get\+Instance}}
+\index{get\+Instance@{get\+Instance}!Parser@{Parser}}
+\subsubsection[{\texorpdfstring{get\+Instance()}{getInstance()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parser} $\ast$ Parser\+::get\+Instance (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classParser_a6177e907d92d35de545d44d10a23bc07}{}\label{classParser_a6177e907d92d35de545d44d10a23bc07}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classParser_a4f90468d5cc88a39d50dfc3f08b46ae0}{}\label{classParser_a4f90468d5cc88a39d50dfc3f08b46ae0}
 
 
 Singleton get instance method. 
@@ -41,13 +41,13 @@ Singleton get instance method.
 Allocates a instance if it was not yet created and returns a pointer to it \begin{DoxyReturn}{Returns}
 A pointer to a singleton instance of the class 
 \end{DoxyReturn}
-\index{Parser@{Parser}!Parse@{Parse}}
-\index{Parse@{Parse}!Parser@{Parser}}
-\subsubsection[{\texorpdfstring{Parse(std\+::string command)}{Parse(std::string command)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::shared\+\_\+ptr$<$ {\bf Syntax\+Tree} $>$ Parser\+::\+Parse (
+\index{Parser@{Parser}!parse\+Command@{parse\+Command}}
+\index{parse\+Command@{parse\+Command}!Parser@{Parser}}
+\subsubsection[{\texorpdfstring{parse\+Command(std\+::string command)}{parseCommand(std::string command)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::shared\+\_\+ptr$<$ {\bf Syntax\+Tree} $>$ Parser\+::parse\+Command (
 \begin{DoxyParamCaption}
 \item[{std\+::string}]{command}
 \end{DoxyParamCaption}
-)}\hypertarget{classParser_ac45f30e3cfa787cece390bb80cee7fd0}{}\label{classParser_ac45f30e3cfa787cece390bb80cee7fd0}
+)}\hypertarget{classParser_a621be0eb716de9db8ecb77ec6afab3f0}{}\label{classParser_a621be0eb716de9db8ecb77ec6afab3f0}
 
 
 Tokenizes and verifies the command. Returns an A\+ST ready for execution. 
@@ -62,14 +62,14 @@ The function will tokenize the input, do a minimal verification of tokens and wi
 \begin{DoxyReturn}{Returns}
 A pointer to the A\+ST root node of the respective command 
 \end{DoxyReturn}
-\index{Parser@{Parser}!Tokenize\+Execute@{Tokenize\+Execute}}
-\index{Tokenize\+Execute@{Tokenize\+Execute}!Parser@{Parser}}
-\subsubsection[{\texorpdfstring{Tokenize\+Execute(std\+::string command, std\+::string delim)}{TokenizeExecute(std::string command, std::string delim)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ std\+::string $>$ Parser\+::\+Tokenize\+Execute (
+\index{Parser@{Parser}!tokenize\+Execute@{tokenize\+Execute}}
+\index{tokenize\+Execute@{tokenize\+Execute}!Parser@{Parser}}
+\subsubsection[{\texorpdfstring{tokenize\+Execute(std\+::string command, std\+::string delim)}{tokenizeExecute(std::string command, std::string delim)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ std\+::string $>$ Parser\+::tokenize\+Execute (
 \begin{DoxyParamCaption}
 \item[{std\+::string}]{command, }
 \item[{std\+::string}]{delim}
 \end{DoxyParamCaption}
-)}\hypertarget{classParser_acabb9fe9da6646d4d411c50e7fa50c08}{}\label{classParser_acabb9fe9da6646d4d411c50e7fa50c08}
+)}\hypertarget{classParser_a21451cb3011d796acf866b05d52601f3}{}\label{classParser_a21451cb3011d796acf866b05d52601f3}
 
 
 Takes a single command with arguments and splits it in a vector. 

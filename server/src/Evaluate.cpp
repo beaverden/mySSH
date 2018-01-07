@@ -35,13 +35,13 @@ int Execute(
         {
             // child
             close(STDIN_FILENO);
-            dup(ctx->input_redir.top());
+            dup(ctx->inputRedir.top());
 
             close(STDOUT_FILENO);
-            dup(ctx->output_redir.top());
+            dup(ctx->outputRedir.top());
 
             close(STDERR_FILENO);
-            dup(ctx->error_redir.top());
+            dup(ctx->errorRedir.top());
 
             char* strings[MAX_ARGUMENTS] = {0};
             for (size_t i = 0; i < tokens.size(); i++)
@@ -93,10 +93,10 @@ int Evaluate_Tree(std::shared_ptr<SyntaxTree> node, std::shared_ptr<ExecutionCon
         {
             throw EvaluationException("Can't open redirect file [%s]", file->content.c_str());
         }
-        context->output_redir.push(reg);
+        context->outputRedir.push(reg);
         int result = Evaluate_Tree(node->left, context);
         close(reg);
-        context->output_redir.pop();
+        context->outputRedir.pop();
         return result;
     }
     else if (node->type == OperationType::INPUT_REDIRECT)
@@ -115,10 +115,10 @@ int Evaluate_Tree(std::shared_ptr<SyntaxTree> node, std::shared_ptr<ExecutionCon
         {
             throw EvaluationException("Can't open redirect file [%s]", file->content.c_str());
         }
-        context->input_redir.push(reg);
+        context->inputRedir.push(reg);
         int result = Evaluate_Tree(node->left, context);
         close(reg);
-        context->input_redir.pop();
+        context->inputRedir.pop();
         return result;
     }
     else if (node->type == OperationType::ERROR_REDIRECT)
@@ -137,10 +137,10 @@ int Evaluate_Tree(std::shared_ptr<SyntaxTree> node, std::shared_ptr<ExecutionCon
         {
             throw EvaluationException("Can't open redirect file [%s]", file->content.c_str());
         }
-        context->error_redir.push(reg);
+        context->errorRedir.push(reg);
         int result = Evaluate_Tree(node->left, context);
         close(reg);
-        context->error_redir.pop();
+        context->errorRedir.pop();
         return result;
     }
     else if (node->type == OperationType::LOGICAL_AND)
@@ -176,15 +176,15 @@ int Evaluate_Tree(std::shared_ptr<SyntaxTree> node, std::shared_ptr<ExecutionCon
         {
             throw EvaluationException("Can't create a pipe");
         }
-        context->output_redir.push(d[1]);
+        context->outputRedir.push(d[1]);
         Evaluate_Tree(node->left, context);
         close(d[1]);
-        context->output_redir.pop();
+        context->outputRedir.pop();
 
-        context->input_redir.push(d[0]);
+        context->inputRedir.push(d[0]);
         int result = Evaluate_Tree(node->right, context);
         close(d[0]);
-        context->input_redir.pop();
+        context->inputRedir.pop();
         return result;
     }
     else if (node->type == OperationType::FOLLOWUP)

@@ -108,10 +108,28 @@ Functions</h2></td></tr>
 <tr class="separator:a66bc3e5b829ba4d3e4a294c1bcd267b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4f6abd6f4838ae0194d1099c72c99ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Server_8cpp.html#af4f6abd6f4838ae0194d1099c72c99ff">shell_routine</a> (std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; ctx)</td></tr>
 <tr class="separator:af4f6abd6f4838ae0194d1099c72c99ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a207de466b24d9409b643b1d91527b2c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Server_8cpp.html#a207de466b24d9409b643b1d91527b2c1">server_routine</a> (SSL *ssl)</td></tr>
-<tr class="separator:a207de466b24d9409b643b1d91527b2c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fadfe58fb2cc8c99832f693fb4b228b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Server_8cpp.html#a2fadfe58fb2cc8c99832f693fb4b228b">server_routine</a> (SSL *ssl)</td></tr>
+<tr class="separator:a2fadfe58fb2cc8c99832f693fb4b228b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc5fa99189e579245b2a1b355311c281"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Server_8cpp.html#adc5fa99189e579245b2a1b355311c281">getPathString</a> (std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; ctx)</td></tr>
+<tr class="separator:adc5fa99189e579245b2a1b355311c281"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="adc5fa99189e579245b2a1b355311c281"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string getPathString </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt;&#160;</td>
+          <td class="paramname"><em>ctx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a66bc3e5b829ba4d3e4a294c1bcd267b9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -128,12 +146,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a207de466b24d9409b643b1d91527b2c1"></a>
+<a class="anchor" id="a2fadfe58fb2cc8c99832f693fb4b228b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void server_routine </td>
+          <td class="memname">int server_routine </td>
           <td>(</td>
           <td class="paramtype">SSL *&#160;</td>
           <td class="paramname"><em>ssl</em></td><td>)</td>

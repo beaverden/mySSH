@@ -86,7 +86,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-attribs">Data Fields</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a>  </div>
   <div class="headertitle">
 <div class="title">Logger Class Reference</div>  </div>
@@ -100,37 +99,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a2c06ab197bbd7db26e0308e28d835c8a"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
-<tr class="memitem:a2c06ab197bbd7db26e0308e28d835c8a"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classLogger.html#a2c06ab197bbd7db26e0308e28d835c8a">Log</a> (const char *fmt, Args...args)</td></tr>
-<tr class="memdesc:a2c06ab197bbd7db26e0308e28d835c8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log formatted data with variable number of arguments (simmilar to printf)  <a href="#a2c06ab197bbd7db26e0308e28d835c8a">More...</a><br /></td></tr>
-<tr class="separator:a2c06ab197bbd7db26e0308e28d835c8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15de55300771142efcb2d8c2eaddaa2d"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
-<tr class="memitem:a15de55300771142efcb2d8c2eaddaa2d"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classLogger.html#a15de55300771142efcb2d8c2eaddaa2d">Log</a> (unsigned int flg, const char *fmt, Args...args)</td></tr>
-<tr class="memdesc:a15de55300771142efcb2d8c2eaddaa2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log only if the specific flag with prefix LOG is set.  <a href="#a15de55300771142efcb2d8c2eaddaa2d">More...</a><br /></td></tr>
-<tr class="separator:a15de55300771142efcb2d8c2eaddaa2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6f73b6a87a95e784b2ebed4d47f2b19"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#aa6f73b6a87a95e784b2ebed4d47f2b19">ResetLog</a> ()</td></tr>
-<tr class="memdesc:aa6f73b6a87a95e784b2ebed4d47f2b19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Truncates the log file located at [log_path].  <a href="#aa6f73b6a87a95e784b2ebed4d47f2b19">More...</a><br /></td></tr>
-<tr class="separator:aa6f73b6a87a95e784b2ebed4d47f2b19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Data Fields</h2></td></tr>
-<tr class="memitem:ac92da3167ec7455dfe5599ca74f25be0"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#ac92da3167ec7455dfe5599ca74f25be0">log_mutex</a></td></tr>
-<tr class="separator:ac92da3167ec7455dfe5599ca74f25be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad1588639bb45eab5a33a40fc58d0e94"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:aad1588639bb45eab5a33a40fc58d0e94"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classLogger.html#aad1588639bb45eab5a33a40fc58d0e94">log</a> (const char *fmt, Args...args)</td></tr>
+<tr class="memdesc:aad1588639bb45eab5a33a40fc58d0e94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log formatted data with variable number of arguments (simmilar to printf)  <a href="#aad1588639bb45eab5a33a40fc58d0e94">More...</a><br /></td></tr>
+<tr class="separator:aad1588639bb45eab5a33a40fc58d0e94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5ac87e0629a7b4073a57798026df92a"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:ac5ac87e0629a7b4073a57798026df92a"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classLogger.html#ac5ac87e0629a7b4073a57798026df92a">log</a> (unsigned int flg, const char *fmt, Args...args)</td></tr>
+<tr class="memdesc:ac5ac87e0629a7b4073a57798026df92a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log only if the specific flag with prefix LOG is set.  <a href="#ac5ac87e0629a7b4073a57798026df92a">More...</a><br /></td></tr>
+<tr class="separator:ac5ac87e0629a7b4073a57798026df92a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b31dfd3a063f40f232f0549e962132d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#a8b31dfd3a063f40f232f0549e962132d">resetLog</a> ()</td></tr>
+<tr class="memdesc:a8b31dfd3a063f40f232f0549e962132d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Truncates the log file located at [log_path].  <a href="#a8b31dfd3a063f40f232f0549e962132d">More...</a><br /></td></tr>
+<tr class="separator:a8b31dfd3a063f40f232f0549e962132d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:ab534ed33da09034d4eb582f363c95517"><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#ab534ed33da09034d4eb582f363c95517">log_options</a> = 0</td></tr>
-<tr class="memdesc:ab534ed33da09034d4eb582f363c95517"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mask of flags starting with LOG_.  <a href="#ab534ed33da09034d4eb582f363c95517">More...</a><br /></td></tr>
-<tr class="separator:ab534ed33da09034d4eb582f363c95517"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3b9420ab7de6eb3b54944a891cb4907"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#ac3b9420ab7de6eb3b54944a891cb4907">log_path</a> = &quot;log.txt&quot;</td></tr>
-<tr class="memdesc:ac3b9420ab7de6eb3b54944a891cb4907"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path to log file.  <a href="#ac3b9420ab7de6eb3b54944a891cb4907">More...</a><br /></td></tr>
-<tr class="separator:ac3b9420ab7de6eb3b54944a891cb4907"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60d0eaf4eece8b505c52c6302048a9c1"><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#a60d0eaf4eece8b505c52c6302048a9c1">logOptions</a> = 0</td></tr>
+<tr class="memdesc:a60d0eaf4eece8b505c52c6302048a9c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mask of flags starting with LOG_.  <a href="#a60d0eaf4eece8b505c52c6302048a9c1">More...</a><br /></td></tr>
+<tr class="separator:a60d0eaf4eece8b505c52c6302048a9c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2d3e37c3764663b3e103f0fc2003cb6"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#af2d3e37c3764663b3e103f0fc2003cb6">logPath</a> = &quot;log.txt&quot;</td></tr>
+<tr class="memdesc:af2d3e37c3764663b3e103f0fc2003cb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path to log file.  <a href="#af2d3e37c3764663b3e103f0fc2003cb6">More...</a><br /></td></tr>
+<tr class="separator:af2d3e37c3764663b3e103f0fc2003cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a7f5dc4185f8bff7778f1d6aa8525a9"><td class="memItemLeft" align="right" valign="top">static std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#a1a7f5dc4185f8bff7778f1d6aa8525a9">logMutex</a></td></tr>
+<tr class="separator:a1a7f5dc4185f8bff7778f1d6aa8525a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to log formatted information into a log file. </p>
 <p>Every time Log will be called, log_mutex will be placed on the file and information will be logged along with the current time </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a2c06ab197bbd7db26e0308e28d835c8a"></a>
+<a class="anchor" id="aad1588639bb45eab5a33a40fc58d0e94"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -140,7 +136,7 @@ template&lt;class... Args&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void Logger::Log </td>
+          <td class="memname">static void Logger::log </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>fmt</em>, </td>
@@ -175,7 +171,7 @@ template&lt;class... Args&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a15de55300771142efcb2d8c2eaddaa2d"></a>
+<a class="anchor" id="ac5ac87e0629a7b4073a57798026df92a"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -185,7 +181,7 @@ template&lt;class... Args&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void Logger::Log </td>
+          <td class="memname">static void Logger::log </td>
           <td>(</td>
           <td class="paramtype">unsigned int&#160;</td>
           <td class="paramname"><em>flg</em>, </td>
@@ -227,7 +223,7 @@ template&lt;class... Args&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="aa6f73b6a87a95e784b2ebed4d47f2b19"></a>
+<a class="anchor" id="a8b31dfd3a063f40f232f0549e962132d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -235,7 +231,7 @@ template&lt;class... Args&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void Logger::ResetLog </td>
+          <td class="memname">static void Logger::resetLog </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -253,19 +249,7 @@ template&lt;class... Args&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Field Documentation</h2>
-<a class="anchor" id="ac92da3167ec7455dfe5599ca74f25be0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::mutex Logger::log_mutex</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ab534ed33da09034d4eb582f363c95517"></a>
+<a class="anchor" id="a1a7f5dc4185f8bff7778f1d6aa8525a9"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -273,7 +257,27 @@ template&lt;class... Args&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int Logger::log_options = 0</td>
+          <td class="memname">std::mutex Logger::logMutex</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a60d0eaf4eece8b505c52c6302048a9c1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Logger::logOptions = 0</td>
         </tr>
       </table>
   </td>
@@ -287,7 +291,7 @@ template&lt;class... Args&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="ac3b9420ab7de6eb3b54944a891cb4907"></a>
+<a class="anchor" id="af2d3e37c3764663b3e103f0fc2003cb6"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -295,7 +299,7 @@ template&lt;class... Args&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string Logger::log_path = &quot;log.txt&quot;</td>
+          <td class="memname">std::string Logger::logPath = &quot;log.txt&quot;</td>
         </tr>
       </table>
   </td>

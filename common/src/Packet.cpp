@@ -76,22 +76,17 @@ void send_packet(SSL* ssl, Packet_Type type, void* data, size_t data_len)
         int error = SSL_get_error(ssl, result);
         throw PacketIOException("Packet write error %d", error);
     }
-    #ifdef DEBUG_MODE
-        printf("Sending a packet:\n\tType:%u\n\tPayload Size:%u\n\tPadding:%u\n\tContent:%u\n\tData:%s\n",
-            type, payload_length, padding_length, content_length, (char*)(data));
-        printf("\tSHA digest: ");
-        for (int i = 0; i < SHA256_DIGEST_LENGTH; i++)
-        {
-            printf("%02X ", digest[i]);
-        }
-        printf("\n");
-    #endif
+    Logger::log(LOG_PACKETS, "Sending a packet:\n\tType:%u\n\tPayload Size:%u\n\tPadding:%u\n\tContent:%u\n",
+        type, 
+        payload_length, 
+        padding_length, 
+        content_length);
+
 }
 
 void recv_packet(SSL* ssl, SSH_Packet* read_to)
 {
     int result;
-    printf("Pending: %d\n", SSL_pending(ssl));
     result = SSL_read(ssl, &read_to->packet_type, sizeof(read_to->packet_type));
     if (result != sizeof(read_to->packet_type))
     {
@@ -154,20 +149,12 @@ void recv_packet(SSL* ssl, SSH_Packet* read_to)
             throw PacketIOException("Invalid SHA256 digest");
         }
     }
-    #ifdef DEBUG_MODE
-        printf("Recieved a packet:\n\tType:%u\n\tPayload Size:%u\n\tPadding:%u\n\tContent:%u\n\tData:%s\n",
-                read_to->packet_type, 
-                read_to->payload_length,
-                read_to->payload.padding_length, 
-                read_to->payload.content_length, 
-                (char*)(read_to->payload.content));
-        printf("\tSHA digest: ");
-        for (int i = 0; i < SHA256_DIGEST_LENGTH; i++)
-        {
-            printf("%02X ", read_to->sha256_verification[i]);
-        }
-        printf("\n");
-    #endif           
+    Logger::log(LOG_PACKETS, 
+            "Recieved a packet:\n\tType:%u\n\tPayload Size:%u\n\tPadding:%u\n\tContent:%u\n",
+            read_to->packet_type, 
+            read_to->payload_length,
+            read_to->payload.padding_length, 
+            read_to->payload.content_length);         
 }
 
 

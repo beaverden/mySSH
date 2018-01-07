@@ -19,15 +19,18 @@
 
 struct ExecutionContext
 {
-    std::stack<int> input_redir;
-    std::stack<int> output_redir;
-    std::stack<int> error_redir;  
+    std::stack<int> inputRedir;
+    std::stack<int> outputRedir;
+    std::stack<int> errorRedir;  
 
-    std::mutex ssl_mutex;
+    std::mutex sslMutex;
     SSL* ssl;
 
     int sv_serv = -1;
     int sv_prog = -1;
+
+    std::string username;
+    std::string currentDir;
     // TODO closing sockets properly?
 };
 

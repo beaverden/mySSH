@@ -9,15 +9,16 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-    Logger::log_options = LOG_PACKETS | LOG_CONNECTIONS | LOG_ERRORS;
-    Logger::log_path = "../logs/log_server.txt";
+    Logger::logOptions =   
+        LOG_EVENTS | LOG_PACKETS | LOG_CONNECTIONS | LOG_ERRORS;
+    Logger::logPath = "../logs/log_server.txt";
     Logger::resetLog();
 
     try
     {
-        Server::Get()->InitializeSecurity();
-        Server::Get()->InitializeSockets();
-        Server::Get()->Listen();
+        Server::getInstance()->initializeSecurity();
+        Server::getInstance()->initializeSockets();
+        Server::getInstance()->connectionListen();
     }
     catch (...)
     {
@@ -25,7 +26,7 @@ int main(int argc, char* argv[]) {
         //perror(eptr->what());
     }
 
-    Server::Get()->Destroy();
-    Server::Delete();
+    Server::getInstance()->destroy();
+    Server::deleteInstance();
     return 0;
 }

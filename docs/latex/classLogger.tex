@@ -12,24 +12,21 @@ Class to log formatted information into a log file.
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$class... Args$>$ }\\static void \hyperlink{classLogger_a2c06ab197bbd7db26e0308e28d835c8a}{Log} (const char $\ast$fmt, Args...\+args)
+{\footnotesize template$<$class... Args$>$ }\\static void \hyperlink{classLogger_aad1588639bb45eab5a33a40fc58d0e94}{log} (const char $\ast$fmt, Args...\+args)
 \begin{DoxyCompactList}\small\item\em Log formatted data with variable number of arguments (simmilar to printf) \end{DoxyCompactList}\item 
-{\footnotesize template$<$class... Args$>$ }\\static void \hyperlink{classLogger_a15de55300771142efcb2d8c2eaddaa2d}{Log} (unsigned int flg, const char $\ast$fmt, Args...\+args)
+{\footnotesize template$<$class... Args$>$ }\\static void \hyperlink{classLogger_ac5ac87e0629a7b4073a57798026df92a}{log} (unsigned int flg, const char $\ast$fmt, Args...\+args)
 \begin{DoxyCompactList}\small\item\em Log only if the specific flag with prefix L\+OG is set. \end{DoxyCompactList}\item 
-static void \hyperlink{classLogger_aa6f73b6a87a95e784b2ebed4d47f2b19}{Reset\+Log} ()
+static void \hyperlink{classLogger_a8b31dfd3a063f40f232f0549e962132d}{reset\+Log} ()
 \begin{DoxyCompactList}\small\item\em Truncates the log file located at \mbox{[}log\+\_\+path\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Data Fields}
-\begin{DoxyCompactItemize}
-\item 
-std\+::mutex \hyperlink{classLogger_ac92da3167ec7455dfe5599ca74f25be0}{log\+\_\+mutex}
-\end{DoxyCompactItemize}
 \subsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static unsigned int \hyperlink{classLogger_ab534ed33da09034d4eb582f363c95517}{log\+\_\+options} = 0
+static unsigned int \hyperlink{classLogger_a60d0eaf4eece8b505c52c6302048a9c1}{log\+Options} = 0
 \begin{DoxyCompactList}\small\item\em Mask of flags starting with L\+O\+G\+\_\+. \end{DoxyCompactList}\item 
-static std\+::string \hyperlink{classLogger_ac3b9420ab7de6eb3b54944a891cb4907}{log\+\_\+path} = \char`\"{}log.\+txt\char`\"{}
-\begin{DoxyCompactList}\small\item\em Path to log file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static std\+::string \hyperlink{classLogger_af2d3e37c3764663b3e103f0fc2003cb6}{log\+Path} = \char`\"{}log.\+txt\char`\"{}
+\begin{DoxyCompactList}\small\item\em Path to log file. \end{DoxyCompactList}\item 
+static std\+::mutex \hyperlink{classLogger_a1a7f5dc4185f8bff7778f1d6aa8525a9}{log\+Mutex}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -38,14 +35,14 @@ Class to log formatted information into a log file.
 Every time Log will be called, log\+\_\+mutex will be placed on the file and information will be logged along with the current time 
 
 \subsection{Member Function Documentation}
-\index{Logger@{Logger}!Log@{Log}}
-\index{Log@{Log}!Logger@{Logger}}
-\subsubsection[{\texorpdfstring{Log(const char $\ast$fmt, Args...\+args)}{Log(const char *fmt, Args...args)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class... Args$>$ static void Logger\+::\+Log (
+\index{Logger@{Logger}!log@{log}}
+\index{log@{log}!Logger@{Logger}}
+\subsubsection[{\texorpdfstring{log(const char $\ast$fmt, Args...\+args)}{log(const char *fmt, Args...args)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class... Args$>$ static void Logger\+::log (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{fmt, }
 \item[{Args...}]{args}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classLogger_a2c06ab197bbd7db26e0308e28d835c8a}{}\label{classLogger_a2c06ab197bbd7db26e0308e28d835c8a}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classLogger_aad1588639bb45eab5a33a40fc58d0e94}{}\label{classLogger_aad1588639bb45eab5a33a40fc58d0e94}
 
 
 Log formatted data with variable number of arguments (simmilar to printf) 
@@ -57,15 +54,15 @@ Log formatted data with variable number of arguments (simmilar to printf)
 \mbox{\tt in}  & {\em args} & Format arguments \\
 \hline
 \end{DoxyParams}
-\index{Logger@{Logger}!Log@{Log}}
-\index{Log@{Log}!Logger@{Logger}}
-\subsubsection[{\texorpdfstring{Log(unsigned int flg, const char $\ast$fmt, Args...\+args)}{Log(unsigned int flg, const char *fmt, Args...args)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class... Args$>$ static void Logger\+::\+Log (
+\index{Logger@{Logger}!log@{log}}
+\index{log@{log}!Logger@{Logger}}
+\subsubsection[{\texorpdfstring{log(unsigned int flg, const char $\ast$fmt, Args...\+args)}{log(unsigned int flg, const char *fmt, Args...args)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class... Args$>$ static void Logger\+::log (
 \begin{DoxyParamCaption}
 \item[{unsigned int}]{flg, }
 \item[{const char $\ast$}]{fmt, }
 \item[{Args...}]{args}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classLogger_a15de55300771142efcb2d8c2eaddaa2d}{}\label{classLogger_a15de55300771142efcb2d8c2eaddaa2d}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classLogger_ac5ac87e0629a7b4073a57798026df92a}{}\label{classLogger_ac5ac87e0629a7b4073a57798026df92a}
 
 
 Log only if the specific flag with prefix L\+OG is set. 
@@ -79,13 +76,13 @@ Log only if the specific flag with prefix L\+OG is set.
 \mbox{\tt in}  & {\em args} & Format arguments \\
 \hline
 \end{DoxyParams}
-\index{Logger@{Logger}!Reset\+Log@{Reset\+Log}}
-\index{Reset\+Log@{Reset\+Log}!Logger@{Logger}}
-\subsubsection[{\texorpdfstring{Reset\+Log()}{ResetLog()}}]{\setlength{\rightskip}{0pt plus 5cm}static void Logger\+::\+Reset\+Log (
+\index{Logger@{Logger}!reset\+Log@{reset\+Log}}
+\index{reset\+Log@{reset\+Log}!Logger@{Logger}}
+\subsubsection[{\texorpdfstring{reset\+Log()}{resetLog()}}]{\setlength{\rightskip}{0pt plus 5cm}static void Logger\+::reset\+Log (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classLogger_aa6f73b6a87a95e784b2ebed4d47f2b19}{}\label{classLogger_aa6f73b6a87a95e784b2ebed4d47f2b19}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classLogger_a8b31dfd3a063f40f232f0549e962132d}{}\label{classLogger_a8b31dfd3a063f40f232f0549e962132d}
 
 
 Truncates the log file located at \mbox{[}log\+\_\+path\mbox{]}. 
@@ -93,19 +90,19 @@ Truncates the log file located at \mbox{[}log\+\_\+path\mbox{]}.
 
 
 \subsection{Field Documentation}
-\index{Logger@{Logger}!log\+\_\+mutex@{log\+\_\+mutex}}
-\index{log\+\_\+mutex@{log\+\_\+mutex}!Logger@{Logger}}
-\subsubsection[{\texorpdfstring{log\+\_\+mutex}{log_mutex}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::mutex Logger\+::log\+\_\+mutex}\hypertarget{classLogger_ac92da3167ec7455dfe5599ca74f25be0}{}\label{classLogger_ac92da3167ec7455dfe5599ca74f25be0}
-\index{Logger@{Logger}!log\+\_\+options@{log\+\_\+options}}
-\index{log\+\_\+options@{log\+\_\+options}!Logger@{Logger}}
-\subsubsection[{\texorpdfstring{log\+\_\+options}{log_options}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Logger\+::log\+\_\+options = 0\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classLogger_ab534ed33da09034d4eb582f363c95517}{}\label{classLogger_ab534ed33da09034d4eb582f363c95517}
+\index{Logger@{Logger}!log\+Mutex@{log\+Mutex}}
+\index{log\+Mutex@{log\+Mutex}!Logger@{Logger}}
+\subsubsection[{\texorpdfstring{log\+Mutex}{logMutex}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::mutex Logger\+::log\+Mutex\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classLogger_a1a7f5dc4185f8bff7778f1d6aa8525a9}{}\label{classLogger_a1a7f5dc4185f8bff7778f1d6aa8525a9}
+\index{Logger@{Logger}!log\+Options@{log\+Options}}
+\index{log\+Options@{log\+Options}!Logger@{Logger}}
+\subsubsection[{\texorpdfstring{log\+Options}{logOptions}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Logger\+::log\+Options = 0\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classLogger_a60d0eaf4eece8b505c52c6302048a9c1}{}\label{classLogger_a60d0eaf4eece8b505c52c6302048a9c1}
 
 
 Mask of flags starting with L\+O\+G\+\_\+. 
 
-\index{Logger@{Logger}!log\+\_\+path@{log\+\_\+path}}
-\index{log\+\_\+path@{log\+\_\+path}!Logger@{Logger}}
-\subsubsection[{\texorpdfstring{log\+\_\+path}{log_path}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Logger\+::log\+\_\+path = \char`\"{}log.\+txt\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classLogger_ac3b9420ab7de6eb3b54944a891cb4907}{}\label{classLogger_ac3b9420ab7de6eb3b54944a891cb4907}
+\index{Logger@{Logger}!log\+Path@{log\+Path}}
+\index{log\+Path@{log\+Path}!Logger@{Logger}}
+\subsubsection[{\texorpdfstring{log\+Path}{logPath}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Logger\+::log\+Path = \char`\"{}log.\+txt\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classLogger_af2d3e37c3764663b3e103f0fc2003cb6}{}\label{classLogger_af2d3e37c3764663b3e103f0fc2003cb6}
 
 
 Path to log file. 

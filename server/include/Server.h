@@ -10,6 +10,8 @@
 #include <netinet/in.h>
 #include <sys/types.h>
 #include <sys/ioctl.h>
+#include <sys/wait.h>
+
 #include <unistd.h>
 #include <iostream>
 #include <memory>
@@ -37,15 +39,15 @@ class Server
         int listening_socket;
 
     public:
-        static Server* Get();
-        static void Delete();
-        void Destroy();
+        static Server* getInstance();
+        static void deleteInstance();
+        void destroy();
 
-        void InitializeSockets();
-        void InitializeSecurity();
-        void Listen();
+        void initializeSockets();
+        void initializeSecurity();
+        void connectionListen();
 
-        void HandleAuth(SSL* ssl);
+        void handleAuth(SSL* ssl);
 };
 
 

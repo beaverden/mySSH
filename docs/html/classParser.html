@@ -99,23 +99,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac45f30e3cfa787cece390bb80cee7fd0"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="structSyntaxTree.html">SyntaxTree</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#ac45f30e3cfa787cece390bb80cee7fd0">Parse</a> (std::string command)</td></tr>
-<tr class="memdesc:ac45f30e3cfa787cece390bb80cee7fd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tokenizes and verifies the command. Returns an AST ready for execution.  <a href="#ac45f30e3cfa787cece390bb80cee7fd0">More...</a><br /></td></tr>
-<tr class="separator:ac45f30e3cfa787cece390bb80cee7fd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acabb9fe9da6646d4d411c50e7fa50c08"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#acabb9fe9da6646d4d411c50e7fa50c08">TokenizeExecute</a> (std::string command, std::string delim)</td></tr>
-<tr class="memdesc:acabb9fe9da6646d4d411c50e7fa50c08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes a single command with arguments and splits it in a vector.  <a href="#acabb9fe9da6646d4d411c50e7fa50c08">More...</a><br /></td></tr>
-<tr class="separator:acabb9fe9da6646d4d411c50e7fa50c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a621be0eb716de9db8ecb77ec6afab3f0"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="structSyntaxTree.html">SyntaxTree</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a621be0eb716de9db8ecb77ec6afab3f0">parseCommand</a> (std::string command)</td></tr>
+<tr class="memdesc:a621be0eb716de9db8ecb77ec6afab3f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tokenizes and verifies the command. Returns an AST ready for execution.  <a href="#a621be0eb716de9db8ecb77ec6afab3f0">More...</a><br /></td></tr>
+<tr class="separator:a621be0eb716de9db8ecb77ec6afab3f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21451cb3011d796acf866b05d52601f3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a21451cb3011d796acf866b05d52601f3">tokenizeExecute</a> (std::string command, std::string delim)</td></tr>
+<tr class="memdesc:a21451cb3011d796acf866b05d52601f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes a single command with arguments and splits it in a vector.  <a href="#a21451cb3011d796acf866b05d52601f3">More...</a><br /></td></tr>
+<tr class="separator:a21451cb3011d796acf866b05d52601f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a6177e907d92d35de545d44d10a23bc07"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classParser.html">Parser</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a6177e907d92d35de545d44d10a23bc07">Get</a> ()</td></tr>
-<tr class="memdesc:a6177e907d92d35de545d44d10a23bc07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Singleton get instance method.  <a href="#a6177e907d92d35de545d44d10a23bc07">More...</a><br /></td></tr>
-<tr class="separator:a6177e907d92d35de545d44d10a23bc07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f90468d5cc88a39d50dfc3f08b46ae0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classParser.html">Parser</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a4f90468d5cc88a39d50dfc3f08b46ae0">getInstance</a> ()</td></tr>
+<tr class="memdesc:a4f90468d5cc88a39d50dfc3f08b46ae0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Singleton get instance method.  <a href="#a4f90468d5cc88a39d50dfc3f08b46ae0">More...</a><br /></td></tr>
+<tr class="separator:a4f90468d5cc88a39d50dfc3f08b46ae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A dedicated class for parsing a complex command and returning an AST of it. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a6177e907d92d35de545d44d10a23bc07"></a>
+<a class="anchor" id="a4f90468d5cc88a39d50dfc3f08b46ae0"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -123,7 +123,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classParser.html">Parser</a> * Parser::Get </td>
+          <td class="memname"><a class="el" href="classParser.html">Parser</a> * Parser::getInstance </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -141,12 +141,12 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac45f30e3cfa787cece390bb80cee7fd0"></a>
+<a class="anchor" id="a621be0eb716de9db8ecb77ec6afab3f0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt; <a class="el" href="structSyntaxTree.html">SyntaxTree</a> &gt; Parser::Parse </td>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="structSyntaxTree.html">SyntaxTree</a> &gt; Parser::parseCommand </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>command</em></td><td>)</td>
@@ -167,12 +167,12 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="acabb9fe9da6646d4d411c50e7fa50c08"></a>
+<a class="anchor" id="a21451cb3011d796acf866b05d52601f3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; std::string &gt; Parser::TokenizeExecute </td>
+          <td class="memname">std::vector&lt; std::string &gt; Parser::tokenizeExecute </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>command</em>, </td>

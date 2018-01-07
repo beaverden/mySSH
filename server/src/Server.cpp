@@ -9,7 +9,7 @@ Server::Server()
     this->listening_socket = -1;
 }
 
-void Server::InitializeSecurity()
+void Server::initializeSecurity()
 {
     SSL_library_init();
     OpenSSL_add_all_algorithms();
@@ -41,9 +41,10 @@ void Server::InitializeSecurity()
         ERR_print_errors_fp(stderr);    
         throw SecurityException("Private key check failed");
     }
+    Logger::log(LOG_EVENTS, "Initialized security");
 }
 
-void Server::InitializeSockets()
+void Server::initializeSockets()
 {
     int fd = socket(AF_INET, SOCK_STREAM, 0);
     int reuse = true;
@@ -64,6 +65,7 @@ void Server::InitializeSockets()
         throw ServerException("Listening socket listen failed");
     }
     this->listening_socket = fd;
+    Logger::log(LOG_EVENTS, "Listening socket is %d", fd);
 }
 
 void writing_routine(std::shared_ptr<ExecutionContext> ctx)
@@ -75,12 +77,12 @@ void writing_routine(std::shared_ptr<ExecutionContext> ctx)
         ioctl(ctx->sv_serv, FIONREAD, &has_read);
         if (has_read > 0)
         {
-            ctx->ssl_mutex.lock();
+            ctx->sslMutex.lock();
             char* buff = new char[has_read];
             result = read(ctx->sv_serv, buff, has_read);
             // TODO shutdown exceptions
             send_packet(ctx->ssl, PACKET_RESPONSE, buff, result);
-            ctx->ssl_mutex.unlock();
+            ctx->sslMutex.unlock();
             delete buff;
         }
     }
@@ -98,18 +100,25 @@ void reading_routine(std::shared_ptr<ExecutionContext> ctx)
         ioctl(fd, FIONREAD, &has_read);
         if (has_read > 0)
         {
-            ctx->ssl_mutex.lock();
+            ctx->sslMutex.lock();
             recv_packet(ctx->ssl, &packet);
             result = write(ctx->sv_serv, packet.payload.content, packet.payload.content_length);
-            ctx->ssl_mutex.unlock();
+            ctx->sslMutex.unlock();
         }
     }  
 }
 
 void shell_routine(std::shared_ptr<ExecutionContext> ctx)
 {
+    bool newMessage = true;
+    
     while (true)
     {
+        if (newMessage)
+        {
+            write(ctx->sv_prog, "denis@ubuntu$ ", strlen("denis@ubuntu$ "));
+            newMessage = false;
+        }
         int has_read;
         ioctl(ctx->sv_prog, FIONREAD, &has_read);
         if (has_read > 0)
@@ -119,17 +128,17 @@ void shell_routine(std::shared_ptr<ExecutionContext> ctx)
             std::string comm = buff;
             delete buff;
             Evaluate(comm, ctx);
-            
+            newMessage = true;
         }
     }           
 }
 
-void server_routine(SSL* ssl)
+int server_routine(SSL* ssl)
 {
     try
     {
-        auto execContext = std::make_shared<ExecutionContext>();
-        if (execContext == nullptr)
+        auto ctx = std::make_shared<ExecutionContext>();
+        if (ctx == nullptr)
         {
             throw std::bad_alloc();
         }
@@ -139,17 +148,16 @@ void server_routine(SSL* ssl)
         {
             throw ServerException("Unable initialize parent-child sockets");
         }
-        execContext->ssl = ssl;
-        execContext->sv_prog = sockets[0];
-        execContext->sv_serv = sockets[1];
-        execContext->input_redir.push(execContext->sv_prog);
-        execContext->output_redir.push(execContext->sv_prog);
-        execContext->error_redir.push(execContext->sv_prog);
+        ctx->ssl = ssl;
+        ctx->sv_prog = sockets[0];
+        ctx->sv_serv = sockets[1];
+        ctx->inputRedir.push(ctx->sv_prog);
+        ctx->outputRedir.push(ctx->sv_prog);
+        ctx->errorRedir.push(ctx->sv_prog);
 
-        
-        std::thread t1(reading_routine, execContext);
-        std::thread t2(writing_routine, execContext);
-        std::thread shell(shell_routine, execContext);
+        std::thread t1(reading_routine, ctx);
+        std::thread t2(writing_routine, ctx);
+        std::thread shell(shell_routine, ctx);
         t1.join();
         t2.join();  
         shell.join();
@@ -162,7 +170,7 @@ void server_routine(SSL* ssl)
 
 
 
-void Server::Listen()
+void Server::connectionListen()
 {
     int client = 0;
     while (client = accept(this->listening_socket, NULL, 0))
@@ -178,15 +186,32 @@ void Server::Listen()
         }
 
         Logger::log(LOG_CONNECTIONS, "Client connected");
-        std::thread srv_thread(server_routine, ssl);
-        srv_thread.join();
+        // Have to use fork
+        int servlet_pid;
+        if ((servlet_pid=fork()) == FAILED) 
+        {
+            perror("Fork error!");
+        }
+        else 
+        {
+            if (servlet_pid == 0)
+            {
+                int code = server_routine(ssl);
+            }
+            else 
+            {
+                int status;
+                wait(&status);
+                Logger::log(LOG_EVENTS, "Servlet finished");
+            }
+        }
         SSL_free(ssl);
         close(client);
         Logger::log(LOG_EVENTS, "Client disconnected");
     }    
 }
 
-void Server::Delete()
+void Server::deleteInstance()
 {
     if (instance != nullptr)
     {
@@ -194,7 +219,7 @@ void Server::Delete()
     }
 }
 
-void Server::Destroy()
+void Server::destroy()
 {
     if (this->context != nullptr)
     {
@@ -206,7 +231,7 @@ void Server::Destroy()
     }
 }
 
-Server* Server::Get()
+Server* Server::getInstance()
 {
     if (instance == nullptr)
     {
@@ -215,7 +240,12 @@ Server* Server::Get()
     return instance;
 }
 
-void Server::HandleAuth(SSL* ssl)
+std::string getPathString(std::shared_ptr<ExecutionContext> ctx)
+{
+    return ctx->username + ":" + ctx->currentDir + "$ ";
+}
+
+void Server::handleAuth(SSL* ssl)
 {
     char* message = "Please login in.\n";
     send_packet(ssl, PACKET_AUTH_REQUEST, message, strlen(message));

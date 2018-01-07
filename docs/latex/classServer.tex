@@ -7,85 +7,75 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{classServer_ab11507d2655987863e93968a9c30199a}{Destroy} ()
+void \hyperlink{classServer_adce993ab4cce22dc732bddddf310a5f6}{destroy} ()
 \item 
-void \hyperlink{classServer_a3a9c64284bac50fe3aef5f30c70ddac6}{Initialize\+Sockets} ()
+void \hyperlink{classServer_a9035ba5548594b76a680de2766780df3}{initialize\+Sockets} ()
 \item 
-void \hyperlink{classServer_acd6ee029b2df707ad9ff7d647b059d00}{Initialize\+Security} ()
+void \hyperlink{classServer_a54da775247c049b9cc78c92946bb058a}{initialize\+Security} ()
 \item 
-void \hyperlink{classServer_afe47ec998069be828fb082e92836c05b}{Listen} ()
+void \hyperlink{classServer_a258c0a0a42d0be99bc4a36b4e6212ed2}{connection\+Listen} ()
 \item 
-int \hyperlink{classServer_ab0df50e73f6737bb13869f725e8634c8}{Handle\+Input} (std\+::shared\+\_\+ptr$<$ \hyperlink{structExecutionContext}{Execution\+Context} $>$ ctx, \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} $\ast$packet)
-\item 
-void \hyperlink{classServer_a88e6d1c3cb476d5c7627e9365b05da9a}{Handle\+Auth} (S\+SL $\ast$ssl)
+void \hyperlink{classServer_a65f1f6c6f3c0c84a5e43494e702818a4}{handle\+Auth} (S\+SL $\ast$ssl)
 \end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{classServer}{Server} $\ast$ \hyperlink{classServer_a68af2dda4c31e6dd178656d85ad21571}{Get} ()
+static \hyperlink{classServer}{Server} $\ast$ \hyperlink{classServer_a22dbfd5db73d391d615a0bfd69077fb6}{get\+Instance} ()
 \item 
-static void \hyperlink{classServer_a3ca5015cd70a3f986c0045da3c9dc8ae}{Delete} ()
+static void \hyperlink{classServer_a727200ae46569af9054fac429c7da43e}{delete\+Instance} ()
 \end{DoxyCompactItemize}
 
 
 \subsection{Member Function Documentation}
-\index{Server@{Server}!Delete@{Delete}}
-\index{Delete@{Delete}!Server@{Server}}
-\subsubsection[{\texorpdfstring{Delete()}{Delete()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::\+Delete (
+\index{Server@{Server}!connection\+Listen@{connection\+Listen}}
+\index{connection\+Listen@{connection\+Listen}!Server@{Server}}
+\subsubsection[{\texorpdfstring{connection\+Listen()}{connectionListen()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::connection\+Listen (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classServer_a3ca5015cd70a3f986c0045da3c9dc8ae}{}\label{classServer_a3ca5015cd70a3f986c0045da3c9dc8ae}
-\index{Server@{Server}!Destroy@{Destroy}}
-\index{Destroy@{Destroy}!Server@{Server}}
-\subsubsection[{\texorpdfstring{Destroy()}{Destroy()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::\+Destroy (
+)}\hypertarget{classServer_a258c0a0a42d0be99bc4a36b4e6212ed2}{}\label{classServer_a258c0a0a42d0be99bc4a36b4e6212ed2}
+\index{Server@{Server}!delete\+Instance@{delete\+Instance}}
+\index{delete\+Instance@{delete\+Instance}!Server@{Server}}
+\subsubsection[{\texorpdfstring{delete\+Instance()}{deleteInstance()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::delete\+Instance (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hypertarget{classServer_ab11507d2655987863e93968a9c30199a}{}\label{classServer_ab11507d2655987863e93968a9c30199a}
-\index{Server@{Server}!Get@{Get}}
-\index{Get@{Get}!Server@{Server}}
-\subsubsection[{\texorpdfstring{Get()}{Get()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Server} $\ast$ Server\+::\+Get (
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classServer_a727200ae46569af9054fac429c7da43e}{}\label{classServer_a727200ae46569af9054fac429c7da43e}
+\index{Server@{Server}!destroy@{destroy}}
+\index{destroy@{destroy}!Server@{Server}}
+\subsubsection[{\texorpdfstring{destroy()}{destroy()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::destroy (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classServer_a68af2dda4c31e6dd178656d85ad21571}{}\label{classServer_a68af2dda4c31e6dd178656d85ad21571}
-\index{Server@{Server}!Handle\+Auth@{Handle\+Auth}}
-\index{Handle\+Auth@{Handle\+Auth}!Server@{Server}}
-\subsubsection[{\texorpdfstring{Handle\+Auth(\+S\+S\+L $\ast$ssl)}{HandleAuth(SSL *ssl)}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::\+Handle\+Auth (
+)}\hypertarget{classServer_adce993ab4cce22dc732bddddf310a5f6}{}\label{classServer_adce993ab4cce22dc732bddddf310a5f6}
+\index{Server@{Server}!get\+Instance@{get\+Instance}}
+\index{get\+Instance@{get\+Instance}!Server@{Server}}
+\subsubsection[{\texorpdfstring{get\+Instance()}{getInstance()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Server} $\ast$ Server\+::get\+Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classServer_a22dbfd5db73d391d615a0bfd69077fb6}{}\label{classServer_a22dbfd5db73d391d615a0bfd69077fb6}
+\index{Server@{Server}!handle\+Auth@{handle\+Auth}}
+\index{handle\+Auth@{handle\+Auth}!Server@{Server}}
+\subsubsection[{\texorpdfstring{handle\+Auth(\+S\+S\+L $\ast$ssl)}{handleAuth(SSL *ssl)}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::handle\+Auth (
 \begin{DoxyParamCaption}
 \item[{S\+SL $\ast$}]{ssl}
 \end{DoxyParamCaption}
-)}\hypertarget{classServer_a88e6d1c3cb476d5c7627e9365b05da9a}{}\label{classServer_a88e6d1c3cb476d5c7627e9365b05da9a}
-\index{Server@{Server}!Handle\+Input@{Handle\+Input}}
-\index{Handle\+Input@{Handle\+Input}!Server@{Server}}
-\subsubsection[{\texorpdfstring{Handle\+Input(std\+::shared\+\_\+ptr$<$ Execution\+Context $>$ ctx, S\+S\+H\+\_\+\+Packet $\ast$packet)}{HandleInput(std::shared_ptr< ExecutionContext > ctx, SSH_Packet *packet)}}]{\setlength{\rightskip}{0pt plus 5cm}int Server\+::\+Handle\+Input (
-\begin{DoxyParamCaption}
-\item[{std\+::shared\+\_\+ptr$<$ {\bf Execution\+Context} $>$}]{ctx, }
-\item[{{\bf S\+S\+H\+\_\+\+Packet} $\ast$}]{packet}
-\end{DoxyParamCaption}
-)}\hypertarget{classServer_ab0df50e73f6737bb13869f725e8634c8}{}\label{classServer_ab0df50e73f6737bb13869f725e8634c8}
-\index{Server@{Server}!Initialize\+Security@{Initialize\+Security}}
-\index{Initialize\+Security@{Initialize\+Security}!Server@{Server}}
-\subsubsection[{\texorpdfstring{Initialize\+Security()}{InitializeSecurity()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::\+Initialize\+Security (
+)}\hypertarget{classServer_a65f1f6c6f3c0c84a5e43494e702818a4}{}\label{classServer_a65f1f6c6f3c0c84a5e43494e702818a4}
+\index{Server@{Server}!initialize\+Security@{initialize\+Security}}
+\index{initialize\+Security@{initialize\+Security}!Server@{Server}}
+\subsubsection[{\texorpdfstring{initialize\+Security()}{initializeSecurity()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::initialize\+Security (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hypertarget{classServer_acd6ee029b2df707ad9ff7d647b059d00}{}\label{classServer_acd6ee029b2df707ad9ff7d647b059d00}
-\index{Server@{Server}!Initialize\+Sockets@{Initialize\+Sockets}}
-\index{Initialize\+Sockets@{Initialize\+Sockets}!Server@{Server}}
-\subsubsection[{\texorpdfstring{Initialize\+Sockets()}{InitializeSockets()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::\+Initialize\+Sockets (
+)}\hypertarget{classServer_a54da775247c049b9cc78c92946bb058a}{}\label{classServer_a54da775247c049b9cc78c92946bb058a}
+\index{Server@{Server}!initialize\+Sockets@{initialize\+Sockets}}
+\index{initialize\+Sockets@{initialize\+Sockets}!Server@{Server}}
+\subsubsection[{\texorpdfstring{initialize\+Sockets()}{initializeSockets()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::initialize\+Sockets (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hypertarget{classServer_a3a9c64284bac50fe3aef5f30c70ddac6}{}\label{classServer_a3a9c64284bac50fe3aef5f30c70ddac6}
-\index{Server@{Server}!Listen@{Listen}}
-\index{Listen@{Listen}!Server@{Server}}
-\subsubsection[{\texorpdfstring{Listen()}{Listen()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::\+Listen (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{classServer_afe47ec998069be828fb082e92836c05b}{}\label{classServer_afe47ec998069be828fb082e92836c05b}
+)}\hypertarget{classServer_a9035ba5548594b76a680de2766780df3}{}\label{classServer_a9035ba5548594b76a680de2766780df3}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

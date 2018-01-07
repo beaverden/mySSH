@@ -2,6 +2,7 @@
 #define PACKET_H
 
 #include "Exceptions.h"
+#include "Utility.h"
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/types.h>

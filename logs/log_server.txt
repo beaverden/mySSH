@@ -1,0 +1,141 @@
+[7-1-2018 3:4:36] Initialized security
+[7-1-2018 3:4:36] Listening socket is 3
+[7-1-2018 3:4:44] Client connected
+[7-1-2018 3:4:44] Sending a packet:
+	Type:1
+	Payload Size:160
+	Padding:138
+	Content:14
+
+[7-1-2018 3:4:46] Recieved a packet:
+	Type:1
+	Payload Size:36
+	Padding:25
+	Content:3
+
+[7-1-2018 3:4:46] Sending a packet:
+	Type:1
+	Payload Size:846
+	Padding:775
+	Content:63
+
+[7-1-2018 3:5:6] Recieved a packet:
+	Type:1
+	Payload Size:555
+	Padding:535
+	Content:12
+
+[7-1-2018 3:5:6] Sending a packet:
+	Type:1
+	Payload Size:711
+	Padding:654
+	Content:49
+
+[7-1-2018 3:5:30] Recieved a packet:
+	Type:1
+	Payload Size:921
+	Padding:902
+	Content:11
+
+[7-1-2018 3:5:30] Sending a packet:
+	Type:1
+	Payload Size:955
+	Padding:933
+	Content:14
+
+[7-1-2018 3:5:31] Recieved a packet:
+	Type:1
+	Payload Size:241
+	Padding:230
+	Content:3
+
+[7-1-2018 3:5:31] Sending a packet:
+	Type:1
+	Payload Size:937
+	Padding:874
+	Content:55
+
+[7-1-2018 3:5:35] Recieved a packet:
+	Type:1
+	Payload Size:472
+	Padding:449
+	Content:15
+
+[7-1-2018 3:5:37] Recieved a packet:
+	Type:1
+	Payload Size:195
+	Padding:182
+	Content:5
+
+[7-1-2018 3:5:37] Sending a packet:
+	Type:1
+	Payload Size:717
+	Padding:695
+	Content:14
+
+[7-1-2018 3:5:38] Recieved a packet:
+	Type:1
+	Payload Size:112
+	Padding:101
+	Content:3
+
+[7-1-2018 3:5:38] Sending a packet:
+	Type:1
+	Payload Size:615
+	Padding:544
+	Content:63
+
+[7-1-2018 3:5:40] Recieved a packet:
+	Type:1
+	Payload Size:292
+	Padding:272
+	Content:12
+
+[7-1-2018 3:5:40] Sending a packet:
+	Type:1
+	Payload Size:425
+	Padding:371
+	Content:46
+
+[7-1-2018 3:5:45] Recieved a packet:
+	Type:1
+	Payload Size:362
+	Padding:343
+	Content:11
+
+[7-1-2018 3:5:45] Sending a packet:
+	Type:1
+	Payload Size:765
+	Padding:743
+	Content:14
+
+[7-1-2018 3:5:46] Recieved a packet:
+	Type:1
+	Payload Size:571
+	Padding:560
+	Content:3
+
+[7-1-2018 3:5:46] Sending a packet:
+	Type:1
+	Payload Size:902
+	Padding:839
+	Content:55
+
+[7-1-2018 3:5:50] Recieved a packet:
+	Type:1
+	Payload Size:239
+	Padding:226
+	Content:5
+
+[7-1-2018 3:5:50] Sending a packet:
+	Type:1
+	Payload Size:992
+	Padding:915
+	Content:69
+
+[7-1-2018 3:5:50] Sending a packet:
+	Type:1
+	Payload Size:220
+	Padding:198
+	Content:14
+

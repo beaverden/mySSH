@@ -26,9 +26,6 @@
 #include <mutex>
 using namespace std;
 
-#define PORT 2018
-#define LOCAL_IP "127.0.0.1"
-
 
 struct ExecutionContext
 {
@@ -36,15 +33,22 @@ struct ExecutionContext
     std::mutex ssl_mutex;
 };
 
-int create_socket()
+int create_socket(char* _ip, char* _port)
 {
     int fd = socket(AF_INET, SOCK_STREAM, 0);
+    int port = atoi(_port);
+    if (port == 0)
+    {
+        perror("Invalid port conversion");
+        return -1;
+    } 
+
     sockaddr_in addr_in;
 
     memset(&addr_in, 0, sizeof(addr_in));
     addr_in.sin_family = AF_INET;
-    addr_in.sin_port = htons(PORT);
-    inet_pton(AF_INET,LOCAL_IP, &addr_in.sin_addr);
+    addr_in.sin_port = htons(port);
+    inet_pton(AF_INET, _ip, &addr_in.sin_addr);
 
     int resultfd = connect(fd, (struct sockaddr*)&addr_in, sizeof(addr_in));
     if (resultfd < 0)
@@ -112,7 +116,6 @@ void reading_routine(std::shared_ptr<ExecutionContext> ctx)
     SSH_Packet packet;
     while (true)
     {
-        
         int has_read = 0;
         int result = 0;
         ioctl(fd, FIONREAD, &has_read);
@@ -120,7 +123,7 @@ void reading_routine(std::shared_ptr<ExecutionContext> ctx)
         {
             ctx->ssl_mutex.lock();
             recv_packet(ctx->ssl, &packet);
-            result = write(STDOUT_FILENO, &packet, result);
+            result = write(STDOUT_FILENO, packet.payload.content, packet.payload.content_length);
             ctx->ssl_mutex.unlock();
         }
     }  
@@ -136,7 +139,8 @@ int main(int argc, char* argv[]) {
     ERR_load_BIO_strings();
     
     
-    int sock = create_socket();
+
+    int sock = create_socket(argv[1], argv[2]);
     const SSL_METHOD* method = SSLv23_client_method();
     SSL_CTX* context = SSL_CTX_new(method);
     if (context == NULL)

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['delete',['Delete',['../classServer.html#a3ca5015cd70a3f986c0045da3c9dc8ae',1,'Server']]],
-  ['destroy',['Destroy',['../classServer.html#ab11507d2655987863e93968a9c30199a',1,'Server']]]
+  ['deleteinstance',['deleteInstance',['../classServer.html#a727200ae46569af9054fac429c7da43e',1,'Server']]],
+  ['destroy',['destroy',['../classServer.html#adce993ab4cce22dc732bddddf310a5f6',1,'Server']]]
 ];

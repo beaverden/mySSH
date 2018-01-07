@@ -41,9 +41,9 @@ void trim(std::string& str);
 to_remove
  *
  * \param[in,out] str The target string to be trimmed
- * \param[in] to_remove Characters to be trimmed from the string ends
+ * \param[in] toRemove Characters to be trimmed from the string ends
 */
-void trim(std::string& str, std::string to_remove);
+void trim(std::string& str, std::string toRemove);
 
 
 
@@ -66,8 +66,8 @@ public:
     template<class ... Args>
     static void log(const char* fmt, Args ... args)
     {
-        char final_arr[1000] = {0};
-        snprintf(final_arr, 999, fmt, args...);
+        char finalArr[1000] = {0};
+        snprintf(finalArr, 999, fmt, args...);
         time_t t = time(0);   // get time now
         struct tm * now = localtime( & t );
         char date[1000] = {0};
@@ -77,13 +77,13 @@ public:
         );
         try
         {
-            log_mutex.lock();
-            std::ofstream file(log_path, std::ios_base::app);
+            logMutex.lock();
+            std::ofstream file(logPath, std::ios_base::app);
             file.write(date, strlen(date));
-            file.write(final_arr, strlen(final_arr));   
+            file.write(finalArr, strlen(finalArr));   
             file.write("\n", 1);
             file.close();
-            log_mutex.unlock();
+            logMutex.unlock();
         }
         catch (...) {}
     }
@@ -98,7 +98,7 @@ public:
     template<class ... Args>
     static void log(unsigned int flg, const char* fmt, Args ... args)
     {
-        if (CHECK(log_options, flg))
+        if (CHECK(logOptions, flg))
         {
             log(fmt, args...);
         }
@@ -111,15 +111,15 @@ public:
     {
         try
         {
-            std::ofstream file(log_path, std::ios_base::trunc);
+            std::ofstream file(logPath, std::ios_base::trunc);
             file.close();
         }
         catch (...) {}
     }
 
-    static unsigned int     log_options;    ///< Mask of flags starting with LOG_
-    static std::string      log_path;       ///< Path to log file
-    static std::mutex       log_mutex;
+    static unsigned int     logOptions;    ///< Mask of flags starting with LOG_
+    static std::string      logPath;       ///< Path to log file
+    static std::mutex       logMutex;
 };
 
 

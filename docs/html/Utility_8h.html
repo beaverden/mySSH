@@ -141,6 +141,12 @@ Macros</h2></td></tr>
 <tr class="memitem:ade2a951f0b4ac908683c37e1066d243c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8h.html#ade2a951f0b4ac908683c37e1066d243c">LOG_EVENTS</a>&#160;&#160;&#160;(1 &lt;&lt; 5)</td></tr>
 <tr class="memdesc:ade2a951f0b4ac908683c37e1066d243c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log important events during the protocol.  <a href="#ade2a951f0b4ac908683c37e1066d243c">More...</a><br /></td></tr>
 <tr class="separator:ade2a951f0b4ac908683c37e1066d243c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ea7b4ad9885aa5fc28fe650b976d511"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8h.html#a7ea7b4ad9885aa5fc28fe650b976d511">LOG_EVAL</a>&#160;&#160;&#160;(1 &lt;&lt; 6)</td></tr>
+<tr class="memdesc:a7ea7b4ad9885aa5fc28fe650b976d511"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log evaluation events.  <a href="#a7ea7b4ad9885aa5fc28fe650b976d511">More...</a><br /></td></tr>
+<tr class="separator:a7ea7b4ad9885aa5fc28fe650b976d511"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91452f0c8b053cb9a52a64e6de9e4505"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8h.html#a91452f0c8b053cb9a52a64e6de9e4505">LOG_EVAL_VERBOSE</a>&#160;&#160;&#160;(1 &lt;&lt; 7)</td></tr>
+<tr class="memdesc:a91452f0c8b053cb9a52a64e6de9e4505"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log detailed evaluation.  <a href="#a91452f0c8b053cb9a52a64e6de9e4505">More...</a><br /></td></tr>
+<tr class="separator:a91452f0c8b053cb9a52a64e6de9e4505"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb3f80ef30220b04f769a74e0d8db9fc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8h.html#abb3f80ef30220b04f769a74e0d8db9fc">CHECK</a>(opts,  flg)&#160;&#160;&#160;(((opts) &amp; (flg)) != 0)</td></tr>
 <tr class="separator:abb3f80ef30220b04f769a74e0d8db9fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -149,9 +155,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a83375b89f8b135c348ba5bea0c847da0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8h.html#a83375b89f8b135c348ba5bea0c847da0">trim</a> (std::string &amp;str)</td></tr>
 <tr class="memdesc:a83375b89f8b135c348ba5bea0c847da0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trims a string of spaces and tabs.  <a href="#a83375b89f8b135c348ba5bea0c847da0">More...</a><br /></td></tr>
 <tr class="separator:a83375b89f8b135c348ba5bea0c847da0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee76a2f00a367cafd01ac7206fb0a7aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8h.html#aee76a2f00a367cafd01ac7206fb0a7aa">trim</a> (std::string &amp;str, std::string to_remove)</td></tr>
-<tr class="memdesc:aee76a2f00a367cafd01ac7206fb0a7aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trims a string of spaces and tabs and the specified characters in to_remove.  <a href="#aee76a2f00a367cafd01ac7206fb0a7aa">More...</a><br /></td></tr>
-<tr class="separator:aee76a2f00a367cafd01ac7206fb0a7aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13ec08fc7352ad22f4b4ddb02537b486"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utility_8h.html#a13ec08fc7352ad22f4b4ddb02537b486">trim</a> (std::string &amp;str, std::string toRemove)</td></tr>
+<tr class="memdesc:a13ec08fc7352ad22f4b4ddb02537b486"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trims a string of spaces and tabs and the specified characters in to_remove.  <a href="#a13ec08fc7352ad22f4b4ddb02537b486">More...</a><br /></td></tr>
+<tr class="separator:a13ec08fc7352ad22f4b4ddb02537b486"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="abb3f80ef30220b04f769a74e0d8db9fc"></a>
@@ -205,6 +211,34 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Log exceptions and errors. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7ea7b4ad9885aa5fc28fe650b976d511"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOG_EVAL&#160;&#160;&#160;(1 &lt;&lt; 6)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Log evaluation events. </p>
+
+</div>
+</div>
+<a class="anchor" id="a91452f0c8b053cb9a52a64e6de9e4505"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOG_EVAL_VERBOSE&#160;&#160;&#160;(1 &lt;&lt; 7)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Log detailed evaluation. </p>
 
 </div>
 </div>
@@ -289,7 +323,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aee76a2f00a367cafd01ac7206fb0a7aa"></a>
+<a class="anchor" id="a13ec08fc7352ad22f4b4ddb02537b486"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -303,7 +337,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>to_remove</em>&#160;</td>
+          <td class="paramname"><em>toRemove</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -317,7 +351,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">str</td><td>The target string to be trimmed </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">to_remove</td><td>Characters to be trimmed from the string ends </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">toRemove</td><td>Characters to be trimmed from the string ends </td></tr>
   </table>
   </dd>
 </dl>
