@@ -1,5 +1,6 @@
 CC := g++
-BUILD_DIR := ./build
+BUILD_DIR := ./build/*
+BIN_DIR := ./bin/*
 SRCEXT := cpp
 
 # Server
@@ -8,7 +9,6 @@ SERVER_SRC	:= ./server/src ./common/src
 SERVER_INC  := ./server/include ./common/include
 SERVER_INC_FLAGS := $(addprefix -I,$(SERVER_INC))
 SERVER_SOURCES := $(shell find $(SERVER_SRC) -type f -name *.$(SRCEXT))
-SERVER_OBJECTS := $(patsubst $(SERVER_SRC)/%, $(BUILD_DIR)/%, $(SERVER_SOURCES:.$(SRCEXT)=.o))
 
 # Client 
 TARGET_CLIENT := ./bin/client
@@ -16,7 +16,6 @@ CLIENT_SRC	:= ./client/src ./common/src
 CLIENT_INC  := ./client/include ./common/include
 CLIENT_INC_FLAGS := $(addprefix -I,$(CLIENT_INC))
 CLIENT_SOURCES := $(shell find $(CLIENT_SRC) -type f -name *.$(SRCEXT))
-CLIENT_OBJECTS := $(patsubst $(CLIENT_SRC)/%, $(BUILD_DIR)/%, $(CLIENT_SOURCES:.$(SRCEXT)=.o))
 
 # Shell
 TARGET_SHELL := ./bin/shell
@@ -24,7 +23,6 @@ SHELL_SRC	 := ./shell/src
 SHELL_INC    := ./shell/include
 SHELL_INC_FLAGS := $(addprefix -I,$(SHELL_INC))
 SHELL_SOURCES := $(shell find $(SHELL_SRC) -type f -name *.$(SRCEXT))
-SHELL_OBJECTS := $(patsubst $(SHELL_SRC)/%, $(BUILD_DIR)/%, $(SHELL_SOURCES:.$(SRCEXT)=.o))
 
 COMMON_FLAGS := $(addprefix -I,$(COMMON_INCLUDE))
 
@@ -49,6 +47,7 @@ shell:
 clean:
 	@echo "Cleaning ..."
 	$(RM) -r $(BUILD_DIR)
+	$(RM) -r $(BIN_DIR)
 
 -include $(DEPS)
 
