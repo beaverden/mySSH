@@ -1,6 +1,5 @@
 #include "../include/Server.h"
 
-
 Server* Server::instance = nullptr;
 
 Server::Server()
@@ -73,7 +72,7 @@ void Server::initializeSockets(char* _port)
     Logger::log(LOG_EVENTS, "Listening socket is %d", fd);
 }
 
-void outputDataStream(std::shared_ptr<ServerContext> ctx)
+void Server::outputDataStream(std::shared_ptr<ServerContext> ctx)
 {
     while (true)
     {      
@@ -81,20 +80,24 @@ void outputDataStream(std::shared_ptr<ServerContext> ctx)
         int has_read = 0;
         int result = 0;
         ioctl(ctx->svServ, FIONREAD, &has_read);
-        if (has_read > 0)
+        try
         {
-            ctx->sslMutex.lock();
-            char* buff = new char[has_read];
-            result = read(ctx->svServ, buff, has_read);
-            // TODO shutdown exceptions
-            send_packet(ctx->ssl, PACKET_RESPONSE, buff, result);
-            ctx->sslMutex.unlock();
-            delete buff;
-        }
+            if (has_read > 0)
+            {
+                ctx->sslMutex.lock();
+                char* buff = new char[has_read];
+                result = read(ctx->svServ, buff, has_read);
+                // TODO shutdown exceptions
+                send_packet(ctx->ssl, PACKET_RESPONSE, buff, result);
+                ctx->sslMutex.unlock();
+                delete buff;
+            }
+        } catch (...) {}
+
     }
 }
 
-void inputDataStream(std::shared_ptr<ServerContext> ctx)
+void Server::inputDataStream(std::shared_ptr<ServerContext> ctx)
 {
     int fd = SSL_get_fd(ctx->ssl);
     SSH_Packet packet;
@@ -104,17 +107,20 @@ void inputDataStream(std::shared_ptr<ServerContext> ctx)
         int has_read = 0;
         int result = 0;
         ioctl(fd, FIONREAD, &has_read);
-        if (has_read > 0)
+        try
         {
-            ctx->sslMutex.lock();
-            recv_packet(ctx->ssl, &packet);
-            result = write(ctx->svServ, packet.payload.content, packet.payload.content_length);
-            ctx->sslMutex.unlock();
-        }
+            if (has_read > 0)
+            {
+                ctx->sslMutex.lock();
+                recv_packet(ctx->ssl, &packet);
+                result = write(ctx->svServ, packet.payload.content, packet.payload.content_length);
+                ctx->sslMutex.unlock();
+            }
+        } catch (...) {}
     }  
 }
 
-void sendError(std::shared_ptr<ServerContext> ctx, const char* str)
+void Server::sendError(std::shared_ptr<ServerContext> ctx, const char* str)
 {
     Logger::log(LOG_ERRORS, str);
     ctx->sslMutex.lock();
@@ -128,7 +134,54 @@ void sendError(std::shared_ptr<ServerContext> ctx, const char* str)
     ctx->sslMutex.unlock();
 }
 
-int serverRoutine(SSL* ssl)
+void Server::spawnShell(std::shared_ptr<ServerContext> ctx)
+{
+    try
+    {
+        if (ctx == nullptr) throw ServerException("Invalid context");
+        int shellPid; 
+        int shellSocket = ctx->svShell;
+        if ((shellPid = fork()) == FAILED)
+        {
+            throw ServerException("Could not fork");
+        }
+        if (shellPid == 0)
+        {
+            // Shell space
+            close(STDIN_FILENO);
+            dup(shellSocket);
+            
+            close(STDOUT_FILENO);
+            dup(shellSocket);
+
+            close(STDERR_FILENO);
+            dup(shellSocket);
+
+            execl("shell", "shell", NULL);
+            throw ServerException("Could not exec");
+        }
+        else
+        {
+            ctx->shellRunning = true;
+            // Server space
+            ctx->shellPid = shellPid;
+            int status;
+            wait(&status);
+            ctx->shellRunning = false;
+            ctx->shouldTerminate = true;
+            ctx->shellStatus = status;
+        }
+    }
+    catch (...)
+    {
+        ctx->shellPid = -1;
+        ctx->shellStatus = -1;
+        ctx->shellRunning = false;
+    }
+
+}
+
+int Server::serverRoutine(SSL* ssl)
 {
     try
     {
@@ -147,12 +200,12 @@ int serverRoutine(SSL* ssl)
         ctx->svShell = sockets[0];
         ctx->svServ = sockets[1];
 
+        std::thread t3(spawnShell, ctx);
         std::thread t1(inputDataStream, ctx);
         std::thread t2(outputDataStream, ctx);
-        // TODO spawn shell
         t1.join();
         t2.join();  
-        //shell.join();
+        t3.join();
         char msg[] = "Terminate";
         send_packet(ssl, PACKET_TERMINATE, msg, strlen(msg));
     }
@@ -187,7 +240,7 @@ void Server::connectionListen()
                 Logger::log(LOG_CONNECTIONS, "Client connected");
                 try
                 {
-                   exitCode = serverRoutine(ssl);
+                   exitCode = Server::getInstance()->serverRoutine(ssl);
                 }
                 catch (ServerException& ex)
                 {

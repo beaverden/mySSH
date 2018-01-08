@@ -1,52 +1,149 @@
-[7-1-2018 8:59:23] Initialized security
-[7-1-2018 8:59:23] Listening socket is 3
-[7-1-2018 8:59:33] Client connected
-[7-1-2018 8:59:33] Sending a packet:
+[8-1-2018 1:38:9] Initialized security
+[8-1-2018 1:38:9] Listening socket is 3
+[8-1-2018 1:38:12] Client connected
+[8-1-2018 1:38:12] Sending a packet:
 	Type:1
-	Payload Size:486
-	Padding:464
-	Content:14
+	Payload Size:202
+	Padding:156
+	Content:38
 
-[7-1-2018 8:59:34] Recieved a packet:
+[8-1-2018 1:38:13] Recieved a packet:
 	Type:1
-	Payload Size:879
-	Padding:868
+	Payload Size:340
+	Padding:329
 	Content:3
 
-[7-1-2018 8:59:34] Sending a packet:
+[8-1-2018 1:38:13] Sending a packet:
 	Type:1
-	Payload Size:1022
-	Padding:959
-	Content:55
+	Payload Size:394
+	Padding:301
+	Content:85
 
-[7-1-2018 8:59:35] Recieved a packet:
+[8-1-2018 1:38:13] Recieved a packet:
 	Type:1
-	Payload Size:973
-	Padding:962
+	Payload Size:315
+	Padding:304
 	Content:3
 
-[7-1-2018 8:59:35] Sending a packet:
+[8-1-2018 1:38:13] Sending a packet:
 	Type:1
-	Payload Size:910
-	Padding:847
-	Content:55
+	Payload Size:734
+	Padding:641
+	Content:85
 
-[7-1-2018 8:59:36] Recieved a packet:
+[8-1-2018 1:38:14] Recieved a packet:
 	Type:1
-	Payload Size:445
-	Padding:435
-	Content:2
+	Payload Size:206
+	Padding:193
+	Content:5
 
-[7-1-2018 8:59:36] Unable to run command [a]
-[7-1-2018 8:59:36] Sending a packet:
-	Type:6
-	Payload Size:801
-	Padding:767
-	Content:26
-
-[7-1-2018 8:59:36] Sending a packet:
+[8-1-2018 1:38:14] Sending a packet:
 	Type:1
-	Payload Size:1023
-	Padding:1001
+	Payload Size:502
+	Padding:481
+	Content:13
+
+[8-1-2018 1:38:14] Sending a packet:
+	Type:7
+	Payload Size:430
+	Padding:413
+	Content:9
+
+[8-1-2018 1:38:20] Client connected
+[8-1-2018 1:38:20] Sending a packet:
+	Type:1
+	Payload Size:713
+	Padding:667
+	Content:38
+
+[8-1-2018 1:38:21] Recieved a packet:
+	Type:1
+	Payload Size:186
+	Padding:175
+	Content:3
+
+[8-1-2018 1:38:21] Sending a packet:
+	Type:1
+	Payload Size:652
+	Padding:559
+	Content:85
+
+[8-1-2018 1:38:22] Recieved a packet:
+	Type:1
+	Payload Size:546
+	Padding:535
+	Content:3
+
+[8-1-2018 1:38:22] Sending a packet:
+	Type:1
+	Payload Size:1025
+	Padding:932
+	Content:85
+
+[8-1-2018 1:38:25] Client connected
+[8-1-2018 1:38:26] Sending a packet:
+	Type:1
+	Payload Size:347
+	Padding:301
+	Content:38
+
+[8-1-2018 1:38:26] Recieved a packet:
+	Type:1
+	Payload Size:651
+	Padding:640
+	Content:3
+
+[8-1-2018 1:38:26] Sending a packet:
+	Type:1
+	Payload Size:858
+	Padding:765
+	Content:85
+
+[8-1-2018 1:38:27] Recieved a packet:
+	Type:1
+	Payload Size:190
+	Padding:179
+	Content:3
+
+[8-1-2018 1:38:27] Sending a packet:
+	Type:1
+	Payload Size:616
+	Padding:523
+	Content:85
+
+[8-1-2018 1:38:29] Recieved a packet:
+	Type:1
+	Payload Size:851
+	Padding:838
+	Content:5
+
+[8-1-2018 1:38:29] Sending a packet:
+	Type:1
+	Payload Size:686
+	Padding:664
 	Content:14
+
+[8-1-2018 1:38:31] Recieved a packet:
+	Type:1
+	Payload Size:535
+	Padding:521
+	Content:6
+
+[8-1-2018 1:38:31] Sending a packet:
+	Type:1
+	Payload Size:652
+	Padding:587
+	Content:57
+
+[8-1-2018 1:38:32] Recieved a packet:
+	Type:1
+	Payload Size:642
+	Padding:629
+	Content:5
+
+[8-1-2018 1:38:32] Sending a packet:
+	Type:7
+	Payload Size:431
+	Padding:414
+	Content:9
 

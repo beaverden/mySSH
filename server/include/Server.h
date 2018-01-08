@@ -34,6 +34,10 @@ struct ServerContext
     std::mutex sslMutex;
 
     bool shouldTerminate = false;
+
+    int shellPid = -1;
+    int shellStatus = 0;
+    bool shellRunning = false;
 };
 
 class Server
@@ -90,14 +94,14 @@ class Server
          * 
          * \param ctx A pointer to ServerContext structure, containing sockets
          */
-        void outputDataStream(std::shared_ptr<ServerContext> ctx);
+        static void outputDataStream(std::shared_ptr<ServerContext> ctx);
 
         /**
          * \brief Constantly reads from SSL socket and redirects it to the shell
          * 
          * \param ctx A pointer to ServerContext structure, containing sockets
          */        
-        void inputDataStream(std::shared_ptr<ServerContext> ctx);
+        static void inputDataStream(std::shared_ptr<ServerContext> ctx);
 
         /**
          * \brief Sends an error to the SSL socket
@@ -107,6 +111,7 @@ class Server
          */
         void sendError(std::shared_ptr<ServerContext> ctx, const char* str);
        
+        static void spawnShell(std::shared_ptr<ServerContext> ctx);
 
         void handleAuth(SSL* SSL);
 };
