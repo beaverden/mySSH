@@ -9,17 +9,19 @@ digraph "ArgumentsException"
   Node3 -> Node1 [dir="back",color="firebrick4",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="exception",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="ClientException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classClientException.html"];
+  Node4 [label="AuthException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAuthException.html"];
   Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="EvaluationException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classEvaluationException.html"];
+  Node5 [label="ClientException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classClientException.html"];
   Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node6 [label="ExitException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classExitException.html"];
+  Node6 [label="EvaluationException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classEvaluationException.html"];
   Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node7 [label="PacketIOException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPacketIOException.html"];
+  Node7 [label="ExitException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classExitException.html"];
   Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node8 [label="SecurityException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classSecurityException.html"];
+  Node8 [label="PacketIOException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPacketIOException.html"];
   Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node9 [label="ServerException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classServerException.html"];
+  Node9 [label="SecurityException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classSecurityException.html"];
   Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node10 [label="ShutdownException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classShutdownException.html"];
+  Node10 [label="ServerException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classServerException.html"];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="ShutdownException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classShutdownException.html"];
 }

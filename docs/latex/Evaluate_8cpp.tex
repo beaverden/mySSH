@@ -9,11 +9,11 @@ Include dependency graph for Evaluate.\+cpp\+:
 std\+::string \hyperlink{Evaluate_8cpp_a063842d8b2c77e02edb88c7ab397f649}{get\+\_\+cwd} ()
 \item 
 int \hyperlink{Evaluate_8cpp_a79150b4042ae7db5ea8e8aa1b45b60e8}{Execute} (std\+::string command, std\+::shared\+\_\+ptr$<$ \hyperlink{structExecutionContext}{Execution\+Context} $>$ ctx)
-\item 
+\begin{DoxyCompactList}\small\item\em Executes a given command, taking redirect descriptors from the top of the stacks. \end{DoxyCompactList}\item 
 void \hyperlink{Evaluate_8cpp_a5d3c299a17a0f0bfb94634b82449ddba}{Evaluate} (std\+::string command, std\+::shared\+\_\+ptr$<$ \hyperlink{structExecutionContext}{Execution\+Context} $>$ ctx)
-\item 
+\begin{DoxyCompactList}\small\item\em Parses a complex command and calls Evaluate\+\_\+\+Tree on the A\+ST obtained from parsing. \end{DoxyCompactList}\item 
 int \hyperlink{Evaluate_8cpp_aab83877ec794b9c71e963bac1b0dde76}{Evaluate\+\_\+\+Tree} (std\+::shared\+\_\+ptr$<$ \hyperlink{structSyntaxTree}{Syntax\+Tree} $>$ node, std\+::shared\+\_\+ptr$<$ \hyperlink{structExecutionContext}{Execution\+Context} $>$ context)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Opens redirects, pushes them to the stack, creates pipes between programs and executes simple commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
@@ -22,9 +22,20 @@ int \hyperlink{Evaluate_8cpp_aab83877ec794b9c71e963bac1b0dde76}{Evaluate\+\_\+\+
 \subsubsection[{\texorpdfstring{Evaluate(std\+::string command, std\+::shared\+\_\+ptr$<$ Execution\+Context $>$ ctx)}{Evaluate(std::string command, std::shared_ptr< ExecutionContext > ctx)}}]{\setlength{\rightskip}{0pt plus 5cm}void Evaluate (
 \begin{DoxyParamCaption}
 \item[{std\+::string}]{command, }
-\item[{std\+::shared\+\_\+ptr$<$ {\bf Execution\+Context} $>$}]{ctx}
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Execution\+Context} $>$}]{context}
 \end{DoxyParamCaption}
 )}\hypertarget{Evaluate_8cpp_a5d3c299a17a0f0bfb94634b82449ddba}{}\label{Evaluate_8cpp_a5d3c299a17a0f0bfb94634b82449ddba}
+
+
+Parses a complex command and calls Evaluate\+\_\+\+Tree on the A\+ST obtained from parsing. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em command} & Complex command \\
+\hline
+\mbox{\tt in}  & {\em context} & Execution context pointer \\
+\hline
+\end{DoxyParams}
 \index{Evaluate.\+cpp@{Evaluate.\+cpp}!Evaluate\+\_\+\+Tree@{Evaluate\+\_\+\+Tree}}
 \index{Evaluate\+\_\+\+Tree@{Evaluate\+\_\+\+Tree}!Evaluate.\+cpp@{Evaluate.\+cpp}}
 \subsubsection[{\texorpdfstring{Evaluate\+\_\+\+Tree(std\+::shared\+\_\+ptr$<$ Syntax\+Tree $>$ node, std\+::shared\+\_\+ptr$<$ Execution\+Context $>$ context)}{Evaluate_Tree(std::shared_ptr< SyntaxTree > node, std::shared_ptr< ExecutionContext > context)}}]{\setlength{\rightskip}{0pt plus 5cm}int Evaluate\+\_\+\+Tree (
@@ -33,14 +44,42 @@ int \hyperlink{Evaluate_8cpp_aab83877ec794b9c71e963bac1b0dde76}{Evaluate\+\_\+\+
 \item[{std\+::shared\+\_\+ptr$<$ {\bf Execution\+Context} $>$}]{context}
 \end{DoxyParamCaption}
 )}\hypertarget{Evaluate_8cpp_aab83877ec794b9c71e963bac1b0dde76}{}\label{Evaluate_8cpp_aab83877ec794b9c71e963bac1b0dde76}
+
+
+Opens redirects, pushes them to the stack, creates pipes between programs and executes simple commands. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em command} & Complex command \\
+\hline
+\mbox{\tt in}  & {\em context} & Execution context pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Execution result of a complex command 
+\end{DoxyReturn}
 \index{Evaluate.\+cpp@{Evaluate.\+cpp}!Execute@{Execute}}
 \index{Execute@{Execute}!Evaluate.\+cpp@{Evaluate.\+cpp}}
 \subsubsection[{\texorpdfstring{Execute(std\+::string command, std\+::shared\+\_\+ptr$<$ Execution\+Context $>$ ctx)}{Execute(std::string command, std::shared_ptr< ExecutionContext > ctx)}}]{\setlength{\rightskip}{0pt plus 5cm}int Execute (
 \begin{DoxyParamCaption}
 \item[{std\+::string}]{command, }
-\item[{std\+::shared\+\_\+ptr$<$ {\bf Execution\+Context} $>$}]{ctx}
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Execution\+Context} $>$}]{context}
 \end{DoxyParamCaption}
 )}\hypertarget{Evaluate_8cpp_a79150b4042ae7db5ea8e8aa1b45b60e8}{}\label{Evaluate_8cpp_a79150b4042ae7db5ea8e8aa1b45b60e8}
+
+
+Executes a given command, taking redirect descriptors from the top of the stacks. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em command} & Simple command with parameters \\
+\hline
+\mbox{\tt in}  & {\em context} & Execution context pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Execution status of the command 
+\end{DoxyReturn}
 \index{Evaluate.\+cpp@{Evaluate.\+cpp}!get\+\_\+cwd@{get\+\_\+cwd}}
 \index{get\+\_\+cwd@{get\+\_\+cwd}!Evaluate.\+cpp@{Evaluate.\+cpp}}
 \subsubsection[{\texorpdfstring{get\+\_\+cwd()}{get_cwd()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string get\+\_\+cwd (

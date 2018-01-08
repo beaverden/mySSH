@@ -24,19 +24,12 @@ int main(int argc, char* argv[])
     ctx->outputRedir.push(STDOUT_FILENO);
     ctx->errorRedir.push(STDERR_FILENO);
     ctx->currentDir = get_cwd();
-
+    ctx->username = "$_anonymous_$";
     int hasRead = 0;
     int readResult = 0;
     bool newMessage = true;
     while (true)
     {  
-        if (ctx->shouldTerminate)
-        {
-            std::string bye = "[Shell] Bye.\n";
-            write(STDOUT_FILENO, bye.c_str(), bye.length());
-            break;
-        }
-
         if (newMessage)
         {
             std::string pathStr = ctx->username + ":" + ctx->currentDir + "$ ";
@@ -58,38 +51,53 @@ int main(int argc, char* argv[])
                 newMessage = true;                
             }
         }
-        catch (ParserException& ex)
-        {
-            printf("[Shell] %s\n", ex.what());
-            newMessage = true;
-            continue;
-        }
         catch (ExitException& ex)
         {
             ctx->shouldTerminate = true;
+            printf("[Shell] Bye.\n");
+            fflush(stdout);
+            break;
+        }
+        catch (AuthException& ex)
+        {
+
+            printf("[Shell] %s\n", ex.what());
+            fflush(stdout);
+            newMessage = true;
+            continue;
+        }
+        catch (ParserException& ex)
+        {
+            printf("[Shell] %s\n", ex.what());
+            fflush(stdout);
+            newMessage = true;
             continue;
         }
         catch (VerificationException& ex)
         {
-            printf("[Shell] %s\n", ex.what());  
+            printf("[Shell] %s\n", ex.what()); 
+            fflush(stdout); 
             newMessage = true;
             continue;         
         }
         catch (EvaluationException& ex)
         {
             printf("[Shell] %s\n", ex.what());
+            fflush(stdout);
             newMessage = true;
             continue; 
         }
         catch (std::exception& ex)
         {
             printf("[Shell] %s\n", ex.what());
+            fflush(stdout);
             newMessage = true;
             continue;
         }
         catch (...)
         {
             printf("[Shell] Unknown exception\n");
+            fflush(stdout);
             newMessage = true;
             continue;
         }

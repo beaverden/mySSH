@@ -111,6 +111,11 @@ class Server
          */
         void sendError(std::shared_ptr<ServerContext> ctx, const char* str);
        
+        /**
+         * \brief Spawns a shell with input/output/error redirected with data streams
+         * 
+         * \param ctx A pointer to ServerContext structure, containing sockets
+         */
         static void spawnShell(std::shared_ptr<ServerContext> ctx);
 
         void handleAuth(SSL* SSL);

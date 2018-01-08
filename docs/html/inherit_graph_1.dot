@@ -3,5 +3,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="ExecutionContext",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structExecutionContext.html"];
+  Node1 [label="ExecutionContext",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structExecutionContext.html",tooltip="Context for tree execution and redirection. Gets passed between functions of Evaluation and Execution..."];
 }

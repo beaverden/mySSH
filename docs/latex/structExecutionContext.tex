@@ -2,6 +2,11 @@
 \label{structExecutionContext}\index{Execution\+Context@{Execution\+Context}}
 
 
+Context for tree execution and redirection. Gets passed between functions of Evaluation and Execution.  
+
+
+
+
 {\ttfamily \#include $<$Evaluate.\+h$>$}
 
 \subsection*{Data Fields}
@@ -12,35 +17,58 @@ S\+SL $\ast$ \hyperlink{structExecutionContext_afce3bfa5f05214b9b0d57ac1edb0a0f4
 std\+::mutex \hyperlink{structExecutionContext_a241cad372197f9880a9af9e93ecd7633}{ssl\+\_\+mutex}
 \item 
 bool \hyperlink{structExecutionContext_a3b3a2c509c6c08190a8ee67e39dd80cf}{should\+Terminate} = false
-\item 
+\begin{DoxyCompactList}\small\item\em Indicates that the program should stop from execution. \end{DoxyCompactList}\item 
 std\+::stack$<$ int $>$ \hyperlink{structExecutionContext_a33562118feda5571fe0ba87186670679}{input\+Redir}
-\item 
+\begin{DoxyCompactList}\small\item\em Stack of input redirection descriptors. \end{DoxyCompactList}\item 
 std\+::stack$<$ int $>$ \hyperlink{structExecutionContext_a15af12d7e8146ae1a5f091b7d9919c8c}{output\+Redir}
-\item 
+\begin{DoxyCompactList}\small\item\em Stack of output redirection descriptors. \end{DoxyCompactList}\item 
 std\+::stack$<$ int $>$ \hyperlink{structExecutionContext_aa5d29389a31755f8a0c1099f7c7768bf}{error\+Redir}
-\item 
+\begin{DoxyCompactList}\small\item\em Stakc of error redirection descriptors. \end{DoxyCompactList}\item 
 std\+::string \hyperlink{structExecutionContext_a6c1bbd4dcfc82e4902c4382af69ab6d9}{username}
-\item 
+\begin{DoxyCompactList}\small\item\em Current username. \end{DoxyCompactList}\item 
 std\+::string \hyperlink{structExecutionContext_ad3a0ccfbff4fe1b7b0f5ced3a58dca32}{current\+Dir}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Current working directory. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Context for tree execution and redirection. Gets passed between functions of Evaluation and Execution. 
 
 \subsection{Field Documentation}
 \index{Execution\+Context@{Execution\+Context}!current\+Dir@{current\+Dir}}
 \index{current\+Dir@{current\+Dir}!Execution\+Context@{Execution\+Context}}
 \subsubsection[{\texorpdfstring{current\+Dir}{currentDir}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Execution\+Context\+::current\+Dir}\hypertarget{structExecutionContext_ad3a0ccfbff4fe1b7b0f5ced3a58dca32}{}\label{structExecutionContext_ad3a0ccfbff4fe1b7b0f5ced3a58dca32}
+
+
+Current working directory. 
+
 \index{Execution\+Context@{Execution\+Context}!error\+Redir@{error\+Redir}}
 \index{error\+Redir@{error\+Redir}!Execution\+Context@{Execution\+Context}}
 \subsubsection[{\texorpdfstring{error\+Redir}{errorRedir}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::stack$<$int$>$ Execution\+Context\+::error\+Redir}\hypertarget{structExecutionContext_aa5d29389a31755f8a0c1099f7c7768bf}{}\label{structExecutionContext_aa5d29389a31755f8a0c1099f7c7768bf}
+
+
+Stakc of error redirection descriptors. 
+
 \index{Execution\+Context@{Execution\+Context}!input\+Redir@{input\+Redir}}
 \index{input\+Redir@{input\+Redir}!Execution\+Context@{Execution\+Context}}
 \subsubsection[{\texorpdfstring{input\+Redir}{inputRedir}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::stack$<$int$>$ Execution\+Context\+::input\+Redir}\hypertarget{structExecutionContext_a33562118feda5571fe0ba87186670679}{}\label{structExecutionContext_a33562118feda5571fe0ba87186670679}
+
+
+Stack of input redirection descriptors. 
+
 \index{Execution\+Context@{Execution\+Context}!output\+Redir@{output\+Redir}}
 \index{output\+Redir@{output\+Redir}!Execution\+Context@{Execution\+Context}}
 \subsubsection[{\texorpdfstring{output\+Redir}{outputRedir}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::stack$<$int$>$ Execution\+Context\+::output\+Redir}\hypertarget{structExecutionContext_a15af12d7e8146ae1a5f091b7d9919c8c}{}\label{structExecutionContext_a15af12d7e8146ae1a5f091b7d9919c8c}
+
+
+Stack of output redirection descriptors. 
+
 \index{Execution\+Context@{Execution\+Context}!should\+Terminate@{should\+Terminate}}
 \index{should\+Terminate@{should\+Terminate}!Execution\+Context@{Execution\+Context}}
 \subsubsection[{\texorpdfstring{should\+Terminate}{shouldTerminate}}]{\setlength{\rightskip}{0pt plus 5cm}bool Execution\+Context\+::should\+Terminate = false}\hypertarget{structExecutionContext_a3b3a2c509c6c08190a8ee67e39dd80cf}{}\label{structExecutionContext_a3b3a2c509c6c08190a8ee67e39dd80cf}
+
+
+Indicates that the program should stop from execution. 
+
 \index{Execution\+Context@{Execution\+Context}!ssl@{ssl}}
 \index{ssl@{ssl}!Execution\+Context@{Execution\+Context}}
 \subsubsection[{\texorpdfstring{ssl}{ssl}}]{\setlength{\rightskip}{0pt plus 5cm}S\+SL$\ast$ Execution\+Context\+::ssl}\hypertarget{structExecutionContext_afce3bfa5f05214b9b0d57ac1edb0a0f4}{}\label{structExecutionContext_afce3bfa5f05214b9b0d57ac1edb0a0f4}
@@ -50,6 +78,10 @@ std\+::string \hyperlink{structExecutionContext_ad3a0ccfbff4fe1b7b0f5ced3a58dca3
 \index{Execution\+Context@{Execution\+Context}!username@{username}}
 \index{username@{username}!Execution\+Context@{Execution\+Context}}
 \subsubsection[{\texorpdfstring{username}{username}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Execution\+Context\+::username}\hypertarget{structExecutionContext_a6c1bbd4dcfc82e4902c4382af69ab6d9}{}\label{structExecutionContext_a6c1bbd4dcfc82e4902c4382af69ab6d9}
+
+
+Current username. 
+
 
 
 The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}

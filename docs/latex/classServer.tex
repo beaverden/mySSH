@@ -17,10 +17,6 @@ void \hyperlink{classServer_a258c0a0a42d0be99bc4a36b4e6212ed2}{connection\+Liste
 \begin{DoxyCompactList}\small\item\em Listens to connections, fork()\textquotesingle{}s a child running a shell, reading and writing sessions for each connection. \end{DoxyCompactList}\item 
 int \hyperlink{classServer_a47b6e405d109cdd27838220684f0e2e5}{server\+Routine} (S\+SL $\ast$ssl)
 \begin{DoxyCompactList}\small\item\em Prepares execution environment. Runs out and input data streams, spawns a shell for the client. \end{DoxyCompactList}\item 
-void \hyperlink{classServer_a0b247f8f2166b36c3575c4678d0755e9}{output\+Data\+Stream} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ ctx)
-\begin{DoxyCompactList}\small\item\em Constantly reads output from the shell and outputs it to the S\+SL socket. \end{DoxyCompactList}\item 
-void \hyperlink{classServer_a8d9328ec355e42c8abf49ae0d4771399}{input\+Data\+Stream} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ ctx)
-\begin{DoxyCompactList}\small\item\em Constantly reads from S\+SL socket and redirects it to the shell. \end{DoxyCompactList}\item 
 void \hyperlink{classServer_abc80f4931ae5b5860a9f70ffac1b89c5}{send\+Error} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ ctx, const char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Sends an error to the S\+SL socket. \end{DoxyCompactList}\item 
 void \hyperlink{classServer_ac294087f9009b03cfb1a7476fbac050c}{handle\+Auth} (S\+SL $\ast$S\+SL)
@@ -31,7 +27,13 @@ void \hyperlink{classServer_ac294087f9009b03cfb1a7476fbac050c}{handle\+Auth} (S\
 static \hyperlink{classServer}{Server} $\ast$ \hyperlink{classServer_a22dbfd5db73d391d615a0bfd69077fb6}{get\+Instance} ()
 \item 
 static void \hyperlink{classServer_a727200ae46569af9054fac429c7da43e}{delete\+Instance} ()
-\end{DoxyCompactItemize}
+\item 
+static void \hyperlink{classServer_a0b247f8f2166b36c3575c4678d0755e9}{output\+Data\+Stream} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ ctx)
+\begin{DoxyCompactList}\small\item\em Constantly reads output from the shell and outputs it to the S\+SL socket. \end{DoxyCompactList}\item 
+static void \hyperlink{classServer_a8d9328ec355e42c8abf49ae0d4771399}{input\+Data\+Stream} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ ctx)
+\begin{DoxyCompactList}\small\item\em Constantly reads from S\+SL socket and redirects it to the shell. \end{DoxyCompactList}\item 
+static void \hyperlink{classServer_a4e9f6422ec55d311b9588975f81ae3bd}{spawn\+Shell} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ ctx)
+\begin{DoxyCompactList}\small\item\em Spawns a shell with input/output/error redirected with data streams. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Member Function Documentation}
@@ -109,7 +111,7 @@ Might throw\+: \hyperlink{classServerException}{Server\+Exception}
 \begin{DoxyParamCaption}
 \item[{std\+::shared\+\_\+ptr$<$ {\bf Server\+Context} $>$}]{ctx}
 \end{DoxyParamCaption}
-)}\hypertarget{classServer_a8d9328ec355e42c8abf49ae0d4771399}{}\label{classServer_a8d9328ec355e42c8abf49ae0d4771399}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classServer_a8d9328ec355e42c8abf49ae0d4771399}{}\label{classServer_a8d9328ec355e42c8abf49ae0d4771399}
 
 
 Constantly reads from S\+SL socket and redirects it to the shell. 
@@ -125,7 +127,7 @@ Constantly reads from S\+SL socket and redirects it to the shell.
 \begin{DoxyParamCaption}
 \item[{std\+::shared\+\_\+ptr$<$ {\bf Server\+Context} $>$}]{ctx}
 \end{DoxyParamCaption}
-)}\hypertarget{classServer_a0b247f8f2166b36c3575c4678d0755e9}{}\label{classServer_a0b247f8f2166b36c3575c4678d0755e9}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classServer_a0b247f8f2166b36c3575c4678d0755e9}{}\label{classServer_a0b247f8f2166b36c3575c4678d0755e9}
 
 
 Constantly reads output from the shell and outputs it to the S\+SL socket. 
@@ -173,6 +175,22 @@ Prepares execution environment. Runs out and input data streams, spawns a shell 
 \begin{DoxyReturn}{Returns}
 Execution result 
 \end{DoxyReturn}
+\index{Server@{Server}!spawn\+Shell@{spawn\+Shell}}
+\index{spawn\+Shell@{spawn\+Shell}!Server@{Server}}
+\subsubsection[{\texorpdfstring{spawn\+Shell(std\+::shared\+\_\+ptr$<$ Server\+Context $>$ ctx)}{spawnShell(std::shared_ptr< ServerContext > ctx)}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::spawn\+Shell (
+\begin{DoxyParamCaption}
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Server\+Context} $>$}]{ctx}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classServer_a4e9f6422ec55d311b9588975f81ae3bd}{}\label{classServer_a4e9f6422ec55d311b9588975f81ae3bd}
+
+
+Spawns a shell with input/output/error redirected with data streams. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & A pointer to \hyperlink{structServerContext}{Server\+Context} structure, containing sockets \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

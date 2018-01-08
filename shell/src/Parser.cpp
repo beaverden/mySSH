@@ -305,10 +305,16 @@ std::shared_ptr<SyntaxTree> Parser::getSyntaxTree(std::vector<Token> &tokens) {
 std::vector<std::string> Parser::tokenizeExecute(std::string s, std::string delim)
 {
     std::vector<std::string> v;
-    trim(s);
+    trim(s);    
     while (s.length() != 0 && s.find(delim) != std::string::npos)
     {
         std::string token = s.substr(0, s.find(delim));
+        trim(token);
+        if (token.length() >= 2 && token[0] == '"' && token.back() == '"')
+        {
+            token.erase(0, 1);
+            token.erase(token.length() - 1, 1);
+        }
         v.push_back(token);
         s.erase(0, s.find(delim) + delim.length());
         trim(s);
@@ -316,6 +322,11 @@ std::vector<std::string> Parser::tokenizeExecute(std::string s, std::string deli
     if (s.length() != 0)
     {
         trim(s);
+        if (s.length() >= 2 && s[0] == '"' && s.back() == '"')
+        {
+            s.erase(0, 1);
+            s.erase(s.length() - 1, 1);
+        }
         v.push_back(s);
     }
     return v;

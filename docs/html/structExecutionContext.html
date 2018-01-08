@@ -91,6 +91,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Context for tree execution and redirection. Gets passed between functions of Evaluation and Execution.  
+ <a href="structExecutionContext.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="Evaluate_8h_source.html">Evaluate.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -100,19 +103,27 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a241cad372197f9880a9af9e93ecd7633"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structExecutionContext.html#a241cad372197f9880a9af9e93ecd7633">ssl_mutex</a></td></tr>
 <tr class="separator:a241cad372197f9880a9af9e93ecd7633"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b3a2c509c6c08190a8ee67e39dd80cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structExecutionContext.html#a3b3a2c509c6c08190a8ee67e39dd80cf">shouldTerminate</a> = false</td></tr>
+<tr class="memdesc:a3b3a2c509c6c08190a8ee67e39dd80cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates that the program should stop from execution.  <a href="#a3b3a2c509c6c08190a8ee67e39dd80cf">More...</a><br /></td></tr>
 <tr class="separator:a3b3a2c509c6c08190a8ee67e39dd80cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33562118feda5571fe0ba87186670679"><td class="memItemLeft" align="right" valign="top">std::stack&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structExecutionContext.html#a33562118feda5571fe0ba87186670679">inputRedir</a></td></tr>
+<tr class="memdesc:a33562118feda5571fe0ba87186670679"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stack of input redirection descriptors.  <a href="#a33562118feda5571fe0ba87186670679">More...</a><br /></td></tr>
 <tr class="separator:a33562118feda5571fe0ba87186670679"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15af12d7e8146ae1a5f091b7d9919c8c"><td class="memItemLeft" align="right" valign="top">std::stack&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structExecutionContext.html#a15af12d7e8146ae1a5f091b7d9919c8c">outputRedir</a></td></tr>
+<tr class="memdesc:a15af12d7e8146ae1a5f091b7d9919c8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stack of output redirection descriptors.  <a href="#a15af12d7e8146ae1a5f091b7d9919c8c">More...</a><br /></td></tr>
 <tr class="separator:a15af12d7e8146ae1a5f091b7d9919c8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5d29389a31755f8a0c1099f7c7768bf"><td class="memItemLeft" align="right" valign="top">std::stack&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structExecutionContext.html#aa5d29389a31755f8a0c1099f7c7768bf">errorRedir</a></td></tr>
+<tr class="memdesc:aa5d29389a31755f8a0c1099f7c7768bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stakc of error redirection descriptors.  <a href="#aa5d29389a31755f8a0c1099f7c7768bf">More...</a><br /></td></tr>
 <tr class="separator:aa5d29389a31755f8a0c1099f7c7768bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c1bbd4dcfc82e4902c4382af69ab6d9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structExecutionContext.html#a6c1bbd4dcfc82e4902c4382af69ab6d9">username</a></td></tr>
+<tr class="memdesc:a6c1bbd4dcfc82e4902c4382af69ab6d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current username.  <a href="#a6c1bbd4dcfc82e4902c4382af69ab6d9">More...</a><br /></td></tr>
 <tr class="separator:a6c1bbd4dcfc82e4902c4382af69ab6d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3a0ccfbff4fe1b7b0f5ced3a58dca32"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structExecutionContext.html#ad3a0ccfbff4fe1b7b0f5ced3a58dca32">currentDir</a></td></tr>
+<tr class="memdesc:ad3a0ccfbff4fe1b7b0f5ced3a58dca32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current working directory.  <a href="#ad3a0ccfbff4fe1b7b0f5ced3a58dca32">More...</a><br /></td></tr>
 <tr class="separator:ad3a0ccfbff4fe1b7b0f5ced3a58dca32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Field Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Context for tree execution and redirection. Gets passed between functions of Evaluation and Execution. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
 <a class="anchor" id="ad3a0ccfbff4fe1b7b0f5ced3a58dca32"></a>
 <div class="memitem">
 <div class="memproto">
@@ -122,6 +133,8 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Current working directory. </p>
 
 </div>
 </div>
@@ -135,6 +148,8 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Stakc of error redirection descriptors. </p>
+
 </div>
 </div>
 <a class="anchor" id="a33562118feda5571fe0ba87186670679"></a>
@@ -146,6 +161,8 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Stack of input redirection descriptors. </p>
 
 </div>
 </div>
@@ -159,6 +176,8 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Stack of output redirection descriptors. </p>
+
 </div>
 </div>
 <a class="anchor" id="a3b3a2c509c6c08190a8ee67e39dd80cf"></a>
@@ -170,6 +189,8 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Indicates that the program should stop from execution. </p>
 
 </div>
 </div>
@@ -206,6 +227,8 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Current username. </p>
 
 </div>
 </div>

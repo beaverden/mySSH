@@ -104,6 +104,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &lt;cstring&gt;</code><br />
 <code>#include &lt;wait.h&gt;</code><br />
+<code>#include &lt;sys/ioctl.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Evaluate.h:</div>
 <div class="dyncontent">
@@ -122,6 +123,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structExecutionContext.html">ExecutionContext</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context for tree execution and redirection. Gets passed between functions of Evaluation and Execution.  <a href="structExecutionContext.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -132,10 +134,13 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a428e9841f2157fb723a1f4cb173e597d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8h.html#a428e9841f2157fb723a1f4cb173e597d">Execute</a> (std::string command, std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; context)</td></tr>
+<tr class="memdesc:a428e9841f2157fb723a1f4cb173e597d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes a given command, taking redirect descriptors from the top of the stacks.  <a href="#a428e9841f2157fb723a1f4cb173e597d">More...</a><br /></td></tr>
 <tr class="separator:a428e9841f2157fb723a1f4cb173e597d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a370b78bdb8dcfbadf1b0e9be4452d740"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8h.html#a370b78bdb8dcfbadf1b0e9be4452d740">Evaluate</a> (std::string command, std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; context)</td></tr>
+<tr class="memdesc:a370b78bdb8dcfbadf1b0e9be4452d740"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a complex command and calls Evaluate_Tree on the AST obtained from parsing.  <a href="#a370b78bdb8dcfbadf1b0e9be4452d740">More...</a><br /></td></tr>
 <tr class="separator:a370b78bdb8dcfbadf1b0e9be4452d740"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab83877ec794b9c71e963bac1b0dde76"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8h.html#aab83877ec794b9c71e963bac1b0dde76">Evaluate_Tree</a> (std::shared_ptr&lt; <a class="el" href="structSyntaxTree.html">SyntaxTree</a> &gt; node, std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; context)</td></tr>
+<tr class="memdesc:aab83877ec794b9c71e963bac1b0dde76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens redirects, pushes them to the stack, creates pipes between programs and executes simple commands.  <a href="#aab83877ec794b9c71e963bac1b0dde76">More...</a><br /></td></tr>
 <tr class="separator:aab83877ec794b9c71e963bac1b0dde76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a063842d8b2c77e02edb88c7ab397f649"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8h.html#a063842d8b2c77e02edb88c7ab397f649">get_cwd</a> ()</td></tr>
 <tr class="separator:a063842d8b2c77e02edb88c7ab397f649"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -178,6 +183,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Parses a complex command and calls Evaluate_Tree on the AST obtained from parsing. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">command</td><td>Complex command </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">context</td><td>Execution context pointer </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="aab83877ec794b9c71e963bac1b0dde76"></a>
@@ -204,6 +218,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Opens redirects, pushes them to the stack, creates pipes between programs and executes simple commands. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">command</td><td>Complex command </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">context</td><td>Execution context pointer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Execution result of a complex command </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a428e9841f2157fb723a1f4cb173e597d"></a>
@@ -229,6 +253,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Executes a given command, taking redirect descriptors from the top of the stacks. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">command</td><td>Simple command with parameters </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">context</td><td>Execution context pointer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Execution status of the command </dd></dl>
 
 </div>
 </div>

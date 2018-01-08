@@ -110,12 +110,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a47b6e405d109cdd27838220684f0e2e5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a47b6e405d109cdd27838220684f0e2e5">serverRoutine</a> (SSL *ssl)</td></tr>
 <tr class="memdesc:a47b6e405d109cdd27838220684f0e2e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepares execution environment. Runs out and input data streams, spawns a shell for the client.  <a href="#a47b6e405d109cdd27838220684f0e2e5">More...</a><br /></td></tr>
 <tr class="separator:a47b6e405d109cdd27838220684f0e2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b247f8f2166b36c3575c4678d0755e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a0b247f8f2166b36c3575c4678d0755e9">outputDataStream</a> (std::shared_ptr&lt; <a class="el" href="structServerContext.html">ServerContext</a> &gt; ctx)</td></tr>
-<tr class="memdesc:a0b247f8f2166b36c3575c4678d0755e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constantly reads output from the shell and outputs it to the SSL socket.  <a href="#a0b247f8f2166b36c3575c4678d0755e9">More...</a><br /></td></tr>
-<tr class="separator:a0b247f8f2166b36c3575c4678d0755e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d9328ec355e42c8abf49ae0d4771399"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a8d9328ec355e42c8abf49ae0d4771399">inputDataStream</a> (std::shared_ptr&lt; <a class="el" href="structServerContext.html">ServerContext</a> &gt; ctx)</td></tr>
-<tr class="memdesc:a8d9328ec355e42c8abf49ae0d4771399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constantly reads from SSL socket and redirects it to the shell.  <a href="#a8d9328ec355e42c8abf49ae0d4771399">More...</a><br /></td></tr>
-<tr class="separator:a8d9328ec355e42c8abf49ae0d4771399"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc80f4931ae5b5860a9f70ffac1b89c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#abc80f4931ae5b5860a9f70ffac1b89c5">sendError</a> (std::shared_ptr&lt; <a class="el" href="structServerContext.html">ServerContext</a> &gt; ctx, const char *str)</td></tr>
 <tr class="memdesc:abc80f4931ae5b5860a9f70ffac1b89c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends an error to the SSL socket.  <a href="#abc80f4931ae5b5860a9f70ffac1b89c5">More...</a><br /></td></tr>
 <tr class="separator:abc80f4931ae5b5860a9f70ffac1b89c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,6 +122,15 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a22dbfd5db73d391d615a0bfd69077fb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a727200ae46569af9054fac429c7da43e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a727200ae46569af9054fac429c7da43e">deleteInstance</a> ()</td></tr>
 <tr class="separator:a727200ae46569af9054fac429c7da43e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b247f8f2166b36c3575c4678d0755e9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a0b247f8f2166b36c3575c4678d0755e9">outputDataStream</a> (std::shared_ptr&lt; <a class="el" href="structServerContext.html">ServerContext</a> &gt; ctx)</td></tr>
+<tr class="memdesc:a0b247f8f2166b36c3575c4678d0755e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constantly reads output from the shell and outputs it to the SSL socket.  <a href="#a0b247f8f2166b36c3575c4678d0755e9">More...</a><br /></td></tr>
+<tr class="separator:a0b247f8f2166b36c3575c4678d0755e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d9328ec355e42c8abf49ae0d4771399"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a8d9328ec355e42c8abf49ae0d4771399">inputDataStream</a> (std::shared_ptr&lt; <a class="el" href="structServerContext.html">ServerContext</a> &gt; ctx)</td></tr>
+<tr class="memdesc:a8d9328ec355e42c8abf49ae0d4771399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constantly reads from SSL socket and redirects it to the shell.  <a href="#a8d9328ec355e42c8abf49ae0d4771399">More...</a><br /></td></tr>
+<tr class="separator:a8d9328ec355e42c8abf49ae0d4771399"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e9f6422ec55d311b9588975f81ae3bd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a4e9f6422ec55d311b9588975f81ae3bd">spawnShell</a> (std::shared_ptr&lt; <a class="el" href="structServerContext.html">ServerContext</a> &gt; ctx)</td></tr>
+<tr class="memdesc:a4e9f6422ec55d311b9588975f81ae3bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spawns a shell with input/output/error redirected with data streams.  <a href="#a4e9f6422ec55d311b9588975f81ae3bd">More...</a><br /></td></tr>
+<tr class="separator:a4e9f6422ec55d311b9588975f81ae3bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a258c0a0a42d0be99bc4a36b4e6212ed2"></a>
@@ -269,6 +272,9 @@ Static Public Member Functions</h2></td></tr>
 <a class="anchor" id="a8d9328ec355e42c8abf49ae0d4771399"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Server::inputDataStream </td>
@@ -278,6 +284,11 @@ Static Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Constantly reads from SSL socket and redirects it to the shell. </p>
@@ -293,6 +304,9 @@ Static Public Member Functions</h2></td></tr>
 <a class="anchor" id="a0b247f8f2166b36c3575c4678d0755e9"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Server::outputDataStream </td>
@@ -302,6 +316,11 @@ Static Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Constantly reads output from the shell and outputs it to the SSL socket. </p>
@@ -371,6 +390,38 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Execution result </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4e9f6422ec55d311b9588975f81ae3bd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Server::spawnShell </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structServerContext.html">ServerContext</a> &gt;&#160;</td>
+          <td class="paramname"><em>ctx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Spawns a shell with input/output/error redirected with data streams. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>A pointer to <a class="el" href="structServerContext.html">ServerContext</a> structure, containing sockets </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

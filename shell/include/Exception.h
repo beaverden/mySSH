@@ -63,4 +63,14 @@ public:
     : ArgumentsException(fmt, args...) {};
 };
 
+class AuthException : public ArgumentsException
+{
+public:
+    AuthException(std::string message) 
+    : ArgumentsException(message) {}
+    template<class ... Args>
+    AuthException(const char* fmt, Args ... args) 
+    : ArgumentsException(fmt, args...) {};
+};
+
 #endif

@@ -23,6 +23,15 @@ int Execute(
     {
         throw EvaluationException("Too many arguments in command [%.30s...]", command.c_str());
     }
+    if (tokens[0] == "login")
+    {
+        // TODO login
+    }
+/*
+    if (ctx->username == "$_anonymous_$")
+    {
+        throw AuthException("Unauthorized. Please use command \"login [username] [password]\" to authenticate");
+    } */
     if (tokens[0] == "exit")
     {
         throw ExitException("Exit called.");
@@ -34,27 +43,30 @@ int Execute(
         return result;
     }
     int pid;
+    int input = ctx->inputRedir.top();
+    int output = ctx->outputRedir.top();
+    int error = ctx->errorRedir.top();
+
     if ((pid = fork()) != -1)
     {
         if (pid == 0)
         {
-            // child
-            if (ctx->inputRedir.top() != STDIN_FILENO)
+            // Child
+            if (input != STDIN_FILENO)
             {
                 close(STDIN_FILENO);
-                dup(ctx->inputRedir.top());
+                dup(input);
             }
             
-            if (ctx->outputRedir.top() != STDOUT_FILENO)
+            if (output != STDOUT_FILENO)
             {
                 close(STDOUT_FILENO);
-                dup(ctx->outputRedir.top());
+                dup(output);
             }
-
-            if (ctx->errorRedir.top() != STDERR_FILENO)
+            if (error != STDERR_FILENO)
             {
                 close(STDERR_FILENO);
-                dup(ctx->errorRedir.top());
+                dup(error);
             }
 
             char* strings[MAX_ARGUMENTS] = {0};
@@ -64,7 +76,9 @@ int Execute(
                 strings[i] = strdup(tokens[i].c_str());
             }
             execvp(tokens[0].c_str(), strings);
-            throw EvaluationException("Unable to run command [%.30s]", tokens[0].c_str());
+            printf("Unable to execute command [%.30s]\n", tokens[0].c_str());
+            fflush(stdout);
+            exit(1);
         }
         else
         {
@@ -81,6 +95,10 @@ int Execute(
 
 void Evaluate(std::string command, std::shared_ptr<ExecutionContext> ctx)
 {
+    while (!ctx->inputRedir.size() > 1) ctx->inputRedir.pop();
+    while (!ctx->outputRedir.size() > 1) ctx->outputRedir.pop();
+    while (!ctx->errorRedir.size() > 1) ctx->errorRedir.pop();
+
     trim(command, "\t\n\r ");
     if (command.length() == 0) return;
     std::shared_ptr<SyntaxTree> root;
@@ -185,16 +203,31 @@ int Evaluate_Tree(std::shared_ptr<SyntaxTree> node, std::shared_ptr<ExecutionCon
     }
     else if (node->type == OperationType::PIPE)
     {
-        int d[2];
+        int d[2] = {0};
         if (pipe(d) == -1)
         {
             throw EvaluationException("Can't create a pipe");
         }
         context->outputRedir.push(d[1]);
-        Evaluate_Tree(node->left, context);
+        int result1 = Evaluate_Tree(node->left, context);
         close(d[1]);
         context->outputRedir.pop();
 
+        if (result1 != 0) 
+        {
+            int read_result = 0;
+            ioctl(d[0], FIONREAD, &read_result);
+            if (read_result > 0)
+            {
+                char* buff = new char[read_result + 1]();
+                read(d[0], buff, read_result);
+                printf("%s", buff);
+                fflush(stdout);
+                delete buff;
+            }
+            close(d[0]);
+            return result1;
+        }
         context->inputRedir.push(d[0]);
         int result = Evaluate_Tree(node->right, context);
         close(d[0]);
