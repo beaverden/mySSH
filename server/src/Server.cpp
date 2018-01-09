@@ -118,10 +118,11 @@ void Server::inputDataStream(std::shared_ptr<ServerContext> ctx)
                     int sig = *(int*)(packet.payload.content);
                     Logger::log(LOG_EVENTS, "Recieved signal: %d", sig);
                     sendSignal(ctx, sig);
-                    if (sig == SIGTERM)
-                    {
-                        ctx->shouldTerminate = true;
-                    }
+                }
+                else if (packet.packet_type == PACKET_TERMINATE)
+                {
+                    ctx->shouldTerminate = true;
+                    return;
                 }
                 else
                 {
