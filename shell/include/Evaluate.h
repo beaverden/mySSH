@@ -17,6 +17,7 @@
 #include <cstring>
 #include <wait.h>
 #include <sys/ioctl.h>
+#include <pwd.h>
 
 
 #define MAX_ARGUMENTS 100
@@ -75,6 +76,7 @@ int Evaluate_Tree(
     std::shared_ptr<ExecutionContext> context
 );
 
-std::string get_cwd();
+std::string getCwd();
+std::string getUsername();
 
 #endif //EVALUATE_H

@@ -23,22 +23,21 @@ int main(int argc, char* argv[])
     ctx->inputRedir.push(STDIN_FILENO);
     ctx->outputRedir.push(STDOUT_FILENO);
     ctx->errorRedir.push(STDERR_FILENO);
-    ctx->currentDir = get_cwd();
-    ctx->username = "$_anonymous_$";
+    ctx->currentDir = getCwd();
     int hasRead = 0;
     int readResult = 0;
     bool newMessage = true;
     while (true)
     {  
-        if (newMessage)
-        {
-            std::string pathStr = ctx->username + ":" + ctx->currentDir + "$ ";
-            write(STDOUT_FILENO, pathStr.c_str(), pathStr.length());
-            newMessage = false;
-        }
-
         try
         {
+            if (newMessage)
+            {
+                std::string pathStr = getUsername() + ":" + getCwd() + "$ ";
+                write(STDOUT_FILENO, pathStr.c_str(), pathStr.length());
+                newMessage = false;
+            }
+
             ioctl(STDIN_FILENO, FIONREAD, &hasRead);
             if (hasRead > 0)
             {

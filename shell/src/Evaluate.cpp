@@ -1,8 +1,8 @@
 #include "../include/Evaluate.h"
 
-std::string get_cwd()
+std::string getCwd()
 {
-    char cwd[1024] = {};
+    char cwd[1024] = {0};
     if (getcwd(cwd, sizeof(cwd)) != NULL)
     {
         return std::string(cwd);
@@ -11,6 +11,17 @@ std::string get_cwd()
     {
         return ".";
     }
+}
+
+std::string getUsername()
+{
+    struct passwd *pws;
+    pws = getpwuid(geteuid());
+    if (pws == nullptr)
+    {
+        throw ExitException("Cannot get username");
+    }
+    return std::string(pws->pw_name);
 }
 
 int Execute(
@@ -22,10 +33,6 @@ int Execute(
     if (tokens.size() > MAX_ARGUMENTS)
     {
         throw EvaluationException("Too many arguments in command [%.30s...]", command.c_str());
-    }
-    if (tokens[0] == "login")
-    {
-        // TODO login
     }
 /*
     if (ctx->username == "$_anonymous_$")
@@ -39,7 +46,7 @@ int Execute(
     else if (tokens[0] == "cd")
     {
         int result = chdir(tokens[1].c_str());
-        ctx->currentDir = get_cwd();
+        ctx->currentDir = getCwd();
         return result;
     }
     int pid;
