@@ -11,6 +11,7 @@
 #include <arpa/inet.h>
 #include <sys/file.h>
 #include <sys/ioctl.h>
+#include <signal.h>
 
 #include "openssl/bio.h"
 #include "openssl/ssl.h"
@@ -30,6 +31,19 @@ struct ExecutionContext
 
     bool shouldTerminate = false;
 };
+
+std::shared_ptr<ExecutionContext> ctx;
+
+void sigHandler(int signo)
+{
+    signo = SIGINT;
+    ctx->ssl_mutex.lock();
+    try
+    {
+        send_packet(ctx->ssl, PACKET_SIGNAL, &signo, sizeof(int));
+    } catch (...) {}
+    ctx->ssl_mutex.unlock();
+}
 
 int createSocket(char* _ip, char* _port)
 {
@@ -80,7 +94,10 @@ void writingRoutine(std::shared_ptr<ExecutionContext> ctx)
 {
     while (true)
     {      
-        if (ctx->shouldTerminate) return;
+        if (ctx->shouldTerminate) 
+        {
+            break;
+        }
         int has_read = 0;
         int result = 0;
         ioctl(STDIN_FILENO, FIONREAD, &has_read);
@@ -111,7 +128,6 @@ void writingRoutine(std::shared_ptr<ExecutionContext> ctx)
             printf("[Client] Unknown error occured\n");
             fflush(stdout);
         }
-
     }
 }
 
@@ -134,6 +150,7 @@ void readingRoutine(std::shared_ptr<ExecutionContext> ctx)
                 if (packet.packet_type == PACKET_TERMINATE)
                 {
                     ctx->shouldTerminate = true;
+                    ctx->ssl_mutex.unlock();
                     return;
                 }
                 result = write(STDOUT_FILENO, packet.payload.content, packet.payload.content_length);
@@ -167,6 +184,11 @@ int main(int argc, char* argv[]) {
         printf("Usage: ./client ip port username\n");
         return 0;
     }
+    if (signal(SIGINT, sigHandler) == SIG_ERR)
+    {
+        printf("Unable to set up signal handler\n");
+    }
+
     /* INIT OPENSSL */
     SSL_library_init();
     OpenSSL_add_all_algorithms();
@@ -214,17 +236,16 @@ int main(int argc, char* argv[]) {
     }
     else
     {
-        std::shared_ptr<ExecutionContext> ctx = std::make_shared<ExecutionContext>();
+        ctx = std::make_shared<ExecutionContext>();
         ctx->ssl = ssl;
         
         std::thread t1(readingRoutine, ctx);
         std::thread t2(writingRoutine, ctx);
-
         t1.join();
         t2.join();
     }
 
-
+    SSL_shutdown(ssl);
     SSL_free(ssl);
     close(sock);
     SSL_CTX_free(context);  

@@ -8,18 +8,30 @@
 #include <sys/ioctl.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <signal.h>
 #include <memory>
+
+
+std::shared_ptr<ExecutionContext> ctx;
+
+void sigHandler(int signo)
+{
+    if (ctx->childPid != -1)
+    {
+        kill(ctx->childPid, signo);
+    }
+}
 
 int main(int argc, char* argv[])
 {
-    // TODO fix shell grep "main" error
+    signal(SIGINT, sigHandler);
     if (argc != 1)
     {
         printf("Usage: ./shell");
         return 0;
     }
 
-    std::shared_ptr<ExecutionContext> ctx = std::make_shared<ExecutionContext>();
+    ctx = std::make_shared<ExecutionContext>();
     ctx->inputRedir.push(STDIN_FILENO);
     ctx->outputRedir.push(STDOUT_FILENO);
     ctx->errorRedir.push(STDERR_FILENO);

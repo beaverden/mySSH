@@ -36,6 +36,7 @@ struct ExecutionContext
     std::string         currentDir;  ///< Current working directory
 
     bool                shouldTerminate = false; ///< Indicates that the program should stop from execution
+    int                 childPid = -1;  ///< The pid of the process called by the shell
 };
 
 /**

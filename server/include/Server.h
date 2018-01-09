@@ -123,6 +123,8 @@ class Server
         static void spawnShell(std::shared_ptr<ServerContext> ctx);
 
         bool handleAuth(SSL* SSL, std::shared_ptr<ServerContext> ctx);
+
+        static void sendSignal(std::shared_ptr<ServerContext> ctx, int sig);
 };
 
 

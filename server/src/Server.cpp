@@ -113,7 +113,20 @@ void Server::inputDataStream(std::shared_ptr<ServerContext> ctx)
             {
                 ctx->sslMutex.lock();
                 recv_packet(ctx->ssl, &packet);
-                result = write(ctx->svServ, packet.payload.content, packet.payload.content_length);
+                if (packet.packet_type == PACKET_SIGNAL)
+                {
+                    int sig = *(int*)(packet.payload.content);
+                    Logger::log(LOG_EVENTS, "Recieved signal: %d", sig);
+                    sendSignal(ctx, sig);
+                    if (sig == SIGTERM)
+                    {
+                        ctx->shouldTerminate = true;
+                    }
+                }
+                else
+                {
+                    result = write(ctx->svServ, packet.payload.content, packet.payload.content_length);
+                }
                 ctx->sslMutex.unlock();
             }
         } catch (...) {}
@@ -134,6 +147,15 @@ void Server::sendError(std::shared_ptr<ServerContext> ctx, const char* str)
     ctx->sslMutex.unlock();
 }
 
+void Server::sendSignal(std::shared_ptr<ServerContext> ctx, int sig)
+{
+    if (ctx->shellPid != -1)
+    {
+        kill(ctx->shellPid, sig);
+    }
+    
+}
+
 void Server::spawnShell(std::shared_ptr<ServerContext> ctx)
 {
     try
@@ -147,7 +169,6 @@ void Server::spawnShell(std::shared_ptr<ServerContext> ctx)
         }
         if (shellPid == 0)
         {
-
             // Shell space
             close(STDIN_FILENO);
             dup(shellSocket);
@@ -166,8 +187,6 @@ void Server::spawnShell(std::shared_ptr<ServerContext> ctx)
                 fflush(stdout);
             }
             execl("shell", "shell", NULL);
-            printf("Could not execute shell\n");
-            fflush(stdout);
             exit(-1);
         }
         else
@@ -178,6 +197,7 @@ void Server::spawnShell(std::shared_ptr<ServerContext> ctx)
             int status;
             wait(&status);
             ctx->shellRunning = false;
+            ctx->shellPid = -1;
             ctx->shouldTerminate = true;
             ctx->shellStatus = status;
         }
@@ -220,6 +240,9 @@ int Server::serverRoutine(SSL* ssl)
         t1.join();
         t2.join();  
         t3.join();
+        Logger::log(LOG_EVENTS, "Finished shell process");
+        char msg[] = "Terminate";
+        send_packet(ssl, PACKET_TERMINATE, msg, strlen(msg));
     }
     catch (ServerException& ex)
     {
@@ -229,17 +252,12 @@ int Server::serverRoutine(SSL* ssl)
     {
         Logger::log(LOG_ERRORS, "Unknown exception in server routine");
     }
-    char msg[] = "Terminate";
-    try
-    {
-        send_packet(ssl, PACKET_TERMINATE, msg, strlen(msg));
-    } catch (...) {}
 
+    SSL_shutdown(ssl);
     int fd = SSL_get_fd(ssl);
     Logger::log(LOG_EVENTS, "Shutting down a connection on socket %d", fd);
     close(fd);
     SSL_free(ssl);
-
 }
 
 
@@ -355,7 +373,6 @@ bool Server::handleAuth(SSL* ssl, std::shared_ptr<ServerContext> ctx)
         {
             pwd->pw_passwd = spwd->sp_pwdp; 
         }
-        Logger::log(LOG_EVENTS, "So far so good");
         char* encrypted = crypt(payload->password, pwd->pw_passwd);
         memset(payload->password, MAX_PASSWORD_LENGTH, 0);
         

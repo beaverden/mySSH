@@ -89,8 +89,10 @@ int Execute(
         }
         else
         {
+            ctx->childPid = pid;
             int sts = 0;
             wait(&sts);
+            ctx->childPid = -1;
             return sts;
         }
     }

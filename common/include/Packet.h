@@ -34,7 +34,8 @@ enum Packet_Type
     PACKET_AUTH_RESPONSE,   ///< Authentication response from the Client. Server must check credentials
     PACKET_READY,           ///< Notification from the Server that it is ready for another complex command
     PACKET_ERROR,           ///< Notification about an error from the server
-    PACKET_TERMINATE        ///< Signal from server that it wants to terminate the connection
+    PACKET_TERMINATE,       ///< Signal from server that it wants to terminate the connection
+    PACKET_SIGNAL           ///< Signal from client to executed application
 };
 
 /**
