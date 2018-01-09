@@ -31,13 +31,13 @@ struct ExecutionContext
     bool shouldTerminate = false;
 };
 
-int create_socket(char* _ip, char* _port)
+int createSocket(char* _ip, char* _port)
 {
     int fd = socket(AF_INET, SOCK_STREAM, 0);
     int port = atoi(_port);
     if (port == 0)
     {
-        printf("Invalid port conversion");
+        printf("Invalid port conversion\n");
         return -1;
     } 
 
@@ -58,37 +58,25 @@ int create_socket(char* _ip, char* _port)
     return fd;
 }
 
-void HandleAuth(SSL* ssl)
+std::string handleAuth(SSL* ssl, std::string login)
 {
-    printf("Please log in\n");
-    std::string login;
+    printf("Please provide password\n");
     std::string password;
-    std::getline(std::cin, login);
     std::getline(std::cin, password);
     Login_Payload payload;
     memcpy(payload.login, login.c_str(), login.length()); 
     memcpy(payload.password, password.c_str(), password.length());                    
     payload.login_length = login.length();
     payload.password_length = password.length();
-    send_packet(ssl, PACKET_AUTH_RESPONSE, &payload, sizeof(payload));
+    send_packet(ssl, PACKET_AUTH_REQUEST, &payload, sizeof(payload));
+
+    SSH_Packet packet;
+    recv_packet(ssl, &packet);
+    char* content = (char*)(packet.payload.content);
+    return std::string(content);
 }
 
-void HandleResponse(SSL* ssl, SSH_Packet* packet)
-{
-    printf("%s", packet->payload.content);
-}
-
-void HandleCommand(SSL* ssl)
-{
-    printf("Input\n");
-    std::string command;
-    std::getline(std::cin, command);
-    send_packet(ssl, PACKET_QUERY, (void*)command.c_str(), command.length());
-}
-
-
-
-void writing_routine(std::shared_ptr<ExecutionContext> ctx)
+void writingRoutine(std::shared_ptr<ExecutionContext> ctx)
 {
     while (true)
     {      
@@ -96,21 +84,39 @@ void writing_routine(std::shared_ptr<ExecutionContext> ctx)
         int has_read = 0;
         int result = 0;
         ioctl(STDIN_FILENO, FIONREAD, &has_read);
-        if (has_read > 0)
+        try
         {
-            ctx->ssl_mutex.lock();
-            char* buff = new char[has_read];
-            result = read(STDIN_FILENO, buff, has_read);
-            send_packet(ctx->ssl, PACKET_RESPONSE, buff, result);
-            ctx->ssl_mutex.unlock();
-            delete buff;
+            if (has_read > 0)
+            {
+                ctx->ssl_mutex.lock();
+                char* buff = new char[has_read];
+                result = read(STDIN_FILENO, buff, has_read);
+                send_packet(ctx->ssl, PACKET_RESPONSE, buff, result);
+                ctx->ssl_mutex.unlock();
+                delete buff;
+            }
         }
+        catch (ShutdownException& ex)
+        {
+            ctx->shouldTerminate = true;
+            continue;
+        }
+        catch (PacketIOException& ex)
+        {
+            printf("[Client] There was an error writing the packet\n");
+            fflush(stdout);
+        }
+        catch (...)
+        {
+            printf("[Client] Unknown error occured\n");
+            fflush(stdout);
+        }
+
     }
 }
 
-void reading_routine(std::shared_ptr<ExecutionContext> ctx)
+void readingRoutine(std::shared_ptr<ExecutionContext> ctx)
 {
-    // TODO max frame size
     int fd = SSL_get_fd(ctx->ssl);
     SSH_Packet packet;
     while (true)
@@ -119,24 +125,48 @@ void reading_routine(std::shared_ptr<ExecutionContext> ctx)
         int has_read = 0;
         int result = 0;
         ioctl(fd, FIONREAD, &has_read);
-        if (has_read > 0)
+        try
         {
-            ctx->ssl_mutex.lock();
-            recv_packet(ctx->ssl, &packet);
-            if (packet.packet_type == PACKET_TERMINATE)
+            if (has_read > 0)
             {
-                ctx->shouldTerminate = true;
-                return;
+                ctx->ssl_mutex.lock();
+                recv_packet(ctx->ssl, &packet);
+                if (packet.packet_type == PACKET_TERMINATE)
+                {
+                    ctx->shouldTerminate = true;
+                    return;
+                }
+                result = write(STDOUT_FILENO, packet.payload.content, packet.payload.content_length);
+                ctx->ssl_mutex.unlock();
             }
-            result = write(STDOUT_FILENO, packet.payload.content, packet.payload.content_length);
-            ctx->ssl_mutex.unlock();
         }
+        catch (ShutdownException& ex)
+        {
+            ctx->shouldTerminate = true;
+            continue;
+        }
+        catch (PacketIOException& ex)
+        {
+            printf("[Client] There was an error reading the packet\n");
+            fflush(stdout);
+        }
+        catch (...)
+        {
+            printf("[Client] Unknown error occured\n");
+            fflush(stdout);
+        }
+
     }  
 }
 
 
 int main(int argc, char* argv[]) {
 
+    if (argc != 4)
+    {
+        printf("Usage: ./client ip port username\n");
+        return 0;
+    }
     /* INIT OPENSSL */
     SSL_library_init();
     OpenSSL_add_all_algorithms();
@@ -144,32 +174,56 @@ int main(int argc, char* argv[]) {
     ERR_load_BIO_strings();
     
     
-
-    int sock = create_socket(argv[1], argv[2]);
+    int sock = createSocket(argv[1], argv[2]);
+    if (sock == FAILED)
+    {
+        printf("Unable to create socket\n");
+        return -1;
+    }
     const SSL_METHOD* method = SSLv23_client_method();
     SSL_CTX* context = SSL_CTX_new(method);
     if (context == NULL)
     {
         printf("Couldn't create context\n");
-        ERR_print_errors_fp(stderr);
         return -1;
     }
     
     SSL* ssl = SSL_new(context);
+    if (ssl == NULL)
+    {
+        printf("Unable to create new SSL object\n");
+        SSL_CTX_free(context);
+        close(sock);
+        return -1;
+    }
+
     SSL_set_fd(ssl, sock);
     if (SSL_connect(ssl) == -1)
     {
         printf("Failed to connect to server\n");
+        SSL_free(ssl);
+        close(sock);
+        SSL_CTX_free(context);  
         return -1;
     }
-    std::shared_ptr<ExecutionContext> ctx = std::make_shared<ExecutionContext>();
-    ctx->ssl = ssl;
-    //HandleAuth(ssl);
-    std::thread t1(reading_routine, ctx);
-    std::thread t2(writing_routine, ctx);
 
-    t1.join();
-    t2.join();
+    std::string result = handleAuth(ssl, argv[3]);
+    if (result != "OK")
+    {
+        printf("Auth error: %s\n", result.c_str());
+    }
+    else
+    {
+        std::shared_ptr<ExecutionContext> ctx = std::make_shared<ExecutionContext>();
+        ctx->ssl = ssl;
+        
+        std::thread t1(readingRoutine, ctx);
+        std::thread t2(writingRoutine, ctx);
+
+        t1.join();
+        t2.join();
+    }
+
 
     SSL_free(ssl);
     close(sock);

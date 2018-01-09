@@ -29,7 +29,7 @@ COMMON_FLAGS := $(addprefix -I,$(COMMON_INCLUDE))
 FLAGS := -std=c++11 -Wno-format-security #-Wall 
 CRYPT_INC := /usr/include/openssl
 CRYPT_FLG := $(addprefix -I,$(CRYPT_INC))
-CRYPT_LIB := -L/usr/lib -lssl -lcrypto
+CRYPT_LIB := -L/usr/lib -lssl -lcrypto -lcrypt
 LIB := -pthread -lpthread
 
 

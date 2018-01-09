@@ -147,6 +147,7 @@ void Server::spawnShell(std::shared_ptr<ServerContext> ctx)
         }
         if (shellPid == 0)
         {
+
             // Shell space
             close(STDIN_FILENO);
             dup(shellSocket);
@@ -157,8 +158,17 @@ void Server::spawnShell(std::shared_ptr<ServerContext> ctx)
             close(STDERR_FILENO);
             dup(shellSocket);
 
+            int status;
+            status = seteuid(ctx->userId);
+            if (status < 0) 
+            {
+                printf("Unable to set shell uid\n");
+                fflush(stdout);
+            }
             execl("shell", "shell", NULL);
-            throw ServerException("Could not exec");
+            printf("Could not execute shell\n");
+            fflush(stdout);
+            exit(-1);
         }
         else
         {
@@ -190,6 +200,10 @@ int Server::serverRoutine(SSL* ssl)
         {
             throw std::bad_alloc();
         }
+        if (!handleAuth(ssl, ctx))
+        {
+            throw ServerException("Unable to authenticate user");
+        }
 
         int sockets[2];
         if (socketpair(AF_LOCAL, SOCK_STREAM, 0, sockets) == FAILED)
@@ -206,8 +220,6 @@ int Server::serverRoutine(SSL* ssl)
         t1.join();
         t2.join();  
         t3.join();
-        char msg[] = "Terminate";
-        send_packet(ssl, PACKET_TERMINATE, msg, strlen(msg));
     }
     catch (ServerException& ex)
     {
@@ -217,6 +229,17 @@ int Server::serverRoutine(SSL* ssl)
     {
         Logger::log(LOG_ERRORS, "Unknown exception in server routine");
     }
+    char msg[] = "Terminate";
+    try
+    {
+        send_packet(ssl, PACKET_TERMINATE, msg, strlen(msg));
+    } catch (...) {}
+
+    int fd = SSL_get_fd(ssl);
+    Logger::log(LOG_EVENTS, "Shutting down a connection on socket %d", fd);
+    close(fd);
+    SSL_free(ssl);
+
 }
 
 
@@ -296,19 +319,61 @@ Server* Server::getInstance()
 }
 
 
-void Server::handleAuth(SSL* ssl)
+bool Server::handleAuth(SSL* ssl, std::shared_ptr<ServerContext> ctx)
 {
-    char* message = "Please login in.\n";
-    send_packet(ssl, PACKET_AUTH_REQUEST, message, strlen(message));
-
     SSH_Packet response;
     recv_packet(ssl, &response);
-    if (response.packet_type != PACKET_AUTH_RESPONSE)
+
+    if (response.packet_type != PACKET_AUTH_REQUEST)
     {
-        throw PacketIOException("Requested packet is not of type auth");
+        throw PacketIOException("Recieved packet is not of type auth");
     }
     Login_Payload* payload = (Login_Payload*)(response.payload.content);
+    payload->login_length = std::min(MAX_LOGIN_LENGTH, payload->login_length);
+    payload->password_length = std::min(MAX_LOGIN_LENGTH, payload->password_length);
     payload->login[payload->login_length] = 0;
     payload->password[payload->password_length] = 0;
-    printf("Got credentials: %s:%s\n", payload->login, payload->password);
+    Logger::log(LOG_EVENTS, "Got credentials: for %s", payload->login, payload->password);
+
+    struct passwd *pwd;
+    struct spwd *spwd;
+    std::string resultString = "OK";
+    
+    try
+    {
+        pwd = getpwnam(payload->login);
+        if (pwd == NULL)
+        {
+            throw AuthException("Unable to get password record");
+        }
+        spwd = getspnam(payload->login);
+        if (spwd == NULL && errno == EACCES)
+        {
+            throw AuthException("No permission to read shadow password file");
+        }
+        if (spwd != NULL)          
+        {
+            pwd->pw_passwd = spwd->sp_pwdp; 
+        }
+        Logger::log(LOG_EVENTS, "So far so good");
+        char* encrypted = crypt(payload->password, pwd->pw_passwd);
+        memset(payload->password, MAX_PASSWORD_LENGTH, 0);
+        
+        if (encrypted == NULL)
+        {
+            throw AuthException("Crypt function failed");
+        }
+        if (strcmp(encrypted, pwd->pw_passwd) != 0) {
+            throw AuthException("Incorrect password");
+        }
+        ctx->userId = pwd->pw_uid;
+    } 
+    catch (AuthException& e)
+    {
+        resultString = e.what();
+    }
+
+    Logger::log(LOG_EVENTS, "Client login result: %s", resultString.c_str()); 
+    send_packet(ssl, PACKET_AUTH_RESPONSE, (char*)resultString.c_str(), resultString.length());
+    return (resultString == "OK");
 }

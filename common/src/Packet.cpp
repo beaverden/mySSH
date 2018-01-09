@@ -1,5 +1,19 @@
 #include "../include/Packet.h"
 
+void check_shutdown(SSL* ssl)
+{
+    int shutdown_status = SSL_get_shutdown(ssl);
+    if ((shutdown_status & SSL_RECEIVED_SHUTDOWN) != 0)
+    {
+        SSL_shutdown(ssl);
+        throw ShutdownException("Server requested shutdown");
+    }
+    else if ((shutdown_status & SSL_SENT_SHUTDOWN) != 0)
+    {
+        throw ShutdownException("Shutdown requested from client");
+    }
+}
+
 void send_packet(SSL* ssl, Packet_Type type, void* data, size_t data_len)
 {
     if (data_len == 0 || data == nullptr) return;
@@ -60,16 +74,7 @@ void send_packet(SSL* ssl, Packet_Type type, void* data, size_t data_len)
     }
     else if (result == 0)
     {
-        int shutdown_status = SSL_get_shutdown(ssl);
-        if ((shutdown_status & SSL_RECEIVED_SHUTDOWN) != 0)
-        {
-            SSL_shutdown(ssl);
-            throw ShutdownException("Server requested shutdown");
-        }
-        else if ((shutdown_status & SSL_SENT_SHUTDOWN) != 0)
-        {
-            throw ShutdownException("Shutdown requested from client");
-        }
+        check_shutdown(ssl);
     }
     else if (result < 0)
     {
@@ -81,59 +86,67 @@ void send_packet(SSL* ssl, Packet_Type type, void* data, size_t data_len)
         payload_length, 
         padding_length, 
         content_length);
-
 }
 
 void recv_packet(SSL* ssl, SSH_Packet* read_to)
 {
     int result;
     result = SSL_read(ssl, &read_to->packet_type, sizeof(read_to->packet_type));
+    check_shutdown(ssl);
     if (result != sizeof(read_to->packet_type))
     {
         throw PacketIOException("Unable to read full packet type");
     }
 
     result = SSL_read(ssl, &read_to->payload_length, sizeof(read_to->payload_length));
+    check_shutdown(ssl);
     if (result != sizeof(read_to->payload_length))
     {
         throw PacketIOException("Unable to read full payload length");
     }
 
     result = SSL_read(ssl, read_to->sha256_verification, sizeof(char) * SHA256_DIGEST_LENGTH);
+    check_shutdown(ssl);
     if (result != SHA256_DIGEST_LENGTH * sizeof(char))
     {
         throw PacketIOException("Unable to read full sha256");
     }
 
     result = SSL_read(ssl, &read_to->payload.content_length, sizeof(read_to->payload.content_length));
+    check_shutdown(ssl);
     if (result != sizeof(read_to->payload.content_length))
     {
         throw PacketIOException("Unable to read full content length");
     } 
 
     result = SSL_read(ssl, &read_to->payload.padding_length, sizeof(read_to->payload.padding_length));
+    check_shutdown(ssl);
     if (result != sizeof(read_to->payload.padding_length))
     {
         throw PacketIOException("Unable to read full padding length");
     }   
 
     read_to->payload.content = new unsigned char[read_to->payload.content_length + 1]();
+    check_shutdown(ssl);
     if (read_to->payload.content == nullptr)
     {
         throw PacketIOException("Unable to allocate content space");
     } 
     result = SSL_read(ssl, read_to->payload.content, read_to->payload.content_length);
+    check_shutdown(ssl);
     if (result != read_to->payload.content_length)
     {
         throw PacketIOException("Unable to read full content");
     }
 
     read_to->payload.padding = new unsigned char[read_to->payload.padding_length + 1]();
+    check_shutdown(ssl);
     if (read_to->payload.padding == nullptr)
     {
         throw PacketIOException("Unable to allocate padding space");
     } 
     result = SSL_read(ssl, read_to->payload.padding, read_to->payload.padding_length);
+    check_shutdown(ssl);
     if (result != read_to->payload.padding_length)
     {
         throw PacketIOException("Unable to read full padding");

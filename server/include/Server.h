@@ -9,6 +9,9 @@
 #include <sys/types.h>
 #include <sys/ioctl.h>
 #include <sys/wait.h>
+#include <pwd.h>
+#include <shadow.h>
+
 
 #include <unistd.h>
 #include <iostream>
@@ -27,6 +30,7 @@
 
 struct ServerContext
 {
+    int userId = -1;
     int svShell = -1;
     int svServ = -1;
 
@@ -118,7 +122,7 @@ class Server
          */
         static void spawnShell(std::shared_ptr<ServerContext> ctx);
 
-        void handleAuth(SSL* SSL);
+        bool handleAuth(SSL* SSL, std::shared_ptr<ServerContext> ctx);
 };
 
 

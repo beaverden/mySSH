@@ -1,33 +1,661 @@
-[8-1-2018 16:25:50] Initialized security
-[8-1-2018 16:25:50] Listening socket is 3
-[8-1-2018 16:25:55] Client connected
-[8-1-2018 16:25:55] Sending a packet:
+[9-1-2018 12:43:17] Initialized security
+[9-1-2018 12:43:17] Listening socket is 3
+[9-1-2018 12:44:26] Client connected
+[9-1-2018 12:44:30] Recieved a packet:
+	Type:3
+	Payload Size:616
+	Padding:464
+	Content:144
+
+[9-1-2018 12:44:30] Got credentials: for denis
+[9-1-2018 12:44:30] So far so good
+[9-1-2018 12:44:30] Client login result: OK
+[9-1-2018 12:44:30] Sending a packet:
+	Type:4
+	Payload Size:706
+	Padding:696
+	Content:2
+
+[9-1-2018 12:44:30] Sending a packet:
 	Type:1
-	Payload Size:669
-	Padding:618
+	Payload Size:138
+	Padding:87
 	Content:43
 
-[8-1-2018 16:25:56] Recieved a packet:
+[9-1-2018 12:44:32] Recieved a packet:
 	Type:1
-	Payload Size:302
-	Padding:291
-	Content:3
-
-[8-1-2018 16:25:56] Sending a packet:
-	Type:1
-	Payload Size:1010
-	Padding:939
-	Content:63
-
-[8-1-2018 16:26:2] Recieved a packet:
-	Type:1
-	Payload Size:468
-	Padding:455
+	Payload Size:988
+	Padding:975
 	Content:5
 
-[8-1-2018 16:26:2] Sending a packet:
+[9-1-2018 12:44:32] Sending a packet:
 	Type:7
-	Payload Size:461
-	Padding:444
+	Payload Size:400
+	Padding:383
 	Content:9
 
+[9-1-2018 12:44:32] Shutting down a connection on socket 4
+[9-1-2018 12:46:21] Client connected
+[9-1-2018 12:46:26] Recieved a packet:
+	Type:3
+	Payload Size:169
+	Padding:17
+	Content:144
+
+[9-1-2018 12:46:26] Got credentials: for testuser
+[9-1-2018 12:46:26] So far so good
+[9-1-2018 12:46:26] Client login result: OK
+[9-1-2018 12:46:26] Sending a packet:
+	Type:4
+	Payload Size:125
+	Padding:115
+	Content:2
+
+[9-1-2018 12:46:26] Sending a packet:
+	Type:1
+	Payload Size:812
+	Padding:758
+	Content:46
+
+[9-1-2018 12:46:27] Recieved a packet:
+	Type:1
+	Payload Size:111
+	Padding:100
+	Content:3
+
+[9-1-2018 12:46:27] Sending a packet:
+	Type:1
+	Payload Size:148
+	Padding:120
+	Content:20
+
+[9-1-2018 12:46:27] Sending a packet:
+	Type:1
+	Payload Size:502
+	Padding:448
+	Content:46
+
+[9-1-2018 12:46:29] Recieved a packet:
+	Type:1
+	Payload Size:757
+	Padding:742
+	Content:7
+
+[9-1-2018 12:46:29] Sending a packet:
+	Type:1
+	Payload Size:739
+	Padding:420
+	Content:311
+
+[9-1-2018 12:46:38] Recieved a packet:
+	Type:1
+	Payload Size:714
+	Padding:701
+	Content:5
+
+[9-1-2018 12:46:38] Sending a packet:
+	Type:7
+	Payload Size:29
+	Padding:12
+	Content:9
+
+[9-1-2018 12:46:38] Shutting down a connection on socket 5
+[9-1-2018 12:46:40] Client connected
+[9-1-2018 12:46:43] Recieved a packet:
+	Type:3
+	Payload Size:282
+	Padding:130
+	Content:144
+
+[9-1-2018 12:46:43] Got credentials: for denis
+[9-1-2018 12:46:43] So far so good
+[9-1-2018 12:46:43] Client login result: OK
+[9-1-2018 12:46:43] Sending a packet:
+	Type:4
+	Payload Size:341
+	Padding:331
+	Content:2
+
+[9-1-2018 12:46:43] Sending a packet:
+	Type:1
+	Payload Size:887
+	Padding:836
+	Content:43
+
+[9-1-2018 12:46:44] Recieved a packet:
+	Type:1
+	Payload Size:414
+	Padding:403
+	Content:3
+
+[9-1-2018 12:46:44] Sending a packet:
+	Type:1
+	Payload Size:704
+	Padding:633
+	Content:63
+
+[9-1-2018 12:46:50] Recieved a packet:
+	Type:1
+	Payload Size:612
+	Padding:580
+	Content:24
+
+[9-1-2018 12:46:50] Sending a packet:
+	Type:1
+	Payload Size:446
+	Padding:395
+	Content:43
+
+[9-1-2018 12:46:58] Recieved a packet:
+	Type:1
+	Payload Size:460
+	Padding:445
+	Content:7
+
+[9-1-2018 12:46:58] Sending a packet:
+	Type:1
+	Payload Size:1006
+	Padding:891
+	Content:107
+
+[9-1-2018 12:47:2] Recieved a packet:
+	Type:1
+	Payload Size:712
+	Padding:691
+	Content:13
+
+[9-1-2018 12:47:2] Sending a packet:
+	Type:1
+	Payload Size:1179
+	Padding:52
+	Content:1119
+
+[9-1-2018 12:48:50] Recieved a packet:
+	Type:1
+	Payload Size:279
+	Padding:244
+	Content:27
+
+[9-1-2018 12:48:50] Sending a packet:
+	Type:1
+	Payload Size:214
+	Padding:163
+	Content:43
+
+[9-1-2018 12:48:51] Recieved a packet:
+	Type:1
+	Payload Size:925
+	Padding:910
+	Content:7
+
+[9-1-2018 12:48:51] Sending a packet:
+	Type:1
+	Payload Size:829
+	Padding:495
+	Content:326
+
+[9-1-2018 12:48:51] Sending a packet:
+	Type:1
+	Payload Size:562
+	Padding:511
+	Content:43
+
+[9-1-2018 12:49:24] Recieved a packet:
+	Type:1
+	Payload Size:807
+	Padding:786
+	Content:13
+
+[9-1-2018 12:49:24] Sending a packet:
+	Type:1
+	Payload Size:270
+	Padding:136
+	Content:126
+
+[9-1-2018 12:49:31] Recieved a packet:
+	Type:1
+	Payload Size:126
+	Padding:90
+	Content:28
+
+[9-1-2018 12:49:31] Sending a packet:
+	Type:1
+	Payload Size:474
+	Padding:348
+	Content:118
+
+[9-1-2018 12:49:41] Recieved a packet:
+	Type:1
+	Payload Size:162
+	Padding:127
+	Content:27
+
+[9-1-2018 12:49:41] Sending a packet:
+	Type:1
+	Payload Size:477
+	Padding:426
+	Content:43
+
+[9-1-2018 12:50:3] Recieved a packet:
+	Type:1
+	Payload Size:422
+	Padding:407
+	Content:7
+
+[9-1-2018 12:50:4] Sending a packet:
+	Type:1
+	Payload Size:578
+	Padding:201
+	Content:369
+
+[9-1-2018 12:50:15] Recieved a packet:
+	Type:1
+	Payload Size:808
+	Padding:773
+	Content:27
+
+[9-1-2018 12:50:16] Sending a packet:
+	Type:1
+	Payload Size:415
+	Padding:364
+	Content:43
+
+[9-1-2018 12:50:26] Recieved a packet:
+	Type:1
+	Payload Size:533
+	Padding:499
+	Content:26
+
+[9-1-2018 12:50:26] Sending a packet:
+	Type:1
+	Payload Size:380
+	Padding:329
+	Content:43
+
+[9-1-2018 12:50:27] Recieved a packet:
+	Type:1
+	Payload Size:401
+	Padding:386
+	Content:7
+
+[9-1-2018 12:50:27] Sending a packet:
+	Type:1
+	Payload Size:508
+	Padding:131
+	Content:369
+
+[9-1-2018 12:50:33] Recieved a packet:
+	Type:1
+	Payload Size:891
+	Padding:878
+	Content:5
+
+[9-1-2018 12:50:33] Sending a packet:
+	Type:7
+	Payload Size:190
+	Padding:173
+	Content:9
+
+[9-1-2018 12:50:33] Shutting down a connection on socket 6
+[9-1-2018 12:50:40] Client connected
+[9-1-2018 12:50:42] Recieved a packet:
+	Type:3
+	Payload Size:266
+	Padding:114
+	Content:144
+
+[9-1-2018 12:50:42] Got credentials: for testuser
+[9-1-2018 12:50:42] So far so good
+[9-1-2018 12:50:42] Client login result: OK
+[9-1-2018 12:50:42] Sending a packet:
+	Type:4
+	Payload Size:477
+	Padding:467
+	Content:2
+
+[9-1-2018 12:50:42] Sending a packet:
+	Type:1
+	Payload Size:605
+	Padding:551
+	Content:46
+
+[9-1-2018 12:50:46] Recieved a packet:
+	Type:1
+	Payload Size:798
+	Padding:783
+	Content:7
+
+[9-1-2018 12:50:46] Sending a packet:
+	Type:1
+	Payload Size:538
+	Padding:158
+	Content:372
+
+[9-1-2018 12:50:56] Recieved a packet:
+	Type:1
+	Payload Size:432
+	Padding:405
+	Content:19
+
+[9-1-2018 12:50:56] Sending a packet:
+	Type:1
+	Payload Size:970
+	Padding:920
+	Content:42
+
+[9-1-2018 12:50:56] Sending a packet:
+	Type:1
+	Payload Size:898
+	Padding:847
+	Content:43
+
+[9-1-2018 12:50:58] Sending a packet:
+	Type:1
+	Payload Size:895
+	Padding:872
+	Content:15
+
+[9-1-2018 12:50:58] Sending a packet:
+	Type:1
+	Payload Size:118
+	Padding:38
+	Content:72
+
+[9-1-2018 12:50:58] Sending a packet:
+	Type:1
+	Payload Size:3982
+	Padding:805
+	Content:3169
+
+[9-1-2018 12:51:7] Recieved a packet:
+	Type:1
+	Payload Size:635
+	Padding:606
+	Content:21
+
+[9-1-2018 12:51:7] Sending a packet:
+	Type:1
+	Payload Size:2859
+	Padding:150
+	Content:2701
+
+[9-1-2018 12:51:8] Recieved a packet:
+	Type:1
+	Payload Size:245
+	Padding:236
+	Content:1
+
+[9-1-2018 12:51:8] Sending a packet:
+	Type:1
+	Payload Size:1261
+	Padding:611
+	Content:642
+
+[9-1-2018 12:51:9] Recieved a packet:
+	Type:1
+	Payload Size:490
+	Padding:481
+	Content:1
+
+[9-1-2018 12:51:9] Sending a packet:
+	Type:1
+	Payload Size:204
+	Padding:159
+	Content:37
+
+[9-1-2018 12:51:10] Recieved a packet:
+	Type:1
+	Payload Size:590
+	Padding:578
+	Content:4
+
+[9-1-2018 12:51:10] Sending a packet:
+	Type:1
+	Payload Size:476
+	Padding:277
+	Content:191
+
+[9-1-2018 12:51:13] Recieved a packet:
+	Type:1
+	Payload Size:179
+	Padding:168
+	Content:3
+
+[9-1-2018 12:51:13] Sending a packet:
+	Type:1
+	Payload Size:1104
+	Padding:413
+	Content:683
+
+[9-1-2018 12:51:14] Recieved a packet:
+	Type:1
+	Payload Size:998
+	Padding:989
+	Content:1
+
+[9-1-2018 12:51:14] Sending a packet:
+	Type:1
+	Payload Size:2618
+	Padding:243
+	Content:2367
+
+[9-1-2018 12:51:15] Recieved a packet:
+	Type:1
+	Payload Size:899
+	Padding:890
+	Content:1
+
+[9-1-2018 12:51:15] Sending a packet:
+	Type:1
+	Payload Size:535
+	Padding:488
+	Content:39
+
+[9-1-2018 12:51:15] Recieved a packet:
+	Type:1
+	Payload Size:338
+	Padding:329
+	Content:1
+
+[9-1-2018 12:51:15] Sending a packet:
+	Type:1
+	Payload Size:1458
+	Padding:1018
+	Content:432
+
+[9-1-2018 12:51:15] Recieved a packet:
+	Type:1
+	Payload Size:13
+	Padding:4
+	Content:1
+
+[9-1-2018 12:51:15] Sending a packet:
+	Type:1
+	Payload Size:2686
+	Padding:821
+	Content:1857
+
+[9-1-2018 12:51:16] Recieved a packet:
+	Type:1
+	Payload Size:195
+	Padding:183
+	Content:4
+
+[9-1-2018 12:51:16] Sending a packet:
+	Type:1
+	Payload Size:878
+	Padding:739
+	Content:131
+
+[9-1-2018 12:51:23] Client connected
+[9-1-2018 12:51:29] Recieved a packet:
+	Type:3
+	Payload Size:333
+	Padding:181
+	Content:144
+
+[9-1-2018 12:51:29] Got credentials: for testuser
+[9-1-2018 12:51:29] So far so good
+[9-1-2018 12:51:29] Client login result: OK
+[9-1-2018 12:51:29] Sending a packet:
+	Type:4
+	Payload Size:904
+	Padding:894
+	Content:2
+
+[9-1-2018 12:51:29] Sending a packet:
+	Type:1
+	Payload Size:325
+	Padding:271
+	Content:46
+
+[9-1-2018 12:51:31] Recieved a packet:
+	Type:1
+	Payload Size:345
+	Padding:334
+	Content:3
+
+[9-1-2018 12:51:31] Sending a packet:
+	Type:1
+	Payload Size:163
+	Padding:74
+	Content:81
+
+[9-1-2018 12:51:34] Recieved a packet:
+	Type:1
+	Payload Size:754
+	Padding:739
+	Content:7
+
+[9-1-2018 12:51:34] Sending a packet:
+	Type:1
+	Payload Size:474
+	Padding:94
+	Content:372
+
+[9-1-2018 12:51:47] Recieved a packet:
+	Type:1
+	Payload Size:894
+	Padding:859
+	Content:27
+
+[9-1-2018 12:51:47] Sending a packet:
+	Type:1
+	Payload Size:861
+	Padding:757
+	Content:96
+
+[9-1-2018 12:51:58] Recieved a packet:
+	Type:1
+	Payload Size:628
+	Padding:615
+	Content:5
+
+[9-1-2018 12:51:58] Sending a packet:
+	Type:7
+	Payload Size:917
+	Padding:900
+	Content:9
+
+[9-1-2018 12:51:58] Shutting down a connection on socket 8
+[9-1-2018 12:52:0] Client connected
+[9-1-2018 12:52:2] Recieved a packet:
+	Type:3
+	Payload Size:531
+	Padding:379
+	Content:144
+
+[9-1-2018 12:52:2] Got credentials: for denis
+[9-1-2018 12:52:2] So far so good
+[9-1-2018 12:52:2] Client login result: OK
+[9-1-2018 12:52:2] Sending a packet:
+	Type:4
+	Payload Size:917
+	Padding:907
+	Content:2
+
+[9-1-2018 12:52:2] Sending a packet:
+	Type:1
+	Payload Size:484
+	Padding:433
+	Content:43
+
+[9-1-2018 12:52:7] Recieved a packet:
+	Type:1
+	Payload Size:262
+	Padding:227
+	Content:27
+
+[9-1-2018 12:52:7] Sending a packet:
+	Type:1
+	Payload Size:169
+	Padding:82
+	Content:79
+
+[9-1-2018 12:52:20] Recieved a packet:
+	Type:1
+	Payload Size:402
+	Padding:366
+	Content:28
+
+[9-1-2018 12:52:20] Sending a packet:
+	Type:1
+	Payload Size:74
+	Padding:23
+	Content:43
+
+[9-1-2018 12:52:21] Recieved a packet:
+	Type:1
+	Payload Size:317
+	Padding:306
+	Content:3
+
+[9-1-2018 12:52:21] Sending a packet:
+	Type:1
+	Payload Size:102
+	Padding:16
+	Content:78
+
+[9-1-2018 12:52:24] Recieved a packet:
+	Type:1
+	Payload Size:591
+	Padding:564
+	Content:19
+
+[9-1-2018 12:52:24] Sending a packet:
+	Type:1
+	Payload Size:377
+	Padding:322
+	Content:47
+
+[9-1-2018 12:52:32] Recieved a packet:
+	Type:1
+	Payload Size:338
+	Padding:312
+	Content:18
+
+[9-1-2018 12:52:32] Sending a packet:
+	Type:1
+	Payload Size:891
+	Padding:840
+	Content:43
+
+[9-1-2018 12:52:34] Recieved a packet:
+	Type:1
+	Payload Size:205
+	Padding:192
+	Content:5
+
+[9-1-2018 12:52:34] Sending a packet:
+	Type:1
+	Payload Size:32
+	Padding:11
+	Content:13
+
+[9-1-2018 12:52:34] Sending a packet:
+	Type:7
+	Payload Size:211
+	Padding:194
+	Content:9
+
+[9-1-2018 12:52:34] Shutting down a connection on socket 9

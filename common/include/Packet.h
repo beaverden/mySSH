@@ -17,8 +17,8 @@
 #include "openssl/sha.h"
 
 #define FAILED              -1
-#define MAX_LOGIN_LENGTH    32
-#define MAX_PASSWORD_LENGTH 100
+#define MAX_LOGIN_LENGTH    (unsigned int)32
+#define MAX_PASSWORD_LENGTH (unsigned int)100
 //#define DEBUG_MODE
 
 /**
