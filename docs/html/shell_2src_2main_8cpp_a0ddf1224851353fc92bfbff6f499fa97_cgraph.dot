@@ -1,0 +1,42 @@
+digraph "main"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="main",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="sigHandler",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$shell_2src_2main_8cpp.html#a6fbd5f39facef76ebf39841ec216c287"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="getCwd",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Evaluate_8h.html#a852d364509109197f7df792395812aec"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="getUsername",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Evaluate_8h.html#a4fe59b0909c1ee46ead7fe632fe182f8"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Evaluate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Evaluate_8h.html#a370b78bdb8dcfbadf1b0e9be4452d740",tooltip="Parses a complex command and calls Evaluate_Tree on the AST obtained from parsing. "];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="trim",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Logger_8cpp.html#a83375b89f8b135c348ba5bea0c847da0",tooltip="Trims a string of spaces and tabs. "];
+  Node5 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Parser::getInstance",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classParser.html#a4f90468d5cc88a39d50dfc3f08b46ae0",tooltip="Singleton get instance method. "];
+  Node7 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Parser::parseCommand",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classParser.html#a621be0eb716de9db8ecb77ec6afab3f0",tooltip="Tokenizes and verifies the command. Returns an AST ready for execution. "];
+  Node5 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="Evaluate_Tree",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Evaluate_8cpp.html#aab83877ec794b9c71e963bac1b0dde76",tooltip="Opens redirects, pushes them to the stack, creates pipes between programs and executes simple command..."];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="Execute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Evaluate_8cpp.html#a79150b4042ae7db5ea8e8aa1b45b60e8",tooltip="Executes a given command, taking redirect descriptors from the top of the stacks. ..."];
+  Node10 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="Parser::tokenizeExecute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classParser.html#a21451cb3011d796acf866b05d52601f3",tooltip="Takes a single command with arguments and splits it in a vector. "];
+  Node11 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="getCwd",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Evaluate_8cpp.html#a852d364509109197f7df792395812aec"];
+  Node10 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="ArgumentsException\l::what",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classArgumentsException.html#aa970dadd44c523df99070343c164343c"];
+  Node1 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="ParserException::what",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classParserException.html#a1cfdeb6578524907f9250a3ebd465554"];
+  Node1 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="VerificationException\l::what",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classVerificationException.html#a52ccc8f07355dcd189819185ccf37220"];
+  Node15 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="ArgumentsException\l::ArgumentsException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classArgumentsException.html#a9a2ed96b51bb2656bc9d9f357c5a9b42"];
+  Node15 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

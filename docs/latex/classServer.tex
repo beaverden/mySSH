@@ -50,6 +50,18 @@ static void \hyperlink{classServer_a180800432b9ecffdbc050f4c66f8abd2}{send\+Sign
 
 Listens to connections, fork()\textquotesingle{}s a child running a shell, reading and writing sessions for each connection. 
 
+
+
+Here is the call graph for this function\+:
+% FIG 0
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 1
+
+
 \index{Server@{Server}!delete\+Instance@{delete\+Instance}}
 \index{delete\+Instance@{delete\+Instance}!Server@{Server}}
 \subsubsection[{\texorpdfstring{delete\+Instance()}{deleteInstance()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::delete\+Instance (
@@ -57,6 +69,12 @@ Listens to connections, fork()\textquotesingle{}s a child running a shell, readi
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classServer_a727200ae46569af9054fac429c7da43e}{}\label{classServer_a727200ae46569af9054fac429c7da43e}
+
+
+Here is the caller graph for this function\+:
+% FIG 2
+
+
 \index{Server@{Server}!destroy@{destroy}}
 \index{destroy@{destroy}!Server@{Server}}
 \subsubsection[{\texorpdfstring{destroy()}{destroy()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::destroy (
@@ -64,6 +82,12 @@ Listens to connections, fork()\textquotesingle{}s a child running a shell, readi
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classServer_adce993ab4cce22dc732bddddf310a5f6}{}\label{classServer_adce993ab4cce22dc732bddddf310a5f6}
+
+
+Here is the caller graph for this function\+:
+% FIG 3
+
+
 \index{Server@{Server}!get\+Instance@{get\+Instance}}
 \index{get\+Instance@{get\+Instance}!Server@{Server}}
 \subsubsection[{\texorpdfstring{get\+Instance()}{getInstance()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Server} $\ast$ Server\+::get\+Instance (
@@ -71,6 +95,12 @@ Listens to connections, fork()\textquotesingle{}s a child running a shell, readi
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classServer_a22dbfd5db73d391d615a0bfd69077fb6}{}\label{classServer_a22dbfd5db73d391d615a0bfd69077fb6}
+
+
+Here is the caller graph for this function\+:
+% FIG 4
+
+
 \index{Server@{Server}!handle\+Auth@{handle\+Auth}}
 \index{handle\+Auth@{handle\+Auth}!Server@{Server}}
 \subsubsection[{\texorpdfstring{handle\+Auth(\+S\+S\+L $\ast$\+S\+S\+L, std\+::shared\+\_\+ptr$<$ Server\+Context $>$ ctx)}{handleAuth(SSL *SSL, std::shared_ptr< ServerContext > ctx)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Server\+::handle\+Auth (
@@ -79,6 +109,18 @@ Listens to connections, fork()\textquotesingle{}s a child running a shell, readi
 \item[{std\+::shared\+\_\+ptr$<$ {\bf Server\+Context} $>$}]{ctx}
 \end{DoxyParamCaption}
 )}\hypertarget{classServer_a7d999a07f62d1d3d7dff37b6935c01a6}{}\label{classServer_a7d999a07f62d1d3d7dff37b6935c01a6}
+
+
+Here is the call graph for this function\+:
+% FIG 5
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 6
+
+
 \index{Server@{Server}!initialize\+Security@{initialize\+Security}}
 \index{initialize\+Security@{initialize\+Security}!Server@{Server}}
 \subsubsection[{\texorpdfstring{initialize\+Security()}{initializeSecurity()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::initialize\+Security (
@@ -89,6 +131,18 @@ Listens to connections, fork()\textquotesingle{}s a child running a shell, readi
 
 
 Prepare private key, certificates and create S\+SL context Might throw\+: \hyperlink{classSecurityException}{Security\+Exception}. 
+
+
+
+Here is the call graph for this function\+:
+% FIG 7
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 8
+
 
 \index{Server@{Server}!initialize\+Sockets@{initialize\+Sockets}}
 \index{initialize\+Sockets@{initialize\+Sockets}!Server@{Server}}
@@ -108,6 +162,18 @@ Might throw\+: \hyperlink{classServerException}{Server\+Exception}
 \mbox{\tt in}  & {\em \+\_\+port} & The port on which the server will listen to connections \\
 \hline
 \end{DoxyParams}
+
+
+Here is the call graph for this function\+:
+% FIG 9
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 10
+
+
 \index{Server@{Server}!input\+Data\+Stream@{input\+Data\+Stream}}
 \index{input\+Data\+Stream@{input\+Data\+Stream}!Server@{Server}}
 \subsubsection[{\texorpdfstring{input\+Data\+Stream(std\+::shared\+\_\+ptr$<$ Server\+Context $>$ ctx)}{inputDataStream(std::shared_ptr< ServerContext > ctx)}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::input\+Data\+Stream (
@@ -124,6 +190,18 @@ Constantly reads from S\+SL socket and redirects it to the shell.
 {\em ctx} & A pointer to \hyperlink{structServerContext}{Server\+Context} structure, containing sockets \\
 \hline
 \end{DoxyParams}
+
+
+Here is the call graph for this function\+:
+% FIG 11
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 12
+
+
 \index{Server@{Server}!output\+Data\+Stream@{output\+Data\+Stream}}
 \index{output\+Data\+Stream@{output\+Data\+Stream}!Server@{Server}}
 \subsubsection[{\texorpdfstring{output\+Data\+Stream(std\+::shared\+\_\+ptr$<$ Server\+Context $>$ ctx)}{outputDataStream(std::shared_ptr< ServerContext > ctx)}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::output\+Data\+Stream (
@@ -140,6 +218,18 @@ Constantly reads output from the shell and outputs it to the S\+SL socket.
 {\em ctx} & A pointer to \hyperlink{structServerContext}{Server\+Context} structure, containing sockets \\
 \hline
 \end{DoxyParams}
+
+
+Here is the call graph for this function\+:
+% FIG 13
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 14
+
+
 \index{Server@{Server}!send\+Error@{send\+Error}}
 \index{send\+Error@{send\+Error}!Server@{Server}}
 \subsubsection[{\texorpdfstring{send\+Error(std\+::shared\+\_\+ptr$<$ Server\+Context $>$ ctx, const char $\ast$str)}{sendError(std::shared_ptr< ServerContext > ctx, const char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::send\+Error (
@@ -159,6 +249,12 @@ Sends an error to the S\+SL socket.
 {\em str} & Pointer to a null terminated C string \\
 \hline
 \end{DoxyParams}
+
+
+Here is the call graph for this function\+:
+% FIG 15
+
+
 \index{Server@{Server}!send\+Signal@{send\+Signal}}
 \index{send\+Signal@{send\+Signal}!Server@{Server}}
 \subsubsection[{\texorpdfstring{send\+Signal(std\+::shared\+\_\+ptr$<$ Server\+Context $>$ ctx, int sig)}{sendSignal(std::shared_ptr< ServerContext > ctx, int sig)}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::send\+Signal (
@@ -167,6 +263,12 @@ Sends an error to the S\+SL socket.
 \item[{int}]{sig}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classServer_a180800432b9ecffdbc050f4c66f8abd2}{}\label{classServer_a180800432b9ecffdbc050f4c66f8abd2}
+
+
+Here is the caller graph for this function\+:
+% FIG 16
+
+
 \index{Server@{Server}!server\+Routine@{server\+Routine}}
 \index{server\+Routine@{server\+Routine}!Server@{Server}}
 \subsubsection[{\texorpdfstring{server\+Routine(\+S\+S\+L $\ast$ssl)}{serverRoutine(SSL *ssl)}}]{\setlength{\rightskip}{0pt plus 5cm}int Server\+::server\+Routine (
@@ -186,6 +288,18 @@ Prepares execution environment. Runs out and input data streams, spawns a shell 
 \begin{DoxyReturn}{Returns}
 Execution result 
 \end{DoxyReturn}
+
+
+Here is the call graph for this function\+:
+% FIG 17
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 18
+
+
 \index{Server@{Server}!spawn\+Shell@{spawn\+Shell}}
 \index{spawn\+Shell@{spawn\+Shell}!Server@{Server}}
 \subsubsection[{\texorpdfstring{spawn\+Shell(std\+::shared\+\_\+ptr$<$ Server\+Context $>$ ctx)}{spawnShell(std::shared_ptr< ServerContext > ctx)}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::spawn\+Shell (
@@ -202,6 +316,12 @@ Spawns a shell with input/output/error redirected with data streams.
 {\em ctx} & A pointer to \hyperlink{structServerContext}{Server\+Context} structure, containing sockets \\
 \hline
 \end{DoxyParams}
+
+
+Here is the caller graph for this function\+:
+% FIG 19
+
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

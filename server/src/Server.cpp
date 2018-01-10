@@ -23,13 +23,13 @@ void Server::initializeSecurity()
         throw SecurityException("Unable to create SSL context");
     }
 
-    if (SSL_CTX_use_certificate_file(context, "/home/denis/cert/mycert.pem", SSL_FILETYPE_PEM) <= 0)
+    if (SSL_CTX_use_certificate_file(context, "../cert/mycert.pem", SSL_FILETYPE_PEM) <= 0)
     {
         ERR_print_errors_fp(stderr);
         throw SecurityException("Invalid certificate");
     }
     
-    if (SSL_CTX_use_PrivateKey_file(context, "/home/denis/cert/mycert.pem", SSL_FILETYPE_PEM) <= 0)
+    if (SSL_CTX_use_PrivateKey_file(context, "../cert/mycert.pem", SSL_FILETYPE_PEM) <= 0)
     {
         ERR_print_errors_fp(stderr);
         throw SecurityException("Invalid private key");
@@ -272,7 +272,7 @@ void Server::connectionListen()
     int client = 0;
     while (client = accept(this->listeningSocket, NULL, 0))
     {
-        SSL* ssl = SSL_new(context);
+        SSL* ssl;
         int servletPid;
         int exitCode = 0;
         try

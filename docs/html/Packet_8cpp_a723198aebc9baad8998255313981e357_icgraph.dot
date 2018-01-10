@@ -1,0 +1,31 @@
+digraph "send_packet"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="send_packet",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="sigHandler",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$client_8cpp.html#a6fbd5f39facef76ebf39841ec216c287"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$client_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="handleAuth",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$client_8cpp.html#acc99c06b8569296d01808f0193b0e44c"];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="writingRoutine",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$client_8cpp.html#a431ad8c77691faa3a9c61245742e432d"];
+  Node5 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Server::outputDataStream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classServer.html#a0b247f8f2166b36c3575c4678d0755e9",tooltip="Constantly reads output from the shell and outputs it to the SSL socket. "];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Server::serverRoutine",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classServer.html#a47b6e405d109cdd27838220684f0e2e5",tooltip="Prepares execution environment. Runs out and input data streams, spawns a shell for the client..."];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Server::connectionListen",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classServer.html#a258c0a0a42d0be99bc4a36b4e6212ed2",tooltip="Listens to connections, fork()&#39;s a child running a shell, reading and writing sessions for each conne..."];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server_2src_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97"];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="Server::sendError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classServer.html#abc80f4931ae5b5860a9f70ffac1b89c5",tooltip="Sends an error to the SSL socket. "];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="Server::handleAuth",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classServer.html#a7d999a07f62d1d3d7dff37b6935c01a6"];
+  Node11 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

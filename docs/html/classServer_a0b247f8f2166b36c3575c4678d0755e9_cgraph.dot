@@ -1,0 +1,15 @@
+digraph "Server::outputDataStream"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Server::outputDataStream",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="send_packet",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Packet_8h.html#a723198aebc9baad8998255313981e357",tooltip="Sends data in form of a SSH_Packet to the SSL socket given. "];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="sha_digest",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Packet_8cpp.html#a707a865009d80b22ee19d46a59d81e94"];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="check_shutdown",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Packet_8cpp.html#acce65f288b2aed7670bee2f6dfbbb882"];
+  Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Logger::log",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLogger.html#aad1588639bb45eab5a33a40fc58d0e94",tooltip="Log formatted data with variable number of arguments (simmilar to printf) "];
+}
