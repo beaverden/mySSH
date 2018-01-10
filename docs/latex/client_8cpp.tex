@@ -11,6 +11,7 @@
 {\ttfamily \#include $<$arpa/inet.\+h$>$}\\*
 {\ttfamily \#include $<$sys/file.\+h$>$}\\*
 {\ttfamily \#include $<$sys/ioctl.\+h$>$}\\*
+{\ttfamily \#include $<$signal.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}openssl/bio.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}openssl/ssl.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}openssl/err.\+h\char`\"{}}\\*
@@ -20,81 +21,3 @@
 {\ttfamily \#include $<$thread$>$}\\*
 {\ttfamily \#include $<$mutex$>$}\\*
 Include dependency graph for client.\+cpp\+:
-% FIG 0
-\subsection*{Data Structures}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{structExecutionContext}{Execution\+Context}
-\begin{DoxyCompactList}\small\item\em Context for tree execution and redirection. Gets passed between functions of Evaluation and Execution. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Functions}
-\begin{DoxyCompactItemize}
-\item 
-int \hyperlink{client_8cpp_ac084a196c561907e971621bd28382b32}{create\+\_\+socket} (char $\ast$\+\_\+ip, char $\ast$\+\_\+port)
-\item 
-void \hyperlink{client_8cpp_a98f4fc799684d4c4564fa5549b8e9277}{Handle\+Auth} (S\+SL $\ast$ssl)
-\item 
-void \hyperlink{client_8cpp_a238a36a0c27151b4efcf65df7a23f043}{Handle\+Response} (S\+SL $\ast$ssl, \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} $\ast$packet)
-\item 
-void \hyperlink{client_8cpp_a36c31f9205eb9e4e3753617984054fe1}{Handle\+Command} (S\+SL $\ast$ssl)
-\item 
-void \hyperlink{client_8cpp_a86a3b788c2958975e270bf69fb8fe7e2}{writing\+\_\+routine} (std\+::shared\+\_\+ptr$<$ \hyperlink{structExecutionContext}{Execution\+Context} $>$ ctx)
-\item 
-void \hyperlink{client_8cpp_a66bc3e5b829ba4d3e4a294c1bcd267b9}{reading\+\_\+routine} (std\+::shared\+\_\+ptr$<$ \hyperlink{structExecutionContext}{Execution\+Context} $>$ ctx)
-\item 
-int \hyperlink{client_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
-\end{DoxyCompactItemize}
-
-
-\subsection{Function Documentation}
-\index{client.\+cpp@{client.\+cpp}!create\+\_\+socket@{create\+\_\+socket}}
-\index{create\+\_\+socket@{create\+\_\+socket}!client.\+cpp@{client.\+cpp}}
-\subsubsection[{\texorpdfstring{create\+\_\+socket(char $\ast$\+\_\+ip, char $\ast$\+\_\+port)}{create_socket(char *_ip, char *_port)}}]{\setlength{\rightskip}{0pt plus 5cm}int create\+\_\+socket (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{\+\_\+ip, }
-\item[{char $\ast$}]{\+\_\+port}
-\end{DoxyParamCaption}
-)}\hypertarget{client_8cpp_ac084a196c561907e971621bd28382b32}{}\label{client_8cpp_ac084a196c561907e971621bd28382b32}
-\index{client.\+cpp@{client.\+cpp}!Handle\+Auth@{Handle\+Auth}}
-\index{Handle\+Auth@{Handle\+Auth}!client.\+cpp@{client.\+cpp}}
-\subsubsection[{\texorpdfstring{Handle\+Auth(\+S\+S\+L $\ast$ssl)}{HandleAuth(SSL *ssl)}}]{\setlength{\rightskip}{0pt plus 5cm}void Handle\+Auth (
-\begin{DoxyParamCaption}
-\item[{S\+SL $\ast$}]{ssl}
-\end{DoxyParamCaption}
-)}\hypertarget{client_8cpp_a98f4fc799684d4c4564fa5549b8e9277}{}\label{client_8cpp_a98f4fc799684d4c4564fa5549b8e9277}
-\index{client.\+cpp@{client.\+cpp}!Handle\+Command@{Handle\+Command}}
-\index{Handle\+Command@{Handle\+Command}!client.\+cpp@{client.\+cpp}}
-\subsubsection[{\texorpdfstring{Handle\+Command(\+S\+S\+L $\ast$ssl)}{HandleCommand(SSL *ssl)}}]{\setlength{\rightskip}{0pt plus 5cm}void Handle\+Command (
-\begin{DoxyParamCaption}
-\item[{S\+SL $\ast$}]{ssl}
-\end{DoxyParamCaption}
-)}\hypertarget{client_8cpp_a36c31f9205eb9e4e3753617984054fe1}{}\label{client_8cpp_a36c31f9205eb9e4e3753617984054fe1}
-\index{client.\+cpp@{client.\+cpp}!Handle\+Response@{Handle\+Response}}
-\index{Handle\+Response@{Handle\+Response}!client.\+cpp@{client.\+cpp}}
-\subsubsection[{\texorpdfstring{Handle\+Response(\+S\+S\+L $\ast$ssl, S\+S\+H\+\_\+\+Packet $\ast$packet)}{HandleResponse(SSL *ssl, SSH_Packet *packet)}}]{\setlength{\rightskip}{0pt plus 5cm}void Handle\+Response (
-\begin{DoxyParamCaption}
-\item[{S\+SL $\ast$}]{ssl, }
-\item[{{\bf S\+S\+H\+\_\+\+Packet} $\ast$}]{packet}
-\end{DoxyParamCaption}
-)}\hypertarget{client_8cpp_a238a36a0c27151b4efcf65df7a23f043}{}\label{client_8cpp_a238a36a0c27151b4efcf65df7a23f043}
-\index{client.\+cpp@{client.\+cpp}!main@{main}}
-\index{main@{main}!client.\+cpp@{client.\+cpp}}
-\subsubsection[{\texorpdfstring{main(int argc, char $\ast$argv[])}{main(int argc, char *argv[])}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
-\begin{DoxyParamCaption}
-\item[{int}]{argc, }
-\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
-\end{DoxyParamCaption}
-)}\hypertarget{client_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{}\label{client_8cpp_a0ddf1224851353fc92bfbff6f499fa97}
-\index{client.\+cpp@{client.\+cpp}!reading\+\_\+routine@{reading\+\_\+routine}}
-\index{reading\+\_\+routine@{reading\+\_\+routine}!client.\+cpp@{client.\+cpp}}
-\subsubsection[{\texorpdfstring{reading\+\_\+routine(std\+::shared\+\_\+ptr$<$ Execution\+Context $>$ ctx)}{reading_routine(std::shared_ptr< ExecutionContext > ctx)}}]{\setlength{\rightskip}{0pt plus 5cm}void reading\+\_\+routine (
-\begin{DoxyParamCaption}
-\item[{std\+::shared\+\_\+ptr$<$ {\bf Execution\+Context} $>$}]{ctx}
-\end{DoxyParamCaption}
-)}\hypertarget{client_8cpp_a66bc3e5b829ba4d3e4a294c1bcd267b9}{}\label{client_8cpp_a66bc3e5b829ba4d3e4a294c1bcd267b9}
-\index{client.\+cpp@{client.\+cpp}!writing\+\_\+routine@{writing\+\_\+routine}}
-\index{writing\+\_\+routine@{writing\+\_\+routine}!client.\+cpp@{client.\+cpp}}
-\subsubsection[{\texorpdfstring{writing\+\_\+routine(std\+::shared\+\_\+ptr$<$ Execution\+Context $>$ ctx)}{writing_routine(std::shared_ptr< ExecutionContext > ctx)}}]{\setlength{\rightskip}{0pt plus 5cm}void writing\+\_\+routine (
-\begin{DoxyParamCaption}
-\item[{std\+::shared\+\_\+ptr$<$ {\bf Execution\+Context} $>$}]{ctx}
-\end{DoxyParamCaption}
-)}\hypertarget{client_8cpp_a86a3b788c2958975e270bf69fb8fe7e2}{}\label{client_8cpp_a86a3b788c2958975e270bf69fb8fe7e2}

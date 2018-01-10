@@ -87,12 +87,14 @@ void Server::outputDataStream(std::shared_ptr<ServerContext> ctx)
                 ctx->sslMutex.lock();
                 char* buff = new char[has_read];
                 result = read(ctx->svServ, buff, has_read);
-                // TODO shutdown exceptions
                 send_packet(ctx->ssl, PACKET_RESPONSE, buff, result);
                 ctx->sslMutex.unlock();
                 delete buff;
             }
-        } catch (...) {}
+        } catch (...) 
+        {
+            ctx->shouldTerminate = true;   
+        }
 
     }
 }
@@ -130,7 +132,10 @@ void Server::inputDataStream(std::shared_ptr<ServerContext> ctx)
                 }
                 ctx->sslMutex.unlock();
             }
-        } catch (...) {}
+        } catch (...) 
+        {
+            ctx->shouldTerminate = true;
+        }
     }  
 }
 

@@ -138,9 +138,9 @@ Data Structures</h2></td></tr>
 Macros</h2></td></tr>
 <tr class="memitem:a681680feae4df4182d532564c42fa1fc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Packet_8h.html#a681680feae4df4182d532564c42fa1fc">FAILED</a>&#160;&#160;&#160;-1</td></tr>
 <tr class="separator:a681680feae4df4182d532564c42fa1fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9445e27830d28f1e288bd223ab95296"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Packet_8h.html#ab9445e27830d28f1e288bd223ab95296">MAX_LOGIN_LENGTH</a>&#160;&#160;&#160;32</td></tr>
+<tr class="memitem:ab9445e27830d28f1e288bd223ab95296"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Packet_8h.html#ab9445e27830d28f1e288bd223ab95296">MAX_LOGIN_LENGTH</a>&#160;&#160;&#160;(unsigned int)32</td></tr>
 <tr class="separator:ab9445e27830d28f1e288bd223ab95296"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f264fafe78080f8ea68715854b9bc24"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Packet_8h.html#a7f264fafe78080f8ea68715854b9bc24">MAX_PASSWORD_LENGTH</a>&#160;&#160;&#160;100</td></tr>
+<tr class="memitem:a7f264fafe78080f8ea68715854b9bc24"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Packet_8h.html#a7f264fafe78080f8ea68715854b9bc24">MAX_PASSWORD_LENGTH</a>&#160;&#160;&#160;(unsigned int)100</td></tr>
 <tr class="separator:a7f264fafe78080f8ea68715854b9bc24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
@@ -154,7 +154,9 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="Packet_8h.html#a307e533851c91d484ac30d8471095890a6ee2549e6313635a0e1b570052060b76">PACKET_AUTH_RESPONSE</a>, 
 <a class="el" href="Packet_8h.html#a307e533851c91d484ac30d8471095890a62aa7f5e6ca972dea66fd751f236c447">PACKET_READY</a>, 
 <a class="el" href="Packet_8h.html#a307e533851c91d484ac30d8471095890a9f7b3973b120dc5e465046d84ab437c8">PACKET_ERROR</a>, 
-<a class="el" href="Packet_8h.html#a307e533851c91d484ac30d8471095890a050c26aa9f441a1a26be45ca62941a18">PACKET_TERMINATE</a>
+<a class="el" href="Packet_8h.html#a307e533851c91d484ac30d8471095890a050c26aa9f441a1a26be45ca62941a18">PACKET_TERMINATE</a>, 
+<br />
+&#160;&#160;<a class="el" href="Packet_8h.html#a307e533851c91d484ac30d8471095890a9b74296647a3595592d7c9a24e4d0eb3">PACKET_SIGNAL</a>
 <br />
  }<tr class="memdesc:a307e533851c91d484ac30d8471095890"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of the sent or recieved packet. All the packets must have a Packet_Type. The reciever must take proper actions according to the type.  <a href="Packet_8h.html#a307e533851c91d484ac30d8471095890">More...</a><br /></td></tr>
 </td></tr>
@@ -189,7 +191,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define MAX_LOGIN_LENGTH&#160;&#160;&#160;32</td>
+          <td class="memname">#define MAX_LOGIN_LENGTH&#160;&#160;&#160;(unsigned int)32</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -201,7 +203,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define MAX_PASSWORD_LENGTH&#160;&#160;&#160;100</td>
+          <td class="memname">#define MAX_PASSWORD_LENGTH&#160;&#160;&#160;(unsigned int)100</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -244,6 +246,9 @@ Functions</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="a307e533851c91d484ac30d8471095890a050c26aa9f441a1a26be45ca62941a18"></a>PACKET_TERMINATE&#160;</td><td class="fielddoc">
 <p>Signal from server that it wants to terminate the connection. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a307e533851c91d484ac30d8471095890a9b74296647a3595592d7c9a24e4d0eb3"></a>PACKET_SIGNAL&#160;</td><td class="fielddoc">
+<p>Signal from client to executed application. </p>
 </td></tr>
 </table>
 

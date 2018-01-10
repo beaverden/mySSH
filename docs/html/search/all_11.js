@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['username',['username',['../structExecutionContext.html#a6c1bbd4dcfc82e4902c4382af69ab6d9',1,'ExecutionContext']]],
-  ['utility_2ecpp',['Utility.cpp',['../Utility_8cpp.html',1,'']]],
-  ['utility_2eh',['Utility.h',['../Utility_8h.html',1,'']]]
+  ['verificationexception',['VerificationException',['../classVerificationException.html',1,'VerificationException'],['../classVerificationException.html#a6898e78558840f47693026a9a2563f12',1,'VerificationException::VerificationException()']]]
 ];

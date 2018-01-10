@@ -19,7 +19,6 @@
 #define FAILED              -1
 #define MAX_LOGIN_LENGTH    (unsigned int)32
 #define MAX_PASSWORD_LENGTH (unsigned int)100
-//#define DEBUG_MODE
 
 /**
  * \brief Type of the sent or recieved packet. All the packets must have a Packet_Type.

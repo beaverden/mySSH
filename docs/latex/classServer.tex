@@ -17,9 +17,9 @@ void \hyperlink{classServer_a258c0a0a42d0be99bc4a36b4e6212ed2}{connection\+Liste
 \begin{DoxyCompactList}\small\item\em Listens to connections, fork()\textquotesingle{}s a child running a shell, reading and writing sessions for each connection. \end{DoxyCompactList}\item 
 int \hyperlink{classServer_a47b6e405d109cdd27838220684f0e2e5}{server\+Routine} (S\+SL $\ast$ssl)
 \begin{DoxyCompactList}\small\item\em Prepares execution environment. Runs out and input data streams, spawns a shell for the client. \end{DoxyCompactList}\item 
-void \hyperlink{classServer_abc80f4931ae5b5860a9f70ffac1b89c5}{send\+Error} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ ctx, const char $\ast$str)
+void \hyperlink{classServer_abc80f4931ae5b5860a9f70ffac1b89c5}{send\+Error} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ \hyperlink{shell_2src_2main_8cpp_aabb454f84e785177301ba543d88067a7}{ctx}, const char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Sends an error to the S\+SL socket. \end{DoxyCompactList}\item 
-void \hyperlink{classServer_ac294087f9009b03cfb1a7476fbac050c}{handle\+Auth} (S\+SL $\ast$S\+SL)
+bool \hyperlink{classServer_a7d999a07f62d1d3d7dff37b6935c01a6}{handle\+Auth} (S\+SL $\ast$S\+SL, std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ \hyperlink{shell_2src_2main_8cpp_aabb454f84e785177301ba543d88067a7}{ctx})
 \end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -28,12 +28,14 @@ static \hyperlink{classServer}{Server} $\ast$ \hyperlink{classServer_a22dbfd5db7
 \item 
 static void \hyperlink{classServer_a727200ae46569af9054fac429c7da43e}{delete\+Instance} ()
 \item 
-static void \hyperlink{classServer_a0b247f8f2166b36c3575c4678d0755e9}{output\+Data\+Stream} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ ctx)
+static void \hyperlink{classServer_a0b247f8f2166b36c3575c4678d0755e9}{output\+Data\+Stream} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ \hyperlink{shell_2src_2main_8cpp_aabb454f84e785177301ba543d88067a7}{ctx})
 \begin{DoxyCompactList}\small\item\em Constantly reads output from the shell and outputs it to the S\+SL socket. \end{DoxyCompactList}\item 
-static void \hyperlink{classServer_a8d9328ec355e42c8abf49ae0d4771399}{input\+Data\+Stream} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ ctx)
+static void \hyperlink{classServer_a8d9328ec355e42c8abf49ae0d4771399}{input\+Data\+Stream} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ \hyperlink{shell_2src_2main_8cpp_aabb454f84e785177301ba543d88067a7}{ctx})
 \begin{DoxyCompactList}\small\item\em Constantly reads from S\+SL socket and redirects it to the shell. \end{DoxyCompactList}\item 
-static void \hyperlink{classServer_a4e9f6422ec55d311b9588975f81ae3bd}{spawn\+Shell} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ ctx)
-\begin{DoxyCompactList}\small\item\em Spawns a shell with input/output/error redirected with data streams. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static void \hyperlink{classServer_a4e9f6422ec55d311b9588975f81ae3bd}{spawn\+Shell} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ \hyperlink{shell_2src_2main_8cpp_aabb454f84e785177301ba543d88067a7}{ctx})
+\begin{DoxyCompactList}\small\item\em Spawns a shell with input/output/error redirected with data streams. \end{DoxyCompactList}\item 
+static void \hyperlink{classServer_a180800432b9ecffdbc050f4c66f8abd2}{send\+Signal} (std\+::shared\+\_\+ptr$<$ \hyperlink{structServerContext}{Server\+Context} $>$ \hyperlink{shell_2src_2main_8cpp_aabb454f84e785177301ba543d88067a7}{ctx}, int sig)
+\end{DoxyCompactItemize}
 
 
 \subsection{Member Function Documentation}
@@ -71,11 +73,12 @@ Listens to connections, fork()\textquotesingle{}s a child running a shell, readi
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classServer_a22dbfd5db73d391d615a0bfd69077fb6}{}\label{classServer_a22dbfd5db73d391d615a0bfd69077fb6}
 \index{Server@{Server}!handle\+Auth@{handle\+Auth}}
 \index{handle\+Auth@{handle\+Auth}!Server@{Server}}
-\subsubsection[{\texorpdfstring{handle\+Auth(\+S\+S\+L $\ast$\+S\+S\+L)}{handleAuth(SSL *SSL)}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::handle\+Auth (
+\subsubsection[{\texorpdfstring{handle\+Auth(\+S\+S\+L $\ast$\+S\+S\+L, std\+::shared\+\_\+ptr$<$ Server\+Context $>$ ctx)}{handleAuth(SSL *SSL, std::shared_ptr< ServerContext > ctx)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Server\+::handle\+Auth (
 \begin{DoxyParamCaption}
-\item[{S\+SL $\ast$}]{S\+SL}
+\item[{S\+SL $\ast$}]{S\+SL, }
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Server\+Context} $>$}]{ctx}
 \end{DoxyParamCaption}
-)}\hypertarget{classServer_ac294087f9009b03cfb1a7476fbac050c}{}\label{classServer_ac294087f9009b03cfb1a7476fbac050c}
+)}\hypertarget{classServer_a7d999a07f62d1d3d7dff37b6935c01a6}{}\label{classServer_a7d999a07f62d1d3d7dff37b6935c01a6}
 \index{Server@{Server}!initialize\+Security@{initialize\+Security}}
 \index{initialize\+Security@{initialize\+Security}!Server@{Server}}
 \subsubsection[{\texorpdfstring{initialize\+Security()}{initializeSecurity()}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::initialize\+Security (
@@ -156,6 +159,14 @@ Sends an error to the S\+SL socket.
 {\em str} & Pointer to a null terminated C string \\
 \hline
 \end{DoxyParams}
+\index{Server@{Server}!send\+Signal@{send\+Signal}}
+\index{send\+Signal@{send\+Signal}!Server@{Server}}
+\subsubsection[{\texorpdfstring{send\+Signal(std\+::shared\+\_\+ptr$<$ Server\+Context $>$ ctx, int sig)}{sendSignal(std::shared_ptr< ServerContext > ctx, int sig)}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::send\+Signal (
+\begin{DoxyParamCaption}
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Server\+Context} $>$}]{ctx, }
+\item[{int}]{sig}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classServer_a180800432b9ecffdbc050f4c66f8abd2}{}\label{classServer_a180800432b9ecffdbc050f4c66f8abd2}
 \index{Server@{Server}!server\+Routine@{server\+Routine}}
 \index{server\+Routine@{server\+Routine}!Server@{Server}}
 \subsubsection[{\texorpdfstring{server\+Routine(\+S\+S\+L $\ast$ssl)}{serverRoutine(SSL *ssl)}}]{\setlength{\rightskip}{0pt plus 5cm}int Server\+::server\+Routine (

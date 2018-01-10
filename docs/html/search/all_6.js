@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['failed',['FAILED',['../Packet_8h.html#a681680feae4df4182d532564c42fa1fc',1,'FAILED():&#160;Packet.h'],['../Server_8h.html#a681680feae4df4182d532564c42fa1fc',1,'FAILED():&#160;Server.h']]],
-  ['followup',['FOLLOWUP',['../Parser_8h.html#a9a2c9c31d675b34f6ec35cc1ca89e047acfdc02defa97bf46a4e99ee2c9ead667',1,'Parser.h']]],
-  ['freestack',['freeStack',['../Parser_8cpp.html#a7ed0cfbf19e41019fbe7ad2b2a1c5d03',1,'Parser.cpp']]]
+  ['getcwd',['getCwd',['../Evaluate_8h.html#a852d364509109197f7df792395812aec',1,'getCwd():&#160;Evaluate.cpp'],['../Evaluate_8cpp.html#a852d364509109197f7df792395812aec',1,'getCwd():&#160;Evaluate.cpp']]],
+  ['getinstance',['getInstance',['../classServer.html#a22dbfd5db73d391d615a0bfd69077fb6',1,'Server::getInstance()'],['../classParser.html#a4f90468d5cc88a39d50dfc3f08b46ae0',1,'Parser::getInstance()']]],
+  ['getusername',['getUsername',['../Evaluate_8h.html#a4fe59b0909c1ee46ead7fe632fe182f8',1,'getUsername():&#160;Evaluate.cpp'],['../Evaluate_8cpp.html#a4fe59b0909c1ee46ead7fe632fe182f8',1,'getUsername():&#160;Evaluate.cpp']]]
 ];

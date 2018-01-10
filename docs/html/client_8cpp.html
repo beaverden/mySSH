@@ -88,7 +88,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">client.cpp File Reference</div>  </div>
 </div><!--header-->
@@ -104,6 +105,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;arpa/inet.h&gt;</code><br />
 <code>#include &lt;sys/file.h&gt;</code><br />
 <code>#include &lt;sys/ioctl.h&gt;</code><br />
+<code>#include &lt;signal.h&gt;</code><br />
 <code>#include &quot;openssl/bio.h&quot;</code><br />
 <code>#include &quot;openssl/ssl.h&quot;</code><br />
 <code>#include &quot;openssl/err.h&quot;</code><br />
@@ -116,7 +118,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Include dependency graph for client.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="client_8cpp__incl.png" border="0" usemap="#_2home_2denis_2CLionProjects_2mySSH_2client_2src_2client_8cpp" alt=""/></div>
-<!-- MAP 0 -->
+<map name="_2home_2denis_2CLionProjects_2mySSH_2client_2src_2client_8cpp" id="_2home_2denis_2CLionProjects_2mySSH_2client_2src_2client_8cpp">
+</map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
@@ -127,28 +130,31 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac084a196c561907e971621bd28382b32"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8cpp.html#ac084a196c561907e971621bd28382b32">create_socket</a> (char *_ip, char *_port)</td></tr>
-<tr class="separator:ac084a196c561907e971621bd28382b32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98f4fc799684d4c4564fa5549b8e9277"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8cpp.html#a98f4fc799684d4c4564fa5549b8e9277">HandleAuth</a> (SSL *ssl)</td></tr>
-<tr class="separator:a98f4fc799684d4c4564fa5549b8e9277"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a238a36a0c27151b4efcf65df7a23f043"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8cpp.html#a238a36a0c27151b4efcf65df7a23f043">HandleResponse</a> (SSL *ssl, <a class="el" href="structSSH__Packet.html">SSH_Packet</a> *packet)</td></tr>
-<tr class="separator:a238a36a0c27151b4efcf65df7a23f043"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36c31f9205eb9e4e3753617984054fe1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8cpp.html#a36c31f9205eb9e4e3753617984054fe1">HandleCommand</a> (SSL *ssl)</td></tr>
-<tr class="separator:a36c31f9205eb9e4e3753617984054fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86a3b788c2958975e270bf69fb8fe7e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8cpp.html#a86a3b788c2958975e270bf69fb8fe7e2">writing_routine</a> (std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; ctx)</td></tr>
-<tr class="separator:a86a3b788c2958975e270bf69fb8fe7e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66bc3e5b829ba4d3e4a294c1bcd267b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8cpp.html#a66bc3e5b829ba4d3e4a294c1bcd267b9">reading_routine</a> (std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; ctx)</td></tr>
-<tr class="separator:a66bc3e5b829ba4d3e4a294c1bcd267b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fbd5f39facef76ebf39841ec216c287"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8cpp.html#a6fbd5f39facef76ebf39841ec216c287">sigHandler</a> (int signo)</td></tr>
+<tr class="separator:a6fbd5f39facef76ebf39841ec216c287"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab12b9c5ae76c8cebd6982e2a10c58670"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8cpp.html#ab12b9c5ae76c8cebd6982e2a10c58670">createSocket</a> (char *_ip, char *_port)</td></tr>
+<tr class="separator:ab12b9c5ae76c8cebd6982e2a10c58670"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc99c06b8569296d01808f0193b0e44c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8cpp.html#acc99c06b8569296d01808f0193b0e44c">handleAuth</a> (SSL *ssl, std::string login)</td></tr>
+<tr class="separator:acc99c06b8569296d01808f0193b0e44c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a431ad8c77691faa3a9c61245742e432d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8cpp.html#a431ad8c77691faa3a9c61245742e432d">writingRoutine</a> (std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; <a class="el" href="shell_2src_2main_8cpp.html#aabb454f84e785177301ba543d88067a7">ctx</a>)</td></tr>
+<tr class="separator:a431ad8c77691faa3a9c61245742e432d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27a351c36242ef9bb012af52da279653"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8cpp.html#a27a351c36242ef9bb012af52da279653">readingRoutine</a> (std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; <a class="el" href="shell_2src_2main_8cpp.html#aabb454f84e785177301ba543d88067a7">ctx</a>)</td></tr>
+<tr class="separator:a27a351c36242ef9bb012af52da279653"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:aabb454f84e785177301ba543d88067a7"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8cpp.html#aabb454f84e785177301ba543d88067a7">ctx</a></td></tr>
+<tr class="separator:aabb454f84e785177301ba543d88067a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="ac084a196c561907e971621bd28382b32"></a>
+<a class="anchor" id="ab12b9c5ae76c8cebd6982e2a10c58670"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int create_socket </td>
+          <td class="memname">int createSocket </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>_ip</em>, </td>
@@ -169,44 +175,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a98f4fc799684d4c4564fa5549b8e9277"></a>
+<a class="anchor" id="acc99c06b8569296d01808f0193b0e44c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void HandleAuth </td>
-          <td>(</td>
-          <td class="paramtype">SSL *&#160;</td>
-          <td class="paramname"><em>ssl</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a36c31f9205eb9e4e3753617984054fe1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void HandleCommand </td>
-          <td>(</td>
-          <td class="paramtype">SSL *&#160;</td>
-          <td class="paramname"><em>ssl</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a238a36a0c27151b4efcf65df7a23f043"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void HandleResponse </td>
+          <td class="memname">std::string handleAuth </td>
           <td>(</td>
           <td class="paramtype">SSL *&#160;</td>
           <td class="paramname"><em>ssl</em>, </td>
@@ -214,8 +188,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structSSH__Packet.html">SSH_Packet</a> *&#160;</td>
-          <td class="paramname"><em>packet</em>&#160;</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>login</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -253,12 +227,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a66bc3e5b829ba4d3e4a294c1bcd267b9"></a>
+<a class="anchor" id="a27a351c36242ef9bb012af52da279653"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void reading_routine </td>
+          <td class="memname">void readingRoutine </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt;&#160;</td>
           <td class="paramname"><em>ctx</em></td><td>)</td>
@@ -269,16 +243,45 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a86a3b788c2958975e270bf69fb8fe7e2"></a>
+<a class="anchor" id="a6fbd5f39facef76ebf39841ec216c287"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void writing_routine </td>
+          <td class="memname">void sigHandler </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>signo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a431ad8c77691faa3a9c61245742e432d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void writingRoutine </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt;&#160;</td>
           <td class="paramname"><em>ctx</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="aabb454f84e785177301ba543d88067a7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="structExecutionContext.html">ExecutionContext</a>&gt; ctx</td>
         </tr>
       </table>
 </div><div class="memdoc">

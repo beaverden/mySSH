@@ -27,13 +27,22 @@ std\+::stack$<$ int $>$ \hyperlink{structExecutionContext_aa5d29389a31755f8a0c10
 std\+::string \hyperlink{structExecutionContext_a6c1bbd4dcfc82e4902c4382af69ab6d9}{username}
 \begin{DoxyCompactList}\small\item\em Current username. \end{DoxyCompactList}\item 
 std\+::string \hyperlink{structExecutionContext_ad3a0ccfbff4fe1b7b0f5ced3a58dca32}{current\+Dir}
-\begin{DoxyCompactList}\small\item\em Current working directory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Current working directory. \end{DoxyCompactList}\item 
+int \hyperlink{structExecutionContext_a625cc2ed3ed64f3ac50165818c300943}{child\+Pid} = -\/1
+\begin{DoxyCompactList}\small\item\em The pid of the process called by the shell. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Context for tree execution and redirection. Gets passed between functions of Evaluation and Execution. 
 
 \subsection{Field Documentation}
+\index{Execution\+Context@{Execution\+Context}!child\+Pid@{child\+Pid}}
+\index{child\+Pid@{child\+Pid}!Execution\+Context@{Execution\+Context}}
+\subsubsection[{\texorpdfstring{child\+Pid}{childPid}}]{\setlength{\rightskip}{0pt plus 5cm}int Execution\+Context\+::child\+Pid = -\/1}\hypertarget{structExecutionContext_a625cc2ed3ed64f3ac50165818c300943}{}\label{structExecutionContext_a625cc2ed3ed64f3ac50165818c300943}
+
+
+The pid of the process called by the shell. 
+
 \index{Execution\+Context@{Execution\+Context}!current\+Dir@{current\+Dir}}
 \index{current\+Dir@{current\+Dir}!Execution\+Context@{Execution\+Context}}
 \subsubsection[{\texorpdfstring{current\+Dir}{currentDir}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Execution\+Context\+::current\+Dir}\hypertarget{structExecutionContext_ad3a0ccfbff4fe1b7b0f5ced3a58dca32}{}\label{structExecutionContext_ad3a0ccfbff4fe1b7b0f5ced3a58dca32}

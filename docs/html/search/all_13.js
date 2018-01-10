@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['what',['what',['../classArgumentsException.html#aa970dadd44c523df99070343c164343c',1,'ArgumentsException::what()'],['../classParserException.html#a1cfdeb6578524907f9250a3ebd465554',1,'ParserException::what()'],['../classVerificationException.html#a52ccc8f07355dcd189819185ccf37220',1,'VerificationException::what()'],['../classArgumentsException.html#a1e2379ac714eacebdd9ac6bda52592f1',1,'ArgumentsException::what()']]],
-  ['writing_5froutine',['writing_routine',['../client_8cpp.html#a86a3b788c2958975e270bf69fb8fe7e2',1,'client.cpp']]]
+  ['_7eargumentsexception',['~ArgumentsException',['../classArgumentsException.html#a468ecb17b1b07f0491a6f262220f3b96',1,'ArgumentsException::~ArgumentsException()'],['../classArgumentsException.html#a468ecb17b1b07f0491a6f262220f3b96',1,'ArgumentsException::~ArgumentsException()']]],
+  ['_7eparserexception',['~ParserException',['../classParserException.html#ac55503267d06f8185cd2cb1b8d4f2156',1,'ParserException']]],
+  ['_7essh_5fpacket',['~SSH_Packet',['../structSSH__Packet.html#a476661ce993ff29f35948ad8760f37d5',1,'SSH_Packet']]],
+  ['_7everificationexception',['~VerificationException',['../classVerificationException.html#adbd142d0a289ce3d53e4f8cdc874b57d',1,'VerificationException']]]
 ];

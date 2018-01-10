@@ -6,6 +6,8 @@ Include dependency graph for Packet.\+cpp\+:
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+void \hyperlink{Packet_8cpp_acce65f288b2aed7670bee2f6dfbbb882}{check\+\_\+shutdown} (S\+SL $\ast$ssl)
+\item 
 void \hyperlink{Packet_8cpp_a723198aebc9baad8998255313981e357}{send\+\_\+packet} (S\+SL $\ast$ssl, \hyperlink{Packet_8h_a307e533851c91d484ac30d8471095890}{Packet\+\_\+\+Type} type, void $\ast$data, size\+\_\+t data\+\_\+len)
 \begin{DoxyCompactList}\small\item\em Sends data in form of a \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} to the S\+SL socket given. \end{DoxyCompactList}\item 
 void \hyperlink{Packet_8cpp_adaa6274c063dfae816caaf9a68774698}{recv\+\_\+packet} (S\+SL $\ast$ssl, \hyperlink{structSSH__Packet}{S\+S\+H\+\_\+\+Packet} $\ast$read\+\_\+to)
@@ -15,6 +17,13 @@ int \hyperlink{Packet_8cpp_a707a865009d80b22ee19d46a59d81e94}{sha\+\_\+digest} (
 
 
 \subsection{Function Documentation}
+\index{Packet.\+cpp@{Packet.\+cpp}!check\+\_\+shutdown@{check\+\_\+shutdown}}
+\index{check\+\_\+shutdown@{check\+\_\+shutdown}!Packet.\+cpp@{Packet.\+cpp}}
+\subsubsection[{\texorpdfstring{check\+\_\+shutdown(\+S\+S\+L $\ast$ssl)}{check_shutdown(SSL *ssl)}}]{\setlength{\rightskip}{0pt plus 5cm}void check\+\_\+shutdown (
+\begin{DoxyParamCaption}
+\item[{S\+SL $\ast$}]{ssl}
+\end{DoxyParamCaption}
+)}\hypertarget{Packet_8cpp_acce65f288b2aed7670bee2f6dfbbb882}{}\label{Packet_8cpp_acce65f288b2aed7670bee2f6dfbbb882}
 \index{Packet.\+cpp@{Packet.\+cpp}!recv\+\_\+packet@{recv\+\_\+packet}}
 \index{recv\+\_\+packet@{recv\+\_\+packet}!Packet.\+cpp@{Packet.\+cpp}}
 \subsubsection[{\texorpdfstring{recv\+\_\+packet(\+S\+S\+L $\ast$ssl, S\+S\+H\+\_\+\+Packet $\ast$read\+\_\+to)}{recv_packet(SSL *ssl, SSH_Packet *read_to)}}]{\setlength{\rightskip}{0pt plus 5cm}void recv\+\_\+packet (

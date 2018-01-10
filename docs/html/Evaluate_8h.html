@@ -105,6 +105,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;cstring&gt;</code><br />
 <code>#include &lt;wait.h&gt;</code><br />
 <code>#include &lt;sys/ioctl.h&gt;</code><br />
+<code>#include &lt;pwd.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Evaluate.h:</div>
 <div class="dyncontent">
@@ -142,8 +143,10 @@ Functions</h2></td></tr>
 <tr class="memitem:aab83877ec794b9c71e963bac1b0dde76"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8h.html#aab83877ec794b9c71e963bac1b0dde76">Evaluate_Tree</a> (std::shared_ptr&lt; <a class="el" href="structSyntaxTree.html">SyntaxTree</a> &gt; node, std::shared_ptr&lt; <a class="el" href="structExecutionContext.html">ExecutionContext</a> &gt; context)</td></tr>
 <tr class="memdesc:aab83877ec794b9c71e963bac1b0dde76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens redirects, pushes them to the stack, creates pipes between programs and executes simple commands.  <a href="#aab83877ec794b9c71e963bac1b0dde76">More...</a><br /></td></tr>
 <tr class="separator:aab83877ec794b9c71e963bac1b0dde76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a063842d8b2c77e02edb88c7ab397f649"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8h.html#a063842d8b2c77e02edb88c7ab397f649">get_cwd</a> ()</td></tr>
-<tr class="separator:a063842d8b2c77e02edb88c7ab397f649"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a852d364509109197f7df792395812aec"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8h.html#a852d364509109197f7df792395812aec">getCwd</a> ()</td></tr>
+<tr class="separator:a852d364509109197f7df792395812aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fe59b0909c1ee46ead7fe632fe182f8"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Evaluate_8h.html#a4fe59b0909c1ee46ead7fe632fe182f8">getUsername</a> ()</td></tr>
+<tr class="separator:a4fe59b0909c1ee46ead7fe632fe182f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="a0edb60dab8dbc580a40d8d987492631f"></a>
@@ -266,12 +269,27 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a063842d8b2c77e02edb88c7ab397f649"></a>
+<a class="anchor" id="a852d364509109197f7df792395812aec"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string get_cwd </td>
+          <td class="memname">std::string getCwd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4fe59b0909c1ee46ead7fe632fe182f8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string getUsername </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>

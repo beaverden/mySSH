@@ -11,6 +11,7 @@
 {\ttfamily \#include $<$cstring$>$}\\*
 {\ttfamily \#include $<$wait.\+h$>$}\\*
 {\ttfamily \#include $<$sys/ioctl.\+h$>$}\\*
+{\ttfamily \#include $<$pwd.\+h$>$}\\*
 Include dependency graph for Evaluate.\+h\+:
 % FIG 0
 This graph shows which files directly or indirectly include this file\+:
@@ -34,7 +35,9 @@ void \hyperlink{Evaluate_8h_a370b78bdb8dcfbadf1b0e9be4452d740}{Evaluate} (std\+:
 \begin{DoxyCompactList}\small\item\em Parses a complex command and calls Evaluate\+\_\+\+Tree on the A\+ST obtained from parsing. \end{DoxyCompactList}\item 
 int \hyperlink{Evaluate_8h_aab83877ec794b9c71e963bac1b0dde76}{Evaluate\+\_\+\+Tree} (std\+::shared\+\_\+ptr$<$ \hyperlink{structSyntaxTree}{Syntax\+Tree} $>$ node, std\+::shared\+\_\+ptr$<$ \hyperlink{structExecutionContext}{Execution\+Context} $>$ context)
 \begin{DoxyCompactList}\small\item\em Opens redirects, pushes them to the stack, creates pipes between programs and executes simple commands. \end{DoxyCompactList}\item 
-std\+::string \hyperlink{Evaluate_8h_a063842d8b2c77e02edb88c7ab397f649}{get\+\_\+cwd} ()
+std\+::string \hyperlink{Evaluate_8h_a852d364509109197f7df792395812aec}{get\+Cwd} ()
+\item 
+std\+::string \hyperlink{Evaluate_8h_a4fe59b0909c1ee46ead7fe632fe182f8}{get\+Username} ()
 \end{DoxyCompactItemize}
 
 
@@ -108,10 +111,17 @@ Executes a given command, taking redirect descriptors from the top of the stacks
 \begin{DoxyReturn}{Returns}
 Execution status of the command 
 \end{DoxyReturn}
-\index{Evaluate.\+h@{Evaluate.\+h}!get\+\_\+cwd@{get\+\_\+cwd}}
-\index{get\+\_\+cwd@{get\+\_\+cwd}!Evaluate.\+h@{Evaluate.\+h}}
-\subsubsection[{\texorpdfstring{get\+\_\+cwd()}{get_cwd()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string get\+\_\+cwd (
+\index{Evaluate.\+h@{Evaluate.\+h}!get\+Cwd@{get\+Cwd}}
+\index{get\+Cwd@{get\+Cwd}!Evaluate.\+h@{Evaluate.\+h}}
+\subsubsection[{\texorpdfstring{get\+Cwd()}{getCwd()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string get\+Cwd (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hypertarget{Evaluate_8h_a063842d8b2c77e02edb88c7ab397f649}{}\label{Evaluate_8h_a063842d8b2c77e02edb88c7ab397f649}
+)}\hypertarget{Evaluate_8h_a852d364509109197f7df792395812aec}{}\label{Evaluate_8h_a852d364509109197f7df792395812aec}
+\index{Evaluate.\+h@{Evaluate.\+h}!get\+Username@{get\+Username}}
+\index{get\+Username@{get\+Username}!Evaluate.\+h@{Evaluate.\+h}}
+\subsubsection[{\texorpdfstring{get\+Username()}{getUsername()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string get\+Username (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{Evaluate_8h_a4fe59b0909c1ee46ead7fe632fe182f8}{}\label{Evaluate_8h_a4fe59b0909c1ee46ead7fe632fe182f8}

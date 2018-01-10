@@ -9,7 +9,7 @@ digraph "/home/denis/CLionProjects/mySSH/server" {
     dir_a063914ab482288b7b0e1b2fca86158c [shape=box label="src" color="black" fillcolor="white" style="filled" URL="dir_a063914ab482288b7b0e1b2fca86158c.html"];
   }
   dir_bdd9a5d540de89e9fe90efdfc6973a4f [shape=box label="common" fillcolor="white" style="filled" color="red" URL="dir_bdd9a5d540de89e9fe90efdfc6973a4f.html"];
-  dir_a063914ab482288b7b0e1b2fca86158c->dir_2b32f7736d6a65027d17676f6279053c [headlabel="2", labeldistance=1.5 headhref="dir_000008_000007.html"];
-  dir_a063914ab482288b7b0e1b2fca86158c->dir_bdd9a5d540de89e9fe90efdfc6973a4f [headlabel="2", labeldistance=1.5 headhref="dir_000008_000003.html"];
-  dir_2b32f7736d6a65027d17676f6279053c->dir_bdd9a5d540de89e9fe90efdfc6973a4f [headlabel="2", labeldistance=1.5 headhref="dir_000007_000003.html"];
+  dir_a063914ab482288b7b0e1b2fca86158c->dir_2b32f7736d6a65027d17676f6279053c [headlabel="2", labeldistance=1.5 headhref="dir_000007_000006.html"];
+  dir_a063914ab482288b7b0e1b2fca86158c->dir_bdd9a5d540de89e9fe90efdfc6973a4f [headlabel="2", labeldistance=1.5 headhref="dir_000007_000002.html"];
+  dir_2b32f7736d6a65027d17676f6279053c->dir_bdd9a5d540de89e9fe90efdfc6973a4f [headlabel="2", labeldistance=1.5 headhref="dir_000006_000002.html"];
 }
