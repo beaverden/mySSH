@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>mySSH: Globals</title>
+<title>mySSH: mySSH</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -40,9 +40,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -61,23 +61,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
-  <div id="navrow2" class="tabs2">
-    <ul class="tablist">
-      <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li class="current"><a href="globals.html"><span>Globals</span></a></li>
-    </ul>
-  </div>
-  <div id="navrow3" class="tabs2">
-    <ul class="tablist">
-      <li><a href="globals.html"><span>All</span></a></li>
-      <li><a href="globals_func.html"><span>Functions</span></a></li>
-      <li><a href="globals_vars.html"><span>Variables</span></a></li>
-      <li><a href="globals_enum.html"><span>Enumerations</span></a></li>
-      <li><a href="globals_eval.html"><span>Enumerator</span></a></li>
-      <li class="current"><a href="globals_defs.html"><span>Macros</span></a></li>
-    </ul>
-  </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -92,50 +75,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">mySSH </div>  </div>
+</div><!--header-->
 <div class="contents">
-&#160;<ul>
-<li>CHECK
-: <a class="el" href="Logger_8h.html#abb3f80ef30220b04f769a74e0d8db9fc">Logger.h</a>
-</li>
-<li>FAILED
-: <a class="el" href="Packet_8h.html#a681680feae4df4182d532564c42fa1fc">Packet.h</a>
-, <a class="el" href="Server_8h.html#a681680feae4df4182d532564c42fa1fc">Server.h</a>
-</li>
-<li>LOG_CONNECTIONS
-: <a class="el" href="Logger_8h.html#aaacf836166a9bb870debfbe2b78eb830">Logger.h</a>
-</li>
-<li>LOG_ERRORS
-: <a class="el" href="Logger_8h.html#a327a92ff349ce0beadfb946b5714a4b9">Logger.h</a>
-</li>
-<li>LOG_EVAL
-: <a class="el" href="Logger_8h.html#a7ea7b4ad9885aa5fc28fe650b976d511">Logger.h</a>
-</li>
-<li>LOG_EVAL_VERBOSE
-: <a class="el" href="Logger_8h.html#a91452f0c8b053cb9a52a64e6de9e4505">Logger.h</a>
-</li>
-<li>LOG_EVENTS
-: <a class="el" href="Logger_8h.html#ade2a951f0b4ac908683c37e1066d243c">Logger.h</a>
-</li>
-<li>LOG_NONE
-: <a class="el" href="Logger_8h.html#a1632479322efa3952798f98177b54471">Logger.h</a>
-</li>
-<li>LOG_PACKET_DATA
-: <a class="el" href="Logger_8h.html#a2a2249f3d5db2bba1c25534dd60c2860">Logger.h</a>
-</li>
-<li>LOG_PACKETS
-: <a class="el" href="Logger_8h.html#a63728bc2bb2c4352090dc48ee65273b1">Logger.h</a>
-</li>
-<li>MAX_ARGUMENTS
-: <a class="el" href="Evaluate_8h.html#a0edb60dab8dbc580a40d8d987492631f">Evaluate.h</a>
-</li>
-<li>MAX_LOGIN_LENGTH
-: <a class="el" href="Packet_8h.html#ab9445e27830d28f1e288bd223ab95296">Packet.h</a>
-</li>
-<li>MAX_PASSWORD_LENGTH
-: <a class="el" href="Packet_8h.html#a7f264fafe78080f8ea68715854b9bc24">Packet.h</a>
-</li>
-</ul>
-</div><!-- contents -->
+<div class="textblock"><h2>Introduction</h2>
+<p>mySSH is a minimalistic cryptographic network protocol for remote control of a system over an unsecured network. A mySSH server will listen on a machine waiting for a number of clients to connect over a netwrok and securely trasmit commands. The commands (also called command lines) will have a specific format and the server will ensure the correct execution and forwading of the output to the client. Installation</p>
+<h2>Documentation</h2>
+<p>Please read mySSH.pdf in the docs directory</p>
+<h2>Dependencies</h2>
+<ol type="1">
+<li>Install OpenSSL on your distribution</li>
+</ol>
+<h2>Installation</h2>
+<ol type="1">
+<li>In the main directory, run <code>make -B server</code></li>
+<li>In the main directory, run <code>make -B client</code></li>
+<li>In the main directory, run <code>make -B shell</code></li>
+</ol>
+<h2>Usage</h2>
+<h3><a class="el" href="classServer.html">Server</a></h3>
+<ol type="1">
+<li>Make bin folder the current directory and run server with the port to run.</li>
+<li>Wait for clients to connect and be served Example: <code>sudo ./server 2018</code></li>
+</ol>
+<h3>Client</h3>
+<ol type="1">
+<li>Run the client using ip, port and username. Example: <code>./client 127.0.0.1 2018 denis</code> </li>
+</ol>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

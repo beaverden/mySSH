@@ -1,0 +1,40 @@
+\subsection*{Introduction}
+
+my\+S\+SH is a minimalistic cryptographic network protocol for remote control of a system over an unsecured network. A my\+S\+SH server will listen on a machine waiting for a number of clients to connect over a netwrok and securely trasmit commands. The commands (also called command lines) will have a specific format and the server will ensure the correct execution and forwading of the output to the client. Installation
+
+\subsection*{Documentation}
+
+Please read my\+S\+S\+H.\+pdf in the docs directory
+
+\subsection*{Dependencies}
+
+
+\begin{DoxyEnumerate}
+\item Install Open\+S\+SL on your distribution
+\end{DoxyEnumerate}
+
+\subsection*{Installation}
+
+
+\begin{DoxyEnumerate}
+\item In the main directory, run {\ttfamily make -\/B server}
+\item In the main directory, run {\ttfamily make -\/B client}
+\item In the main directory, run {\ttfamily make -\/B shell}
+\end{DoxyEnumerate}
+
+\subsection*{Usage}
+
+\subsubsection*{\hyperlink{classServer}{Server}}
+
+
+\begin{DoxyEnumerate}
+\item Make bin folder the current directory and run server with the port to run.
+\item Wait for clients to connect and be served Example\+: {\ttfamily sudo ./server 2018}
+\end{DoxyEnumerate}
+
+\subsubsection*{Client}
+
+
+\begin{DoxyEnumerate}
+\item Run the client using ip, port and username. Example\+: {\ttfamily ./client 127.\+0.\+0.\+1 2018 denis} 
+\end{DoxyEnumerate}
